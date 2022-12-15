@@ -1,0 +1,336 @@
+/**
+ * Vuetify Styles Overrides
+ */
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap");
+//@font-face {
+//  font-family: 'Cairo';
+//  src: url('../../fonts/Cairo.ttf');
+//
+//}
+//@font-face {
+//  font-family: 'cairo';
+//  src: url('./@fontsource/cairo/index.css');
+//}
+// Flex min-width: 0
+.v-application .d-flex {
+  min-width: 0;
+}
+
+// Text Overrides
+.v-application p {
+  margin-bottom: 20px;
+}
+
+.v-application .text-number {
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji !important;
+}
+*, .v-application--wrap, .v-application .display-1,
+.v-application .title{
+  font-family: 'Cairo' !important;
+  //d
+}
+.v-card__title{
+  font-weight: 600;
+  justify-content: space-between;
+}
+// List Component
+.v-list-item__title {
+  font-size: 0.975rem;
+  font-weight: 600;
+}
+
+.v-list-item__action:first-child,
+.v-list-item__icon:first-child {
+  margin-right: 14px !important;
+}
+
+.v-application--is-rtl {
+  .v-list-item__action:first-child,
+  .v-list-item__icon:first-child {
+    margin-right: 0 !important;
+    margin-left: 14px !important;
+  }
+}
+
+.v-list-item__action:first-child,
+.v-list-item__icon:first-child {
+  margin-right: 14px !important;
+}
+
+.v-list-group__header__append-icon .v-icon {
+  font-size: 1rem;
+}
+
+.v-list-group__header .v-list-item__icon.v-list-group__header__append-icon {
+  min-width: 0 !important;
+}
+
+.v-list-item__icon {
+  margin: auto;
+  justify-content: center;
+}
+
+.v-list-group--sub-group .v-list-group__header {
+  padding-left: $spacer !important;
+}
+
+.v-list-group__items {
+  margin-bottom: $spacer;
+}
+
+// Navigation Drawer
+.v-navigation-drawer__content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  min-height: 0px;
+  padding: 8px 0;
+  background: linear-gradient(white 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%, radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0)), radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0)) 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 40px, 100% 40px, 100% 15px, 100% 15px;
+  background-attachment: local, local, scroll, scroll;
+}
+
+.theme--dark .v-navigation-drawer__content {
+  background: none;
+}
+
+// Tables
+.v-data-table {
+  table {
+    padding: 4px;
+    padding-bottom: 8px;
+
+    th {
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    td {
+      border-bottom: 0 !important;
+    }
+
+    tbody {
+      tr {
+        transition: box-shadow 0.2s, transform 0.2s;
+
+        &:not(.v-data-table__selected):hover {
+          box-shadow: 0 3px 15px -2px rgba(0, 0, 0, 0.12);
+          transform: translateY(-4px);
+        }
+      }
+    }
+  }
+}
+
+// Tabs
+.v-tabs-items {
+  background-color: transparent !important;
+}
+
+// Buttons
+.theme--dark.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+  background-color: #273743;
+}
+
+// New Content Style
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #e0e0e0 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #eee;
+  border-radius: 6px;
+  border: 0px solid #ffffff;
+}
+*::-webkit-scrollbar-thumb:hover{
+  background: #ddd;
+}
+.bullet {
+  display: inline-block;
+  background-color: var(--v-anchor-base);
+  border-radius: 6px;
+  width: 8px;
+  height: 4px;
+  flex-shrink: 0;
+}
+.roles .v-input__slot{
+  margin-bottom: 0;
+}
+
+.model-aside {
+  width: 500px;
+  max-width: 90vw;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  bottom: 0;
+  height: 100vh;
+  transform: translateX(100%);
+  transition: .2s;
+}
+#kt_captured_images{
+  width: 600px;
+  max-width: 80vw;
+}
+.model-aside.open {
+  transform: none;
+}
+.model-aside .v-card{
+  height: 100%;
+}
+.model-aside .v-card__text{
+  max-height: calc(100% - 62px);
+  overflow-y: auto;
+}
+.data-cont>div {
+  margin-bottom: 10px;
+  border: thin solid rgb(204, 204, 204);
+  text-align: center;
+  line-height: 30px;
+  padding: 5px;
+}
+
+.data-cont>div h6 {
+  font-size: 1.175rem;
+  border-bottom: 1px solid rgb(204, 204, 204);
+  line-height: 30px;
+  color: #ffffff ;
+}
+
+.data-cont>div p {
+  margin-bottom: 0px;
+}
+#all_captured_images{
+
+}
+.model-aside .overlay-wrapper img{
+  max-width: 100%;
+  height: 150px;
+}
+.model-aside .overlay-wrapper{
+  border:4px solid #eff2f5;
+  position: relative;
+}
+.model-aside .overlay-layer{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #0000003b;
+  opacity: 0;
+  transition: 0.2s;
+}
+.model-aside .overlay-wrapper:hover .overlay-layer{
+  opacity: 1;
+}
+.border-bottom{
+  border-bottom: 1px solid #eee;
+}
+.v-text-field.v-text-field--solo:not(.v-text-field--solo-flat) > .v-input__control > .v-input__slot{
+  border: 1px solid #e4e6ef;
+  box-shadow: none !important;
+}
+.image-mark{
+  position: absolute;
+  background: transparent;
+  width: 35px;
+  height: 35px;
+  border: 2px solid #000;
+}
+.image-mark.red{
+  border-color: red;
+}
+.image-mark.yellow{
+  border-color: yellow;
+}
+.apexcharts-canvas{
+  margin: auto;
+}
+//list
+.text-link{
+  text-decoration: none;
+  cursor: pointer;
+}
+.text--secondary.text-link:hover{
+  color: var(--v-anchor-base) !important;
+}
+.apexcharts-legend-marker{
+  margin-left: 3px;
+}
+.apexcharts-tooltip-marker{
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+}
+.pipesFilter .v-text-field.v-text-field--solo .v-input__control{
+    min-height: 38px !important;
+}
+.h-38{
+  height: 38px;
+}
+//datapicker
+.vue-daterange-picker{
+  min-width: 100px;
+  //width: 230px;
+  margin: 0 8px;
+}
+.reportrange-text{
+  padding: 10px 10px !important;
+  border: 1px solid #e4e6ef !important;
+  border-radius: 6px;
+  text-align: center;
+  min-width: 100px;
+}
+.daterangepicker .slot {
+  background-color: #aaa;
+  padding: 0.5rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.text-black {
+  color: #000;
+}
+
+
+.daterangepicker.ltr{
+  left: -108px !important;
+}
+.v-application--is-rtl .daterangepicker {
+  left: 147% !important;
+}
+.page-filters .v-input__slot{
+  margin-bottom: 0;
+}
+.date-picker .mdi-calendar{
+  position: absolute;
+  z-index: 1;
+  font-size: 17px;
+  top: 13px;
+  left: 5px;
+}
+.v-application--is-rtl .date-picker .mdi-calendar{
+  left: auto;
+  right: 5px;
+}
+.date-picker .glyphicon{
+  opacity: 0;
+ }
+
