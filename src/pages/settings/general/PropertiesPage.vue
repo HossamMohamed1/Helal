@@ -35,8 +35,8 @@
               <v-row>
                 <v-col cols="12" md="6" lg="3">
                   <v-file-input
-                    :label="$t('settings.websiteLogoSmall')"
                     v-model="image1"
+                    :label="$t('settings.websiteLogoSmall')"
                     @change="Preview_image1"
                   >
                   </v-file-input>
@@ -44,8 +44,8 @@
                 </v-col>
                 <v-col cols="12" md="6" lg="3">
                   <v-file-input
-                    :label="$t('settings.websiteLogoLarge')"
                     v-model="image2"
+                    :label="$t('settings.websiteLogoLarge')"
                     @change="Preview_image2"
                   >
                   </v-file-input>
@@ -53,8 +53,8 @@
                 </v-col>
                 <v-col cols="12" md="6" lg="3">
                   <v-file-input
-                    :label="$t('settings.favouritePlaceIcon')"
                     v-model="image3"
+                    :label="$t('settings.favouritePlaceIcon')"
                     @change="Preview_image3"
                   >
                   </v-file-input>
@@ -62,8 +62,8 @@
                 </v-col>
                 <v-col cols="12" md="6" lg="3">
                   <v-file-input
-                    :label="$t('settings.websiteLoginPageImage')"
                     v-model="image4"
+                    :label="$t('settings.websiteLoginPageImage')"
                     @change="Preview_image4"
                   >
                   </v-file-input>

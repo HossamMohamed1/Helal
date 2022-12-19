@@ -9,19 +9,19 @@
         <v-spacer></v-spacer>
         <div style="width: 160px; height: 40px;" class="mx-1">
           <v-select
+            v-model="defaultSelectedGender"
             label=""
             class="mb-0"
             :items="gender"
-            v-model="defaultSelectedGender"
             solo
           ></v-select>
         </div>
         <div style="width: 120px; height: 40px;" class="mx-1">
           <v-select
+            v-model="defaultSelected"
             label=""
             class="mb-0"
             :items="administrations"
-            v-model="defaultSelected"
             solo
           ></v-select>
         </div>
@@ -38,7 +38,7 @@
               <!--              {{ picker.startDate | date }} - {{ picker.endDate | date }}-->
               <i aria-hidden="true" class="v-icon mdi mdi-calendar"></i>
               {{ picker.rangeText }}
-<!--              <span v-if="filterLabel">{{ $t('general.filterWithDate') }}</span>-->
+              <!--              <span v-if="filterLabel">{{ $t('general.filterWithDate') }}</span>-->
 
             </template>
 
@@ -145,49 +145,49 @@
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title class="d-flex align-center align-content-space-between">
               <div>{{ $t('employees.employeesInPublicAgenciesAndAdministrations') }}</div>
-<!--              <div>-->
-<!--                <v-menu-->
-<!--                  ref="menu"-->
-<!--                  v-model="menu"-->
-<!--                  :close-on-content-click="false"-->
-<!--                  :return-value.sync="date"-->
-<!--                  transition="scale-transition"-->
-<!--                  offset-y-->
-<!--                  min-width="auto"-->
-<!--                >-->
-<!--                  <template v-slot:activator="{ on, attrs }">-->
-<!--                    <v-text-field-->
-<!--                      v-model="date"-->
-<!--                      prepend-icon="mdi-calendar"-->
-<!--                      readonly-->
-<!--                      v-bind="attrs"-->
-<!--                      v-on="on"-->
-<!--                    ></v-text-field>-->
-<!--                  </template>-->
-<!--                  <v-date-picker-->
-<!--                    v-model="date"-->
-<!--                    no-title-->
-<!--                    scrollable-->
-<!--                    range-->
-<!--                  >-->
-<!--                    <v-spacer></v-spacer>-->
-<!--                    <v-btn-->
-<!--                      text-->
-<!--                      color="primary"-->
-<!--                      @click="menu = false"-->
-<!--                    >-->
-<!--                      Cancel-->
-<!--                    </v-btn>-->
-<!--                    <v-btn-->
-<!--                      text-->
-<!--                      color="primary"-->
-<!--                      @click="$refs.menu.save(date)"-->
-<!--                    >-->
-<!--                      OK-->
-<!--                    </v-btn>-->
-<!--                  </v-date-picker>-->
-<!--                </v-menu>-->
-<!--              </div>-->
+              <!--              <div>-->
+              <!--                <v-menu-->
+              <!--                  ref="menu"-->
+              <!--                  v-model="menu"-->
+              <!--                  :close-on-content-click="false"-->
+              <!--                  :return-value.sync="date"-->
+              <!--                  transition="scale-transition"-->
+              <!--                  offset-y-->
+              <!--                  min-width="auto"-->
+              <!--                >-->
+              <!--                  <template v-slot:activator="{ on, attrs }">-->
+              <!--                    <v-text-field-->
+              <!--                      v-model="date"-->
+              <!--                      prepend-icon="mdi-calendar"-->
+              <!--                      readonly-->
+              <!--                      v-bind="attrs"-->
+              <!--                      v-on="on"-->
+              <!--                    ></v-text-field>-->
+              <!--                  </template>-->
+              <!--                  <v-date-picker-->
+              <!--                    v-model="date"-->
+              <!--                    no-title-->
+              <!--                    scrollable-->
+              <!--                    range-->
+              <!--                  >-->
+              <!--                    <v-spacer></v-spacer>-->
+              <!--                    <v-btn-->
+              <!--                      text-->
+              <!--                      color="primary"-->
+              <!--                      @click="menu = false"-->
+              <!--                    >-->
+              <!--                      Cancel-->
+              <!--                    </v-btn>-->
+              <!--                    <v-btn-->
+              <!--                      text-->
+              <!--                      color="primary"-->
+              <!--                      @click="$refs.menu.save(date)"-->
+              <!--                    >-->
+              <!--                      OK-->
+              <!--                    </v-btn>-->
+              <!--                  </v-date-picker>-->
+              <!--                </v-menu>-->
+              <!--              </div>-->
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-agencies></chart-agencies>

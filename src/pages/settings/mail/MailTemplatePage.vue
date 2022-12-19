@@ -16,19 +16,19 @@
           <v-form>
             <div class="mb-4">
               <label class="text--primary font-weight-medium text-darken mb-1 d-block">{{ $t('email.generalMail') }}</label>
-              <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+              <ckeditor v-model="editorData" :editor="editor" :config="editorConfig"></ckeditor>
             </div>
             <div class="mb-4">
               <label class="text--primary font-weight-medium text-darken mb-1 d-block">{{ $t('email.newUserMail') }}</label>
-              <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+              <ckeditor v-model="editorData" :editor="editor" :config="editorConfig"></ckeditor>
             </div>
             <div class="mb-4">
               <label class="text--primary font-weight-medium text-darken mb-1 d-block">{{ $t('email.mailWhenUserUpdate') }}</label>
-              <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+              <ckeditor v-model="editorData" :editor="editor" :config="editorConfig"></ckeditor>
             </div>
             <div class="mb-3">
               <label class="text--primary font-weight-medium text-darken mb-1 d-block">{{ $t('email.mailNotificationForms') }}</label>
-              <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+              <ckeditor v-model="editorData" :editor="editor" :config="editorConfig"></ckeditor>
             </div>
             <div class="d-flex mt-3">
               <v-btn color="primary">{{ $t('general.save') }}</v-btn>

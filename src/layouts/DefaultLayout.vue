@@ -18,10 +18,10 @@
       <template v-slot:prepend>
         <div class="px-2 pt-2">
           <div class="title font-weight-bold text-uppercase primary--text">
-<!--            {{ product.name }}-->
+            <!--            {{ product.name }}-->
             <img :src="logo" alt="SWCC" style="max-width: 80%; height: auto">
           </div>
-<!--          <div class="overline grey&#45;&#45;text">{{ product.version }}</div>-->
+          <!--          <div class="overline grey&#45;&#45;text">{{ product.version }}</div>-->
         </div>
       </template>
 

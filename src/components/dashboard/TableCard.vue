@@ -8,7 +8,7 @@
     >
 
       <template v-slot:item.name="{ item }">
-        <div>{{item.name}}</div>
+        <div>{{ item.name }}</div>
       </template>
 
       <template v-slot:item.serial="{ item }">
@@ -30,7 +30,7 @@
       <template v-slot:item.action="{ item }">
         <div class="actions">
           <v-btn text @click="open(item)">
-            <span class="primary--text">{{$t('tables.view')}}</span>
+            <span class="primary--text">{{ $t('tables.view') }}</span>
           </v-btn>
         </div>
       </template>

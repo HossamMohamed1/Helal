@@ -46,12 +46,12 @@
                 <v-col cols="12" md="6">
                   <v-text-field value="" :label="$t('settings.websiteEmailAddress')"></v-text-field>
                 </v-col>
-<!--                <v-col cols="12" md="4">-->
-<!--                  <v-select-->
-<!--                    label="Website Theme"-->
-<!--                    :items="items"-->
-<!--                  ></v-select>-->
-<!--                </v-col>-->
+                <!--                <v-col cols="12" md="4">-->
+                <!--                  <v-select-->
+                <!--                    label="Website Theme"-->
+                <!--                    :items="items"-->
+                <!--                  ></v-select>-->
+                <!--                </v-col>-->
                 <v-col cols="12" md="6">
                   <v-textarea
                     :label="$t('settings.description')"

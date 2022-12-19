@@ -122,16 +122,16 @@
             :placeholder="$t('general.search')"
             @keyup.enter="searchUser(searchQuery)"
           ></v-text-field>
-<!--          <div style="width: 140px; height: 38px;" class="pipesFilter" >-->
-<!--            <v-select-->
-<!--              v-model="defaultSelected"-->
-<!--              label="Select Date"-->
-<!--              class="mb-0"-->
-<!--              :items="filter"-->
-<!--              solo-->
-<!--            ></v-select>-->
-<!--          </div>-->
-          <div  class="h-38">
+          <!--          <div style="width: 140px; height: 38px;" class="pipesFilter" >-->
+          <!--            <v-select-->
+          <!--              v-model="defaultSelected"-->
+          <!--              label="Select Date"-->
+          <!--              class="mb-0"-->
+          <!--              :items="filter"-->
+          <!--              solo-->
+          <!--            ></v-select>-->
+          <!--          </div>-->
+          <div class="h-38">
             <date-range-picker
               v-model="dateRange"
             >
@@ -141,7 +141,7 @@
               </div>
               <!--    input slot (new slot syntax)-->
               <template #input="picker" style="min-width: 350px;" >
-  <!--              {{ picker.startDate | date }} - {{ picker.endDate | date }}-->
+                <!--              {{ picker.startDate | date }} - {{ picker.endDate | date }}-->
                 {{ picker.rangeText }}
                 <span v-if="filterLabel">{{ $t('general.filterWithDate') }}</span>
               </template>

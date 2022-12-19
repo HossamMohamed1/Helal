@@ -14,7 +14,7 @@
               <date-range-picker
                 v-model="dateRange"
                 :date-format="dateFormat"
-                direction='rtl'
+                direction="rtl"
               >
               </date-range-picker>
             </div>
@@ -255,17 +255,14 @@ export default {
         : this.$vuetify.theme.defaults.light
     }
   },
-  watch: {
-    selectedUsers(val) {
-
-    },
-    created() {
-      this.endDate.setDate(this.endDate.getDate() + 6)
-      this.dateRange = {
-        startDate, endDate
-      }
+  watch: {},
+  created() {
+    this.endDate.setDate(this.endDate.getDate() + 6)
+    this.dateRange = {
+      startDate, endDate
     }
   },
+
   mounted() {
     let count = 0
 

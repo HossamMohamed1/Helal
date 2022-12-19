@@ -9,19 +9,19 @@
         <v-spacer></v-spacer>
         <div style="width: 160px; height: 40px;" class="mx-1">
           <v-select
+            v-model="defaultSelectedGender"
             label=""
             class="mb-0"
             :items="gender"
-            v-model="defaultSelectedGender"
             solo
           ></v-select>
         </div>
         <div style="width: 120px; height: 40px;" class="mx-1">
           <v-select
+            v-model="defaultSelected"
             label=""
             class="mb-0"
             :items="administrations"
-            v-model="defaultSelected"
             solo
           ></v-select>
         </div>
@@ -32,7 +32,7 @@
               <date-range-picker
                 v-model="dateRange"
                 :date-format="dateFormat"
-                direction='rtl'
+                direction="rtl"
               >
               </date-range-picker>
             </div>

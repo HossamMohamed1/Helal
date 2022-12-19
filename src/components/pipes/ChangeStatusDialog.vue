@@ -6,7 +6,7 @@
     >
       <v-card>
         <v-card-title class="text-h5">
-          {{ $t('general.confirmationLog')}}
+          {{ $t('general.confirmationLog') }}
         </v-card-title>
 
         <v-card-text>

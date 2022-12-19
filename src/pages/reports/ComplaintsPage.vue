@@ -13,7 +13,7 @@
               <date-range-picker
                 v-model="dateRange"
                 :date-format="dateFormat"
-                direction='rtl'
+                direction="rtl"
               >
               </date-range-picker>
             </div>

@@ -53,7 +53,7 @@
           <v-btn x-large>Fluid</v-btn>
           <v-btn x-large>Boxed</v-btn>
         </v-btn-toggle>
-v
+        v
         <div class="font-weight-bold my-1">Menu Theme</div>
         <v-btn-toggle v-model="menuTheme" color="primary" mandatory class="mb-2">
           <v-btn x-large>Global</v-btn>

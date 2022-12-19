@@ -9,20 +9,20 @@
         <v-spacer></v-spacer>
         <div style="width: 170px; height: 40px;" class="mx-1">
           <v-select
+            v-model="defaultSelectedvisitorsFilter"
             label=""
             class="mb-0"
             :items="visitorsFilter"
-            v-model="defaultSelectedvisitorsFilter"
             solo
           ></v-select>
         </div>
 
         <div style="width: 160px; height: 40px;" class="mx-1">
           <v-select
+            v-model="defaultSelectedpermitsFilter"
             label=""
             class="mb-0"
             :items="permitsFilter"
-            v-model="defaultSelectedpermitsFilter"
             solo
           ></v-select>
         </div>
@@ -33,7 +33,7 @@
               <date-range-picker
                 v-model="dateRange"
                 :date-format="dateFormat"
-                direction='rtl'
+                direction="rtl"
               >
               </date-range-picker>
             </div>

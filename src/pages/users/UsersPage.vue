@@ -56,7 +56,6 @@
             icon
             small
             class="ml-2"
-            @click
           >
             <v-icon>mdi-refresh</v-icon>
           </v-btn>
