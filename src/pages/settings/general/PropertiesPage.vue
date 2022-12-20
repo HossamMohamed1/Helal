@@ -2,11 +2,11 @@
   <div class="flex-grow-1">
     <div class="d-flex align-center py-3">
       <div>
-        <div class="display-1">{{ $t('menu.general') }}</div>
+        <div class="display-1">{{ $t("menu.general") }}</div>
         <v-breadcrumbs :items="breadcrumbs" class="pa-0 py-2"></v-breadcrumbs>
       </div>
       <v-spacer></v-spacer>
-      <v-btn icon @click>
+      <v-btn icon>
         <v-icon>mdi-refresh</v-icon>
       </v-btn>
     </div>
@@ -30,7 +30,7 @@
           <v-card-text class="p-3 roles">
             <v-form>
               <div class="title mb-2">
-                {{ $t('settings.properties') }}
+                {{ $t("settings.properties") }}
               </div>
               <v-row>
                 <v-col cols="12" md="6" lg="3">
@@ -72,7 +72,7 @@
               </v-row>
 
               <div class="d-flex mt-3">
-                <v-btn color="primary">{{ $t('general.save') }}</v-btn>
+                <v-btn color="primary">{{ $t("general.save") }}</v-btn>
               </div>
             </v-form>
           </v-card-text>
@@ -83,8 +83,7 @@
 </template>
 
 <script>
-
-import GeneralSettingsMenu from '../../../components/settings/general/GeneralSettingsMenu'
+import GeneralSettingsMenu from "../../../components/settings/general/GeneralSettingsMenu";
 
 export default {
   components: {
@@ -92,15 +91,18 @@ export default {
   },
   data() {
     return {
-      breadcrumbs: [{
-        text: this.$t('menu.settings'),
-        disabled: false,
-        href: '#'
-      }, {
-        text: this.$t('menu.general'),
-        to: '/settings/information',
-        exact: true
-      }],
+      breadcrumbs: [
+        {
+          text: this.$t("menu.settings"),
+          disabled: false,
+          href: "#"
+        },
+        {
+          text: this.$t("menu.general"),
+          to: "/settings/information",
+          exact: true
+        }
+      ],
       drawer: null,
       url1: null,
       image1: null,
@@ -110,27 +112,26 @@ export default {
       image3: null,
       url4: null,
       image4: null
-    }
+    };
   },
   methods: {
     Preview_image1() {
-      this.url1 = URL.createObjectURL(this.image1)
+      this.url1 = URL.createObjectURL(this.image1);
     },
     Preview_image2() {
-      this.url2 = URL.createObjectURL(this.image2)
+      this.url2 = URL.createObjectURL(this.image2);
     },
     Preview_image3() {
-      this.url3 = URL.createObjectURL(this.image3)
+      this.url3 = URL.createObjectURL(this.image3);
     },
     Preview_image4() {
-      this.url4 = URL.createObjectURL(this.image4)
+      this.url4 = URL.createObjectURL(this.image4);
     }
   }
-}
+};
 </script>
-<style >
-.v-responsive__content{
+<style>
+.v-responsive__content {
   width: fit-content !important;
 }
-
 </style>

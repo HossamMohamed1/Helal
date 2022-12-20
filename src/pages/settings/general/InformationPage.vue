@@ -2,11 +2,11 @@
   <div class="flex-grow-1">
     <div class="d-flex align-center py-3">
       <div>
-        <div class="display-1">{{ $t('menu.general') }}</div>
+        <div class="display-1">{{ $t("menu.general") }}</div>
         <v-breadcrumbs :items="breadcrumbs" class="pa-0 py-2"></v-breadcrumbs>
       </div>
       <v-spacer></v-spacer>
-      <v-btn icon @click>
+      <v-btn icon>
         <v-icon>mdi-refresh</v-icon>
       </v-btn>
     </div>
@@ -30,21 +30,33 @@
           <v-card-text class="p-3 roles">
             <v-form>
               <div class="title mb-2">
-                {{ $t('settings.siteInformation') }}
+                {{ $t("settings.siteInformation") }}
               </div>
 
               <v-row>
                 <v-col cols="12" md="6">
-                  <v-text-field value="" :label="$t('settings.companyName')"></v-text-field>
+                  <v-text-field
+                    value=""
+                    :label="$t('settings.companyName')"
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6">
-                  <v-text-field value="" :label="$t('settings.rightsName')"></v-text-field>
+                  <v-text-field
+                    value=""
+                    :label="$t('settings.rightsName')"
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6">
-                  <v-text-field value="" :label="$t('settings.websiteName')"></v-text-field>
+                  <v-text-field
+                    value=""
+                    :label="$t('settings.websiteName')"
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6">
-                  <v-text-field value="" :label="$t('settings.websiteEmailAddress')"></v-text-field>
+                  <v-text-field
+                    value=""
+                    :label="$t('settings.websiteEmailAddress')"
+                  ></v-text-field>
                 </v-col>
                 <!--                <v-col cols="12" md="4">-->
                 <!--                  <v-select-->
@@ -64,11 +76,10 @@
                     value=""
                   ></v-textarea>
                 </v-col>
-
               </v-row>
 
               <div class="d-flex mt-3">
-                <v-btn color="primary">{{ $t('general.save') }}</v-btn>
+                <v-btn color="primary">{{ $t("general.save") }}</v-btn>
               </div>
             </v-form>
           </v-card-text>
@@ -79,8 +90,7 @@
 </template>
 
 <script>
-
-import GeneralSettingsMenu from '../../../components/settings/general/GeneralSettingsMenu'
+import GeneralSettingsMenu from "../../../components/settings/general/GeneralSettingsMenu";
 
 export default {
   components: {
@@ -88,18 +98,21 @@ export default {
   },
   data() {
     return {
-      items: ['Light Theme', 'Dark Theme'],
+      items: ["Light Theme", "Dark Theme"],
       drawer: null,
-      breadcrumbs: [{
-        text: this.$t('menu.settings'),
-        disabled: false,
-        href: '#'
-      }, {
-        text: this.$t('menu.general'),
-        to: '/settings/information',
-        exact: true
-      }]
-    }
+      breadcrumbs: [
+        {
+          text: this.$t("menu.settings"),
+          disabled: false,
+          href: "#"
+        },
+        {
+          text: this.$t("menu.general"),
+          to: "/settings/information",
+          exact: true
+        }
+      ]
+    };
   }
-}
+};
 </script>

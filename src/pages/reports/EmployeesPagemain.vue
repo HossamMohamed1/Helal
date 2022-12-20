@@ -3,8 +3,10 @@
     <div class="py-3">
       <div class="d-flex align-center page-filters">
         <div class="d-flex align-baseline">
-          <div class="display-1 d-flex align-center">{{ $t('employees.employeesReports') }}</div>
-          <small class="mx-1">({{ $t('dashboard.thismonth') }})</small>
+          <div class="display-1 d-flex align-center">
+            {{ $t("employees.employeesReports") }}
+          </div>
+          <small class="mx-1">({{ $t("dashboard.thismonth") }})</small>
         </div>
         <v-spacer></v-spacer>
         <div style="width: 160px; height: 40px;" class="mx-1">
@@ -26,12 +28,11 @@
           ></v-select>
         </div>
         <div class="h-38">
-          <date-range-picker
-            v-model="dateRange"
-          >
+          <date-range-picker v-model="dateRange">
             <!--    header slot-->
             <div slot="header" slot-scope="header" class="slot">
-              <h3>{{ $t('general.calenderHeader') }}</h3> <span v-if="header.in_selection"> - in selection</span>
+              <h3>{{ $t("general.calenderHeader") }}</h3>
+              <span v-if="header.in_selection"> - in selection</span>
             </div>
             <!--    input slot (new slot syntax)-->
             <template #input="picker" ostyle="min-width: 120px;">
@@ -39,7 +40,6 @@
               <i aria-hidden="true" class="v-icon mdi mdi-calendar"></i>
               {{ picker.rangeText }}
               <!--              <span v-if="filterLabel">{{ $t('general.filterWithDate') }}</span>-->
-
             </template>
 
             <!--    date slot-->
@@ -52,8 +52,18 @@
             <template #ranges="ranges">
               <div class="ranges">
                 <ul>
-                  <li v-for="(range, name) in ranges.ranges" :key="name" @click="ranges.clickRange(range)">
-                    <b>{{ name }}</b> <small class="text-muted">{{ range[0].toDateString() }} - {{ range[1].toDateString() }}</small>
+                  <li
+                    v-for="(range, name) in ranges.ranges"
+                    :key="name"
+                    @click="ranges.clickRange(range)"
+                  >
+                    <b>{{ name }}</b>
+                    <small
+                      class="text-muted"
+                    >
+                      {{ range[0].toDateString() }} -
+                      {{ range[1].toDateString() }}
+                    </small>
                   </li>
                 </ul>
               </div>
@@ -61,14 +71,15 @@
             <!--    footer slot-->
             <div slot="footer" slot-scope="data" class="slot">
               <div>
-                <b class="text-black">{{ $t('general.calenderFooter') }}</b> {{ data.rangeText }}
+                <b class="text-black">{{ $t("general.calenderFooter") }}</b>
+                {{ data.rangeText }}
               </div>
               <div style="margin-left: auto" @click="showFilterLabel">
                 <a
                   v-if="!data.in_selection"
                   class="btn btn-primary btn-sm"
                   @click="data.clickApply"
-                >{{ $t('general.chooseDate') }}</a>
+                >{{ $t("general.chooseDate") }}</a>
               </div>
             </div>
           </date-range-picker>
@@ -139,12 +150,24 @@
     <v-row class="flex-grow-0 mb-1" dense>
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
-            <v-card-title class="d-flex align-center align-content-space-between">
-              <div>{{ $t('employees.employeesInPublicAgenciesAndAdministrations') }}</div>
+            <v-card-title
+              class="d-flex align-center align-content-space-between"
+            >
+              <div>
+                {{
+                  $t("employees.employeesInPublicAgenciesAndAdministrations")
+                }}
+              </div>
               <!--              <div>-->
               <!--                <v-menu-->
               <!--                  ref="menu"-->
@@ -194,16 +217,21 @@
             </div>
           </div>
         </v-card>
-
       </v-col>
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('employees.employeesByHeadquarters') }}
+              {{ $t("employees.employeesByHeadquarters") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-headquarters></chart-headquarters>
@@ -213,123 +241,155 @@
       </v-col>
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('employees.employeesByGender') }}
+              {{ $t("employees.employeesByGender") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-gender></chart-gender>
             </div>
           </div>
         </v-card>
-
       </v-col>
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('employees.EmployeesAccordingAttendance') }}
+              {{ $t("employees.EmployeesAccordingAttendance") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-attendance></chart-attendance>
             </div>
           </div>
         </v-card>
-
       </v-col>
 
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('employees.employeesAccordingToTheirQualificationsIn') }} {{ $t('employees.administration1') }}
+              {{ $t("employees.employeesAccordingToTheirQualificationsIn") }}
+              {{ $t("employees.administration1") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1">
               <chart-administration1-qualifications></chart-administration1-qualifications>
             </div>
           </div>
         </v-card>
-
       </v-col>
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('employees.employeesAccordingToTheirRanksIn') }} {{ $t('employees.administration1') }}
+              {{ $t("employees.employeesAccordingToTheirRanksIn") }}
+              {{ $t("employees.administration1") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1">
               <chart-administration1-ranks></chart-administration1-ranks>
             </div>
           </div>
         </v-card>
-
       </v-col>
 
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('employees.employeesAccordingToTheirQualificationsIn') }} {{ $t('employees.administration2') }}
+              {{ $t("employees.employeesAccordingToTheirQualificationsIn") }}
+              {{ $t("employees.administration2") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1">
               <chart-administration2-qualifications></chart-administration2-qualifications>
             </div>
           </div>
         </v-card>
-
       </v-col>
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('employees.employeesAccordingToTheirRanksIn') }} {{ $t('employees.administration2') }}
+              {{ $t("employees.employeesAccordingToTheirRanksIn") }}
+              {{ $t("employees.administration2") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1">
               <chart-administration2-ranks></chart-administration2-ranks>
             </div>
           </div>
         </v-card>
-
       </v-col>
-
     </v-row>
-
   </div>
 </template>
 
 <script>
 // DEMO Cards for dashboard
-import TrackCard from '../../components/dashboard/TrackCard'
+import TrackCard from "../../components/dashboard/TrackCard";
 
-import DateRangePicker from 'vue2-daterange-picker'
-import 'vue2-daterange-picker/dist/vue2-daterange-picker.css'
+import DateRangePicker from "vue2-daterange-picker";
+import "vue2-daterange-picker/dist/vue2-daterange-picker.css";
 
-import ChartGender from '../../components/reports/employees/chart-gender'
-import ChartAttendance from '../../components/reports/employees/chart-attendance'
-import ChartAgencies from '../../components/reports/employees/chart-agencies'
-import ChartHeadquarters from '../../components/reports/employees/chart-headquarters'
-import ChartAdministration1Qualifications from '../../components/reports/employees/chart-administration1-qualifications'
-import ChartAdministration2Qualifications from '../../components/reports/employees/chart-administration2-qualifications'
-import ChartAdministration1Ranks from '../../components/reports/employees/chart-administration1-ranks'
-import ChartAdministration2Ranks from '../../components/reports/employees/chart-administration2-ranks'
+import ChartGender from "../../components/reports/employees/chart-gender";
+import ChartAttendance from "../../components/reports/employees/chart-attendance";
+import ChartAgencies from "../../components/reports/employees/chart-agencies";
+import ChartHeadquarters from "../../components/reports/employees/chart-headquarters";
+import ChartAdministration1Qualifications from "../../components/reports/employees/chart-administration1-qualifications";
+import ChartAdministration2Qualifications from "../../components/reports/employees/chart-administration2-qualifications";
+import ChartAdministration1Ranks from "../../components/reports/employees/chart-administration1-ranks";
+import ChartAdministration2Ranks from "../../components/reports/employees/chart-administration2-ranks";
 
 export default {
   components: {
@@ -346,25 +406,28 @@ export default {
   },
   filters: {
     dateCell(value) {
-      const dt = new Date(value)
+      const dt = new Date(value);
 
-      return dt.getDate()
+      return dt.getDate();
     },
     date(val) {
-      return val ? val.toLocaleString() : 'filter'
+      return val ? val.toLocaleString() : "filter";
     }
   },
   data() {
     return {
-      breadcrumbs: [{
-        text: this.$t('menu.reports'),
-        disabled: false,
-        href: '#'
-      }, {
-        text: this.$t('employees.employeesReports'),
-        to: '/reports/employees',
-        exact: true
-      }],
+      breadcrumbs: [
+        {
+          text: this.$t("menu.reports"),
+          disabled: false,
+          href: "#"
+        },
+        {
+          text: this.$t("employees.employeesReports"),
+          to: "/reports/employees",
+          exact: true
+        }
+      ],
       loadingInterval: null,
 
       isLoading1: true,
@@ -372,34 +435,49 @@ export default {
       isLoading3: true,
       isLoading4: true,
 
-      ordersSeries: [{
-        name: 'Orders',
-        data: [
-          ['2020-02-02', 34],
-          ['2020-02-03', 43],
-          ['2020-02-04', 40],
-          ['2020-02-05', 43]
-        ]
-      }],
-
-      customersSeries: [{
-        name: 'Customers',
-        data: [
-          ['2020-02-02', 13],
-          ['2020-02-03', 11],
-          ['2020-02-04', 13],
-          ['2020-02-05', 12]
-        ]
-      }],
-      // Selects filters
-      administrations: [this.$t('employees.administration1'), this.$t('employees.administration2'), this.$t('employees.administration3'), this.$t('employees.administration4'),
-        this.$t('employees.administration5'), this.$t('employees.administration6'), this.$t('employees.administration7'), this.$t('employees.administration8'),
-        this.$t('employees.administration9')
+      ordersSeries: [
+        {
+          name: "Orders",
+          data: [
+            ["2020-02-02", 34],
+            ["2020-02-03", 43],
+            ["2020-02-04", 40],
+            ["2020-02-05", 43]
+          ]
+        }
       ],
-      defaultSelected: this.$t('employees.administration1'),
 
-      gender: [this.$t('employees.all'), this.$t('employees.males'), this.$t('employees.females')],
-      defaultSelectedGender: this.$t('employees.all'),
+      customersSeries: [
+        {
+          name: "Customers",
+          data: [
+            ["2020-02-02", 13],
+            ["2020-02-03", 11],
+            ["2020-02-04", 13],
+            ["2020-02-05", 12]
+          ]
+        }
+      ],
+      // Selects filters
+      administrations: [
+        this.$t("employees.administration1"),
+        this.$t("employees.administration2"),
+        this.$t("employees.administration3"),
+        this.$t("employees.administration4"),
+        this.$t("employees.administration5"),
+        this.$t("employees.administration6"),
+        this.$t("employees.administration7"),
+        this.$t("employees.administration8"),
+        this.$t("employees.administration9")
+      ],
+      defaultSelected: this.$t("employees.administration1"),
+
+      gender: [
+        this.$t("employees.all"),
+        this.$t("employees.males"),
+        this.$t("employees.females")
+      ],
+      defaultSelectedGender: this.$t("employees.all"),
 
       // Date filter
       filterLabel: true,
@@ -411,49 +489,46 @@ export default {
       // menu: false,
       // modal: false,
       // menu2: false
-
-    }
-
+    };
   },
   computed: {
     theme() {
       return this.$vuetify.theme.isDark
         ? this.$vuetify.theme.defaults.dark
-        : this.$vuetify.theme.defaults.light
+        : this.$vuetify.theme.defaults.light;
     }
   },
   watch: {
-    selectedUsers(val) {
-
-    },
+    selectedUsers(val) {},
     created() {
-      this.endDate.setDate(this.endDate.getDate() + 6)
+      this.endDate.setDate(this.endDate.getDate() + 6);
       this.dateRange = {
-        startDate, endDate
-      }
+        startDate,
+        endDate
+      };
     }
   },
   mounted() {
-    let count = 0
+    let count = 0;
 
     // DEMO delay for loading graphics
     this.loadingInterval = setInterval(() => {
-      this[`isLoading${count++}`] = false
-      if (count === 4) this.clear()
-    }, 400)
+      this[`isLoading${count++}`] = false;
+      if (count === 4) this.clear();
+    }, 400);
   },
   beforeDestroy() {
-    this.clear()
+    this.clear();
   },
   methods: {
     clear() {
-      clearInterval(this.loadingInterval)
+      clearInterval(this.loadingInterval);
     },
     showFilterLabel() {
-      this.filterLabel = false
+      this.filterLabel = false;
     }
   }
-}
+};
 </script>
 <style>
 .vue-daterange-picker {

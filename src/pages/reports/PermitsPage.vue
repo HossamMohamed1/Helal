@@ -3,8 +3,10 @@
     <div class="py-3">
       <div class="d-flex align-center page-filters">
         <div class="d-flex align-baseline">
-          <div class="display-1 d-flex align-center">{{ $t('permits.permitsReports') }}</div>
-          <small class="mx-1">({{ $t('dashboard.thismonth') }})</small>
+          <div class="display-1 d-flex align-center">
+            {{ $t("permits.permitsReports") }}
+          </div>
+          <small class="mx-1">({{ $t("dashboard.thismonth") }})</small>
         </div>
         <v-spacer></v-spacer>
         <div style="width: 170px; height: 40px;" class="mx-1">
@@ -117,7 +119,9 @@
       <v-col cols="12" lg="4" md="6">
         <div class="d-flex flex-column flex-grow-1 h-full">
           <track-card
-            :label="$t('permits.NumberOfEstablishmentsOperatingInTheRamadanIftar')"
+            :label="
+              $t('permits.NumberOfEstablishmentsOperatingInTheRamadanIftar')
+            "
             class="h-full"
             color="#8c9eff"
             :value="9"
@@ -133,28 +137,39 @@
     <v-row class="flex-grow-0 mb-1" dense>
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('menu.permits') }}
+              {{ $t("menu.permits") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-permits-status></chart-permits-status>
             </div>
           </div>
         </v-card>
-
       </v-col>
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('permits.HaraminVisitingAndAverageTime') }}
+              {{ $t("permits.HaraminVisitingAndAverageTime") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-permits-average></chart-permits-average>
@@ -164,12 +179,18 @@
       </v-col>
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('permits.TheTotalNumberOfEmployeesOrVisitors') }}
+              {{ $t("permits.TheTotalNumberOfEmployeesOrVisitors") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-permits-visitors></chart-permits-visitors>
@@ -179,12 +200,18 @@
       </v-col>
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('permits.TheNationalityOfVisitorsToTheExhibition') }}
+              {{ $t("permits.TheNationalityOfVisitorsToTheExhibition") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-permits-nationalities></chart-permits-nationalities>
@@ -194,28 +221,41 @@
       </v-col>
       <v-col cols="12">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('permits.TheTotalMaterialsUsedInTheRamadanBreakfast') }}
+              {{ $t("permits.TheTotalMaterialsUsedInTheRamadanBreakfast") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-permits-materials></chart-permits-materials>
             </div>
           </div>
         </v-card>
-
       </v-col>
       <v-col cols="12">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('permits.NumberOfEstablishmentsOperatingInTheRamadanIftar') }}
+              {{
+                $t("permits.NumberOfEstablishmentsOperatingInTheRamadanIftar")
+              }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-permits-establishments></chart-permits-establishments>
@@ -224,22 +264,21 @@
         </v-card>
       </v-col>
     </v-row>
-
   </div>
 </template>
 
 <script>
 // DEMO Cards for dashboard
-import TrackCard from '../../components/dashboard/TrackCard'
+import TrackCard from "../../components/dashboard/TrackCard";
 
-import DateRangePicker from 'vue2-daterange-picker'
-import 'vue2-daterange-picker/dist/vue2-daterange-picker.css'
-import ChartPermitsStatus from '../../components/reports/permits/chart-permits-status'
-import ChartPermitsVisitors from '../../components/reports/permits/chart-permits-visitors'
-import ChartPermitsNationalities from '../../components/reports/permits/chart-permits-nationalities'
-import ChartPermitsEstablishments from '../../components/reports/permits/chart-permits-establishments'
-import ChartPermitsMaterials from '../../components/reports/permits/chart-permits-materials'
-import ChartPermitsAverage from '../../components/reports/permits/chart-permits-average'
+import DateRangePicker from "vue2-daterange-picker";
+import "vue2-daterange-picker/dist/vue2-daterange-picker.css";
+import ChartPermitsStatus from "../../components/reports/permits/chart-permits-status";
+import ChartPermitsVisitors from "../../components/reports/permits/chart-permits-visitors";
+import ChartPermitsNationalities from "../../components/reports/permits/chart-permits-nationalities";
+import ChartPermitsEstablishments from "../../components/reports/permits/chart-permits-establishments";
+import ChartPermitsMaterials from "../../components/reports/permits/chart-permits-materials";
+import ChartPermitsAverage from "../../components/reports/permits/chart-permits-average";
 
 export default {
   components: {
@@ -254,15 +293,18 @@ export default {
   },
   data() {
     return {
-      breadcrumbs: [{
-        text: this.$t('menu.reports'),
-        disabled: false,
-        href: '#'
-      }, {
-        text: this.$t('menu.permits'),
-        to: '/reports/permits',
-        exact: true
-      }],
+      breadcrumbs: [
+        {
+          text: this.$t("menu.reports"),
+          disabled: false,
+          href: "#"
+        },
+        {
+          text: this.$t("menu.permits"),
+          to: "/reports/permits",
+          exact: true
+        }
+      ],
       loadingInterval: null,
 
       isLoading1: true,
@@ -270,76 +312,85 @@ export default {
       isLoading3: true,
       isLoading4: true,
 
-      ordersSeries: [{
-        name: 'Orders',
-        data: [
-          ['2020-02-02', 34],
-          ['2020-02-03', 43],
-          ['2020-02-04', 40],
-          ['2020-02-05', 43]
-        ]
-      }],
+      ordersSeries: [
+        {
+          name: "Orders",
+          data: [
+            ["2020-02-02", 34],
+            ["2020-02-03", 43],
+            ["2020-02-04", 40],
+            ["2020-02-05", 43]
+          ]
+        }
+      ],
 
-      customersSeries: [{
-        name: 'Customers',
-        data: [
-          ['2020-02-02', 13],
-          ['2020-02-03', 11],
-          ['2020-02-04', 13],
-          ['2020-02-05', 12]
-        ]
-      }],
+      customersSeries: [
+        {
+          name: "Customers",
+          data: [
+            ["2020-02-02", 13],
+            ["2020-02-03", 11],
+            ["2020-02-04", 13],
+            ["2020-02-05", 12]
+          ]
+        }
+      ],
 
-      permitsFilter: [this.$t('permits.all'), this.$t('permits.AlHaramainExhibition'), this.$t('permits.RamadanTravel')],
-      defaultSelectedpermitsFilter: this.$t('permits.all'),
+      permitsFilter: [
+        this.$t("permits.all"),
+        this.$t("permits.AlHaramainExhibition"),
+        this.$t("permits.RamadanTravel")
+      ],
+      defaultSelectedpermitsFilter: this.$t("permits.all"),
 
-      visitorsFilter: [this.$t('permits.employeesAndVisitors'), this.$t('permits.employees'), this.$t('permits.visitors')],
-      defaultSelectedvisitorsFilter: this.$t('permits.employeesAndVisitors'),
+      visitorsFilter: [
+        this.$t("permits.employeesAndVisitors"),
+        this.$t("permits.employees"),
+        this.$t("permits.visitors")
+      ],
+      defaultSelectedvisitorsFilter: this.$t("permits.employeesAndVisitors"),
 
       dateRange: {
-        startDate: '2022-11-1',
-        endDate: '2022-12-1'
+        startDate: "2022-11-1",
+        endDate: "2022-12-1"
       }
-
-    }
-
+    };
   },
   computed: {
     theme() {
       return this.$vuetify.theme.isDark
         ? this.$vuetify.theme.defaults.dark
-        : this.$vuetify.theme.defaults.light
+        : this.$vuetify.theme.defaults.light;
     }
   },
   watch: {
-    selectedUsers(val) {
-
-    },
+    selectedUsers(val) {},
     created() {
-      this.endDate.setDate(this.endDate.getDate() + 6)
+      this.endDate.setDate(this.endDate.getDate() + 6);
       this.dateRange = {
-        startDate, endDate
-      }
+        startDate,
+        endDate
+      };
     }
   },
   mounted() {
-    let count = 0
+    let count = 0;
 
     // DEMO delay for loading graphics
     this.loadingInterval = setInterval(() => {
-      this[`isLoading${count++}`] = false
-      if (count === 4) this.clear()
-    }, 400)
+      this[`isLoading${count++}`] = false;
+      if (count === 4) this.clear();
+    }, 400);
   },
   beforeDestroy() {
-    this.clear()
+    this.clear();
   },
   methods: {
     clear() {
-      clearInterval(this.loadingInterval)
+      clearInterval(this.loadingInterval);
     }
   }
-}
+};
 </script>
 <style>
 .vue-daterange-picker {

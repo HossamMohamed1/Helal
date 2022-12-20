@@ -3,7 +3,10 @@
     <div class="py-3">
       <div class="d-flex align-center page-filters">
         <div class="d-flex align-baseline">
-          <div class="display-1 d-flex align-center">{{ $t('complaints.complaintsReports') }}</div><small class="mx-1">({{ $t('dashboard.thismonth') }})</small>
+          <div class="display-1 d-flex align-center">
+            {{ $t("complaints.complaintsReports") }}
+          </div>
+          <small class="mx-1">({{ $t("dashboard.thismonth") }})</small>
         </div>
         <v-spacer></v-spacer>
         <div class="h-38">
@@ -85,28 +88,39 @@
     <v-row class="flex-grow-0 mb-1" dense>
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('complaints.monthlyWeeklyDailyComplaints') }}
+              {{ $t("complaints.monthlyWeeklyDailyComplaints") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-count></chart-count>
             </div>
           </div>
         </v-card>
-
       </v-col>
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('complaints.complaintsReceivedForComplaints') }}
+              {{ $t("complaints.complaintsReceivedForComplaints") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-complaints></chart-complaints>
@@ -116,51 +130,60 @@
       </v-col>
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('complaints.AverageTimeToResolveComplaints') }}
+              {{ $t("complaints.AverageTimeToResolveComplaints") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-average></chart-average>
             </div>
           </div>
         </v-card>
-
       </v-col>
       <v-col cols="12" lg="6">
         <v-card>
-          <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t('complaints.TheRateOfComplaintsInShifts') }}
+              {{ $t("complaints.TheRateOfComplaintsInShifts") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-shifts></chart-shifts>
             </div>
           </div>
         </v-card>
-
       </v-col>
     </v-row>
-
   </div>
 </template>
 
 <script>
 // DEMO Cards for dashboard
-import TrackCard from '../../components/dashboard/TrackCard'
+import TrackCard from "../../components/dashboard/TrackCard";
 
-import DateRangePicker from 'vue2-daterange-picker'
-import 'vue2-daterange-picker/dist/vue2-daterange-picker.css'
-import ChartCount from '../../components/reports/complaints/chart-count'
-import ChartShifts from '../../components/reports/complaints/chart-shifts'
-import ChartAverage from '../../components/reports/complaints/chart-average'
-import ChartComplaints from '../../components/reports/complaints/chart-complaints'
+import DateRangePicker from "vue2-daterange-picker";
+import "vue2-daterange-picker/dist/vue2-daterange-picker.css";
+import ChartCount from "../../components/reports/complaints/chart-count";
+import ChartShifts from "../../components/reports/complaints/chart-shifts";
+import ChartAverage from "../../components/reports/complaints/chart-average";
+import ChartComplaints from "../../components/reports/complaints/chart-complaints";
 
 export default {
   components: {
@@ -173,15 +196,18 @@ export default {
   },
   data() {
     return {
-      breadcrumbs: [{
-        text: this.$t('menu.reports'),
-        disabled: false,
-        href: '#'
-      }, {
-        text: this.$t('menu.complaints'),
-        to: '/reports/complaints',
-        exact: true
-      }],
+      breadcrumbs: [
+        {
+          text: this.$t("menu.reports"),
+          disabled: false,
+          to: "/reports"
+        },
+        {
+          text: this.$t("menu.complaints"),
+          to: "/reports/complaints",
+          exact: true
+        }
+      ],
       loadingInterval: null,
 
       isLoading1: true,
@@ -189,76 +215,81 @@ export default {
       isLoading3: true,
       isLoading4: true,
 
-      ordersSeries: [{
-        name: 'Orders',
-        data: [
-          ['2020-02-02', 34],
-          ['2020-02-03', 43],
-          ['2020-02-04', 40],
-          ['2020-02-05', 43]
-        ]
-      }],
+      ordersSeries: [
+        {
+          name: "Orders",
+          data: [
+            ["2020-02-02", 34],
+            ["2020-02-03", 43],
+            ["2020-02-04", 40],
+            ["2020-02-05", 43]
+          ]
+        }
+      ],
 
-      customersSeries: [{
-        name: 'Customers',
-        data: [
-          ['2020-02-02', 13],
-          ['2020-02-03', 11],
-          ['2020-02-04', 13],
-          ['2020-02-05', 12]
-        ]
-      }],
+      customersSeries: [
+        {
+          name: "Customers",
+          data: [
+            ["2020-02-02", 13],
+            ["2020-02-03", 11],
+            ["2020-02-04", 13],
+            ["2020-02-05", 12]
+          ]
+        }
+      ],
 
-      filter:[this.$t('dashboard.thismonth'), this.$t('dashboard.lastweek'), this.$t('dashboard.lastmonth')],
-      defaultSelected: this.$t('dashboard.thismonth'),
+      filter: [
+        this.$t("dashboard.thismonth"),
+        this.$t("dashboard.lastweek"),
+        this.$t("dashboard.lastmonth")
+      ],
+      defaultSelected: this.$t("dashboard.thismonth"),
 
       dateRange: {
-        startDate: '2022-11-1',
-        endDate: '2022-12-1'
+        startDate: "2022-11-1",
+        endDate: "2022-12-1"
       }
-
-    }
-
+    };
   },
   computed: {
     theme() {
       return this.$vuetify.theme.isDark
         ? this.$vuetify.theme.defaults.dark
-        : this.$vuetify.theme.defaults.light
+        : this.$vuetify.theme.defaults.light;
     }
   },
   watch: {
-    selectedUsers(val) {
-
-    },
+    selectedUsers(val) {},
     created() {
-      this.endDate.setDate(this.endDate.getDate() + 6)
+      this.endDate.setDate(this.endDate.getDate() + 6);
       this.dateRange = {
-        startDate , endDate
-      }
+        startDate,
+        endDate
+      };
     }
   },
   mounted() {
-    let count = 0
+    let count = 0;
 
     // DEMO delay for loading graphics
     this.loadingInterval = setInterval(() => {
-      this[`isLoading${count++}`] = false
-      if (count === 4) this.clear()
-    }, 400)
+      this[`isLoading${count++}`] = false;
+      if (count === 4) this.clear();
+    }, 400);
   },
   beforeDestroy() {
-    this.clear()
+    this.clear();
   },
   methods: {
     clear() {
-      clearInterval(this.loadingInterval)
+      clearInterval(this.loadingInterval);
     }
   }
-}
+};
 </script>
 <style>
-.vue-daterange-picker{
+.vue-daterange-picker {
   margin: 0;
 }
 </style>

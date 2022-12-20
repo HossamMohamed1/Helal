@@ -2,11 +2,11 @@
   <div class="flex-grow-1">
     <div class="d-flex align-center py-3">
       <div>
-        <div class="display-1">{{ $t('menu.general') }}</div>
+        <div class="display-1">{{ $t("menu.general") }}</div>
         <v-breadcrumbs :items="breadcrumbs" class="pa-0 py-2"></v-breadcrumbs>
       </div>
       <v-spacer></v-spacer>
-      <v-btn icon @click>
+      <v-btn icon>
         <v-icon>mdi-refresh</v-icon>
       </v-btn>
     </div>
@@ -30,7 +30,7 @@
           <v-card-text class="p-3 roles">
             <v-form>
               <div class="title mb-2">
-                {{ $t('settings.notifications') }}
+                {{ $t("settings.notifications") }}
               </div>
 
               <v-row>
@@ -49,7 +49,7 @@
               </v-row>
 
               <div class="d-flex mt-3">
-                <v-btn color="primary">{{ $t('general.save') }}</v-btn>
+                <v-btn color="primary">{{ $t("general.save") }}</v-btn>
               </div>
             </v-form>
           </v-card-text>
@@ -60,8 +60,7 @@
 </template>
 
 <script>
-
-import GeneralSettingsMenu from '../../../components/settings/general/GeneralSettingsMenu'
+import GeneralSettingsMenu from "../../../components/settings/general/GeneralSettingsMenu";
 
 export default {
   components: {
@@ -70,18 +69,25 @@ export default {
   data() {
     return {
       drawer: null,
-      userNotifications: ['Notifications', 'Emails', 'Notifications & Emails'],
-      modelsNotifications: ['Notifications', 'Emails', 'Notifications & Emails'],
-      breadcrumbs: [{
-        text: this.$t('menu.settings'),
-        disabled: false,
-        href: '#'
-      }, {
-        text: this.$t('menu.general'),
-        to: '/settings/information',
-        exact: true
-      }]
-    }
+      userNotifications: ["Notifications", "Emails", "Notifications & Emails"],
+      modelsNotifications: [
+        "Notifications",
+        "Emails",
+        "Notifications & Emails"
+      ],
+      breadcrumbs: [
+        {
+          text: this.$t("menu.settings"),
+          disabled: false,
+          href: "#"
+        },
+        {
+          text: this.$t("menu.general"),
+          to: "/settings/information",
+          exact: true
+        }
+      ]
+    };
   }
-}
+};
 </script>
