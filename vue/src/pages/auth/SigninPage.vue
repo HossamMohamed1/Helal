@@ -81,6 +81,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 /*
 |---------------------------------------------------------------------
 | Sign In Page Component
@@ -128,6 +130,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions('auth',['login']),
     submit() {
       if (this.$refs.form.validate()) {
         this.isLoading = true
@@ -136,7 +139,19 @@ export default {
       }
     },
     signIn(email, password) {
-      this.$router.push('/')
+      // this.$router.push('/')
+      const data = {
+        email,
+        password
+      }
+
+      this.login(data).then(() => {
+        this.isLoading = false
+        this.isSignInDisabled = false
+        //
+      })
+
+      // console.log(data);
     },
     signInProvider(provider) {},
     resetErrors() {
