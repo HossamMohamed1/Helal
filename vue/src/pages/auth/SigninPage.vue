@@ -15,6 +15,7 @@
             :label="$t('login.email')"
             name="email"
             outlined
+            :error-messages="errorMessages['email']"
             @keyup.enter="submit"
             @change="resetErrors"
           ></v-text-field>
@@ -25,7 +26,7 @@
             :rules="[rules.required]"
             :type="showPassword ? 'text' : 'password'"
             :error="error"
-            :error-messages="errorMessages"
+            :error-messages="errorMessages['password']"
             :label="$t('login.password')"
             name="password"
             outlined
@@ -41,9 +42,12 @@
             x-large
             color="primary"
             @click="submit"
-          >{{ $t('login.button') }}</v-btn>
+            >{{ $t("login.button") }}</v-btn
+          >
 
-          <div class="caption font-weight-bold text-uppercase my-3">{{ $t('login.orsign') }}</div>
+          <div class="caption font-weight-bold text-uppercase my-3">
+            {{ $t("login.orsign") }}
+          </div>
 
           <!-- external providers list -->
           <v-btn
@@ -60,11 +64,13 @@
             {{ provider.label }}
           </v-btn>
 
-          <div v-if="errorProvider" class="error--text">{{ errorProviderMessages }}</div>
+          <div v-if="errorProvider" class="error--text">
+            {{ errorProviderMessages }}
+          </div>
 
           <div class="mt-5">
             <router-link to="/auth/forgot-password">
-              {{ $t('login.forgot') }}
+              {{ $t("login.forgot") }}
             </router-link>
           </div>
         </v-form>
@@ -72,17 +78,17 @@
     </v-card>
 
     <div class="text-center mt-6">
-      {{ $t('login.noaccount') }}
+      {{ $t("login.noaccount") }}
       <router-link to="/auth/signup" class="font-weight-bold">
-        {{ $t('login.create') }}
+        {{ $t("login.create") }}
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-
+import { mapActions } from "vuex";
+import { makeToast } from "@/helpers";
 /*
 |---------------------------------------------------------------------
 | Sign In Page Component
@@ -100,42 +106,46 @@ export default {
 
       // form
       isFormValid: true,
-      email: '',
-      password: '',
+      email: "",
+      password: "",
 
       // form error
       error: false,
-      errorMessages: '',
+      errorMessages: { email: "", password: "" },
+      errors: [],
 
       errorProvider: false,
-      errorProviderMessages: '',
+      errorProviderMessages: "",
 
       // show password field
       showPassword: false,
 
-      providers: [{
-        id: 'google',
-        label: 'Google',
-        isLoading: false
-      }, {
-        id: 'facebook',
-        label: 'Facebook',
-        isLoading: false
-      }],
+      providers: [
+        {
+          id: "google",
+          label: "Google",
+          isLoading: false
+        },
+        {
+          id: "facebook",
+          label: "Facebook",
+          isLoading: false
+        }
+      ],
 
       // input rules
       rules: {
-        required: (value) => (value && Boolean(value)) || 'Required'
+        required: value => (value && Boolean(value)) || "Required"
       }
-    }
+    };
   },
   methods: {
-    ...mapActions('auth',['login']),
+    ...mapActions("auth", ["login"]),
     submit() {
       if (this.$refs.form.validate()) {
-        this.isLoading = true
-        this.isSignInDisabled = true
-        this.signIn(this.email, this.password)
+        this.isLoading = true;
+        this.isSignInDisabled = true;
+        this.signIn(this.email, this.password);
       }
     },
     signIn(email, password) {
@@ -143,24 +153,34 @@ export default {
       const data = {
         email,
         password
-      }
+      };
 
-      this.login(data).then(() => {
-        this.isLoading = false
-        this.isSignInDisabled = false
-        //
-      })
+      this.login(data)
+        .then(() => {
+          this.isLoading = false;
+          this.isSignInDisabled = false;
+          //
+        })
+        .catch(error => {
+          this.isLoading = false;
+          this.isSignInDisabled = false;
+          if (error?.response?.status == 422) {
+            let { errors } = error?.response?.data;
+            // console.log(errors);
+            this.errorMessages = errors;
+          }
+        });
 
       // console.log(data);
     },
     signInProvider(provider) {},
     resetErrors() {
-      this.error = false
-      this.errorMessages = ''
+      this.error = false;
+      this.errorMessages = "";
 
-      this.errorProvider = false
-      this.errorProviderMessages = ''
+      this.errorProvider = false;
+      this.errorProviderMessages = "";
     }
   }
-}
+};
 </script>

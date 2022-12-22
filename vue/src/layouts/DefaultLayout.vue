@@ -19,7 +19,7 @@
         <div class="px-2 pt-2">
           <div class="title font-weight-bold text-uppercase primary--text">
             <!--            {{ product.name }}-->
-            <img :src="logo" alt="SWCC" style="max-width: 80%; height: auto">
+            <img :src="logo" alt="SWCC" style="max-width: 80%; height: auto" />
           </div>
           <!--          <div class="overline grey&#45;&#45;text">{{ product.version }}</div>-->
         </div>
@@ -43,7 +43,6 @@
             {{ item.key ? $t(item.key) : item.text }}
           </v-btn>
         </div>
-
       </template>
     </v-navigation-drawer>
 
@@ -55,9 +54,12 @@
       :light="toolbarTheme === 'light'"
       :dark="toolbarTheme === 'dark'"
     >
-      <v-card class="flex-grow-1 d-flex" :class="[isToolbarDetached ? 'pa-1 mt-3 mx-1' : 'pa-0 ma-0']" :flat="!isToolbarDetached">
+      <v-card
+        class="flex-grow-1 d-flex"
+        :class="[isToolbarDetached ? 'pa-1 mt-3 mx-1' : 'pa-0 ma-0']"
+        :flat="!isToolbarDetached"
+      >
         <div class="d-flex flex-grow-1 align-center">
-
           <!-- search input mobile -->
           <v-text-field
             v-if="showSearch"
@@ -72,7 +74,9 @@
           ></v-text-field>
 
           <div v-else class="d-flex flex-grow-1 align-center">
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon
+              @click.stop="drawer = !drawer"
+            ></v-app-bar-nav-icon>
 
             <v-spacer class="d-none d-lg-block"></v-spacer>
 
@@ -106,7 +110,13 @@
       <v-footer app inset>
         <v-spacer></v-spacer>
         <div class="overline">
-          Built with <v-icon small color="pink">mdi-heart</v-icon> <a class="text-decoration-none" href="https://wakeb.tech" target="_blank">Wakeb</a>
+          Built with <v-icon small color="pink">mdi-heart</v-icon>
+          <a
+            class="text-decoration-none"
+            href="https://wakeb.tech"
+            target="_blank"
+            >Wakeb</a
+          >
         </div>
       </v-footer>
     </v-main>
@@ -114,16 +124,16 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
 // navigation menu configurations
-import config from '../configs'
+import config from "../configs";
 
-import MainMenu from '../components/navigation/MainMenu'
-import ToolbarUser from '../components/toolbar/ToolbarUser'
-import ToolbarApps from '../components/toolbar/ToolbarApps'
-import ToolbarLanguage from '../components/toolbar/ToolbarLanguage'
-import ToolbarNotifications from '../components/toolbar/ToolbarNotifications'
+import MainMenu from "../components/navigation/MainMenu";
+import ToolbarUser from "../components/toolbar/ToolbarUser";
+import ToolbarApps from "../components/toolbar/ToolbarApps";
+import ToolbarLanguage from "../components/toolbar/ToolbarLanguage";
+import ToolbarNotifications from "../components/toolbar/ToolbarNotifications";
 
 export default {
   components: {
@@ -139,18 +149,24 @@ export default {
       showSearch: false,
 
       navigation: config.navigation,
-      logo: '/images/haramain.png'
-    }
+      logo: "/images/haramain.png"
+    };
   },
   computed: {
-    ...mapState('app', ['product', 'isContentBoxed', 'menuTheme', 'toolbarTheme', 'isToolbarDetached'])
+    ...mapState("app", [
+      "product",
+      "isContentBoxed",
+      "menuTheme",
+      "toolbarTheme",
+      "isToolbarDetached"
+    ])
   },
   methods: {
     onKeyup(e) {
-      this.$refs.search.focus()
+      this.$refs.search.focus();
     }
   }
-}
+};
 </script>
 
 <style scoped>

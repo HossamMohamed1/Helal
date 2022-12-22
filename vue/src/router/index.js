@@ -12,13 +12,17 @@ import LandingRoutes from "./landing.routes";
 import SettingsRoutes from "./settings.routes";
 import ReportsRoutes from "./reports.routes";
 import PipesRoutes from "./pipes.routes";
+import store from "@/store";
 
 Vue.use(Router);
 
 export const routes = [
   {
     path: "/",
-    redirect: "/dashboard/analytics"
+    redirect: "/dashboard/analytics",
+    meta: {
+      auth: true
+    }
   },
   {
     path: "/dashboard/analytics",
@@ -73,6 +77,12 @@ const router = new Router({
  * Before each route update
  */
 router.beforeEach((to, from, next) => {
+  const token = store.state.auth.token;
+  console.log(token, to.meta.auth);
+  if (!token && to.meta.auth) {
+    return next({ name: "auth-signin" });
+  }
+
   return next();
 });
 

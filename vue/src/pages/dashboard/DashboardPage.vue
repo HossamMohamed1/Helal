@@ -13,11 +13,7 @@
           <template>
             <div class="date-picker position-relative">
               <i aria-hidden="true" class="v-icon mdi mdi-calendar"></i>
-              <date-range-picker
-                v-model="dateRange"
-                :date-format="dateFormat"
-                direction="rtl"
-              >
+              <date-range-picker v-model="dateRange" direction="rtl">
               </date-range-picker>
             </div>
           </template>
@@ -236,7 +232,7 @@ import ChartPermitsMaterials from "../../components/reports/permits/chart-permit
 import ChartPermitsAverage from "../../components/reports/permits/chart-permits-average";
 import ChartGender from "../../components/reports/employees/chart-gender";
 import ChartAttendance from "../../components/reports/employees/chart-attendance";
-
+const moment = require("moment");
 export default {
   components: {
     ChartAttendance,
@@ -257,7 +253,7 @@ export default {
       isLoading2: true,
       isLoading3: true,
       isLoading4: true,
-
+      loading: false,
       ordersSeries: [
         {
           name: "Orders",
@@ -304,11 +300,11 @@ export default {
   },
   watch: {},
   created() {
-    this.endDate.setDate(this.endDate.getDate() + 6);
-    this.dateRange = {
-      startDate,
-      endDate
-    };
+    // Date(this.endDate).setDate(Date(this.endDate).getDate() + 6);
+    // this.dateRange = {
+    //   startDate,
+    //   endDate
+    // };
   },
 
   mounted() {
