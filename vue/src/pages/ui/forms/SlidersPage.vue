@@ -1,28 +1,38 @@
 <template>
-  <ui-demo title="Sliders" :snippets="snippets"><div class="mt-2">Please checkout the <a class="font-weight-bold" href="https://vuetifyjs.com/components/sliders" target="_blank">Full Documentation</a></div></ui-demo>
+  <ui-demo title="Sliders" :snippets="snippets"
+    ><div class="mt-2">
+      Please checkout the
+      <a
+        class="font-weight-bold"
+        href="https://vuetifyjs.com/components/sliders"
+        target="_blank"
+        >Full Documentation</a
+      >
+    </div></ui-demo
+  >
 </template>
 
 <script>
-import UiDemo from '@/components/demo/UIDemo'
+import UiDemo from "@/components/demo/UIDemo";
 
 // Snippets
-import InverseLabelSnippet from '!!raw-loader!./_examples/sliders/simple/inverse-label.vue'
-import VerticalSnippet from '!!raw-loader!./_examples/sliders/simple/vertical.vue'
-import CustomColorsSnippet from '!!raw-loader!./_examples/sliders/simple/custom-colors.vue'
-import CustomThumbSnippet from '!!raw-loader!./_examples/sliders/simple/custom-thumb.vue'
-import DisabledSnippet from '!!raw-loader!./_examples/sliders/simple/disabled.vue'
-import DiscreteSnippet from '!!raw-loader!./_examples/sliders/simple/discrete.vue'
-import EditableNumericValueSnippet from '!!raw-loader!./_examples/sliders/simple/editable-numeric-value.vue'
-import IconsSnippet from '!!raw-loader!./_examples/sliders/simple/icons.vue'
-import TicksSnippet from '!!raw-loader!./_examples/sliders/simple/ticks.vue'
-import MinMaxSnippet from '!!raw-loader!./_examples/sliders/simple/min-max.vue'
-import RangeSnippet from '!!raw-loader!./_examples/sliders/simple/range.vue'
-import ReadonlySnippet from '!!raw-loader!./_examples/sliders/simple/readonly.vue'
-import StepSnippet from '!!raw-loader!./_examples/sliders/simple/step.vue'
-import ThumbLabelSnippet from '!!raw-loader!./_examples/sliders/simple/thumb-label.vue'
-import ThumbSnippet from '!!raw-loader!./_examples/sliders/simple/thumb.vue'
-import ValidationSnippet from '!!raw-loader!./_examples/sliders/intermediate/validation.vue'
-import MetronomeSnippet from '!!raw-loader!./_examples/sliders/intermediate/metronome.vue'
+import InverseLabelSnippet from "!!raw-loader!./_examples/sliders/simple/inverse-label.vue";
+import VerticalSnippet from "!!raw-loader!./_examples/sliders/simple/vertical.vue";
+import CustomColorsSnippet from "!!raw-loader!./_examples/sliders/simple/custom-colors.vue";
+import CustomThumbSnippet from "!!raw-loader!./_examples/sliders/simple/custom-thumb.vue";
+import DisabledSnippet from "!!raw-loader!./_examples/sliders/simple/disabled.vue";
+import DiscreteSnippet from "!!raw-loader!./_examples/sliders/simple/discrete.vue";
+import EditableNumericValueSnippet from "!!raw-loader!./_examples/sliders/simple/editable-numeric-value.vue";
+import IconsSnippet from "!!raw-loader!./_examples/sliders/simple/icons.vue";
+import TicksSnippet from "!!raw-loader!./_examples/sliders/simple/ticks.vue";
+import MinMaxSnippet from "!!raw-loader!./_examples/sliders/simple/min-max.vue";
+import RangeSnippet from "!!raw-loader!./_examples/sliders/simple/range.vue";
+import ReadonlySnippet from "!!raw-loader!./_examples/sliders/simple/readonly.vue";
+import StepSnippet from "!!raw-loader!./_examples/sliders/simple/step.vue";
+import ThumbLabelSnippet from "!!raw-loader!./_examples/sliders/simple/thumb-label.vue";
+import ThumbSnippet from "!!raw-loader!./_examples/sliders/simple/thumb.vue";
+import ValidationSnippet from "!!raw-loader!./_examples/sliders/intermediate/validation.vue";
+import MetronomeSnippet from "!!raw-loader!./_examples/sliders/intermediate/metronome.vue";
 
 export default {
   components: {
@@ -31,74 +41,74 @@ export default {
   data: () => ({
     snippets: [
       {
-        title: 'Inverse Label',
+        title: "Inverse Label",
         snippet: InverseLabelSnippet
       },
       {
-        title: 'Vertical',
+        title: "Vertical",
         snippet: VerticalSnippet
       },
       {
-        title: 'Custom Colors',
+        title: "Custom Colors",
         snippet: CustomColorsSnippet
       },
       {
-        title: 'Custom Thumb',
+        title: "Custom Thumb",
         snippet: CustomThumbSnippet
       },
       {
-        title: 'Disabled',
+        title: "Disabled",
         snippet: DisabledSnippet
       },
       {
-        title: 'Discrete',
+        title: "Discrete",
         snippet: DiscreteSnippet
       },
       {
-        title: 'Editable Numeric Value',
+        title: "Editable Numeric Value",
         snippet: EditableNumericValueSnippet
       },
       {
-        title: 'Icons',
+        title: "Icons",
         snippet: IconsSnippet
       },
       {
-        title: 'Ticks',
+        title: "Ticks",
         snippet: TicksSnippet
       },
       {
-        title: 'Min Max',
+        title: "Min Max",
         snippet: MinMaxSnippet
       },
       {
-        title: 'Range',
+        title: "Range",
         snippet: RangeSnippet
       },
       {
-        title: 'Readonly',
+        title: "Readonly",
         snippet: ReadonlySnippet
       },
       {
-        title: 'Step',
+        title: "Step",
         snippet: StepSnippet
       },
       {
-        title: 'Thumb Label',
+        title: "Thumb Label",
         snippet: ThumbLabelSnippet
       },
       {
-        title: 'Thumb',
+        title: "Thumb",
         snippet: ThumbSnippet
       },
       {
-        title: 'Validation',
+        title: "Validation",
         snippet: ValidationSnippet
       },
       {
-        title: 'Metronome',
+        title: "Metronome",
         snippet: MetronomeSnippet
       }
     ]
   })
-}
+};
 </script>

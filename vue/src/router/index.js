@@ -78,7 +78,7 @@ const router = new Router({
  */
 router.beforeEach((to, from, next) => {
   const token = store.state.auth.token;
-  console.log(token, to.meta.auth);
+
   if (!token && to.meta.auth) {
     return next({ name: "auth-signin" });
   }

@@ -4,5 +4,6 @@ export default {
   },
   SET_USER(state, data) {
     state.user = data;
+    localStorage.setItem("user", JSON.stringify(data));
   }
 };

@@ -11,7 +11,7 @@
     >
       <v-list-item-icon>
         <v-icon :small="small" :class="{ 'grey--text': menuItem.disabled }">
-          {{ menuItem.icon || 'mdi-circle-medium' }}
+          {{ menuItem.icon || "mdi-circle-medium" }}
         </v-icon>
       </v-list-item-icon>
       <v-list-item-content>
@@ -29,10 +29,11 @@
       :to="menuItem.link"
       link
     >
-
       <template v-slot:activator>
         <v-list-item-icon v-if="!subgroup">
-          <v-icon :small="small">{{ menuItem.icon || 'mdi-circle-medium' }}</v-icon>
+          <v-icon :small="small">{{
+            menuItem.icon || "mdi-circle-medium"
+          }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>
@@ -42,7 +43,6 @@
       </template>
 
       <slot></slot>
-
     </v-list-group>
   </div>
 </template>
@@ -71,5 +71,5 @@ export default {
       default: false
     }
   }
-}
+};
 </script>

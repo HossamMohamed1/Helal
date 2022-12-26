@@ -18,7 +18,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'Email & Password does not match with our record.',
-            ], 401);
+            ], 400);
         }
 
         $user = User::where('email', $request->email)->first();
@@ -32,8 +32,11 @@ class AuthController extends Controller
 
     public function user()
     {
-        $user = auth()->user();
-
+        $user = User::find(auth()->id());
+        $user->load([
+            'roles',
+            'permissions',
+        ]);
         return response()->json([
             'user' => $user,
         ]);

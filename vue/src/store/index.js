@@ -17,10 +17,10 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   modules: {
-    app: AppModule,
     // "board-app": BoardModule,
     // "email-app": EmailModule,
     // "todo-app": TodoModule,
+    app: AppModule,
     auth: Auth
   }
 });

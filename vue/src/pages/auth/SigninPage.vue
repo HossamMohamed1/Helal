@@ -121,16 +121,16 @@ export default {
       showPassword: false,
 
       providers: [
-        {
-          id: "google",
-          label: "Google",
-          isLoading: false
-        },
-        {
-          id: "facebook",
-          label: "Facebook",
-          isLoading: false
-        }
+        // {
+        //   id: "google",
+        //   label: "Google",
+        //   isLoading: false
+        // },
+        // {
+        //   id: "facebook",
+        //   label: "Facebook",
+        //   isLoading: false
+        // }
       ],
 
       // input rules

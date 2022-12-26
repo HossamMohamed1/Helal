@@ -1,19 +1,19 @@
-import maps from './maps'
-import time from './time'
-import icons from './icons'
-import theme from './theme'
-import toolbar from './toolbar'
-import locales from './locales'
-import analytics from './analytics'
-import currencies from './currencies'
-import navigation from './navigation'
+import maps from "./maps";
+import time from "./time";
+import icons from "./icons";
+import theme from "./theme";
+import toolbar from "./toolbar";
+import locales from "./locales";
+import analytics from "./analytics";
+import currencies from "./currencies";
+import navigation from "./navigation";
 
 export default {
   // product display information
   product: {
     // name: 'SWCC Drones',
-    name: '',
-    version: '1.4.1'
+    name: "",
+    version: "1.4.1"
   },
 
   // google maps
@@ -42,4 +42,4 @@ export default {
 
   // navigation configs
   navigation
-}
+};

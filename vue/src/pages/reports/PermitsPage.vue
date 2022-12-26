@@ -32,11 +32,7 @@
           <template>
             <div class="date-picker position-relative">
               <i aria-hidden="true" class="v-icon mdi mdi-calendar"></i>
-              <date-range-picker
-                v-model="dateRange"
-                :date-format="dateFormat"
-                direction="rtl"
-              >
+              <date-range-picker v-model="dateRange" direction="rtl">
               </date-range-picker>
             </div>
           </template>
@@ -306,7 +302,7 @@ export default {
         }
       ],
       loadingInterval: null,
-
+      loading: false,
       isLoading1: true,
       isLoading2: true,
       isLoading3: true,

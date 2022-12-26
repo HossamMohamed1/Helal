@@ -23,7 +23,7 @@ axios.interceptors.response.use(
   function(error) {
     const message =
       error?.response?.data?.message || error?.response?.data?.errors?.message;
-    if (message) {
+    if (message && error.response.status !== 401) {
       makeToast("error", message);
     }
     // store.commit("setLoading", false);

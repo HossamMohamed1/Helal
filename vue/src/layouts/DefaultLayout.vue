@@ -18,8 +18,12 @@
       <template v-slot:prepend>
         <div class="px-2 pt-2">
           <div class="title font-weight-bold text-uppercase primary--text">
-            <!--            {{ product.name }}-->
-            <img :src="logo" alt="SWCC" style="max-width: 80%; height: auto" />
+            <!-- {{ product.name }} -->
+            <img
+              :src="logo"
+              alt="Harmeen"
+              style="max-width: 80%; height: auto"
+            />
           </div>
           <!--          <div class="overline grey&#45;&#45;text">{{ product.version }}</div>-->
         </div>
@@ -115,8 +119,9 @@
             class="text-decoration-none"
             href="https://wakeb.tech"
             target="_blank"
-            >Wakeb</a
           >
+            Wakeb
+          </a>
         </div>
       </v-footer>
     </v-main>

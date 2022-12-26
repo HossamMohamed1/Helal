@@ -3,7 +3,6 @@ import router from "@/router";
 
 export default {
   async login({ commit }, data) {
-    // console.log(data, "actions");
     try {
       const response = await axios.post("login", data);
       const { token, user } = response?.data;

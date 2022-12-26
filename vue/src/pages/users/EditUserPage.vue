@@ -38,7 +38,7 @@
 
     <v-tabs v-model="tab" :show-arrows="false" background-color="transparent">
       <v-tab to="#tabs-account">{{ $t("users.account") }}</v-tab>
-      <v-tab to="#tabs-information">{{ $t("users.information") }}</v-tab>
+      <!-- <v-tab to="#tabs-information">{{ $t("users.information") }}</v-tab> -->
     </v-tabs>
 
     <v-tabs-items v-model="tab">
@@ -46,9 +46,9 @@
         <account-tab ref="tabs-account" :user="user"></account-tab>
       </v-tab-item>
 
-      <v-tab-item value="tabs-information">
+      <!-- <v-tab-item value="tabs-information">
         <information-tab ref="tabs-information" :user="user"></information-tab>
-      </v-tab-item>
+      </v-tab-item> -->
     </v-tabs-items>
   </div>
 </template>
