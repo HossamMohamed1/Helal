@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ChartsController;
+use App\Http\Controllers\MeController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('user', [AuthController::class, 'user']);
     Route::get('logout', [AuthController::class, 'logout']);
+    Route::post('updateProfile', [MeController::class, 'updateProfileInfo']);
 });
 Route::group(['middleware' => 'api', 'prefix' => 'charts'], function () {
     Route::get('index', [ChartsController::class, 'index']);

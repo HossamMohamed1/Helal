@@ -115,6 +115,8 @@
       <path value="$PROJECT_DIR$/backend/vendor/sebastian/complexity" />
       <path value="$PROJECT_DIR$/backend/vendor/sebastian/recursion-context" />
       <path value="$PROJECT_DIR$/backend/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/backend/vendor/arcanedev/support" />
+      <path value="$PROJECT_DIR$/backend/vendor/arcanedev/laravel-settings" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />

@@ -206,7 +206,8 @@ export default {
     drones: 'Drones',
     employees: 'Employees',
     permits: 'Permits',
-    complaints: 'Complaints'
+    complaints: 'Complaints',
+    reportBuilder: 'Report Builder'
   },
   breadcrumbs: {
     pipesList: 'Pipes List'
@@ -533,6 +534,9 @@ export default {
     eveningShift: 'Evening Shift',
     midnightShift: 'Midnight Shift',
     all: 'All Complaints'
+  },
+  reports:{
+    createReport: 'Create Report'
   },
   dates: {
     Jan: 'Jan',
