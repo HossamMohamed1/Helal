@@ -30,5 +30,10 @@ export default {
       commit("SET_USER", {});
       router.push({ name: "auth-signin" });
     } catch (error) {}
+  },
+  async editProfile({ commit }, data) {
+    const response = await axios.post("updateProfile", data);
+    const { user } = response?.data ?? {};
+    commit("SET_USER", user);
   }
 };

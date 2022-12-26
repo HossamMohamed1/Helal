@@ -9,6 +9,7 @@ import AppModule from "./app";
 // import EmailModule from "../apps/email/store";
 // import TodoModule from "../apps/todo/store";
 import Auth from "./auth";
+import Users from "./users";
 Vue.use(Vuex);
 
 /**
@@ -21,7 +22,8 @@ const store = new Vuex.Store({
     // "email-app": EmailModule,
     // "todo-app": TodoModule,
     app: AppModule,
-    auth: Auth
+    auth: Auth,
+    users: Users
   }
 });
 

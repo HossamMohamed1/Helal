@@ -13,7 +13,7 @@ class updateProfileRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,12 +25,11 @@ class updateProfileRequest extends FormRequest
     {
 
         return [
-            'id' => ['required', 'exists:users,id'],
             'name' => 'required|string',
-            'username' => 'required|string|unique:users,username,' . $this->id,
-            'password' => 'required',
+            'username' => 'required|string|unique:users,username,' . auth()->id(),
+            // 'password' => 'required',
             'newpassword' => ['nullable', 'string', 'min:8'],
-            'phone' => 'nullable|numeric|unique:users,phone,' . $this->id,
+            'phone' => 'nullable|numeric|unique:users,phone,' . auth()->id(),
             'image' => 'nullable|image|mimes:png,jpg,jpeg',
 
         ];
