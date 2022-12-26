@@ -121,6 +121,8 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/sebastian/complexity" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/sebastian/recursion-context" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/sebastian/resource-operations" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/arcanedev/support" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/arcanedev/laravel-settings" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

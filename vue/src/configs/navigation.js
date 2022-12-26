@@ -32,6 +32,10 @@ const menus = {
             {
               key: "menu.complaints",
               link: "/reports/complaints"
+            },
+            {
+              key: 'menu.reportBuilder',
+              link: '/reports/report-builder'
             }
           ]
         },
