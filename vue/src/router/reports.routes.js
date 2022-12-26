@@ -38,5 +38,20 @@ export default [
       import(
         /* webpackChunkName: "reports-complaints" */ "@/pages/reports/ComplaintsPage.vue"
       )
+  },
+  {
+    path: '/reports/report-builder',
+    name: 'report-builder',
+    component: () => import(
+      /* webpackChunkName: "report-builder" */ '@/pages/reports/ReportBuilderPage.vue'
+      )
+  },
+  {
+    path: '/reports/report-builder/create',
+    name: 'report-builder',
+    component: () => import(
+      /* webpackChunkName: "report-builder" */ '@/pages/reports/CreateReportPage.vue'
+      )
   }
+
 ];

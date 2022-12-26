@@ -208,7 +208,8 @@ export default {
     drones: "الطائرات",
     employees: "الموظفين",
     permits: "التصاريح",
-    complaints: "البلاغات"
+    complaints: "البلاغات",
+    reportBuilder: 'بناء التقارير'
   },
   breadcrumbs: {
     pipesList: "قائمة الأنابيب"
@@ -547,6 +548,12 @@ export default {
     eveningShift: "الوردية المسائية",
     midnightShift: "وردية منتصف الليل",
     all: "جميع البلاغات"
+  },
+  reports:{
+    createReport: 'إنشاء تقرير',
+    reportName: 'إسم التقرير',
+    reportType: 'نوع التقرير',
+    uploadFile: 'تحميل ملف'
   },
   dates: {
     Jan: "يناير",
