@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChartsController;
 use App\Http\Controllers\MeController;
 
 use Illuminate\Http\Request;
@@ -35,8 +36,17 @@ Route::group(['middleware' => 'api', 'prefix' => 'charts'], function () {
     Route::put('edit/{id}', [ChartsController::class, 'edit']);
     Route::delete('destroy/{id}', [ChartsController::class, 'destroy']);
     Route::get('all', [ChartsController::class, 'all']);
-    Route::post('UploadExcelFile', [ChartsController::class, 'UploadExcelFile']);
-    Route::post('EditExcelData', [ChartsController::class, 'EditExcelData']);
-    Route::post('removeColumn', [ChartsController::class, 'removeColumn']);
-    Route::post('addColumn', [ChartsController::class, 'addColumn']);
+    //Upload Excel FIle To Charts
+    Route::post('upload-excel', [ChartsController::class, 'importExcel']);
+    //Show Excel FIle
+    Route::post('show-excel', [ChartsController::class, 'showFile']);
+    //Show CHART FILESS
+    Route::post('chartFiles/{id}', [ChartsController::class, 'chartFiles']);
+    //Analysis Charts to get Data from Python
+    Route::post('analysis/{id}', [ChartsController::class, 'analysis']);
+
+
+    // Route::post('EditExcelData', [ChartsController::class, 'EditExcelData']);
+    // Route::post('removeColumn', [ChartsController::class, 'removeColumn']);
+    // Route::post('addColumn', [ChartsController::class, 'addColumn']);
 });

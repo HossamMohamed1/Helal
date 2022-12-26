@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\DataImport;
 use App\Models\Chart;
+use App\Models\ChartFile;
 use App\Models\Charts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Resources\JsonDataResource;
+use App\Models\ChartLineOutput;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 
 class ChartsController extends Controller
 {
@@ -283,13 +291,8 @@ class ChartsController extends Controller
      */
     public function show($id)
     {
-        $chart = Chart::find($id);
-        if(!$chart) {
-            return response()->json(['message' => 'Chart Not Found'], 200);
-        }
-            
+        $chart = Chart::findOrFail($id);
         return response()->json(['chart' => $chart], 200);
-
     }
 
     /**
@@ -302,10 +305,7 @@ class ChartsController extends Controller
     {
         $requestData = $request->only(['name', 'type', 'data', 'config', 'input_index', 'output_index']);
         Log::info(collect($requestData));
-        $chart = Chart::find($id);
-        if(!$chart) {
-            return response()->json(['message' => 'Chart Not Found'], 200);
-        }
+        $chart = Chart::findOrFail($id);
         $chart->update($requestData);
         return response()->json([
             'message' => 'Chart has been successfully updated',
@@ -343,4 +343,203 @@ class ChartsController extends Controller
         $Chart->delete();
         return response()->json(['message' => 'Chart Deleted Successfully'], 200);
     }
+    /**
+     * Uploading File to Chart .
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function importExcel(Request $request)
+    {
+        $request->validate([
+            'chart_id' => 'required',
+            'file' => 'required',
+        ]);
+        $file = $request->file('file');
+        $chart = Chart::findOrFail($request->chart_id);
+        if (!$chart) {
+            return response()->json([
+                'message' => 'This chart doesn\'t exists',
+            ], 400);
+        }
+        $tabs = Excel::toArray(new DataImport(), $file);
+        // return file_get_contents($file);
+        //  minifiset file with multiple tabs in each
+        // return $tabs;
+
+        $chart->update([
+            'file_count' => count($tabs),
+        ]);
+        // return $tabs;
+        foreach ($tabs as $key => $tab) {
+
+            $name = $key + 1;
+            $name = time() . '-part-' . $name . '.json';
+            file_put_contents(public_path('excel/' . $name), collect($tab));
+
+            ChartFile::create([
+                'file_path' => 'excel/' . $name,
+                'file_name' => basename($name),
+                'chart_id' => $chart->id,
+            ]);
+        }
+        return response()->json([
+            'message' => 'data has been saved successfully',
+        ]);
+
+    }
+
+    /**
+     * Uploading File to Chart .
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function showFile(Request $request) {
+        $data = file_get_contents(public_path($request->file));
+        $data = json_decode($data);
+        $heads = $data[0];
+        // return collect($data)->limit(10);
+        $data = $this->paginate(collect($data), $request->perPage ?? 10)->toArray();
+        return response()->json([
+            'data' => new JsonDataResource($data),
+            'heads' => $heads,
+        ]);
+
+    }
+    /**
+     * Paginator  .
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function paginate($items, $perPage = 10, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return (new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options));
+    }
+
+    /**
+     * Get CHart Files .
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function chartFiles($id)
+    {
+        $chartFiles = ChartFile::where('chart_id', $id)->get();
+
+        return response()->json([
+            'data' => $chartFiles,
+        ]);
+    }
+    /**
+     * Analysis For Chart Data .
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function analysis($chart_id, $forStory = false)
+    {
+        $rows = ChartFile::where('chart_id', $chart_id)
+            ->orderBy('id', 'asc')
+            ->get()
+            ->pluck('file_path');
+        $chart = Chart::find($chart_id);
+        $post = [];
+        foreach ($rows as $row) {
+            $post[] = url($row);
+        }
+        try {
+
+            $data = $this->getAiResponse($post, $chart);
+            //    return [$data];
+            if ($chart->type == 'line') {
+                if (count($data->series->line) == 1) {$date = $data->series->line[0];
+                    // return [$date];
+                    ChartLineOutput::whereJsonContains('output', ['date' => $date->date])->delete();
+
+                    $saved = [
+                        'output' => json_encode($data->series->line[0]),
+                        'chart_id' => $chart->id,
+                    ];
+
+                    ChartLineOutput::create($saved);
+
+                    $output = ChartLineOutput::where('chart_id', $chart_id)->get()->pluck('output');
+                    // $chart->output()->create($data);
+
+                    $output = [
+                        'series' => $output,
+                        'weights' => $data->series->weights,
+                        'EffsBar' => $data->series->summary->EffsBar,
+                        'paretoRanking' => $data->series->summary->paretoRanking,
+                        'InputWeights' => $data->series->summary->InputWeights,
+                        'OutputWeights' => $data->series->summary->OutputWeights,
+                        'correlation' => $data->series->summary->correlation,
+                        'description' => $data->series->summary->description,
+
+                    ];
+                    if ($forStory == true) {
+                        return $output;
+                    }
+
+                    return response()->json($output);
+                } else {
+                    return response()->json([
+                        'series' => $data->series->line,
+                        'weights' => $data->series->weights,
+                    ]);
+                }
+
+            } else {
+                if ($forStory == true) {
+                    return $data->series;
+                }
+                return response()->json($data);
+            }
+        } catch (\Exception $e) {
+            throw $e;
+            return response()->json([
+                'message' => 'something went wrong while file reading',
+            ], 500);
+        }
+
+    }
+    public function getAiResponse($data, $chart)
+    {
+        $type = $chart->type == 'column' ? 'bar' : $chart->type;
+
+        if ($chart->type == 'line') {
+            $post = [
+                'files' => $data,
+                'type' => $type,
+                'input' => $chart->input_index ?? [1],
+                'output' => $chart->output_index ?? [2],
+            ];
+        } else {
+            $post = [
+                'files' => $data,
+                'type' => $type,
+            ];
+        }
+
+        $url = env('AI_API') . '/analysis';
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Accept: application/json'));
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // execute!
+        $result = curl_exec($ch);
+
+        // close the connection, release resources used
+        curl_close($ch);
+
+        return json_decode($result);
+    }
+
+
 }
