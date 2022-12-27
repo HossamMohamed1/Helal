@@ -1,5 +1,6 @@
 const state = {
-  users: []
+  users: [],
+  user: {}
 };
 
 export default state;

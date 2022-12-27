@@ -27,6 +27,17 @@ export default [
       )
   },
   {
+    path: "/users/edit/:id",
+    name: "users-list-edit",
+    meta: {
+      auth: true
+    },
+    component: () =>
+      import(
+        /* webpackChunkName: "users-edit" */ "@/pages/users/EditUserListPage.vue"
+      )
+  },
+  {
     path: "/users/create",
     name: "users-create",
     meta: {

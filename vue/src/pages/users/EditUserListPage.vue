@@ -60,10 +60,11 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import CopyLabel from "../../components/common/CopyLabel";
 import AccountTab from "./EditUser/AccountTab";
 import InformationTab from "./EditUser/InformationTab";
-import { mapActions } from "vuex";
+
 export default {
   components: {
     CopyLabel,
@@ -95,20 +96,30 @@ export default {
   computed: {
     user: {
       get() {
-        return this.$store.state.auth.user;
+        return this.$store.state.users.user;
       },
       set(val) {
-        this.$store.commit("auth/SET_USER", val);
+        this.$store.commit("users/SET_USER", val);
       }
     }
   },
+  created() {
+    const { id } = this.$route.params;
+    this.loading = true;
+    this.getUser(id)
+      .then(() => {
+        this.loading = false;
+      })
+      .catch(() => {
+        this.loading = false;
+      });
+  },
   methods: {
-    ...mapActions("auth", ["editProfile"]),
-
+    ...mapActions("users", ["getUser", "updateUser"]),
     refreshUser() {
+      const { id } = this.$route.params;
       this.loading = true;
-      this.$store
-        .dispatch("auth/user")
+      this.getUser(id)
         .then(() => {
           this.loading = false;
         })
@@ -117,11 +128,15 @@ export default {
         });
     },
     updateUserMethod(data) {
+      data.set("_method", "PUT");
+      // console.log(data);
       this.loading = true;
-      this.editProfile(data)
+      this.errors = {};
+      this.updateUser(data)
         .then(() => {
-          this.errors = {};
           this.loading = false;
+          this.errors = {};
+          this.$router.push({ name: "users-list" });
         })
         .catch(error => {
           this.loading = false;

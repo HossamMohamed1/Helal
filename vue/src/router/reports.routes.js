@@ -40,18 +40,19 @@ export default [
       )
   },
   {
-    path: '/reports/report-builder',
-    name: 'report-builder',
-    component: () => import(
-      /* webpackChunkName: "report-builder" */ '@/pages/reports/ReportBuilderPage.vue'
+    path: "/reports/report-builder",
+    name: "report-builder",
+    component: () =>
+      import(
+        /* webpackChunkName: "report-builder" */ "@/pages/reports/ReportBuilderPage.vue"
       )
   },
   {
-    path: '/reports/report-builder/create',
-    name: 'report-builder',
-    component: () => import(
-      /* webpackChunkName: "report-builder" */ '@/pages/reports/CreateReportPage.vue'
+    path: "/reports/report-builder/create",
+    name: "report-builder-create",
+    component: () =>
+      import(
+        /* webpackChunkName: "report-builder" */ "@/pages/reports/CreateReportPage.vue"
       )
   }
-
 ];
