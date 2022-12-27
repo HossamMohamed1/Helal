@@ -13,7 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
+// Route::get('/', function () {
+//     try {
+//         return file_get_contents(public_path('build/index.html'));
+//     } catch (Throwable $th) {
+//         $command = "cd " . base_path('vue') . " && npm run build";
+//         $message = "Product file doesnt exists please run $command";
+//         return response()->json(['message' => $message], 500);
+//     }
 
-    return view('welcome');
-});
+// });
+
+Route::any('{path}', function () {
+    try {
+        return file_get_contents(public_path('build/index.html'));
+    } catch (Throwable $th) {
+        abort(404);
+    }
+})->where('path', '(.*)');

@@ -26,20 +26,16 @@
             </template>
             <v-list dense>
               <v-list-item>
-                <v-list-item-title>{{
-                  $t("general.verify")
-                }}</v-list-item-title>
+                <v-list-item-title>
+                  {{ $t("general.verify") }}
+                </v-list-item-title>
               </v-list-item>
-              <v-list-item>
-                <v-list-item-title>{{
-                  $t("general.disable")
-                }}</v-list-item-title>
-              </v-list-item>
+
               <v-divider></v-divider>
               <v-list-item>
-                <v-list-item-title
-                  >Delete{{ $t("general.delete") }}</v-list-item-title
-                >
+                <v-list-item-title>
+                  {{ $t("general.delete") }}
+                </v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
@@ -97,30 +93,31 @@
         </template>
 
         <template v-slot:item.disabled="{ item }">
-          <div>{{ item.disabled.toString() | capitalize }}</div>
+          <div>
+            {{ item.email_verified_at ? "true" : "false" | capitalize }}
+          </div>
         </template>
 
         <template v-slot:item.role="{ item }">
           <v-chip
             label
             small
+            v-for="(item, index) in item.roles"
+            :key="index"
             class="font-weight-bold"
-            :color="item.role === 'ADMIN' ? 'primary' : undefined"
-            >{{ item.role | capitalize }}</v-chip
+            :color="item.display_name === 'Admin' ? 'primary' : undefined"
           >
+            {{ item.display_name }}
+          </v-chip>
         </template>
 
-        <template v-slot:item.created="{ item }">
-          <div>{{ item.created | formatDate("ll") }}</div>
+        <template v-slot:item.created_at="{ item }">
+          <div>{{ item.created_at | formatDate("lll") }}</div>
         </template>
 
-        <template v-slot:item.lastSignIn="{ item }">
-          <div>{{ item.lastSignIn | formatDate("lll") }}</div>
-        </template>
-
-        <template v-slot:item.action="{}">
+        <template v-slot:item.action="{ item }">
           <div class="actions">
-            <v-btn icon to="/users/edit">
+            <v-btn icon :to="`/users/edit/${item.id}`">
               <v-icon>mdi-open-in-new</v-icon>
             </v-btn>
           </div>
@@ -131,7 +128,7 @@
 </template>
 
 <script>
-import users from "./content/users";
+import { mapActions, mapState } from "vuex";
 import CopyLabel from "../../components/common/CopyLabel";
 
 export default {
@@ -160,21 +157,29 @@ export default {
         { text: this.$t("tables.verified"), value: "verified" },
         { text: this.$t("tables.name"), value: "name" },
         { text: this.$t("tables.role"), value: "role" },
-        { text: this.$t("tables.created"), value: "created" },
-        { text: this.$t("tables.lastSignIn"), value: "lastSignIn" },
+        { text: this.$t("tables.created"), value: "created_at" },
+        // { text: this.$t("tables.lastSignIn"), value: "lastSignIn" },
         { text: this.$t("tables.disabled"), value: "disabled" },
         { text: "", sortable: false, align: "right", value: "action" }
-      ],
-
-      users
+      ]
     };
   },
   watch: {
     selectedUsers(val) {}
   },
+
+  computed: {
+    ...mapState("users", ["users"])
+  },
+  mounted() {
+    this.open();
+  },
   methods: {
-    searchUser() {},
-    open() {}
+    ...mapActions("users", ["getUsers"]),
+    open() {
+      this.getUsers();
+    },
+    searchUser() {}
   }
 };
 </script>

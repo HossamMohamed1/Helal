@@ -8,7 +8,7 @@
         <v-breadcrumbs :items="breadcrumbs" class="pa-0 py-2"></v-breadcrumbs>
       </div>
       <v-spacer></v-spacer>
-      <v-btn icon>
+      <v-btn icon @click="refreshUser()">
         <v-icon>mdi-refresh</v-icon>
       </v-btn>
     </div>
@@ -103,6 +103,11 @@ export default {
       set(val) {
         this.$store.commit("auth/SET_USER", val);
       }
+    }
+  },
+  methods: {
+    refreshUser() {
+      this.$store.dispatch("auth/user");
     }
   }
 };

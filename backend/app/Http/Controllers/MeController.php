@@ -4,45 +4,52 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\updateProfileRequest;
 use App\Models\User;
-use App\Repositories\Eloquent\UsersRepository;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class MeController extends Controller
 {
-    private $repo;
-    public function __construct(UsersRepository $repo)
-    {
-        dd('asd');
-        $this->repo = $repo;
-    }
 
-    // User/updateProfileRequest
     public function updateProfileInfo(updateProfileRequest $request)
     {
-        return 'asd';
+
         try {
             $postData = [
                 'name' => $request->name,
                 'username' => $request->username,
             ];
-            if (request()->hasFile('image') && $request->image != '') {
-                $user = User::find($request->id);
-                if ($user->image) {
-                    $imagePath = storage_path('profile/' . $user->image);
+            $user_id = $request->id ?? auth()->id();
+            $user = User::find($user_id);
+
+            if (request()->hasFile('avatar') && $request->avatar != '') {
+                $imagePath = Storage::disk('public')->path(str_replace(url('storage') . '/', '', $user->avatar));
+
+                if ($user->avatar) {
                     if (file_exists($imagePath)) {
                         unlink($imagePath);
                     }
                 }
-                $postData['image'] = uploadImage('tmp', $request->image, 'profile');
+                $postData['avatar'] = uploadImage('public', $request->avatar, 'profile');
             }
             if (request()->has('phone') && $request->phone != '') {
                 $postData['phone'] = $request->phone;
             }
-            if (request()->has('newpassword') && $request->newpassword != '') {
-                $postData['password'] = bcrypt($request->newpassword);
+            if (request()->has('password') && $request->password != '') {
+                $postData['password'] = bcrypt($request->password);
             }
-            return $this->repo->updateProfile($request->id, $request->password, $postData);
+
+            $user->update($postData);
+            $user->load([
+                'roles',
+                'permissions',
+            ]);
+            return response()->json([
+                'message' => 'User has been successfully updated',
+                'user' => $user,
+            ]);
+
         } catch (Exception $e) {
+            return $e->getMessage();
             return response()->json(['message' => 'Unknown error'], 500);
         }
     }

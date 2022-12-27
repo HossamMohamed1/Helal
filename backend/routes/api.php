@@ -3,7 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChartsController;
 use App\Http\Controllers\MeController;
-
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +28,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('user', [AuthController::class, 'user']);
     Route::get('logout', [AuthController::class, 'logout']);
     Route::post('updateProfile', [MeController::class, 'updateProfileInfo']);
+<<<<<<< HEAD
+    Route::resource('users', UserController::class);
+});
+=======
 });
 Route::group(['middleware' => 'api', 'prefix' => 'charts'], function () {
     Route::get('index', [ChartsController::class, 'index']);
@@ -50,3 +54,4 @@ Route::group(['middleware' => 'api', 'prefix' => 'charts'], function () {
     // Route::post('removeColumn', [ChartsController::class, 'removeColumn']);
     // Route::post('addColumn', [ChartsController::class, 'addColumn']);
 });
+>>>>>>> 51f6d202046e6d07c1c5683a84a2084ab4953c7a

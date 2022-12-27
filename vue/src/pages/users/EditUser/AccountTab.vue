@@ -25,7 +25,15 @@
                 max-width="90"
                 max-height="90"
               ></v-img>
-              <v-btn class="mt-1" small>{{ $t("users.EditAvatar") }}</v-btn>
+              <input
+                type="file"
+                accept="image/*"
+                id="update-avatar"
+                class="d-none"
+              />
+              <v-btn class="mt-1" @click.prevent="changeImage()" small>
+                {{ $t("users.EditAvatar") }}
+              </v-btn>
             </div>
             <div class="flex-grow-1 pt-2 pa-sm-2">
               <v-text-field
@@ -37,6 +45,20 @@
                 v-model="user.email"
                 :label="$t('tables.email')"
                 hide-details
+              ></v-text-field>
+
+              <!-- <hr /> -->
+              <v-text-field
+                v-model="user.password"
+                :label="$t('check.newpassword')"
+                :type="showPassword ? 'text' : 'password'"
+                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                @click:append="showPassword = !showPassword"
+              ></v-text-field>
+              <v-text-field
+                v-model="user.confirm_password"
+                :label="$t('check.confirmation_password')"
+                type="password"
               ></v-text-field>
 
               <!-- <div class="d-flex flex-column">
@@ -54,7 +76,14 @@
               </div> -->
 
               <div class="mt-2">
-                <v-btn color="primary">{{ $t("general.save") }}</v-btn>
+                <v-btn
+                  @click.prevent="updateProfile()"
+                  color="primary"
+                  :loading="loading"
+                  :disabled="loading"
+                >
+                  {{ $t("general.save") }}
+                </v-btn>
               </div>
             </div>
           </div>
@@ -205,6 +234,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   props: {
     user: {
@@ -216,8 +247,58 @@ export default {
     return {
       panel: [1],
       deleteDialog: false,
-      disableDialog: false
+      disableDialog: false,
+      avatar: {},
+      showPassword: false,
+      loading: false
     };
+  },
+  methods: {
+    ...mapActions("auth", ["editProfile"]),
+    changeImage() {
+      document.getElementById("update-avatar").click();
+    },
+    updateProfile() {
+      const { email, name, password, confirm_password, username } = this.user;
+      let data = {
+        email,
+        name,
+        password,
+        confirm_password,
+        username
+      };
+      if (this.avatar.length) {
+        data["avatar"] = this.avatar[0];
+      }
+
+      let form = this.buildForm(data);
+      this.loading = true;
+      this.editProfile(form)
+        .then(() => {
+          document.getElementById("update-avatar").files = null;
+          this.avatar = {};
+          this.loading = false;
+        })
+        .catch(() => {
+          this.loading = false;
+        });
+    },
+    buildForm(data) {
+      let keys = Object.keys(data);
+      let form = new FormData();
+      for (let index = 0; index < keys.length; index++) {
+        const key = keys[index];
+        if (data[key]) {
+          form.append(key, data[key]);
+        }
+      }
+      return form;
+    }
+  },
+  mounted() {
+    document.getElementById("update-avatar").addEventListener("change", e => {
+      this.avatar = e.target.files;
+    });
   }
 };
 </script>
