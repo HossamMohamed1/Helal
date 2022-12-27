@@ -7,7 +7,7 @@ const token = localStorage.getItem("token");
 axios.defaults.headers.common["Accept"] = "application/json";
 axios.defaults.headers.common["Content-Type"] = "application/json";
 axios.defaults.baseURL =
-  process.env.VUE_APP_API_URL ?? "http://gadd.test:8000/api";
+  process.env.VUE_APP_API_URL ?? "http://haramain.test/backend/public/api";
 axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 axios.interceptors.response.use(
   function(response) {

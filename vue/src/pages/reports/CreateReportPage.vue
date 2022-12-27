@@ -19,26 +19,19 @@
           <v-form>
             <v-row>
               <v-col cols="12" md="6">
-                <v-text-field
-                  value=""
-                  :label="$t('reports.reportName')"
-                ></v-text-field>
+                <v-text-field value="" v-model="report.name" :label="$t('reports.reportName')" required></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
-                <v-select
-                  :items="types"
-                  :label="$t('reports.reportType')"
-                ></v-select>
+                <v-select :items="types" :label="$t('reports.reportType')" v-model="report.type"></v-select>
               </v-col>
               <v-col cols="12" md="6">
-                <v-file-input
-                  truncate-length="15"
-                  :label="$t('reports.uploadFile')"
-                ></v-file-input>
+                <v-file-input truncate-length="15" :label="$t('reports.uploadFile')"
+                  v-model="report.file"></v-file-input>
               </v-col>
             </v-row>
             <div class="d-flex mt-3">
-              <v-btn color="primary" to="/reports/report-builder">{{ $t("general.save") }}</v-btn>
+              <v-btn color="primary">{{ $t("general.save") }}</v-btn>
+              <!-- to="/reports/report-builder" -->
             </div>
           </v-form>
         </v-card>
@@ -70,10 +63,16 @@ export default {
       ],
 
       types: ['Network', 'BarChart', 'Line', 'X Y Bubble', ' Pie'],
+      report: {
+        name: null,
+        type: undefined,
+        file: null
+      },
 
     }
 
   },
+
 
 }
 </script>
@@ -81,6 +80,7 @@ export default {
 .vue-daterange-picker {
   margin: 0;
 }
+
 .reportrange-text {
   padding: 8px 10px !important;
 }
