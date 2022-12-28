@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col style="overflow: scroll;">
+    <v-col style="overflow: scroll;" cols="12" lg="12" md="12">
       <table class="excel">
         <thead>
           <tr>
@@ -48,7 +48,7 @@
             <td v-for="(item, itemIndex) in row">
               <input type="text" v-model="file.data[index][itemIndex]" />
             </td>
-            <td v-for="i in alpha.length - row.length"></td>
+            <!-- <td v-for="i in alpha.length - row.length"></td> -->
           </tr>
         </tbody>
       </table>
@@ -90,10 +90,8 @@ export default {
     };
   },
   computed: {
-    file: {
-      get() {
-        return this.$store.state.reports.fileData;
-      }
+    file() {
+      return this.$store.state.reports.fileData;
     }
   }
 };
