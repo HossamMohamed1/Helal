@@ -19,6 +19,15 @@ const actions = {
     // console.log(response?.data?.data);
     let file = response?.data?.data;
     commit("SET_FILE_DATA", file);
+  },
+  async updateFile({}, data) {
+    await axios.post("charts/EditExcelData", data);
+  },
+  async deleteItem({}, data) {
+    await axios.post("charts/removeColumn", data);
+  },
+  async insertItem({}, data) {
+    await axios.post("charts/addColumn", data);
   }
 };
 

@@ -366,4 +366,12 @@ table.excel {
       width: 80px;
     }
   }
+
+  .excel-btn {
+    cursor: pointer;
+    margin-left: 5px;
+    :hover {
+      color: var(--v-error-base);
+    }
+  }
 }
