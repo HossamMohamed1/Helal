@@ -1,0 +1,25 @@
+version: "3"
+services:
+  gadd_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gadd_app
+    restart: always
+    tty: true
+    environment:
+      - APP_DEBBUG=true
+    ports:
+      - 8000:80
+      - 6001:6001
+    volumes:
+      - .:/app
+      - /app/storage/framework/views
+      - /app/storage/framework/sessions
+      - /app/bootstrap/cache
+    networks:
+      - apps-network
+
+networks:
+  apps-network:
+    external: true

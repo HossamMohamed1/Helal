@@ -13,7 +13,7 @@
         </v-card-text>
       </v-card>
 
-      <v-card>
+      <v-card :loading="loading">
         <v-card-title>{{ $t("users.basicInformation") }}</v-card-title>
         <v-card-text>
           <div class="d-flex flex-column flex-sm-row">
@@ -37,14 +37,21 @@
             </div>
             <div class="flex-grow-1 pt-2 pa-sm-2">
               <v-text-field
+                v-model="user.username"
+                :label="$t('tables.username')"
+                placeholder="username"
+                :error-messages="errors['username']"
+              ></v-text-field>
+              <v-text-field
                 v-model="user.name"
                 :label="$t('tables.name')"
                 placeholder="name"
+                :error-messages="errors['name']"
               ></v-text-field>
               <v-text-field
                 v-model="user.email"
                 :label="$t('tables.email')"
-                hide-details
+                :error-messages="errors['email']"
               ></v-text-field>
 
               <!-- <hr /> -->
@@ -54,26 +61,14 @@
                 :type="showPassword ? 'text' : 'password'"
                 :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                 @click:append="showPassword = !showPassword"
+                :error-messages="errors['password']"
               ></v-text-field>
               <v-text-field
                 v-model="user.confirm_password"
                 :label="$t('check.confirmation_password')"
                 type="password"
+                :error-messages="errors['confirm_password']"
               ></v-text-field>
-
-              <!-- <div class="d-flex flex-column">
-                <v-checkbox
-                  v-model="user.verified"
-                  dense
-                  :label="$t('users.emailVerified')"
-                ></v-checkbox>
-                <div>
-                  <v-btn v-if="!user.verified">
-                    <v-icon left small>mdi-email</v-icon>
-                    {{ $t("users.sendVerificationEmail") }}
-                  </v-btn>
-                </div>
-              </div> -->
 
               <div class="mt-2">
                 <v-btn
@@ -89,103 +84,6 @@
           </div>
         </v-card-text>
       </v-card>
-
-      <!-- <v-expansion-panels v-model="panel" multiple class="mt-3">
-        <v-expansion-panel>
-          <v-expansion-panel-header class="title">{{
-            $t("tables.actions")
-          }}</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            <div class="mb-2">
-              <div class="title">{{ $t("users.ResetUserPassword") }}</div>
-              <div class="subtitle mb-2">
-                {{ $t("users.Sendsaresetpasswordemailtotheuser") }}
-              </div>
-              <v-btn class="mb-2">
-                <v-icon left small>mdi-email</v-icon
-                >{{ $t("users.SendResetPasswordEmail") }}
-              </v-btn>
-            </div>
-
-            <v-divider></v-divider>
-
-            <div class="my-2">
-              <div class="title">{{ $t("users.ExportAccountData") }}</div>
-              <div class="subtitle mb-2">
-                {{ $t("users.Exportalltheplatformmetadataforthisuser") }}
-              </div>
-              <v-btn class="mb-2">
-                <v-icon left small>mdi-clipboard-account</v-icon
-                >{{ $t("users.ExportUserData") }}
-              </v-btn>
-            </div>
-
-            <v-divider></v-divider>
-
-            <div class="my-2">
-              <div class="error--text title">{{ $t("users.DangerZone") }}</div>
-              <div class="subtitle mb-2">
-                {{ $t("users.Fulladministratorwithaccesstothisdashboard") }}
-              </div>
-
-              <div class="my-2">
-                <v-btn
-                  v-if="user.role === 'ADMIN'"
-                  color="primary"
-                  @click="user.role = 'USER'"
-                >
-                  <v-icon left small>mdi-security</v-icon
-                  >{{ $t("users.Removeadminaccess") }}
-                </v-btn>
-                <v-btn v-else color="primary" @click="user.role = 'ADMIN'">
-                  <v-icon left small>mdi-security</v-icon
-                  >{{ $t("users.SetUserasAdmin") }}
-                </v-btn>
-              </div>
-
-              <v-divider></v-divider>
-
-              <div class="subtitle mt-3 mb-2">
-                {{ $t("users.Preventtheuserfromsigninginontheplatform") }}
-              </div>
-              <div class="my-2">
-                <v-btn
-                  v-if="user.disabled"
-                  color="warning"
-                  @click="user.disabled = false"
-                >
-                  <v-icon left small>mdi-account-check</v-icon
-                  >{{ $t("users.EnableUser") }}
-                </v-btn>
-                <v-btn v-else color="warning" @click="disableDialog = true">
-                  <v-icon left small>mdi-cancel</v-icon
-                  >{{ $t("users.DisableUser") }}
-                </v-btn>
-              </div>
-            </div>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-        <v-expansion-panel>
-          <v-expansion-panel-header class="title">{{
-            $t("users.Metadata")
-          }}</v-expansion-panel-header>
-          <v-expansion-panel-content class="body-2">
-            <span class="font-weight-bold">{{ $t("users.Created") }}</span>
-            {{ user.created | formatDate("lll") }}
-            <br />
-            <span class="font-weight-bold">{{ $t("users.LastSignIn") }}</span>
-            {{ user.lastSignIn | formatDate("lll") }}
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-        <v-expansion-panel>
-          <v-expansion-panel-header class="title">{{
-            $t("users.RawData")
-          }}</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            <pre class="body-2">{{ user }}</pre>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels> -->
     </div>
 
     <!-- disable modal -->
@@ -234,13 +132,19 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-
 export default {
   props: {
     user: {
       type: Object,
       default: () => ({})
+    },
+    errors: {
+      type: Object,
+      default: {}
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -249,12 +153,10 @@ export default {
       deleteDialog: false,
       disableDialog: false,
       avatar: {},
-      showPassword: false,
-      loading: false
+      showPassword: false
     };
   },
   methods: {
-    ...mapActions("auth", ["editProfile"]),
     changeImage() {
       document.getElementById("update-avatar").click();
     },
@@ -272,16 +174,9 @@ export default {
       }
 
       let form = this.buildForm(data);
-      this.loading = true;
-      this.editProfile(form)
-        .then(() => {
-          document.getElementById("update-avatar").files = null;
-          this.avatar = {};
-          this.loading = false;
-        })
-        .catch(() => {
-          this.loading = false;
-        });
+      this.$emit("updateUser", form);
+      document.getElementById("update-avatar").files = null;
+      this.avatar = {};
     },
     buildForm(data) {
       let keys = Object.keys(data);
@@ -289,7 +184,11 @@ export default {
       for (let index = 0; index < keys.length; index++) {
         const key = keys[index];
         if (data[key]) {
-          form.append(key, data[key]);
+          form.set(key, data[key]);
+        }
+
+        if (key == "password" && data["password"]) {
+          form.set("confirm_password", data["confirm_password"]);
         }
       }
       return form;

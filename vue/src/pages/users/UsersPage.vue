@@ -52,7 +52,13 @@
             :placeholder="$t('general.search')"
             @keyup.enter="searchUser(searchQuery)"
           ></v-text-field>
-          <v-btn :loading="isLoading" icon small class="ml-2">
+          <v-btn
+            :loading="isLoading"
+            icon
+            @click.prevent="open()"
+            small
+            class="ml-2"
+          >
             <v-icon>mdi-refresh</v-icon>
           </v-btn>
         </v-col>
@@ -65,6 +71,7 @@
         :items="users"
         :search="searchQuery"
         class="flex-grow-1"
+        :loading="isLoading"
       >
         <template v-slot:item.id="{ item }">
           <div class="font-weight-bold">
@@ -74,7 +81,7 @@
 
         <template v-slot:item.email="{ item }">
           <div class="d-flex align-center py-1">
-            <v-avatar size="32" class="elevation-1 grey lighten-3">
+            <v-avatar size="32" class="elevation-1 grey lighten-3 ml-2">
               <v-img :src="item.avatar" />
             </v-avatar>
             <div class="ml-1 caption font-weight-bold">
@@ -84,7 +91,7 @@
         </template>
 
         <template v-slot:item.verified="{ item }">
-          <v-icon v-if="item.verified" small color="success">
+          <v-icon v-if="item.email_verified_at" small color="success">
             mdi-check-circle
           </v-icon>
           <v-icon v-else small>
@@ -120,6 +127,9 @@
             <v-btn icon :to="`/users/edit/${item.id}`">
               <v-icon>mdi-open-in-new</v-icon>
             </v-btn>
+            <v-btn icon @click.prevent="deleteItem(item.id)">
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
           </div>
         </template>
       </v-data-table>
@@ -130,7 +140,7 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import CopyLabel from "../../components/common/CopyLabel";
-
+import { ask } from "@/helpers";
 export default {
   components: {
     CopyLabel
@@ -175,11 +185,32 @@ export default {
     this.open();
   },
   methods: {
-    ...mapActions("users", ["getUsers"]),
+    ...mapActions("users", ["getUsers", "deleteUser"]),
     open() {
-      this.getUsers();
+      this.isLoading = true;
+      this.getUsers()
+        .then(() => {
+          this.isLoading = false;
+        })
+        .catch(() => {
+          this.isLoading = false;
+        });
     },
-    searchUser() {}
+    searchUser() {},
+    async deleteItem(id) {
+      // console.log(id);
+      const { isConfirmed } = await ask("Are you sure to delete it?", "info");
+      if (isConfirmed) {
+        this.isLoading = true;
+        this.deleteUser(id)
+          .then(() => {
+            this.isLoading = false;
+          })
+          .catch(() => {
+            this.isLoading = false;
+          });
+      }
+    }
   }
 };
 </script>

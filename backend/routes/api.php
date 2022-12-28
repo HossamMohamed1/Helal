@@ -46,7 +46,6 @@ Route::group(['middleware' => 'api', 'prefix' => 'charts'], function () {
     //Analysis Charts to get Data from Python
     Route::post('analysis/{id}', [ChartsController::class, 'analysis']);
 
-
     // Route::post('EditExcelData', [ChartsController::class, 'EditExcelData']);
     // Route::post('removeColumn', [ChartsController::class, 'removeColumn']);
     // Route::post('addColumn', [ChartsController::class, 'addColumn']);

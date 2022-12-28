@@ -6,29 +6,33 @@
         <v-breadcrumbs :items="breadcrumbs" class="pa-0 py-2"></v-breadcrumbs>
       </div>
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-refresh</v-icon>
-      </v-btn>
     </div>
 
     <v-tabs v-model="tab" :show-arrows="false" background-color="transparent">
       <v-tab to="#tabs-account">{{ $t("users.account") }}</v-tab>
-      <v-tab to="#tabs-information">{{ $t("users.information") }}</v-tab>
+      <!-- <v-tab to="#tabs-information">{{ $t("users.information") }}</v-tab> -->
     </v-tabs>
 
     <v-tabs-items v-model="tab">
       <v-tab-item value="tabs-account">
-        <account-tab ref="tabs-account" :user="user"></account-tab>
+        <account-tab
+          ref="tabs-account"
+          :errors="errors"
+          :user="user"
+          :loading="loading"
+          @createUser="createUser"
+        ></account-tab>
       </v-tab-item>
 
-      <v-tab-item value="tabs-information">
+      <!-- <v-tab-item value="tabs-information">
         <information-tab ref="tabs-information" :user="user"></information-tab>
-      </v-tab-item>
+      </v-tab-item> -->
     </v-tabs-items>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import AccountTab from "./CreateUser/AccountTab";
 import InformationTab from "./CreateUser/InformationTab";
 
@@ -40,17 +44,16 @@ export default {
   data() {
     return {
       user: {
-        id: 32,
-        email: "f.almunimi@gph.gov.sa",
-        name: "فيصل المنعمي",
-        verified: false,
-        created: "2019-08-09T03:14:12Z",
-        lastSignIn: "2019-08-14T20:00:53Z",
-        disabled: true,
-        role: "ADMIN",
-        avatar: "/images/avatars/avatar1.svg"
+        id: "",
+        email: "",
+        name: "",
+        username: "",
+        password: "",
+        confirm_password: ""
       },
       tab: null,
+      errors: {},
+      loading: false,
       breadcrumbs: [
         {
           text: this.$t("menu.usersManagement"),
@@ -67,6 +70,25 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    ...mapActions("users", ["storeUser"]),
+    createUser(form) {
+      this.loading = true;
+      this.errors = {};
+      this.storeUser(form)
+        .then(() => {
+          this.loading = false;
+          this.$router.push({ name: "users-list" });
+        })
+        .catch(error => {
+          this.loading = false;
+          if (error.response.status == 422) {
+            const { errors } = error?.response?.data ?? {};
+            this.errors = errors ?? {};
+          }
+        });
+    }
   }
 };
 </script>
