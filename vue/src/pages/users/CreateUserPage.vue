@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       user: {
-        id: 32,
+        id: "",
         email: "",
         name: "",
         username: "",

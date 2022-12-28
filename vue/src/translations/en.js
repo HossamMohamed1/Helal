@@ -628,5 +628,7 @@ export default {
     chooseDate: "Choose Current",
     haramain: "Haramain",
     all: "All"
-  }
+  },
+  "input rquired" : "Required"
+
 };

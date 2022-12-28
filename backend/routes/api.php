@@ -30,7 +30,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('updateProfile', [MeController::class, 'updateProfileInfo']);
     Route::resource('users', UserController::class);
 });
-
 Route::group(['middleware' => 'api', 'prefix' => 'charts'], function () {
     Route::get('index', [ChartsController::class, 'index']);
     Route::get('show/{id}', [ChartsController::class, 'show']);

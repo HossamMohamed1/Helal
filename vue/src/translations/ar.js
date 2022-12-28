@@ -633,5 +633,6 @@ export default {
     chooseDate: "إختر",
     haramain: "الحرمين",
     all: "الجميع"
-  }
+  },
+  "input rquired" : "الحقل مطلوب"
 };

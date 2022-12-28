@@ -23,6 +23,7 @@ class CreateChartsTable extends Migration
             $table->json('output')->nullable();
             $table->bigInteger('file_count')->default(0);
             $table->longText('excel_json')->nullable();
+            $table->string('img')->nullable();
             $table->timestamps();
         });
     }
