@@ -22,31 +22,30 @@
             <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
-                  v-model="form.name"
+                  value=""
+                  v-model="report.name"
                   :label="$t('reports.reportName')"
+                  required
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
                 <v-select
-                  v-model="form.type"
                   :items="types"
                   :label="$t('reports.reportType')"
+                  v-model="report.type"
                 ></v-select>
               </v-col>
               <v-col cols="12" md="6">
                 <v-file-input
                   truncate-length="15"
-                  multiple
-                  v-model="form.file"
-                  show-size
                   :label="$t('reports.uploadFile')"
+                  v-model="report.file"
                 ></v-file-input>
               </v-col>
             </v-row>
             <div class="d-flex mt-3">
-              <v-btn color="primary" @click.prevent="saveChart">
-                {{ $t("general.save") }}
-              </v-btn>
+              <v-btn color="primary">{{ $t("general.save") }}</v-btn>
+              <!-- to="/reports/report-builder" -->
             </div>
           </v-form>
         </v-card>
@@ -72,6 +71,7 @@ export default {
           exact: true
         }
       ],
+<<<<<<< HEAD
       types: ["Network", "BarChart", "Line", "X Y Bubble", " Pie"],
       form: { name: "", type: "", file: [] }
     };
@@ -82,11 +82,28 @@ export default {
     }
   }
 };
+=======
+
+      types: ['Network', 'BarChart', 'Line', 'X Y Bubble', ' Pie'],
+      report: {
+        name: null,
+        type: undefined,
+        file: null
+      },
+
+    }
+
+  },
+
+
+}
+>>>>>>> e59d4826688fa2cbc8344c63eb6a8ff18d6d4acc
 </script>
 <style>
 .vue-daterange-picker {
   margin: 0;
 }
+
 .reportrange-text {
   padding: 8px 10px !important;
 }

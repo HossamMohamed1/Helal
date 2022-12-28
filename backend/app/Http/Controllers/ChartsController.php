@@ -37,6 +37,7 @@ class ChartsController extends Controller
         $request->validate([
             'name' => 'required',
             'type' => 'required',
+            'file' => 'required',
             'data' => 'nullable',
             'config' => 'nullable',
         ]);
@@ -268,6 +269,38 @@ class ChartsController extends Controller
         }
 
         $chart = Chart::create($requestData);
+        //REQUEST HAS FILE
+        if($request->hasFile('file')) {
+            $file = $request->file('file');
+            // $chart = Chart::findOrFail($request->chart_id);
+            // if (!$chart) {
+            //     return response()->json([
+            //         'message' => 'This chart doesn\'t exists',
+            //     ], 400);
+            // }
+            $tabs = Excel::toArray(new DataImport(), $file);
+            // return file_get_contents($file);
+            //  minifiset file with multiple tabs in each
+            // return $tabs;
+    
+            $chart->update([
+                'file_count' => count($tabs),
+            ]);
+            // return $tabs;
+            foreach ($tabs as $key => $tab) {
+    
+                $name = $key + 1;
+                $name = time() . '-part-' . $name . '.json';
+                file_put_contents(public_path('excel/' . $name), collect($tab));
+    
+                ChartFile::create([
+                    'file_path' => 'excel/' . $name,
+                    'file_name' => basename($name),
+                    'chart_id' => $chart->id,
+                ]);
+            }
+    
+        }
         return response()->json(['chart' => $chart], 200);
     }
 
