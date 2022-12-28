@@ -123,6 +123,13 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/sebastian/resource-operations" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/arcanedev/support" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/arcanedev/laravel-settings" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/phpoffice/phpspreadsheet" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/myclabs/php-enum" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/ezyang/htmlpurifier" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/maennchen/zipstream-php" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/markbaker/matrix" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/markbaker/complex" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/maatwebsite/excel" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

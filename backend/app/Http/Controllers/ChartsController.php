@@ -306,7 +306,7 @@ class ChartsController extends Controller
             }
 
         }
-        return response()->json(['chart' => $chart], 200);
+        return response()->json(['chart' => $chart,'message'=>'Chart has been successfully created'], 200);
     }
 
     /**

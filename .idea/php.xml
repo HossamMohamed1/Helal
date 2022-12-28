@@ -117,6 +117,13 @@
       <path value="$PROJECT_DIR$/backend/vendor/sebastian/resource-operations" />
       <path value="$PROJECT_DIR$/backend/vendor/arcanedev/support" />
       <path value="$PROJECT_DIR$/backend/vendor/arcanedev/laravel-settings" />
+      <path value="$PROJECT_DIR$/backend/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/backend/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/backend/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/backend/vendor/maennchen/zipstream-php" />
+      <path value="$PROJECT_DIR$/backend/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/backend/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/backend/vendor/maatwebsite/excel" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />

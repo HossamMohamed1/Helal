@@ -33,12 +33,13 @@
 
     <v-row dense>
       <v-col v-for="report in reports" :key="report.name" cols="12" sm="6" lg="3">
-        <v-card>
-          <v-img v-bind:src="'/visualization/' + report.img" class="white--text align-end"
-            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px">
-            <v-card-title v-text="report.name"></v-card-title>
-          </v-img>
-        </v-card>
+        <a  :href="'/reports/report-builder/'+report.id">
+          <v-card>
+            <v-img v-bind:src="'/visualization/' + report.img" class="white--dark align-end" height="200px">
+              <v-card-title v-text="report.name" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"></v-card-title>
+            </v-img>
+          </v-card>
+        </a>
       </v-col>
     </v-row>
 
@@ -49,7 +50,7 @@
 
 <script>
 // DEMO Cards for dashboard
-import TrackCard from '../../components/dashboard/TrackCard'
+import TrackCard from '../../../components/dashboard/TrackCard'
 import axios from 'axios'
 import DateRangePicker from 'vue2-daterange-picker'
 import 'vue2-daterange-picker/dist/vue2-daterange-picker.css'

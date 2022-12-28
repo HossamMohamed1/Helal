@@ -44,7 +44,7 @@ export default [
     name: "report-builder",
     component: () =>
       import(
-        /* webpackChunkName: "report-builder" */ "@/pages/reports/ReportBuilderPage.vue"
+        /* webpackChunkName: "report-builder" */ "@/pages/reports/ReportBuilder/ReportBuilderPage.vue"
       )
   },
 
@@ -53,7 +53,7 @@ export default [
     name: "report-builder",
     component: () =>
       import(
-        /* webpackChunkName: "report-builder-create" */ "@/pages/reports/CreateReportPage.vue"
+        /* webpackChunkName: "report-builder-create" */ "@/pages/reports/ReportBuilder/CreateReportPage.vue"
       )
   },
   {
@@ -61,7 +61,7 @@ export default [
     name: "show-report-builder",
     component: () =>
       import(
-        /* webpackChunkName: "report-builder-show" */ "@/pages/reports/ShowReportBuilderPage.vue"
+        /* webpackChunkName: "report-builder-show" */ "@/pages/reports/ReportBuilder/ShowReportBuilderPage.vue"
       )
   }
 ];
