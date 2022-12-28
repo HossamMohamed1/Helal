@@ -19,14 +19,17 @@
           <v-form @submit.prevent="createReport" enctype="multipart/form-data">
             <v-row>
               <v-col cols="12" md="6">
-                <v-text-field value="" v-model="report.name" :label="$t('reports.reportName')" required></v-text-field>
+
+                <v-text-field value="" v-model="report.name" :error-messages="validationError['name']"
+                  :label="$t('reports.reportName')" required></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
-                <v-select :items="types" :label="$t('reports.reportType')" v-model="report.type"></v-select>
+                <v-select :items="types" :label="$t('reports.reportType')" v-model="report.type"
+                  :error-messages="validationError['type']"></v-select>
               </v-col>
               <v-col cols="12" md="6">
                 <v-file-input truncate-length="15" :label="$t('reports.uploadFile')"
-                  v-model="report.file"></v-file-input>
+                  :error-messages="validationError['file']" v-model="report.file"></v-file-input>
               </v-col>
             </v-row>
             <div class="d-flex mt-3">
@@ -62,12 +65,13 @@ export default {
       }
       ],
 
-      types: ['Network', 'BarChart', 'Line', 'X Y Bubble', ' Pie'],
+      types: ['Network', 'Bar', 'Line', 'X Y Bubble', ' Pie'],
       report: {
         name: null,
         type: undefined,
         file: undefined
       },
+      validationError: []
 
     }
 
@@ -81,12 +85,20 @@ export default {
             'Content-Type': 'multipart/form-data',
           }
         }).then(response => {
-          console.log(response)
+          // console.log(response)
           this.$router.push('/reports/report-builder')
         })
+          .catch((error) => {
+            this.validationError = error.response.data.errors;
+            console.log(error.response.data.errors);
+          });
 
-      } catch (error) {
-        console.log(error)
+      } catch (e) {
+        // if (e.response.status == 442) {
+        //   this.validationError = e.resonse.data.errors
+        //   console.log(this.validationError)
+        // }
+
       }
 
     },

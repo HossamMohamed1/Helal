@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Chart extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','type','data','config','input','output','file_count','excel_json'];
+    protected $fillable = ['name','type','data','config','input','output','file_count','excel_json', 'img'];
     protected $casts = [
         'data' => 'array',
         'config' => 'array',

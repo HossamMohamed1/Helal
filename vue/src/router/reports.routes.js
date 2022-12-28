@@ -47,6 +47,13 @@ export default [
       )
   },
   {
+    path: '/reports/report-builder/:id',
+    name: 'show-report-builder',
+    component: () => import(
+      /* webpackChunkName: "report-builder" */ '@/pages/reports/ShowReportBuilderPage.vue'
+      )
+  },
+  {
     path: '/reports/report-builder/create',
     name: 'report-builder',
     component: () => import(

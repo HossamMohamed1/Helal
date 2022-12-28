@@ -1,5 +1,6 @@
 <template>
   <div class="d-flex flex-grow-1 flex-column">
+
     <div class="py-3">
       <div class="d-flex align-center page-filters">
         <div class="d-flex align-baseline">
@@ -31,11 +32,11 @@
     </div>
 
     <v-row dense>
-      <v-col v-for="report in reports" :key="report.title" cols="12" sm="6" lg="3">
+      <v-col v-for="report in reports" :key="report.name" cols="12" sm="6" lg="3">
         <v-card>
-          <v-img :src="report.src" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-            height="200px">
-            <v-card-title v-text="report.title"></v-card-title>
+          <v-img v-bind:src="'/visualization/' + report.img" class="white--text align-end"
+            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px">
+            <v-card-title v-text="report.name"></v-card-title>
           </v-img>
         </v-card>
       </v-col>

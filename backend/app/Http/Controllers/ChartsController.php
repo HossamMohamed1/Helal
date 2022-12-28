@@ -24,7 +24,7 @@ class ChartsController extends Controller
      */
     public function index()
     {
-        $charts = Chart::select(['id', 'name'])->get();
+        $charts = Chart::select(['id', 'name', 'img'])->get();
         return response()->json(['charts' => $charts]);
     }
 
@@ -42,11 +42,12 @@ class ChartsController extends Controller
             'data' => 'nullable',
             'config' => 'nullable',
         ]);
-        $requestData = $request->only(['name', 'type', 'data', 'config']);
+        $requestData = $request->only(['name', 'type', 'data', 'config', 'img']);
 
         // if ($request->type == 'Network' || $request->type == 'network') {
         // check for string with upper case like this
          if (strtolower($request->type) == 'network') {
+            $requestData['img'] = 'network.jpg';
             // save json data will be like this
             $requestData['config'] = [
                 "configure" => [
@@ -103,7 +104,8 @@ class ChartsController extends Controller
                 ],
             ];
 
-        } else if ($request->type == 'Pie' || $request->type == 'pie') {
+        } else if (strtolower($request->type) == 'pie') {
+            $requestData['img'] = 'pie.jpg';
             $requestData['config'] = [
                 "chart_type" => "pie",
                 "title" => [
@@ -137,6 +139,7 @@ class ChartsController extends Controller
             ];
 
         } else if (strtolower($request->type) == 'bar' || strtolower($request->type) == 'column') {
+            $requestData['img'] = 'bar.jpg';
             $requestData['config'] = [
                 "chart_type" => "bar",
                 "zoomOutButton" => [
@@ -194,6 +197,7 @@ class ChartsController extends Controller
             ];
 
         } else if ($request->type == 'Line' || $request->type == 'line') {
+            $requestData['img'] = 'line.jpg';
             $requestData['config'] = [
                 "chart_type" => "line",
                 "title" => [
@@ -226,6 +230,7 @@ class ChartsController extends Controller
             ];
 
         } else if (strtolower($request->type) == 'xybubble') {
+            $requestData['img'] = 'xybubble.jpg';
             $requestData['config'] = [
                 "bullets" => [
                     "type" => "CircleBullet",

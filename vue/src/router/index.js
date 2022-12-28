@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Router from "vue-router";
-
 // Routes
 import AppsRoutes from "./apps.routes";
 import UIRoutes from "./ui.routes";
