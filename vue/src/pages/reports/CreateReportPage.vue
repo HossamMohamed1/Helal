@@ -14,7 +14,7 @@
 
     <v-row>
       <v-col cols="12">
-        <v-card class="pa-2">
+        <v-card class="pa-2" :loading="loading">
           <div class="title mb-2">
             {{ $t("reports.createReport") }}
           </div>
@@ -47,9 +47,14 @@
               </v-col>
             </v-row>
             <div class="d-flex mt-3">
-              <v-btn color="primary" type="submit">{{
-                $t("general.save")
-              }}</v-btn>
+              <v-btn
+                :loading="loading"
+                :disabled="loading"
+                color="primary"
+                type="submit"
+              >
+                {{ $t("general.save") }}
+              </v-btn>
               <!-- to="/reports/report-builder" -->
             </div>
           </v-form>
@@ -60,7 +65,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions } from "vuex";
 
 export default {
   components: {},
@@ -85,32 +90,43 @@ export default {
         type: undefined,
         file: undefined
       },
-      validationError: []
+      validationError: [],
+      loading: false
     };
   },
   methods: {
-    async createReport() {
-      try {
-        axios
-          .post("charts/create", this.report, {
-            headers: {
-              "Content-Type": "multipart/form-data"
-            }
-          })
-          .then(response => {
-            // console.log(response)
-            this.$router.push("/reports/report-builder");
-          })
-          .catch(error => {
-            this.validationError = error.response.data.errors;
-            console.log(error.response.data.errors);
-          });
-      } catch (e) {
-        // if (e.response.status == 442) {
-        //   this.validationError = e.resonse.data.errors
-        //   console.log(this.validationError)
+    ...mapActions("reports", ["storeChart"]),
+    createReport() {
+      let data = this.buildForm(this.report);
+      this.loading = true;
+      this.validationError = {};
+      this.storeChart(data)
+        .then(() => {
+          this.loading = false;
+          this.$router.push("/reports/report-builder");
+        })
+        .catch(error => {
+          this.loading = false;
+          if (error.response.status == 422) {
+            const { errors } = error?.response?.data ?? {};
+            this.validationError = errors ?? {};
+          }
+        });
+    },
+    buildForm(data) {
+      let keys = Object.keys(data);
+      let form = new FormData();
+      for (let index = 0; index < keys.length; index++) {
+        const key = keys[index];
+        if (data[key]) {
+          form.set(key, data[key]);
+        }
+
+        // if (key == "password" && data["password"]) {
+        //   form.set("confirm_password", data["confirm_password"]);
         // }
       }
+      return form;
     }
   }
 };

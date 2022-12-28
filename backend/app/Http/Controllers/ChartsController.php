@@ -479,6 +479,7 @@ class ChartsController extends Controller
      */
     public function analysis($chart_id, $forStory = false)
     {
+
         $rows = ChartFile::where('chart_id', $chart_id)
             ->orderBy('id', 'asc')
             ->get()
@@ -490,7 +491,7 @@ class ChartsController extends Controller
         }
         try {
 
-            $data = $this->getAiResponse($post, $chart);
+            return $data = $this->getAiResponse($post, $chart);
             //    return [$data];
             if ($chart->type == 'line') {
                 if (count($data->series->line) == 1) {$date = $data->series->line[0];
@@ -551,14 +552,14 @@ class ChartsController extends Controller
         if ($chart->type == 'line') {
             $post = [
                 'files' => $data,
-                'type' => $type,
+                'type' => strtolower($type),
                 'input' => $chart->input_index ?? [1],
                 'output' => $chart->output_index ?? [2],
             ];
         } else {
             $post = [
                 'files' => $data,
-                'type' => $type,
+                'type' => strtolower($type),
             ];
         }
 

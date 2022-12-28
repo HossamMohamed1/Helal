@@ -50,7 +50,7 @@ export default [
 
   {
     path: "/reports/report-builder/create",
-    name: "report-builder",
+    name: "report-builder-create",
     component: () =>
       import(
         /* webpackChunkName: "report-builder-create" */ "@/pages/reports/CreateReportPage.vue"
