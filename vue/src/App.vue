@@ -7,9 +7,20 @@
       </transition>
     </component>
 
-    <v-snackbar v-model="toast.show" :timeout="toast.timeout" :color="toast.color" bottom>
+    <v-snackbar
+      v-model="toast.show"
+      :timeout="toast.timeout"
+      :color="toast.color"
+      bottom
+    >
       {{ toast.message }}
-      <v-btn v-if="toast.timeout === 0" color="white" text @click="toast.show = false">{{ $t('common.close') }}</v-btn>
+      <v-btn
+        v-if="toast.timeout === 0"
+        color="white"
+        text
+        @click="toast.show = false"
+        >{{ $t("common.close") }}</v-btn
+      >
     </v-snackbar>
 
     <!-- Demo customization menu -->
@@ -18,18 +29,18 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
 // Demo Menu
 
-import config from './configs'
+import config from "./configs";
 
 // Layouts
-import defaultLayout from './layouts/DefaultLayout'
-import landingLayout from './layouts/LandingLayout'
-import simpleLayout from './layouts/SimpleLayout'
-import authLayout from './layouts/AuthLayout'
-import errorLayout from './layouts/ErrorLayout'
+import defaultLayout from "./layouts/DefaultLayout";
+import landingLayout from "./layouts/LandingLayout";
+import simpleLayout from "./layouts/SimpleLayout";
+import authLayout from "./layouts/AuthLayout";
+import errorLayout from "./layouts/ErrorLayout";
 
 /*
 |---------------------------------------------------------------------
@@ -50,31 +61,31 @@ export default {
   data() {
     return {
       appComponent: 0
-    }
+    };
   },
   computed: {
-    ...mapState('app', ['toast']),
+    ...mapState("app", ["toast"]),
     isRouterLoaded: function() {
-      return this.$route.name !== null
+      return this.$route.name !== null;
     },
     currentLayout: function() {
-      const layout = this.$route.meta.layout || 'default'
+      const layout = this.$route.meta.layout || "default";
 
-      return layout + 'Layout'
+      return layout + "Layout";
     }
   },
   mounted() {
-    this.$root.$on('LanguageChanged', () => {
-      this.appComponent += 1
-    })
+    this.$root.$on("LanguageChanged", () => {
+      this.appComponent += 1;
+    });
   },
   head: {
     link: [
       // adds config/icons into the html head tag
-      ...config.icons.map((href) => ({ rel: 'stylesheet', href }))
+      ...config.icons.map(href => ({ rel: "stylesheet", href }))
     ]
   }
-}
+};
 </script>
 
 <style scoped>

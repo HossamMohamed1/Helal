@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChartsController;
 use App\Http\Controllers\MeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +31,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('updateProfile', [MeController::class, 'updateProfileInfo']);
     Route::resource('users', UserController::class);
 });
-Route::group(['middleware' => 'api', 'prefix' => 'charts'], function () {
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'charts'], function () {
     Route::get('index', [ChartsController::class, 'index']);
     Route::get('show/{id}', [ChartsController::class, 'show']);
     Route::post('create', [ChartsController::class, 'create']);
@@ -49,4 +50,12 @@ Route::group(['middleware' => 'api', 'prefix' => 'charts'], function () {
     Route::post('EditExcelData', [ChartsController::class, 'EditExcelData']);
     Route::post('removeColumn', [ChartsController::class, 'removeColumn']);
     Route::post('addColumn', [ChartsController::class, 'addColumn']);
+});
+
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'roles'], function () {
+    Route::get('', [RoleController::class, 'index']);
+    // Route::get('', 'RoleController@index')->name('roles.index');
+    // Route::post('', 'RoleController@store')->name('roles.store');
+    // Route::put('', 'RoleController@update')->name('roles.update');
+    // Route::delete('{id}', 'RoleController@destroy')->name('roles.destroy');
 });

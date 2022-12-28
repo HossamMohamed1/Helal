@@ -145,7 +145,12 @@ export default {
     addItem(data) {
       // console.log(data);
       this.insertItem(data).then(() => {
-        this.changeFile(this.file);
+        const PageData = {
+          page: this.page,
+          perPage: this.perPage
+        };
+        data["file"] = this.file.file_path;
+        this.pageChanged(PageData);
       });
     }
   },

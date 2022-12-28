@@ -11,6 +11,7 @@ import AppModule from "./app";
 import Auth from "./auth";
 import Users from "./users";
 import Report from "./report";
+import roles from "./roles";
 Vue.use(Vuex);
 
 /**
@@ -25,6 +26,7 @@ const store = new Vuex.Store({
     app: AppModule,
     auth: Auth,
     users: Users,
+    roles: roles,
     reports: Report
   }
 });
