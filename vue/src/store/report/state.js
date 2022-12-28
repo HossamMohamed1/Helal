@@ -1,6 +1,9 @@
 const state = {
   charts: [],
-  chart: {}
+  chart: {},
+  fileData: [],
+  chartFiles: [],
+  file: {}
 };
 
 export default state;

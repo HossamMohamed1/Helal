@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ChartsController extends Controller
@@ -306,7 +305,7 @@ class ChartsController extends Controller
             }
 
         }
-        return response()->json(['chart' => $chart,'message'=>'Chart has been successfully created'], 200);
+        return response()->json(['chart' => $chart, 'message' => 'Chart has been successfully created'], 200);
     }
 
     /**
@@ -341,7 +340,6 @@ class ChartsController extends Controller
     public function edit($id, Request $request)
     {
         $requestData = $request->only(['name', 'type', 'data', 'config', 'input_index', 'output_index']);
-        Log::info(collect($requestData));
         $chart = Chart::findOrFail($id);
         $chart->update($requestData);
         return response()->json([
@@ -400,9 +398,6 @@ class ChartsController extends Controller
             ], 400);
         }
         $tabs = Excel::toArray(new DataImport(), $file);
-        // return file_get_contents($file);
-        //  minifiset file with multiple tabs in each
-        // return $tabs;
 
         $chart->update([
             'file_count' => count($tabs),
@@ -537,7 +532,7 @@ class ChartsController extends Controller
                 }
                 return response()->json($data);
             }
-        } catch (\Exception $e) {
+        } catch (\Exception$e) {
             throw $e;
             return response()->json([
                 'message' => 'something went wrong while file reading',
