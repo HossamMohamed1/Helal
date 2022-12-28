@@ -43,6 +43,7 @@
                   :label="$t('reports.uploadFile')"
                   :error-messages="validationError['file']"
                   v-model="report.file"
+                  accept=".xlsx, .xls"
                 ></v-file-input>
               </v-col>
             </v-row>
@@ -55,7 +56,6 @@
               >
                 {{ $t("general.save") }}
               </v-btn>
-              <!-- to="/reports/report-builder" -->
             </div>
           </v-form>
         </v-card>
@@ -107,7 +107,8 @@ export default {
         })
         .catch(error => {
           this.loading = false;
-          if (error.response.status == 422) {
+
+          if (error?.response?.status == 422) {
             const { errors } = error?.response?.data ?? {};
             this.validationError = errors ?? {};
           }
