@@ -36,7 +36,7 @@
 
 <script>
 import axios from "axios";
-import Edit from "./components/edit.vue";
+import Edit from "../components/edit.vue";
 
 export default {
   components: { Edit },

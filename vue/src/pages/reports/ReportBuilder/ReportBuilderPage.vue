@@ -76,7 +76,7 @@
 
 <script>
 // DEMO Cards for dashboard
-import TrackCard from "../../components/dashboard/TrackCard";
+import TrackCard from "../../../components/dashboard/TrackCard";
 import axios from "axios";
 import DateRangePicker from "vue2-daterange-picker";
 import "vue2-daterange-picker/dist/vue2-daterange-picker.css";
