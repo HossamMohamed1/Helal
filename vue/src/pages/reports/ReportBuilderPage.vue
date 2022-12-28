@@ -19,11 +19,7 @@
             <template>
               <div class="date-picker position-relative">
                 <i aria-hidden="true" class="v-icon mdi mdi-calendar"></i>
-                <date-range-picker
-                  v-model="dateRange"
-                  :date-format="dateFormat"
-                  direction='rtl'
-                >
+                <date-range-picker v-model="dateRange" :date-format="dateFormat" direction='rtl'>
                 </date-range-picker>
               </div>
             </template>
@@ -35,18 +31,10 @@
     </div>
 
     <v-row dense>
-      <v-col
-        v-for="report in reports"
-        :key="report.title"
-        cols="12" sm="6" lg="3"
-      >
+      <v-col v-for="report in reports" :key="report.title" cols="12" sm="6" lg="3">
         <v-card>
-          <v-img
-            :src="report.src"
-            class="white--text align-end"
-            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-            height="200px"
-          >
+          <v-img :src="report.src" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+            height="200px">
             <v-card-title v-text="report.title"></v-card-title>
           </v-img>
         </v-card>
@@ -61,7 +49,7 @@
 <script>
 // DEMO Cards for dashboard
 import TrackCard from '../../components/dashboard/TrackCard'
-
+import axios from 'axios'
 import DateRangePicker from 'vue2-daterange-picker'
 import 'vue2-daterange-picker/dist/vue2-daterange-picker.css'
 
@@ -88,25 +76,30 @@ export default {
         endDate: '2022-12-1'
       },
 
-      reports:[
-        {
-          title: 'تقرير',
-          src: '/images/visualizations/img-1.jpg'
-        },
-        {
-          title: 'تقرير 2',
-          src: '/images/visualizations/img-2.jpg'
-        }
-      ]
+      reports: []
 
     }
 
   },
   created() {
+    this.getReports();
     this.endDate.setDate(this.endDate.getDate() + 6)
     this.dateRange = {
       startDate, endDate
     }
+  },
+  methods: {
+    getReports() {
+      axios.get('charts/index')
+        .then(response => {
+          console.log(response)
+          this.reports = response.data.charts
+          // this.$router.push('/reports/report-builder')
+        })
+
+
+    },
+
   },
 
 }
@@ -115,6 +108,7 @@ export default {
 .vue-daterange-picker {
   margin: 0;
 }
+
 .reportrange-text {
   padding: 8px 10px !important;
 }

@@ -24,7 +24,7 @@ class ChartsController extends Controller
      */
     public function index()
     {
-        $charts = Chart::all();
+        $charts = Chart::select(['id', 'name'])->get();
         return response()->json(['charts' => $charts]);
     }
 
