@@ -209,7 +209,7 @@ export default {
     employees: "الموظفين",
     permits: "التصاريح",
     complaints: "البلاغات",
-    reportBuilder: 'بناء التقارير'
+    reportBuilder: "بناء التقارير"
   },
   breadcrumbs: {
     pipesList: "قائمة الأنابيب"
@@ -379,6 +379,7 @@ export default {
     drone4: "طائرة 4"
   },
   tables: {
+    username: "اللقب",
     name: "الإسم",
     id: "الرقم التعريفي",
     serial: "الرقم التسلسلي",
@@ -549,11 +550,11 @@ export default {
     midnightShift: "وردية منتصف الليل",
     all: "جميع البلاغات"
   },
-  reports:{
-    createReport: 'إنشاء تقرير',
-    reportName: 'إسم التقرير',
-    reportType: 'نوع التقرير',
-    uploadFile: 'تحميل ملف'
+  reports: {
+    createReport: "إنشاء تقرير",
+    reportName: "إسم التقرير",
+    reportType: "نوع التقرير",
+    uploadFile: "تحميل ملف"
   },
   dates: {
     Jan: "يناير",
@@ -632,5 +633,6 @@ export default {
     chooseDate: "إختر",
     haramain: "الحرمين",
     all: "الجميع"
-  }
+  },
+  "input rquired" : "الحقل مطلوب"
 };

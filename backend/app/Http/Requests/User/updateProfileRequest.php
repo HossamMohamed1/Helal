@@ -26,11 +26,12 @@ class updateProfileRequest extends FormRequest
 
         return [
             'name' => 'required|string',
-            'username' => 'required|string|unique:users,username,' . auth()->id(),
-            // 'password' => 'required',
-            'newpassword' => ['nullable', 'string', 'min:8'],
-            'phone' => 'nullable|numeric|unique:users,phone,' . auth()->id(),
-            'image' => 'nullable|image|mimes:png,jpg,jpeg',
+            'username' => 'required|string|unique:users,username,' . $this->id ?? auth()->id(),
+            'email' => 'required|string|unique:users,email,' . $this->id ?? auth()->id(),
+
+            // 'newpassword' => ['nullable', 'string', 'min:8'],
+            'phone' => 'nullable|numeric|unique:users,phone,' . $this->id ?? auth()->id(),
+            'avatar' => 'nullable|image|mimes:png,jpg,jpeg',
 
         ];
     }

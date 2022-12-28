@@ -28,10 +28,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('user', [AuthController::class, 'user']);
     Route::get('logout', [AuthController::class, 'logout']);
     Route::post('updateProfile', [MeController::class, 'updateProfileInfo']);
-<<<<<<< HEAD
     Route::resource('users', UserController::class);
-});
-=======
 });
 Route::group(['middleware' => 'api', 'prefix' => 'charts'], function () {
     Route::get('index', [ChartsController::class, 'index']);
@@ -49,9 +46,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'charts'], function () {
     //Analysis Charts to get Data from Python
     Route::post('analysis/{id}', [ChartsController::class, 'analysis']);
 
-
     // Route::post('EditExcelData', [ChartsController::class, 'EditExcelData']);
     // Route::post('removeColumn', [ChartsController::class, 'removeColumn']);
     // Route::post('addColumn', [ChartsController::class, 'addColumn']);
 });
->>>>>>> 51f6d202046e6d07c1c5683a84a2084ab4953c7a

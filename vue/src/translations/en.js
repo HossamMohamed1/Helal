@@ -379,6 +379,7 @@ export default {
     drone4: "Drone 4"
   },
   tables: {
+    username: "username",
     name: "name",
     serial: "Serial",
     id: "ID",
@@ -627,5 +628,7 @@ export default {
     chooseDate: "Choose Current",
     haramain: "Haramain",
     all: "All"
-  }
+  },
+  "input rquired" : "Required"
+
 };

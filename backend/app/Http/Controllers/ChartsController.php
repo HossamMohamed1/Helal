@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\JsonDataResource;
 use App\Imports\DataImport;
 use App\Models\Chart;
 use App\Models\ChartFile;
-use App\Models\Charts;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Http\Resources\JsonDataResource;
 use App\Models\ChartLineOutput;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ChartsController extends Controller
 {
@@ -24,7 +23,7 @@ class ChartsController extends Controller
      */
     public function index()
     {
-        $charts = Chart::all();
+        $charts = Chart::select(['id', 'name', 'img'])->get();
         return response()->json(['charts' => $charts]);
     }
 
@@ -42,11 +41,12 @@ class ChartsController extends Controller
             'data' => 'nullable',
             'config' => 'nullable',
         ]);
-        $requestData = $request->only(['name', 'type', 'data', 'config']);
+        $requestData = $request->only(['name', 'type', 'data', 'config', 'img']);
 
         // if ($request->type == 'Network' || $request->type == 'network') {
         // check for string with upper case like this
-         if (strtolower($request->type) == 'network') {
+        if (strtolower($request->type) == 'network') {
+            $requestData['img'] = 'network.jpg';
             // save json data will be like this
             $requestData['config'] = [
                 "configure" => [
@@ -103,7 +103,8 @@ class ChartsController extends Controller
                 ],
             ];
 
-        } else if ($request->type == 'Pie' || $request->type == 'pie') {
+        } else if (strtolower($request->type) == 'pie') {
+            $requestData['img'] = 'pie.jpg';
             $requestData['config'] = [
                 "chart_type" => "pie",
                 "title" => [
@@ -137,6 +138,7 @@ class ChartsController extends Controller
             ];
 
         } else if (strtolower($request->type) == 'bar' || strtolower($request->type) == 'column') {
+            $requestData['img'] = 'bar.jpg';
             $requestData['config'] = [
                 "chart_type" => "bar",
                 "zoomOutButton" => [
@@ -194,6 +196,7 @@ class ChartsController extends Controller
             ];
 
         } else if ($request->type == 'Line' || $request->type == 'line') {
+            $requestData['img'] = 'line.jpg';
             $requestData['config'] = [
                 "chart_type" => "line",
                 "title" => [
@@ -226,6 +229,7 @@ class ChartsController extends Controller
             ];
 
         } else if (strtolower($request->type) == 'xybubble') {
+            $requestData['img'] = 'xybubble.jpg';
             $requestData['config'] = [
                 "bullets" => [
                     "type" => "CircleBullet",
@@ -271,7 +275,7 @@ class ChartsController extends Controller
 
         $chart = Chart::create($requestData);
         //REQUEST HAS FILE
-        if($request->hasFile('file')) {
+        if ($request->hasFile('file')) {
             $file = $request->file('file');
             // $chart = Chart::findOrFail($request->chart_id);
             // if (!$chart) {
@@ -283,24 +287,24 @@ class ChartsController extends Controller
             // return file_get_contents($file);
             //  minifiset file with multiple tabs in each
             // return $tabs;
-    
+
             $chart->update([
                 'file_count' => count($tabs),
             ]);
             // return $tabs;
             foreach ($tabs as $key => $tab) {
-    
+
                 $name = $key + 1;
                 $name = time() . '-part-' . $name . '.json';
                 file_put_contents(public_path('excel/' . $name), collect($tab));
-    
+
                 ChartFile::create([
                     'file_path' => 'excel/' . $name,
                     'file_name' => basename($name),
                     'chart_id' => $chart->id,
                 ]);
             }
-    
+
         }
         return response()->json(['chart' => $chart], 200);
     }
@@ -429,7 +433,8 @@ class ChartsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function showFile(Request $request) {
+    public function showFile(Request $request)
+    {
         $data = file_get_contents(public_path($request->file));
         $data = json_decode($data);
         $heads = $data[0];
@@ -573,6 +578,5 @@ class ChartsController extends Controller
 
         return json_decode($result);
     }
-
 
 }
