@@ -575,4 +575,115 @@ class ChartsController extends Controller
         return json_decode($result);
     }
 
+    public function EditExcelData(Request $request)
+    {
+        $request->validate([
+            'chart_id' => 'required',
+            'file_name' => 'required',
+            'column_index' => 'required',
+            'row_index' => 'required',
+            'page_num' => 'required',
+            'page_limit' => 'required',
+        ]);
+        $limit = $request->page_limit;
+        $offset = $limit * ($request->page_num - 1);
+        $itemIndex = $offset + $request->row_index;
+
+        $file = file_get_contents(public_path($request->file_name));
+        $file = json_decode($file);
+
+        if (($request->page_num == 1 && $request->column_index == 0) || $request->row_index == 0) {
+            $value = $request->value;
+
+        } else {
+            $value = $request->value;
+
+        }
+        $file[$itemIndex][$request->column_index] = $value;
+        // return $file;
+        file_put_contents(public_path($request->file_name), collect($file));
+
+        return response()->json([
+            'message' => 'data has been saved successfully',
+        ]);
+    }
+
+    public function removeColumn(Request $request)
+    {
+        $request->validate([
+            'file_name' => 'required',
+            'column_index' => 'required',
+            'type' => 'required|in:column,row',
+            'page_num' => 'required',
+            'page_limit' => 'required',
+        ]);
+        $index = $request->column_index;
+        $file = file_get_contents(public_path($request->file_name));
+        $file = json_decode($file);
+        $newFile = [];
+        if ($request->type == 'column') {
+            foreach ($file as $row) {
+                // return $row[$index];
+                unset($row[$index]);
+                $newFile[] = array_values($row);
+                # code...
+            }
+        } else {
+            $limit = $request->page_limit;
+            $offset = $limit * ($request->page_num - 1);
+            $itemIndex = $offset + $index;
+
+            $newFile = $file;
+            unset($newFile[$itemIndex]);
+            $newFile = array_values($newFile);
+        }
+
+        file_put_contents(public_path($request->file_name), collect($newFile));
+
+        return response()->json([
+            'message' => 'data has been saved successfully',
+        ]);
+    }
+
+    public function addColumn(Request $request)
+    {
+
+        $request->validate([
+            'file_name' => 'required',
+            'value' => 'required',
+            'type' => 'required|in:row,column',
+        ]);
+
+        $file = file_get_contents(public_path($request->file_name));
+        $file = json_decode($file);
+        $newFile = [];
+        if ($request->type == 'column') {
+            foreach ($file as $index => $row) {
+                if ($index == 0) {
+                    array_push($row, $request->value);
+                } else {
+                    array_push($row, 0);
+                }
+                $newFile[] = $row;
+            }
+        } else {
+            $newFile = $file;
+            $newArr = [];
+            $columnLength = count($newFile[0]);
+            for ($i = 0; $i < $columnLength; $i++) {
+                if ($i == 0) {
+                    $newArr[] = $request->value;
+                } else {
+                    $newArr[] = 0;
+                }
+            }
+            $newFile[] = $newArr;
+        }
+
+        file_put_contents(public_path($request->file_name), collect($newFile));
+
+        return response()->json([
+            'message' => 'data has been saved successfully',
+        ]);
+    }
 }

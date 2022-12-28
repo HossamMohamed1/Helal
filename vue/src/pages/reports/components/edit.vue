@@ -11,13 +11,22 @@
               <v-icon left>
                 mdi-file-excel
               </v-icon>
-              {{ file.file_name.replace(".json", "") }}
+              <span dir="ltr">
+                {{ file.file_name.replace(".json", "") }}
+              </span>
             </v-tab>
             <v-tab-item v-for="(file, index) in chartFiles">
               <v-card flat>
                 <v-card-text>
                   <p class="mb-0">
-                    <Excel @pageChanged="pageChanged" />
+                    <Excel
+                      @pageChanged="pageChanged"
+                      :page="page"
+                      :perPage="perPage"
+                      @updateExcelData="updateExcelData"
+                      @deleteColumn="deleteColumn"
+                      @addItem="addItem"
+                    />
                   </p>
                   <v-col cols="12" lg="12" md="12" class="">
                     <!-- <div>{{ file }}</div> -->
@@ -60,14 +69,19 @@ export default {
       };
       data["file"] = this.file.file_path;
       this.pageChanged(data);
-      // this.$emit("pageChanged", data);
     }
   },
   computed: {
     ...mapState("reports", ["chartFiles", "file", "fileData"])
   },
   methods: {
-    ...mapActions("reports", ["getChartData", "loadFile"]),
+    ...mapActions("reports", [
+      "getChartData",
+      "loadFile",
+      "updateFile",
+      "deleteItem",
+      "insertItem"
+    ]),
     loadData() {
       const { id } = this.$route.params;
       this.loading = true;
@@ -90,16 +104,49 @@ export default {
       this.page = 1;
 
       this.loadFile(data)
-        .then(() => (this.loading = false))
-        .catch(() => (this.loading = false));
+        .then(() => {
+          this.loading = false;
+        })
+        .catch(() => {
+          this.loading = false;
+        });
     },
     pageChanged(data) {
       this.loading = true;
       data["file"] = this.file.file_path;
       this.loadFile(data)
-        .then(() => (this.loading = false))
-        .catch(() => (this.loading = false));
+        .then(() => {
+          this.loading = false;
+        })
+        .catch(() => {
+          this.loading = false;
+        });
+    },
+    updateExcelData(data) {
+      data["file_name"] = this.file.file_path;
+      data["chart_id"] = this.file.chart_id;
+      this.loading = true;
+      this.updateFile(data).then(() => {
+        this.loading = false;
+        this.changeFile(this.file);
+      });
+    },
+    deleteColumn(data) {
+      this.loading = true;
+      this.deleteItem(data)
+        .then(() => {
+          this.loading = false;
+          this.changeFile(this.file);
+        })
+        .catch(() => {
+          this.loading = false;
+        });
+    },
+    addItem(data) {
       // console.log(data);
+      this.insertItem(data).then(() => {
+        this.changeFile(this.file);
+      });
     }
   },
   components: { Excel }
