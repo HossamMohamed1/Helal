@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\JsonDataResource;
 use App\Imports\DataImport;
 use App\Models\Chart;
 use App\Models\ChartFile;
-use App\Models\Charts;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Http\Resources\JsonDataResource;
 use App\Models\ChartLineOutput;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ChartsController extends Controller
 {
@@ -45,7 +44,7 @@ class ChartsController extends Controller
 
         // if ($request->type == 'Network' || $request->type == 'network') {
         // check for string with upper case like this
-         if (strtolower($request->type) == 'network') {
+        if (strtolower($request->type) == 'network') {
             // save json data will be like this
             $requestData['config'] = [
                 "configure" => [
@@ -396,7 +395,8 @@ class ChartsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function showFile(Request $request) {
+    public function showFile(Request $request)
+    {
         $data = file_get_contents(public_path($request->file));
         $data = json_decode($data);
         $heads = $data[0];
@@ -498,7 +498,7 @@ class ChartsController extends Controller
                 }
                 return response()->json($data);
             }
-        } catch (\Exception $e) {
+        } catch (\Exception$e) {
             throw $e;
             return response()->json([
                 'message' => 'something went wrong while file reading',
@@ -540,6 +540,5 @@ class ChartsController extends Controller
 
         return json_decode($result);
     }
-
 
 }
