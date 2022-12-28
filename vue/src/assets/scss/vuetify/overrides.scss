@@ -114,7 +114,6 @@
   table {
     padding: 4px;
     padding-bottom: 8px;
-
     th {
       text-transform: uppercase;
       white-space: nowrap;
@@ -349,4 +348,22 @@
   opacity: 0;
 }
 .v-image__image.v-image__image--cover {
+}
+
+table.excel {
+  overflow: scroll !important;
+  border: solid 1px #000;
+  td,
+  th {
+    max-width: 80px;
+    min-width: 80px;
+    width: 80px;
+    text-align: center;
+    border: solid 1px #000;
+    input {
+      max-width: 80px;
+      min-width: 80px;
+      width: 80px;
+    }
+  }
 }

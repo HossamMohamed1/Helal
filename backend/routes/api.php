@@ -42,7 +42,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'charts'], function () {
     //Show Excel FIle
     Route::post('show-excel', [ChartsController::class, 'showFile']);
     //Show CHART FILESS
-    Route::post('chartFiles/{id}', [ChartsController::class, 'chartFiles']);
+    Route::get('chartFiles/{id}', [ChartsController::class, 'chartFiles']);
     //Analysis Charts to get Data from Python
     Route::get('analysis/{id}', [ChartsController::class, 'analysis']);
 
