@@ -555,7 +555,11 @@ export default {
     all: "All Complaints"
   },
   reports: {
-    createReport: "Create Report"
+    createReport: "Create Report",
+    reportName: "Report Name",
+    reportType: "Report Type",
+    uploadFile: "Upload File",
+    showReport: "Report Show"
   },
   dates: {
     Jan: "Jan",
@@ -629,6 +633,9 @@ export default {
     haramain: "Haramain",
     all: "All"
   },
-  "input rquired" : "Required"
+  "input rquired" : "Required",
+  "showchart" : "Show",
+  "editchart" : "Edit",
+
 
 };
