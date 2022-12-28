@@ -71,33 +71,16 @@ export default {
           exact: true
         }
       ],
-<<<<<<< HEAD
-      types: ["Network", "BarChart", "Line", "X Y Bubble", " Pie"],
-      form: { name: "", type: "", file: [] }
-    };
-  },
-  methods: {
-    saveChart() {
-      console.log(this.form);
-    }
-  }
-};
-=======
 
-      types: ['Network', 'BarChart', 'Line', 'X Y Bubble', ' Pie'],
+      types: ["Network", "BarChart", "Line", "X Y Bubble", " Pie"],
       report: {
         name: null,
         type: undefined,
         file: null
-      },
-
-    }
-
-  },
-
-
-}
->>>>>>> e59d4826688fa2cbc8344c63eb6a8ff18d6d4acc
+      }
+    };
+  }
+};
 </script>
 <style>
 .vue-daterange-picker {
