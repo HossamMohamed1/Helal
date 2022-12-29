@@ -4,23 +4,21 @@
   </div>
 </template>
 <script>
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
-import * as am4core from '@amcharts/amcharts4/core'
-import * as am4charts from '@amcharts/amcharts4/charts'
-import am4themes_animated from '@amcharts/amcharts4/themes/animated'
-
-am4core.useTheme(am4themes_animated)
+am4core.useTheme(am4themes_animated);
 
 export default {
   components: {},
   data() {
     return {
-      loading: false,
-    }
+      loading: false
+    };
   },
   mounted() {
-
-    let chart = am4core.create(this.$refs.lineChart, am4charts.XYChart)
+    let chart = am4core.create(this.$refs.lineChart, am4charts.XYChart);
 
     // Add data
     chart.data = generateChartData();
@@ -41,7 +39,7 @@ export default {
     series.tooltip.pointerOrientation = "vertical";
     series.tooltip.background.cornerRadius = 20;
     series.tooltip.background.fillOpacity = 0.5;
-    series.tooltip.label.padding(12, 12, 12, 12)
+    series.tooltip.label.padding(12, 12, 12, 12);
 
     // Add scrollbar
     chart.scrollbarX = new am4charts.XYChartScrollbar();
@@ -57,14 +55,16 @@ export default {
       var firstDate = new Date();
       firstDate.setDate(firstDate.getDate() - 1000);
       var visits = 1200;
-      for (var i = 0; i < 500; i++) {
+      for (var i = 0; i < 10; i++) {
         // we create date objects here. In your data, you can have date strings
         // and then set format of your dates using chart.dataDateFormat property,
         // however when possible, use date objects, as this will speed up chart rendering.
         var newDate = new Date(firstDate);
         newDate.setDate(newDate.getDate() + i);
 
-        visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
+        visits += Math.round(
+          (Math.random() < 0.5 ? 1 : -1) * Math.random() * 10
+        );
 
         chartData.push({
           date: newDate,
@@ -72,9 +72,7 @@ export default {
         });
       }
       return chartData;
-
     }
-  },
-
+  }
 };
 </script>
