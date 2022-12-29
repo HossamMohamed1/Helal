@@ -16,7 +16,7 @@
               to="/reports/report-builder/create"
               class="h-38"
             >
-              إنشاء تقرير
+              {{ $t("reports.createReport") }}
             </v-btn>
           </div>
 
@@ -34,8 +34,7 @@
       <v-breadcrumbs :items="breadcrumbs" class="pa-0 py-2"></v-breadcrumbs>
     </div>
 
-    <v-card :loading="loading">
-      <v-row dense style="margin: 10px;">
+    <v-row dense style="margin: 10px;">
         <v-col cols="12" sm="6" lg="3" v-if="loading && reports.length == 0">
           <v-card :loading="loading">
             <v-img
@@ -53,6 +52,7 @@
           cols="12"
           sm="6"
           lg="3"
+          xl="2"
         >
           <router-link
             :to="{ name: 'show-report-builder', params: { id: report.id } }"
@@ -61,16 +61,20 @@
               <v-img
                 v-bind:src="'/visualization/' + report.img"
                 class="white--text align-end"
-                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                 height="200px"
+                style="background-size: contain"
               >
-                <v-card-title v-text="report.name"></v-card-title>
+                <v-card-title
+                  v-text="report.name"
+                  style="background: linear-gradient(to top, #167e3e, transparent);"
+                >
+                </v-card-title>
               </v-img>
             </v-card>
           </router-link>
         </v-col>
       </v-row>
-    </v-card>
+
   </div>
 </template>
 

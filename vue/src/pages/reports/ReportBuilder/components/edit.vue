@@ -1,6 +1,5 @@
 <template>
-  <v-container fluid>
-    <v-card :loading="loading" flat>
+    <v-card :loading="loading"  class="pa-2 mt-2">
       <v-row>
         <v-col>
           <v-tabs>
@@ -28,7 +27,7 @@
                       @addItem="addItem"
                     />
                   </p>
-                  <v-col cols="12" lg="12" md="12" class="">
+                  <v-col cols="12" lg="12" md="12" class="mt-2">
                     <!-- <div>{{ file }}</div> -->
                     <v-pagination
                       v-if="fileData.links"
@@ -44,7 +43,6 @@
         </v-col>
       </v-row>
     </v-card>
-  </v-container>
 </template>
 <script>
 import { mapActions, mapState } from "vuex";
