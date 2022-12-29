@@ -2,247 +2,103 @@
   <div class="d-flex flex-column flex-grow-1">
     <div class="d-flex align-center py-3">
       <div>
-        <div class="display-1">{{ $t('users.rolesList') }}</div>
+        <div class="display-1">{{ $t("users.rolesList") }}</div>
         <v-breadcrumbs :items="breadcrumbs" class="pa-0 py-2"></v-breadcrumbs>
       </div>
       <v-spacer></v-spacer>
       <v-btn color="primary" to="/roles/create">
-        {{ $t('users.createRole') }}
+        {{ $t("users.createRole") }}
       </v-btn>
     </div>
-
     <!-- roles list -->
+    <v-card :loading="isLoading">
+      <div v-if="isLoading" class="py-8 text-center">
+        <v-progress-circular
+          :size="70"
+          :width="7"
+          indeterminate
+        ></v-progress-circular>
+      </div>
+    </v-card>
+
     <v-row dense class="">
-      <div class="col-md-4 mb-2">
-        <v-card
-          class="mx-auto"
-        >
+      <div class="col-md-4 mb-2" v-for="item in roles">
+        <v-card class="mx-auto">
           <v-card-text class="px-3 pt-3">
-            <div class="title font-weight-bold text--primary">{{ $t('texts.administrator') }}</div>
-            <p>{{ $t('texts.totalUsersWithThisRole') }}: 5</p>
+            <div class="title font-weight-bold text--primary">
+              {{ item.display_name }}
+            </div>
+            <p></p>
+            <!-- <p>{{ $t("texts.totalUsersWithThisRole") }}: 5</p> -->
             <div class="d-flex flex-column">
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.AllAdminControls') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ViewAndEditFinancialSummaries') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.EnabledBulkReports') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ViewAndEditPayouts') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ViewAndEditDisputes') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1 text--primary"></span>
-                <em color="deep-purple accent-4">{{ $t('texts.and7more') }}</em>
+              <div
+                v-for="item in item.permissions"
+                class="d-flex align-center mb-1 text--primary"
+              >
+                <span class="bullet bg-primary mx-1"></span>
+                {{ item.replace("-", " ") | uppercase }}
               </div>
             </div>
           </v-card-text>
           <v-card-actions class="px-3 pb-3">
-            <v-btn
-              color="dark"
-              to="/roles/view"
-            >
-              {{ $t('users.viewRole') }}
+            <v-btn color="dark" to="/roles/view">
+              {{ $t("users.viewRole") }}
             </v-btn>
-            <v-btn
-              color="dark"
-              to="/roles/edit"
-            >
-              {{ $t('users.editRole') }}
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-
-      </div>
-      <div class="col-md-4 mb-2">
-        <v-card
-          class="mx-auto"
-        >
-          <v-card-text class="px-3 pt-3">
-            <div class="title font-weight-bold text--primary">{{ $t('texts.developer') }}</div>
-            <p>{{ $t('texts.totalUsersWithThisRole') }}: 14</p>
-            <div class="d-flex flex-column">
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.SomeAdminControls') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ViewFinancialSummariesOnly') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ViewAndEditAPIControls') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ViewAndEditDisputes') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.SomeAdminControls') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1 text--primary"></span>
-                <em color="deep-purple accent-4">{{ $t('texts.and3more') }}...</em>
-              </div>
-            </div>
-          </v-card-text>
-          <v-card-actions class="px-3 pb-3">
-            <v-btn
-              color="dark"
-              to="/roles/view"
-            >
-              {{ $t('users.viewRole') }}
-            </v-btn>
-            <v-btn
-              color="dark"
-              to="/roles/edit"
-            >
-              {{ $t('users.editRole') }}
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-
-      </div>
-      <div class="col-md-4 mb-2">
-        <v-card
-          class="mx-auto"
-        >
-          <v-card-text class="px-3 pt-3">
-            <div class="title font-weight-bold text--primary">{{ $t('texts.analyst') }}</div>
-            <p>{{ $t('texts.totalUsersWithThisRole') }}: 4</p>
-            <div class="d-flex flex-column">
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ViewAndEditPayouts') }}
-              </div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ResponseToCustomerFeedback') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ViewPayoutsOnly') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ViewDisputesOnly') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ViewAndEditDisputes') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1 text--primary"></span>
-                <em color="deep-purple accent-4">{{ $t('texts.and3more') }}...</em>
-              </div>
-            </div>
-          </v-card-text>
-          <v-card-actions class="px-3 pb-3">
-            <v-btn
-              color="dark"
-              to="/roles/view"
-            >
-              {{ $t('users.viewRole') }}
-            </v-btn>
-            <v-btn
-              color="dark"
-              to="/roles/edit"
-            >
-              {{ $t('users.editRole') }}
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-
-      </div>
-      <div class="col-md-4 mb-2">
-        <v-card
-          class="mx-auto"
-        >
-          <v-card-text class="px-3 pt-3">
-            <div class="title font-weight-bold text--primary">{{ $t('texts.user') }}</div>
-            <p>{{ $t('texts.totalUsersWithThisRole') }}: 25</p>
-            <div class="d-flex flex-column">
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.NoAdminControls') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ViewFinancialSummariesOnly') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ViewPayoutsOnly') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ViewDisputesOnly') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ResponseToCustomerFeedback') }}</div>
-            </div>
-          </v-card-text>
-          <v-card-actions class="px-3 pb-3">
-            <v-btn
-              color="dark"
-              to="/roles/view"
-            >
-              {{ $t('users.viewRole') }}
-            </v-btn>
-            <v-btn
-              color="dark"
-              to="/roles/edit"
-            >
-              {{ $t('users.editRole') }}
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-
-      </div>
-      <div class="col-md-4 mb-2">
-        <v-card
-          class="mx-auto"
-        >
-          <v-card-text class="px-3 pt-3">
-            <div class="title font-weight-bold text--primary">{{ $t('texts.trial') }}</div>
-            <p>{{ $t('texts.totalUsersWithThisRole') }}: 523</p>
-            <div class="d-flex flex-column">
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.NoAdminControls') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ViewFinancialSummariesOnly') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.EnabledBulkReports') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ViewDisputesOnly') }}</div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span>{{ $t('texts.ResponseToCustomerFeedback') }}</div>
-            </div>
-          </v-card-text>
-          <v-card-actions class="px-3 pb-3">
-            <v-btn
-              color="dark"
-              to="/roles/view"
-            >
-              {{ $t('users.viewRole') }}
-            </v-btn>
-            <v-btn
-              color="dark"
-              to="/roles/edit"
-            >
-              {{ $t('users.editRole') }}
+            <v-btn color="dark" to="/roles/edit">
+              {{ $t("users.editRole") }}
             </v-btn>
           </v-card-actions>
         </v-card>
       </div>
     </v-row>
-
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 
 export default {
-  components: {
-  },
+  components: {},
   data() {
     return {
       isLoading: false,
-      breadcrumbs: [{
-        text: this.$t('menu.usersManagement'),
-        disabled: false,
-        href: '#'
-      }, {
-        text: this.$t('users.rolesList')
-      }],
+      breadcrumbs: [
+        {
+          text: this.$t("menu.usersManagement"),
+          disabled: false,
+          href: "#"
+        },
+        {
+          text: this.$t("users.rolesList")
+        }
+      ]
 
-      roles
-    }
+      // roles: []
+    };
   },
-  watch: {
-
+  computed: {
+    // roles() {
+    //   return this.$store.state.roles.roles;
+    // }
+    ...mapState("roles", ["roles"])
+  },
+  mounted() {
+    this.open();
   },
   methods: {
-    open() {}
+    ...mapActions("roles", ["getRoles"]),
+    open() {
+      this.isLoading = true;
+      this.getRoles()
+        .then(() => {
+          this.isLoading = false;
+        })
+        .catch(() => {
+          this.isLoading = false;
+        });
+    }
   }
-}
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

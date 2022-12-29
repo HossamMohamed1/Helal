@@ -36,6 +36,7 @@ import "./assets/scss/theme.scss";
 
 // Animation library - https://animate.style/
 import "animate.css/animate.min.css";
+import mixins from "./mixins";
 
 // Set this to false to prevent the production tip on Vue startup.
 Vue.config.productionTip = false;
@@ -72,11 +73,17 @@ window.Echo = new Echo({
 |
 */
 export default new Vue({
+  mixins: [mixins],
   i18n,
   vuetify,
   router,
   store,
   render: h => h(App),
+  // data() {
+  //   return {
+  //     public_path: process.env.VUE_APP_PUBLIC_DIR
+  //   };
+  // },
   created() {
     if (window.location.pathname != "/auth/signin") {
       store.dispatch("auth/user");
