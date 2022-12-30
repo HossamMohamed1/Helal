@@ -33,6 +33,7 @@
                 <v-autocomplete
                   v-model="report.type"
                   :items="types"
+                  :error-messages="validationError['type']"
                   :label="$t('reports.reportType')"
                   item-text="name"
                   item-value="name"
