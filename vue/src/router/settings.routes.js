@@ -18,7 +18,7 @@ export default [
     },
     component: () =>
       import(
-        /* webpackChunkName: "settings-information */ "@/pages/settings/general/InformationPage.vue"
+        /* webpackChunkName : "settings-information */ "@/pages/settings/general/InformationPage.vue"
       )
   },
   {
@@ -29,7 +29,7 @@ export default [
     },
     component: () =>
       import(
-        /* webpackChunkName: "settings-properties" */ "@/pages/settings/general/PropertiesPage.vue"
+        /* webpackChunkName : "settings-properties" */ "@/pages/settings/general/PropertiesPage.vue"
       )
   },
   {
@@ -40,7 +40,7 @@ export default [
     },
     component: () =>
       import(
-        /* webpackChunkName: "settings-notifications" */ "@/pages/settings/general/NotificationsPage.vue"
+        /* webpackChunkName : "settings-notifications" */ "@/pages/settings/general/NotificationsPage.vue"
       )
   },
   {
@@ -51,7 +51,7 @@ export default [
     },
     component: () =>
       import(
-        /* webpackChunkName: "settings-colors */ "@/pages/settings/general/ThemePage.vue"
+        /* webpackChunkName : "settings-colors */ "@/pages/settings/general/ThemePage.vue"
       )
   },
   {
@@ -62,7 +62,7 @@ export default [
     },
     component: () =>
       import(
-        /* webpackChunkName: "settings-mail-template */ "@/pages/settings/mail/MailTemplatePage.vue"
+        /* webpackChunkName : "settings-mail-template */ "@/pages/settings/mail/MailTemplatePage.vue"
       )
   },
   {
@@ -73,7 +73,7 @@ export default [
     },
     component: () =>
       import(
-        /* webpackChunkName: "settings-mail */ "@/pages/settings/mail/MailServerPage.vue"
+        /* webpackChunkName : "settings-mail */ "@/pages/settings/mail/MailServerPage.vue"
       )
   },
   {
@@ -84,7 +84,7 @@ export default [
     },
     component: () =>
       import(
-        /* webpackChunkName: "settings-sms */ "@/pages/settings/sms/SMSPage.vue"
+        /* webpackChunkName : "settings-sms-show */ "@/pages/settings/sms/SMSPage.vue"
       )
   }
 ];

@@ -30,12 +30,31 @@
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
-                <v-select
+                <v-autocomplete
+                  v-model="report.type"
                   :items="types"
                   :label="$t('reports.reportType')"
-                  v-model="report.type"
-                  :error-messages="validationError['type']"
-                ></v-select>
+                  item-text="name"
+                  item-value="name"
+                >
+                  <template v-slot:item="data">
+                    <template v-if="typeof data.item !== 'object'">
+                      <v-list-item-content
+                        v-text="data.item"
+                      ></v-list-item-content>
+                    </template>
+                    <template v-else>
+                      <v-list-item-avatar>
+                        <img :src="data.item.image" />
+                      </v-list-item-avatar>
+                      <v-list-item-content>
+                        <v-list-item-title
+                          v-html="data.item.name"
+                        ></v-list-item-title>
+                      </v-list-item-content>
+                    </template>
+                  </template>
+                </v-autocomplete>
               </v-col>
               <v-col cols="12" md="6">
                 <v-file-input
@@ -84,7 +103,13 @@ export default {
         }
       ],
 
-      types: ["Network", "Bar", "Line", "X Y Bubble", " Pie"],
+      types: [
+        { name: "Network", image: "/visualization/network.jpg" },
+        { name: "Bar", image: "/visualization/bar.jpg" },
+        { name: "Line", image: "/visualization/line.jpg" },
+        { name: "X Y Bubble", image: "/visualization/xybubble.jpg" },
+        { name: "Pie", image: "/visualization/pie.jpg" }
+      ],
       report: {
         name: null,
         type: undefined,
