@@ -38,6 +38,14 @@ const actions = {
     await axios.delete(`charts/destroy/${id}`);
     let reports = state.reports.filter(item => item.id != id);
     commit("SET_REPORTS", reports);
+
+    // console.log(id);
+  },
+  async getChart({ commit }, id) {
+    const response = await axios.get(`charts/show/${id}`);
+    const chart = response?.data?.chart ?? [];
+    console.log(chart);
+    commit("SET_CHART", chart);
   }
 };
 

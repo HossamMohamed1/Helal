@@ -24,7 +24,6 @@
     </v-snackbar>
 
     <!-- Demo customization menu -->
-    <configirations-menu/>
   </v-app>
 </template>
 
@@ -32,9 +31,6 @@
 import { mapState } from "vuex";
 
 // Demo Menu
-// Demo Menu
-import ConfigirationsMenu from '@/pages/reports/ReportBuilder/components/ConfigirationsMenu'
-
 import config from "./configs";
 
 // Layouts
@@ -58,8 +54,7 @@ export default {
     landingLayout,
     simpleLayout,
     authLayout,
-    errorLayout,
-    ConfigirationsMenu
+    errorLayout
   },
   data() {
     return {

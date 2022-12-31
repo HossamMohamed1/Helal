@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Bar chart component</h1>
     <div ref="lineChart" style="height: 500px"></div>
   </div>
 </template>
