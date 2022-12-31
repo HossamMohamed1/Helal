@@ -1,13 +1,12 @@
 <template>
   <div>
-
-    <v-card :loading="loading"  class="pa-2 mt-2">
+    <v-card :loading="loading" class="pa-2 mt-2">
       <v-row class="pt-2">
         <v-col>
           <!--pass config or data-->
-          <LineChart v-if="chart.type == 'Line'" :config="config"/>
-          <bar-chart v-else="chart.type == 'Bar'" :config="config"/>
 
+          <LineChart v-if="chart.type == 'Line'" :config="config" />
+          <bar-chart v-else-if="chart.type == 'Bar'" :config="config" />
         </v-col>
       </v-row>
     </v-card>
@@ -31,67 +30,63 @@
         temporary
         width="310"
       >
-
-        <line-config v-if="chart.type == 'Line'" :config="config"/>
-        <bar-config v-else="chart.type == 'Bar'" :config="config"/>
-
+        <line-config
+          v-if="chart.type && chart.type == 'Line'"
+          :config="config"
+          @closeDraw="right = false"
+        />
+        <bar-config
+          v-else="chart.type == 'Bar'"
+          :config="config"
+          @closeDraw="right = false"
+        />
       </v-navigation-drawer>
     </div>
   </div>
-
 </template>
 <script>
-
-import
-{ mapActions, mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 import Excel from "./excel.vue";
 
-import LineChart from '@/pages/reports/ReportBuilder/components/charts/LineChart'
-import BarChart from '@/pages/reports/ReportBuilder/components/charts/BarChart'
+import LineChart from "@/pages/reports/ReportBuilder/components/charts/LineChart";
+import BarChart from "@/pages/reports/ReportBuilder/components/charts/BarChart";
 import LineConfig from "@/pages/reports/ReportBuilder/components/configirations/LineConfig";
 import BarConfig from "@/pages/reports/ReportBuilder/components/configirations/BarConfig";
 export default {
-  components: {BarConfig, LineConfig, BarChart, LineChart  },
+  components: { BarConfig, LineConfig, BarChart, LineChart },
   data() {
     return {
       loading: false,
-      right: false, // Config aside
+      right: false // Config aside
       // c/haramain.test/onfig: []
     };
   },
   created() {
     this.loadData();
   },
-  watch: {
-
-  },
+  watch: {},
   computed: {
     ...mapState("reports", ["chart"]),
-    config(){
-      return this.chart.config
+    config() {
+      return this.chart.config;
     }
   },
   methods: {
-    ...mapActions("reports", [
-      "getChart"
-    ]),
+    ...mapActions("reports", ["getChart"]),
     loadData() {
       const { id } = this.$route.params;
       this.loading = true;
       this.getChart(id)
         .then(() => {
           this.loading = false;
-          // this.config = this.chart.config
-          console.log(this.config)
         })
         .catch(() => {
           this.loading = false;
         });
     }
-  },
+  }
 };
 </script>
-
 
 <style lang="scss" scoped>
 .drawer-button {
@@ -104,10 +99,9 @@ export default {
   .v-icon {
     font-size: 1.3rem;
   }
-  input{
-    border-color:#ddd;
+  input {
+    border-color: #ddd;
   }
 }
 // config aside
-
 </style>

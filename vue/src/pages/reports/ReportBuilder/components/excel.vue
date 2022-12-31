@@ -49,7 +49,6 @@
                 </v-icon>
               </span>
               {{ item }}
-              <!-- </v-btn> -->
             </th>
           </tr>
         </thead>
@@ -103,7 +102,6 @@
 </template>
 <script>
 import { ask } from "@/helpers";
-import { mapActions } from "vuex";
 
 export default {
   data() {

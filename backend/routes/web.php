@@ -39,13 +39,12 @@ Route::get('test', function () {
     // });
 
     $content = [
-        ["org", "value", "valeu 2 "],
+        ["org", "WEB", "DEVOPPS "],
     ];
 
     $faker = Faker\Factory::create();
     // return [$faker];
-    for ($i = 0; $i < 500000; $i++) {
-        $index = $i + 1;
+    for ($i = 0; $i < 10; $i++) {
         $content[] = [
             $faker->name,
             rand(10, 100),
@@ -53,7 +52,7 @@ Route::get('test', function () {
         ];
     }
 
-    file_put_contents(public_path('excel/1672301408-part-1.json'), collect($content));
+    file_put_contents(public_path('excel/1672427904-part-1.json'), collect($content));
     // return $content;
 
     return ['message' => true];

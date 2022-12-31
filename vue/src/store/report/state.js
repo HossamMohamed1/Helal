@@ -4,7 +4,8 @@ const state = {
   fileData: [],
   chartFiles: [],
   file: {},
-  reports: []
+  reports: [],
+  analytics: []
 };
 
 export default state;

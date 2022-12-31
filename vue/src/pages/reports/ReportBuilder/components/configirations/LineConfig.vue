@@ -3,7 +3,7 @@
     <div class="d-flex align-center pa-2">
       <div class="title">إعدادات ال Line Chart</div>
       <v-spacer></v-spacer>
-      <v-btn icon @click="right = false">
+      <v-btn icon @click="$emit('closeDraw')">
         <v-icon>mdi-close</v-icon>
       </v-btn>
     </div>
@@ -24,33 +24,33 @@
       </div>
 
       <div class="font-weight-bold mt-3 mb-1">Zooming</div>
-       <v-row>
-       <v-col cols="6">
-         <legend>scrollbar X</legend>
-         <v-btn-toggle
-           v-model="config.zoom.scrollbarX"
-           color="primary"
-           mandatory
-           class="mb-2"
-         >
-           <v-btn>true</v-btn>
-           <v-btn>false</v-btn>
-         </v-btn-toggle>
-       </v-col>
-       <v-col cols="6">
-         <legend>Position</legend>
-         <v-btn-toggle
-           v-model="config.zoom.scrollbarXBottom"
-           color="primary"
-           mandatory
-           class="mb-2"
-         >
-           <v-btn>top</v-btn>
-           <v-btn>bottom</v-btn>
-         </v-btn-toggle>
-       </v-col>
-     </v-row>
-       <v-row>
+      <v-row>
+        <v-col cols="6">
+          <legend>scrollbar X</legend>
+          <v-btn-toggle
+            v-model="config.zoom.scrollbarX"
+            color="primary"
+            mandatory
+            class="mb-2"
+          >
+            <v-btn>true</v-btn>
+            <v-btn>false</v-btn>
+          </v-btn-toggle>
+        </v-col>
+        <v-col cols="6">
+          <legend>Position</legend>
+          <v-btn-toggle
+            v-model="config.zoom.scrollbarXBottom"
+            color="primary"
+            mandatory
+            class="mb-2"
+          >
+            <v-btn>top</v-btn>
+            <v-btn>bottom</v-btn>
+          </v-btn-toggle>
+        </v-col>
+      </v-row>
+      <v-row>
         <v-col cols="6">
           <legend>scrollbar Y</legend>
           <v-btn-toggle
@@ -77,8 +77,6 @@
         </v-col>
       </v-row>
 
-
-
       <div class="font-weight-bold mt-3 mb-1">Axis Titles</div>
       <div>
         <legend>X Title</legend>
@@ -96,10 +94,10 @@
         ></v-text-field>
       </div>
 
-
       <div class="font-weight-bold mt-3 mb-1">Chart Title</div>
       <div>
         <legend>Title</legend>
+
         <v-text-field
           solo
           placeholder="Enter Chart Title"
@@ -107,27 +105,16 @@
         ></v-text-field>
 
         <legend>Font Size</legend>
-        <v-text-field
-          solo
-          v-model="config.title.fontSize"
-        ></v-text-field>
+        <v-text-field solo v-model="config.title.fontSize"></v-text-field>
 
         <legend>Font Weight</legend>
-        <v-text-field
-          solo
-          v-model="config.title.fontWeight"
-        ></v-text-field>
+        <v-text-field solo v-model="config.title.fontWeight"></v-text-field>
 
         <legend>Margin Bottom</legend>
-        <v-text-field
-          solo
-          v-model="config.title.marginBottom"
-        ></v-text-field>
+        <v-text-field solo v-model="config.title.marginBottom"></v-text-field>
 
         <legend>Color</legend>
-        <v-color-picker
-          v-model="config.title.fill"
-        ></v-color-picker>
+        <v-color-picker v-model="config.title.fill"></v-color-picker>
       </div>
     </div>
 
@@ -136,6 +123,8 @@
 </template>
 
 <script>
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
 
 export default {
   components: {},
@@ -147,18 +136,15 @@ export default {
       loading: false
     };
   },
-  created() {
-
-  },
+  created() {},
   watch: {
     config(value) {
       this.config = value;
 
       // this.chart.config = JSON.parse(this.chart.config);
-    },
+    }
   },
   mounted() {
-
     let chart = am4core.create(this.$refs.lineChart, am4charts.XYChart);
 
     // Add data
@@ -217,4 +203,3 @@ export default {
   }
 };
 </script>
-

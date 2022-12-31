@@ -20,11 +20,11 @@ export default {
       loading: false
     };
   },
-  created() {
-
+  created() {},
+  methods: {
+    // loadAnalytics()
   },
   mounted() {
-
     let chart = am4core.create(this.$refs.lineChart, am4charts.XYChart);
 
     // Add data

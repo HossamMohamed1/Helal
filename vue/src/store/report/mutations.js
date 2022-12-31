@@ -16,6 +16,9 @@ const mutations = {
   },
   SET_REPORTS(state, value) {
     state.reports = value;
+  },
+  SET_ANALYTICS(state, value) {
+    state.analytics = value;
   }
 };
 export default mutations;
