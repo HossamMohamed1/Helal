@@ -1,5 +1,5 @@
 <template>
-  <div class="aside-config">
+  <div class="aside-config" v-if="config">
     <div class="d-flex align-center pa-2">
       <div class="title">إعدادات ال Line Chart</div>
       <v-spacer></v-spacer>
@@ -24,7 +24,7 @@
       </div>
 
       <div class="font-weight-bold mt-3 mb-1">Zooming</div>
-      <v-row>
+      <v-row v-if="config.zoom">
         <v-col cols="6">
           <legend>scrollbar X</legend>
           <v-btn-toggle
@@ -50,7 +50,7 @@
           </v-btn-toggle>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row v-if="config.zoom">
         <v-col cols="6">
           <legend>scrollbar Y</legend>
           <v-btn-toggle
@@ -78,7 +78,7 @@
       </v-row>
 
       <div class="font-weight-bold mt-3 mb-1">Axis Titles</div>
-      <div>
+      <div v-if="config.xLabel">
         <legend>X Title</legend>
         <v-text-field
           placeholder="Enter XAxis Title"
@@ -95,7 +95,7 @@
       </div>
 
       <div class="font-weight-bold mt-3 mb-1">Chart Title</div>
-      <div>
+      <div v-if="config.title">
         <legend>Title</legend>
 
         <v-text-field
@@ -119,86 +119,52 @@
     </div>
 
     <v-divider></v-divider>
+    <div class="text-center">
+      <v-btn
+        :loading="loading"
+        :disabled="loading"
+        color="primary"
+        type="submit"
+        @click="editChart"
+      >
+        {{ $t("general.save") }}
+      </v-btn>
+    </div>
   </div>
 </template>
 
 <script>
-import * as am4core from "@amcharts/amcharts4/core";
-import * as am4charts from "@amcharts/amcharts4/charts";
-
+import { mapState, mapActions } from "vuex";
 export default {
   components: {},
-  props: {
-    config: {}
-  },
   data() {
     return {
       loading: false
     };
   },
-  created() {},
-  watch: {
-    config(value) {
-      this.config = value;
-
-      // this.chart.config = JSON.parse(this.chart.config);
+  computed: {
+    ...mapState("reports", ["chart"]),
+    config() {
+      return this.chart.config;
     }
   },
-  mounted() {
-    let chart = am4core.create(this.$refs.lineChart, am4charts.XYChart);
+  methods: {
+    ...mapActions("reports", ["updateChart"]),
 
-    // Add data
-    chart.data = generateChartData();
-
-    // Create axes
-    var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-    dateAxis.renderer.minGridDistance = 50;
-
-    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-
-    // Create series
-    var series = chart.series.push(new am4charts.LineSeries());
-    series.dataFields.valueY = "visits";
-    series.dataFields.dateX = "date";
-    series.strokeWidth = 2;
-    series.minBulletDistance = 10;
-    series.tooltipText = "{valueY}";
-    series.tooltip.pointerOrientation = "vertical";
-    series.tooltip.background.cornerRadius = 20;
-    series.tooltip.background.fillOpacity = 0.5;
-    series.tooltip.label.padding(12, 12, 12, 12);
-
-    // Add scrollbar
-    chart.scrollbarX = new am4charts.XYChartScrollbar();
-    chart.scrollbarX.series.push(series);
-
-    // Add cursor
-    chart.cursor = new am4charts.XYCursor();
-    chart.cursor.xAxis = dateAxis;
-    chart.cursor.snapToSeries = series;
-
-    function generateChartData() {
-      var chartData = [];
-      var firstDate = new Date();
-      firstDate.setDate(firstDate.getDate() - 1000);
-      var visits = 1200;
-      for (var i = 0; i < 10; i++) {
-        // we create date objects here. In your data, you can have date strings
-        // and then set format of your dates using chart.dataDateFormat property,
-        // however when possible, use date objects, as this will speed up chart rendering.
-        var newDate = new Date(firstDate);
-        newDate.setDate(newDate.getDate() + i);
-
-        visits += Math.round(
-          (Math.random() < 0.5 ? 1 : -1) * Math.random() * 10
-        );
-
-        chartData.push({
-          date: newDate,
-          visits: visits
+    editChart() {
+      const data = {
+        ...this.chart,
+        config: this.config,
+        _method: "PUT"
+      };
+      this.loading = true;
+      this.updateChart(data)
+        .then(() => {
+          this.loading = false;
+        })
+        .catch(() => {
+          this.loading = false;
         });
-      }
-      return chartData;
     }
   }
 };

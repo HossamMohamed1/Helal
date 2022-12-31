@@ -39,6 +39,18 @@ export default {
         .catch(() => {
           this.loading = false;
         });
+    },
+    chart() {
+      let { id } = this.chart;
+      this.loading = true;
+      this.loadAnalytics(id)
+        .then(() => {
+          this.loading = false;
+          this.loadChart();
+        })
+        .catch(() => {
+          this.loading = false;
+        });
     }
   },
   destroyed() {
@@ -63,7 +75,6 @@ export default {
       });
 
       const { config } = this.chart;
-      console.log(config.colors, "colors");
       this.backgroundStyle.backgroundColor = config?.style?.backgroundColor;
       chart.colors.list = config.colors.map(color => am4core.color(color));
       var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());

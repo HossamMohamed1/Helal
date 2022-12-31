@@ -57,7 +57,7 @@ export default {
   data() {
     return {
       loading: false,
-      right: false // Config aside
+      right: true // Config aside
       // c/haramain.test/onfig: []
     };
   },

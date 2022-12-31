@@ -62,12 +62,13 @@
     </div>
 
     <v-divider></v-divider>
-    <div class="text-center" color="success">
+    <div class="text-center">
       <v-btn
         :loading="loading"
         :disabled="loading"
         color="primary"
         type="submit"
+        @click="editChart()"
       >
         {{ $t("general.save") }}
       </v-btn>
@@ -75,7 +76,7 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   computed: {
@@ -86,6 +87,24 @@ export default {
   },
   data() {
     return { loading: false };
+  },
+  methods: {
+    ...mapActions("reports", ["updateChart"]),
+    editChart() {
+      const data = {
+        ...this.chart,
+        config: this.config,
+        _method: "PUT"
+      };
+      this.loading = true;
+      this.updateChart(data)
+        .then(() => {
+          this.loading = false;
+        })
+        .catch(() => {
+          this.loading = false;
+        });
+    }
   }
 };
 </script>

@@ -7,6 +7,7 @@ use App\Imports\DataImport;
 use App\Models\Chart;
 use App\Models\ChartFile;
 use App\Models\ChartLineOutput;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
@@ -493,8 +494,7 @@ class ChartsController extends Controller
         }
         try {
 
-            return $data = $this->getAiResponse($post, $chart);
-            //    return [$data];
+            $data = $this->getAiResponse($post, $chart);
             if ($chart->type == 'line') {
                 if (count($data->series->line) == 1) {$date = $data->series->line[0];
                     // return [$date];
@@ -508,7 +508,6 @@ class ChartsController extends Controller
                     ChartLineOutput::create($saved);
 
                     $output = ChartLineOutput::where('chart_id', $chart_id)->get()->pluck('output');
-                    // $chart->output()->create($data);
 
                     $output = [
                         'series' => $output,
@@ -539,8 +538,7 @@ class ChartsController extends Controller
                 }
                 return response()->json($data);
             }
-        } catch (\Exception$e) {
-            throw $e;
+        } catch (Exception $e) {
             return response()->json([
                 'message' => 'something went wrong while file reading',
             ], 500);
@@ -551,7 +549,7 @@ class ChartsController extends Controller
     {
         $type = $chart->type == 'column' ? 'bar' : $chart->type;
 
-        if ($chart->type == 'line') {
+        if (strtolower($chart->type) == 'line') {
             $post = [
                 'files' => $data,
                 'type' => strtolower($type),
@@ -564,7 +562,7 @@ class ChartsController extends Controller
                 'type' => strtolower($type),
             ];
         }
-
+        // return $post;
         $url = env('AI_API') . '/analysis';
 
         $ch = curl_init($url);

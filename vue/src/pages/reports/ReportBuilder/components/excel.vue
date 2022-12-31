@@ -41,7 +41,7 @@
               <span
                 class="excel-btn"
                 color="error"
-                v-if="columnLength > index"
+                v-if="columnLength > index && index > 0"
                 @click.prevent="deleteColumn(index, 'column')"
               >
                 <v-icon small>
