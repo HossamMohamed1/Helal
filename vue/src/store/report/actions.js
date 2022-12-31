@@ -29,7 +29,18 @@ const actions = {
   async insertItem({}, data) {
     await axios.post("charts/addColumn", data);
   },
+  async getReports({ commit }) {
+    const response = await axios.get("charts/index");
+    const reports = response?.data?.charts ?? {};
+    commit("SET_REPORTS", reports);
+  },
+  async removeReport({ state, commit }, id) {
+    await axios.delete(`charts/destroy/${id}`);
+    let reports = state.reports.filter(item => item.id != id);
+    commit("SET_REPORTS", reports);
 
+    // console.log(id);
+  },
   async getChart({ commit }, id) {
     const response = await axios.get(`charts/show/${id}`);
     const chart = response?.data?.chart ?? [];

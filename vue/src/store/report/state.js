@@ -3,7 +3,8 @@ const state = {
   chart: {},
   fileData: [],
   chartFiles: [],
-  file: {}
+  file: {},
+  reports: []
 };
 
 export default state;

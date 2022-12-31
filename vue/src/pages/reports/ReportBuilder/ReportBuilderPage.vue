@@ -35,46 +35,62 @@
     </div>
 
     <v-row dense style="margin: 10px;">
-        <v-col cols="12" sm="6" lg="3" v-if="loading && reports.length == 0">
+      <v-col cols="12" sm="6" lg="3" v-if="loading && reports.length == 0">
+        <v-card :loading="loading">
+          <v-img
+            class="white--text align-end"
+            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+            height="200px"
+          >
+            <v-card-title v-text="''"></v-card-title>
+          </v-img>
+        </v-card>
+      </v-col>
+      <v-col
+        v-for="report in reports"
+        :key="report.id"
+        cols="12"
+        sm="6"
+        lg="3"
+        xl="2"
+      >
+        <router-link
+          :to="{ name: 'show-report-builder', params: { id: report.id } }"
+        >
           <v-card :loading="loading">
             <v-img
+              v-bind:src="'/visualization/' + report.img"
               class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
               height="200px"
+              style="background-size: contain"
             >
-              <v-card-title v-text="''"></v-card-title>
+              <v-card-title
+                style="background: linear-gradient(to top, #167e3e, transparent);"
+              >
+                {{ report.name | capitalize }}
+                <div>
+                  <v-btn small class="mr-1">
+                    <v-icon small>
+                      mdi-pen
+                    </v-icon>
+                  </v-btn>
+                  <v-btn
+                    small
+                    class="mr-1"
+                    color="error"
+                    @click.prevent="deleteReport(report.id)"
+                  >
+                    <v-icon small>
+                      mdi-delete
+                    </v-icon>
+                  </v-btn>
+                </div>
+              </v-card-title>
             </v-img>
           </v-card>
-        </v-col>
-        <v-col
-          v-for="report in reports"
-          :key="report.name"
-          cols="12"
-          sm="6"
-          lg="3"
-          xl="2"
-        >
-          <router-link
-            :to="{ name: 'show-report-builder', params: { id: report.id } }"
-          >
-            <v-card>
-              <v-img
-                v-bind:src="'/visualization/' + report.img"
-                class="white--text align-end"
-                height="200px"
-                style="background-size: contain"
-              >
-                <v-card-title
-                  v-text="report.name"
-                  style="background: linear-gradient(to top, #167e3e, transparent);"
-                >
-                </v-card-title>
-              </v-img>
-            </v-card>
-          </router-link>
-        </v-col>
-      </v-row>
-
+        </router-link>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -84,6 +100,8 @@ import TrackCard from "../../../components/dashboard/TrackCard";
 import axios from "axios";
 import DateRangePicker from "vue2-daterange-picker";
 import "vue2-daterange-picker/dist/vue2-daterange-picker.css";
+import { mapActions, mapState } from "vuex";
+import { ask } from "@/helpers";
 
 export default {
   components: {
@@ -110,31 +128,34 @@ export default {
         endDate: "2022-12-1"
       },
 
-      reports: [],
+      // reports: [],
       loading: false
     };
   },
   created() {
-    this.getReports();
-    // this.endDate.setDate(this.endDate.getDate() + 6);
-    // this.dateRange = {
-    //   startDate,
-    //   endDate
-    // };
+    this.loadReports();
+  },
+  computed: {
+    ...mapState("reports", ["reports"])
   },
   methods: {
-    getReports() {
+    ...mapActions("reports", ["getReports", "removeReport"]),
+    loadReports() {
       this.loading = true;
-      axios
-        .get("charts/index")
-        .then(response => {
-          this.reports = response.data.charts;
+      this.getReports()
+        .then(() => {
           this.loading = false;
-          // this.$router.push('/reports/report-builder')
         })
         .catch(() => {
           this.loading = false;
         });
+    },
+    async deleteReport(id) {
+      // console.log(id);
+      const { isConfirmed } = await ask("Are you sure ?");
+      if (isConfirmed) {
+        this.removeReport(id);
+      }
     }
   }
 };

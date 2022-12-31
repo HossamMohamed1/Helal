@@ -13,6 +13,9 @@ const mutations = {
   },
   SET_FILE_DATA(state, value) {
     state.fileData = value;
+  },
+  SET_REPORTS(state, value) {
+    state.reports = value;
   }
 };
 export default mutations;
