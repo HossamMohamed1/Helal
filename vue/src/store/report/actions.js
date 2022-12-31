@@ -28,7 +28,18 @@ const actions = {
   },
   async insertItem({}, data) {
     await axios.post("charts/addColumn", data);
-  }
+  },
+
+  async getChart({ commit }, id) {
+    const response = await axios.get(`charts/show/${id}`);
+    const chart = response?.data?.chart ?? [];
+    console.log(chart)
+    commit("SET_CHART", chart);
+
+
+  },
+
+
 };
 
 export default actions;

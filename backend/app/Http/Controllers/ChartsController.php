@@ -218,9 +218,16 @@ class ChartsController extends Controller
                     "text" => "", //Default Empty string
                     "paddingTop" => "10",
                 ],
-                "yLabel" => " ", //Default Empty string
+                "yLabel" => "", //Default Empty string
                 "colors" => ["#256624", "#8b92a1", "#c0ca33", "#795548", "#546e7a", "#303f9f", "#ff5722"],
-                "zoom" => true,
+                //"zoom" => true,
+                "zoom" => [
+                    "cursor" => "zoomXY",
+                    "scrollbarX" => "true",
+                    "scrollbarY" => "true",
+                    "scrollbarXBottom" => "top",
+                    "scrollbarYLeft" => "right",
+                ],
                 "style" => [
                     "backgroundColor" => "#ececec",
                 ],

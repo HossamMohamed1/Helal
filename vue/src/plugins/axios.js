@@ -9,7 +9,7 @@ axios.defaults.headers.common["Content-Type"] = "application/json";
 axios.defaults.headers.common["Content-Type"] = 'multipart/form-data';
 // 'Content-Type': 'multipart/form-data',
 axios.defaults.baseURL =
-  process.env.VUE_APP_API_URL ?? "http://haramain.test/backend/public/api";
+  process.env.VUE_APP_API_URL ?? "http://hamrein-.test:800/backend/public/api";
 axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 axios.interceptors.response.use(
   function(response) {
