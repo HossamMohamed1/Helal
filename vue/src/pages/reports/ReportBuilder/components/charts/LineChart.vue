@@ -1,7 +1,13 @@
 <template>
-  <div>
-    <div ref="lineChart" style="height: 500px"></div>
-  </div>
+  <v-card
+    :style="{ background: backgroundStyle.backgroundColor }"
+    :loading="loading"
+    flat
+  >
+    <div>
+      <div dir="ltr" ref="lineChart" style="height: 500px"></div>
+    </div>
+  </v-card>
 </template>
 <script>
 import * as am4core from "@amcharts/amcharts4/core";

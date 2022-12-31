@@ -555,7 +555,8 @@ export default {
     reportName: "إسم التقرير",
     reportType: "نوع التقرير",
     uploadFile: "تحميل ملف",
-    showReport: "عرض التقرير"
+    showReport: "عرض التقرير",
+    updateReport: "تعديل تقرير"
   },
   dates: {
     Jan: "يناير",
@@ -635,7 +636,7 @@ export default {
     haramain: "الحرمين",
     all: "الجميع"
   },
-  "input rquired" : "الحقل مطلوب",
-  "showchart" : "العرض",
-  "editchart" : "التعديل",
+  "input rquired": "الحقل مطلوب",
+  showchart: "العرض",
+  editchart: "التعديل"
 };

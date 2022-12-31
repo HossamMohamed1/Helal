@@ -1,7 +1,7 @@
 <template>
   <v-card :loading="loading" flat>
     <h1>{{ chart.name }}</h1>
-    <div ref="lineChart" style="height: 500px"></div>
+    <div dir="ltr" ref="lineChart" style="height: 500px"></div>
   </v-card>
 </template>
 <script>

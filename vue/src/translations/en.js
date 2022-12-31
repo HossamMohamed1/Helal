@@ -559,7 +559,8 @@ export default {
     reportName: "Report Name",
     reportType: "Report Type",
     uploadFile: "Upload File",
-    showReport: "Report Show"
+    showReport: "Report Show",
+    updateReport: "Update Report"
   },
   dates: {
     Jan: "Jan",
@@ -633,9 +634,7 @@ export default {
     haramain: "Haramain",
     all: "All"
   },
-  "input rquired" : "Required",
-  "showchart" : "Show",
-  "editchart" : "Edit",
-
-
+  "input rquired": "Required",
+  showchart: "Show",
+  editchart: "Edit"
 };

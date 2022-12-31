@@ -69,7 +69,14 @@
               >
                 {{ report.name | capitalize }}
                 <div>
-                  <v-btn small class="mr-1">
+                  <v-btn
+                    small
+                    class="mr-1"
+                    :to="{
+                      name: 'edit-report-builder',
+                      params: { id: report.id }
+                    }"
+                  >
                     <v-icon small>
                       mdi-pen
                     </v-icon>

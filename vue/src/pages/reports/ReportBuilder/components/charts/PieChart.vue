@@ -1,6 +1,10 @@
 <template>
-  <v-card :loading="loading" flat>
-    <div ref="lineChart" style="height: 500px"></div>
+  <v-card
+    :loading="loading"
+    :style="{ background: backgroundStyle.backgroundColor }"
+    flat
+  >
+    <div ref="lineChart" dir="ltr" style="height: 500px"></div>
   </v-card>
 </template>
 <script>
