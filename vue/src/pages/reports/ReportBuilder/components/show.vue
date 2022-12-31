@@ -7,6 +7,7 @@
 
           <LineChart v-if="chart.type == 'Line'" :config="config" />
           <bar-chart v-else-if="chart.type == 'Bar'" :config="config" />
+          <pie-chart v-else-if="chart.type == 'Pie'" :config="config" />
         </v-col>
       </v-row>
     </v-card>
@@ -40,24 +41,30 @@
           :config="config"
           @closeDraw="right = false"
         />
+
+        <!-- <pie-config
+          v-else="chart.type == 'Bar'"
+          :config="config"
+          @closeDraw="right = false"
+        /> -->
       </v-navigation-drawer>
     </div>
   </div>
 </template>
 <script>
 import { mapActions, mapState } from "vuex";
-import Excel from "./excel.vue";
 
 import LineChart from "@/pages/reports/ReportBuilder/components/charts/LineChart";
 import BarChart from "@/pages/reports/ReportBuilder/components/charts/BarChart";
+import PieChart from "./charts/PieChart.vue";
 import LineConfig from "@/pages/reports/ReportBuilder/components/configirations/LineConfig";
 import BarConfig from "@/pages/reports/ReportBuilder/components/configirations/BarConfig";
 export default {
-  components: { BarConfig, LineConfig, BarChart, LineChart },
+  components: { BarConfig, LineConfig, BarChart, LineChart, PieChart },
   data() {
     return {
       loading: false,
-      right: true // Config aside
+      right: false // Config aside
       // c/haramain.test/onfig: []
     };
   },

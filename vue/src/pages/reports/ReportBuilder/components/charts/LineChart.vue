@@ -76,6 +76,7 @@ export default {
         }
         return item;
       });
+      chart.logo.disabled = true;
       const { config } = this.chart;
       chart.colors.list = config.colors.map(color => am4core.color(color));
       this.backgroundStyle.backgroundColor = config?.style?.backgroundColor;
