@@ -29,12 +29,12 @@
                   />
                 </p>
                 <v-col cols="12" lg="12" md="12" class="mt-2">
-                  <!-- <div>{{ file }}</div> -->
                   <v-pagination
                     v-if="fileData.links"
                     v-model="page"
-                    total-visible="7"
-                    :length="fileData.links.length - 2"
+                    :length="totalPages"
+                    :total-visible="7"
+                    :disabled="loading"
                   ></v-pagination>
                 </v-col>
               </v-card-text>
@@ -71,7 +71,15 @@ export default {
     }
   },
   computed: {
-    ...mapState("reports", ["chartFiles", "file", "fileData"])
+    ...mapState("reports", ["chartFiles", "file", "fileData"]),
+    totalPages() {
+      try {
+        const { last_page } = this.fileData;
+        return last_page;
+      } catch (error) {
+        return 0;
+      }
+    }
   },
   methods: {
     ...mapActions("reports", [

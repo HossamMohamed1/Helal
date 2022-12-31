@@ -56,11 +56,13 @@
         <tbody>
           <tr v-for="(row, index) in file.data">
             <td>
-              {{ index + 1 + perPage * (page - 1) }}
+              <span v-if="index + 1 + perPage * (page - 1) > 1">
+                {{ index + 1 + perPage * (page - 1) - 1 }}
+              </span>
               <span
                 class="excel-btn"
                 color="error"
-                v-if="index"
+                v-if="index + 1 + perPage * (page - 1) > 1"
                 @click.prevent="deleteColumn(index, 'row')"
               >
                 <v-icon small>
@@ -85,7 +87,7 @@
             </td>
           </tr>
           <tr v-if="file.data && !file.next_page_url">
-            <td>{{ file.data.length + 1 + perPage * (page - 1) }}</td>
+            <td>{{ file.data.length + perPage * (page - 1) }}</td>
             <td>
               <input
                 type="text"

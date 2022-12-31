@@ -151,7 +151,6 @@ export default {
         });
     },
     async deleteReport(id) {
-      // console.log(id);
       const { isConfirmed } = await ask("Are you sure ?");
       if (isConfirmed) {
         this.removeReport(id);

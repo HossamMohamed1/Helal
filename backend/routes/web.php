@@ -24,6 +24,40 @@ use Illuminate\Support\Facades\Route;
 
 // });
 
+Route::get('test', function () {
+    // $content = file_get_contents(public_path('excel/1672301408-part-1.json'));
+    // $content = json_decode($content);
+    // $content = collect($content)->map(function ($item, $index) {
+    //     if ($index == 0) {
+    //         return $item;
+    //     }
+    //     return [
+    //         "Item {$index}",
+    //         rand(10, 100),
+    //         rand(20, 30),
+    //     ];
+    // });
+
+    $content = [
+        ["org", "value", "valeu 2 "],
+    ];
+
+    $faker = Faker\Factory::create();
+    // return [$faker];
+    for ($i = 0; $i < 500000; $i++) {
+        $index = $i + 1;
+        $content[] = [
+            $faker->name,
+            rand(10, 100),
+            rand(20, 30),
+        ];
+    }
+
+    file_put_contents(public_path('excel/1672301408-part-1.json'), collect($content));
+    // return $content;
+
+    return ['message' => true];
+});
 Route::any('{path}', function () {
     try {
         return file_get_contents(public_path('build/index.html'));
