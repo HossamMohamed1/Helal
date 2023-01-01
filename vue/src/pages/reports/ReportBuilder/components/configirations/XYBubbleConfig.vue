@@ -1,7 +1,7 @@
 <template>
   <div class="aside-config" v-if="config">
     <div class="d-flex align-center pa-2">
-      <div class="title">إعدادات ال Pie Chart</div>
+      <div class="title">إعدادات ال XY Bubble Chart</div>
       <v-spacer></v-spacer>
       <v-btn icon @click="$emit('closeDraw')">
         <v-icon>mdi-close</v-icon>
@@ -22,6 +22,26 @@
           v-for="(color, index) in config.colors"
         />
       </div>
+
+      <div class="font-weight-bold mt-3 mb-1">Axis Titles</div>
+      <v-row>
+        <v-col cols="6">
+          <legend>X Title</legend>
+          <v-text-field
+            placeholder="Enter XAxis Title"
+            solo
+            v-model="config.xLabel.text"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="6">
+          <legend>Y Title</legend>
+          <v-text-field
+            placeholder="Enter YAxis Title"
+            solo
+            v-model="config.yLabel"
+          ></v-text-field>
+        </v-col>
+      </v-row>
 
       <div class="font-weight-bold mt-3 mb-1">Chart Title</div>
       <div>
@@ -52,8 +72,64 @@
         </v-row>
       </div>
 
+      <div class="font-weight-bold mt-3 mb-1">Zooming</div>
+      <v-row v-if="config.zoom">
+        <v-col cols="6">
+          <legend>scrollbar X</legend>
+          <v-btn-toggle
+            v-model="config.zoom.scrollbarX"
+            color="primary"
+            mandatory
+            class="mb-2"
+          >
+            <v-btn>true</v-btn>
+            <v-btn>false</v-btn>
+          </v-btn-toggle>
+        </v-col>
+        <v-col cols="6">
+          <legend>Position</legend>
+          <v-btn-toggle
+            v-model="config.zoom.scrollbarXBottom"
+            color="primary"
+            mandatory
+            class="mb-2"
+          >
+            <v-btn>top</v-btn>
+            <v-btn>bottom</v-btn>
+          </v-btn-toggle>
+        </v-col>
+      </v-row>
+      <v-row v-if="config.zoom">
+        <v-col cols="6">
+          <legend>scrollbar Y</legend>
+          <v-btn-toggle
+            v-model="config.zoom.scrollbarY"
+            color="primary"
+            mandatory
+            class="mb-2"
+          >
+            <v-btn>true</v-btn>
+            <v-btn>false</v-btn>
+          </v-btn-toggle>
+        </v-col>
+        <v-col cols="6">
+          <legend>Position</legend>
+          <v-btn-toggle
+            v-model="config.zoom.scrollbarYLeft"
+            color="primary"
+            mandatory
+            class="mb-2"
+          >
+            <v-btn>right</v-btn>
+            <v-btn>left</v-btn>
+          </v-btn-toggle>
+        </v-col>
+      </v-row>
+
+
       <div class="font-weight-bold mt-3 mb-1">Chart background</div>
       <input type="color" v-model="config.style.backgroundColor">
+
 
     </div>
 
