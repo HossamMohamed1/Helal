@@ -5,7 +5,7 @@
     flat
   >
     <div>
-      <div dir="ltr" ref="lineChart" style="height: 500px"></div>
+      <div dir="ltr" ref="chartdiv" style="height: 500px"></div>
     </div>
   </v-card>
 </template>
@@ -69,7 +69,7 @@ export default {
       if (this.chartObject) {
         this.chartObject.dispose();
       }
-      let chart = am4core.create(this.$refs.lineChart, am4charts.XYChart);
+      let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);
       const line = this.analytics?.line;
       chart.data = line.map(item => {
         let keys = Object.keys(item);
@@ -202,7 +202,7 @@ export default {
       });
 
     return false;
-    let chart = am4core.create(this.$refs.lineChart, am4charts.XYChart);
+    let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);
 
     // Add data
     chart.data = generateChartData();

@@ -1,7 +1,6 @@
 <template>
   <v-card :loading="loading" flat>
-    <h1>{{ chart.name }}</h1>
-    <div dir="ltr" ref="lineChart" style="height: 500px"></div>
+    <div dir="ltr" ref="chartdiv" style="height: 500px"></div>
   </v-card>
 </template>
 <script>
@@ -64,7 +63,7 @@ export default {
       if (this.chartObject) {
         this.chartObject.dispose();
       }
-      let chart = am4core.create(this.$refs.lineChart, am4charts.XYChart);
+      let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);
       chart.data = this.analytics;
       chart.logo.disabled = true;
       let data = [];
@@ -165,7 +164,7 @@ export default {
       });
 
     // return false;
-    // let chart = am4core.create(this.$refs.lineChart, am4charts.XYChart);
+    // let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);
 
     // // Add data
     // chart.data = generateChartData();
