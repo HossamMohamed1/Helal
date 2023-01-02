@@ -4,7 +4,7 @@
     :style="{ background: backgroundStyle.backgroundColor }"
     flat
   >
-    <div ref="lineChart" dir="ltr" style="height: 500px"></div>
+    <div ref="chartdiv" dir="ltr" style="height: 500px"></div>
   </v-card>
 </template>
 <script>
@@ -75,7 +75,7 @@ export default {
       if (this.chartObject) {
         this.chartObject.dispose();
       }
-      let chart = am4core.create(this.$refs.lineChart, am4charts.PieChart);
+      let chart = am4core.create(this.$refs.chartdiv, am4charts.PieChart);
       chart.logo.disabled = true;
       chart.data = this.analytics;
       const { config } = this.chart;

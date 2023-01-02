@@ -42,11 +42,11 @@
           @closeDraw="right = false"
         />
 
-        <!-- <pie-config
-          v-else="chart.type == 'Bar'"
+        <pie-config
+          v-else="chart.type == 'Pie'"
           :config="config"
           @closeDraw="right = false"
-        /> -->
+        />
       </v-navigation-drawer>
     </div>
   </div>

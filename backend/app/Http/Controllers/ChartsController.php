@@ -103,7 +103,8 @@ class ChartsController extends Controller
                 ],
             ];
 
-        } else if (strtolower($request->type) == 'pie') {
+        }
+        else if (strtolower($request->type) == 'pie') {
             $requestData['img'] = 'pie.jpg';
             $requestData['config'] = [
                 "chart_type" => "pie",
@@ -132,12 +133,13 @@ class ChartsController extends Controller
                 "hoverShadow" => false,
                 "shadowOpacity" => 0.7,
                 "style" => [
-                    "backgroundColor" => "#ececec",
+                    "backgroundColor" => "#fff",
                 ],
 
             ];
 
-        } else if (strtolower($request->type) == 'bar' || strtolower($request->type) == 'column') {
+        }
+        else if (strtolower($request->type) == 'bar' || strtolower($request->type) == 'column') {
             $requestData['img'] = 'bar.jpg';
             $requestData['config'] = [
                 "chart_type" => "bar",
@@ -168,7 +170,13 @@ class ChartsController extends Controller
                 ],
                 "yLabel" => "", //Default Empty string
                 "colors" => ["#256624", "#8b92a1", "#c0ca33", "#795548", "#546e7a", "#303f9f", "#ff5722"],
-                "zoom" => true,
+                "zoom" => [
+                    "cursor" => "zoomXY",
+                    "scrollbarX" => "true",
+                    "scrollbarY" => "true",
+                    "scrollbarXBottom" => "top",
+                    "scrollbarYLeft" => "right",
+                ],
                 "labels" => [
                     "disabled" => true,
                     "fill" => "#fff",
@@ -191,11 +199,12 @@ class ChartsController extends Controller
                 "cellStartLocation" => 0.2,
                 "cellEndLocation" => 0.8,
                 "style" => [
-                    "backgroundColor" => "#ececec",
+                    "backgroundColor" => "#fff",
                 ],
             ];
 
-        } else if ($request->type == 'Line' || $request->type == 'line') {
+        } else if ($request->type == 'Line' || $request->type == 'line')
+        {
             $requestData['img'] = 'line.jpg';
             $requestData['config'] = [
                 "chart_type" => "line",
@@ -230,7 +239,7 @@ class ChartsController extends Controller
                     "scrollbarYLeft" => "right",
                 ],
                 "style" => [
-                    "backgroundColor" => "#ececec",
+                    "backgroundColor" => "#fff",
                 ],
 
             ];
