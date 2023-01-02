@@ -2,307 +2,258 @@
   <div class="flex-grow-1">
     <div class="d-flex align-center py-3">
       <div>
-        <div class="display-1">{{ $t('users.createNewRole') }}</div>
+        <div class="display-1">{{ $t("users.createNewRole") }}</div>
         <v-breadcrumbs :items="breadcrumbs" class="pa-0 py-2"></v-breadcrumbs>
       </div>
       <v-spacer></v-spacer>
-      <v-btn icon @click>
+      <!-- <v-btn icon>
         <v-icon>mdi-refresh</v-icon>
-      </v-btn>
+      </v-btn> -->
     </div>
 
     <v-card>
       <v-card-text class="p-3 roles">
         <v-form>
           <div class="title mb-2">
-            {{ $t('users.roleName') }}
+            {{ $t("users.roleName") }}
           </div>
           <v-row>
             <v-col cols="12" md="6">
-              <v-text-field value="" :label="$t('users.roleName')"></v-text-field>
+              <v-text-field
+                value=""
+                :label="$t('users.roleName')"
+              ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
-              <v-text-field value="" :label="$t('users.nameOnScreen')"></v-text-field>
+              <v-text-field
+                value=""
+                :label="$t('users.nameOnScreen')"
+              ></v-text-field>
             </v-col>
           </v-row>
           <div>
-            <div class="title mb-2 mt-2">{{ $t('users.roleDetails') }}</div>
+            <div class="title mb-2 mt-2">{{ $t("users.roleDetails") }}</div>
             <div>
-              <v-simple-table class="table align-middle table-row-dashed fs-6 gy-5">
+              <v-simple-table
+                class="table align-middle table-row-dashed fs-6 gy-5"
+              >
                 <tbody>
                   <tr>
-                    <td class="text-primary text-center font-weight-bold">{{ $t('texts.administratorAccess') }}
-                      <i class="fas fa-exclamation-circle ms-1 fs-7"></i></td>
+                    <td class="text-primary text-center font-weight-bold">
+                      {{ $t("texts.administratorAccess") }}
+                      <i class="fas fa-exclamation-circle ms-1 fs-7"></i>
+                    </td>
                     <td>
-                      <v-checkbox
-                        class="mr-2"
-                        label="Select All"
-                      ></v-checkbox>
+                      <v-checkbox class="mr-2" label="Select All"></v-checkbox>
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-primary text-center font-weight-bold">{{ $t('texts.stations') }}</td>
+                    <td class="text-primary text-center font-weight-bold">
+                      {{ $t("texts.stations") }}
+                    </td>
                     <td>
                       <div class="d-flex">
                         <v-checkbox
                           class="mr-2 mb-0"
                           label="Create"
                         ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Read"
-                        ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Write"
-                        ></v-checkbox>
+                        <v-checkbox class="mr-2" label="Read"></v-checkbox>
+                        <v-checkbox class="mr-2" label="Write"></v-checkbox>
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-primary text-center font-weight-bold">{{ $t('texts.drones') }}</td>
+                    <td class="text-primary text-center font-weight-bold">
+                      {{ $t("texts.drones") }}
+                    </td>
                     <td>
                       <div class="d-flex">
                         <v-checkbox
                           class="mr-2 mb-0"
                           label="Create"
                         ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Read"
-                        ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Write"
-                        ></v-checkbox>
+                        <v-checkbox class="mr-2" label="Read"></v-checkbox>
+                        <v-checkbox class="mr-2" label="Write"></v-checkbox>
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-primary text-center font-weight-bold">{{ $t('texts.archiveFile') }}</td>
+                    <td class="text-primary text-center font-weight-bold">
+                      {{ $t("texts.archiveFile") }}
+                    </td>
                     <td>
                       <div class="d-flex">
                         <v-checkbox
                           class="mr-2 mb-0"
                           label="Create"
                         ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Read"
-                        ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Write"
-                        ></v-checkbox>
+                        <v-checkbox class="mr-2" label="Read"></v-checkbox>
+                        <v-checkbox class="mr-2" label="Write"></v-checkbox>
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-primary text-center font-weight-bold">{{ $t('texts.auditLog') }}</td>
+                    <td class="text-primary text-center font-weight-bold">
+                      {{ $t("texts.auditLog") }}
+                    </td>
                     <td>
                       <div class="d-flex">
                         <v-checkbox
                           class="mr-2 mb-0"
                           label="Create"
                         ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Read"
-                        ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Write"
-                        ></v-checkbox>
+                        <v-checkbox class="mr-2" label="Read"></v-checkbox>
+                        <v-checkbox class="mr-2" label="Write"></v-checkbox>
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-primary text-center font-weight-bold">{{ $t('texts.config') }}</td>
+                    <td class="text-primary text-center font-weight-bold">
+                      {{ $t("texts.config") }}
+                    </td>
                     <td>
                       <div class="d-flex">
                         <v-checkbox
                           class="mr-2 mb-0"
                           label="Create"
                         ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Read"
-                        ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Write"
-                        ></v-checkbox>
+                        <v-checkbox class="mr-2" label="Read"></v-checkbox>
+                        <v-checkbox class="mr-2" label="Write"></v-checkbox>
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-primary text-center font-weight-bold">{{ $t('texts.draftReport') }}</td>
+                    <td class="text-primary text-center font-weight-bold">
+                      {{ $t("texts.draftReport") }}
+                    </td>
                     <td>
                       <div class="d-flex">
                         <v-checkbox
                           class="mr-2 mb-0"
                           label="Create"
                         ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Read"
-                        ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Write"
-                        ></v-checkbox>
+                        <v-checkbox class="mr-2" label="Read"></v-checkbox>
+                        <v-checkbox class="mr-2" label="Write"></v-checkbox>
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-primary text-center font-weight-bold">{{ $t('texts.features') }}</td>
+                    <td class="text-primary text-center font-weight-bold">
+                      {{ $t("texts.features") }}
+                    </td>
                     <td>
                       <div class="d-flex">
                         <v-checkbox
                           class="mr-2 mb-0"
                           label="Create"
                         ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Read"
-                        ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Write"
-                        ></v-checkbox>
+                        <v-checkbox class="mr-2" label="Read"></v-checkbox>
+                        <v-checkbox class="mr-2" label="Write"></v-checkbox>
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-primary text-center font-weight-bold">{{ $t('texts.notification') }}</td>
+                    <td class="text-primary text-center font-weight-bold">
+                      {{ $t("texts.notification") }}
+                    </td>
                     <td>
                       <div class="d-flex">
                         <v-checkbox
                           class="mr-2 mb-0"
                           label="Create"
                         ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Read"
-                        ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Write"
-                        ></v-checkbox>
+                        <v-checkbox class="mr-2" label="Read"></v-checkbox>
+                        <v-checkbox class="mr-2" label="Write"></v-checkbox>
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-primary text-center font-weight-bold">{{ $t('texts.permission') }}</td>
+                    <td class="text-primary text-center font-weight-bold">
+                      {{ $t("texts.permission") }}
+                    </td>
                     <td>
                       <div class="d-flex">
                         <v-checkbox
                           class="mr-2 mb-0"
                           label="Create"
                         ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Read"
-                        ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Write"
-                        ></v-checkbox>
+                        <v-checkbox class="mr-2" label="Read"></v-checkbox>
+                        <v-checkbox class="mr-2" label="Write"></v-checkbox>
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-primary text-center font-weight-bold">{{ $t('texts.pinnedReport') }}</td>
+                    <td class="text-primary text-center font-weight-bold">
+                      {{ $t("texts.pinnedReport") }}
+                    </td>
                     <td>
                       <div class="d-flex">
                         <v-checkbox
                           class="mr-2 mb-0"
                           label="Create"
                         ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Read"
-                        ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Write"
-                        ></v-checkbox>
+                        <v-checkbox class="mr-2" label="Read"></v-checkbox>
+                        <v-checkbox class="mr-2" label="Write"></v-checkbox>
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-primary text-center font-weight-bold">{{ $t('texts.role') }}</td>
+                    <td class="text-primary text-center font-weight-bold">
+                      {{ $t("texts.role") }}
+                    </td>
                     <td>
                       <div class="d-flex">
                         <v-checkbox
                           class="mr-2 mb-0"
                           label="Create"
                         ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Read"
-                        ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Write"
-                        ></v-checkbox>
+                        <v-checkbox class="mr-2" label="Read"></v-checkbox>
+                        <v-checkbox class="mr-2" label="Write"></v-checkbox>
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-primary text-center font-weight-bold">{{ $t('texts.setting') }}</td>
+                    <td class="text-primary text-center font-weight-bold">
+                      {{ $t("texts.setting") }}
+                    </td>
                     <td>
                       <div class="d-flex">
                         <v-checkbox
                           class="mr-2 mb-0"
                           label="Create"
                         ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Read"
-                        ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Write"
-                        ></v-checkbox>
+                        <v-checkbox class="mr-2" label="Read"></v-checkbox>
+                        <v-checkbox class="mr-2" label="Write"></v-checkbox>
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-primary text-center font-weight-bold">{{ $t('texts.dashboard') }}</td>
+                    <td class="text-primary text-center font-weight-bold">
+                      {{ $t("texts.dashboard") }}
+                    </td>
                     <td>
                       <div class="d-flex">
                         <v-checkbox
                           class="mr-2 mb-0"
                           label="Create"
                         ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Read"
-                        ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Write"
-                        ></v-checkbox>
+                        <v-checkbox class="mr-2" label="Read"></v-checkbox>
+                        <v-checkbox class="mr-2" label="Write"></v-checkbox>
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-primary text-center font-weight-bold">{{ $t('texts.report') }}</td>
+                    <td class="text-primary text-center font-weight-bold">
+                      {{ $t("texts.report") }}
+                    </td>
                     <td>
                       <div class="d-flex">
                         <v-checkbox
                           class="mr-2 mb-0"
                           label="Create"
                         ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Read"
-                        ></v-checkbox>
-                        <v-checkbox
-                          class="mr-2"
-                          label="Write"
-                        ></v-checkbox>
+                        <v-checkbox class="mr-2" label="Read"></v-checkbox>
+                        <v-checkbox class="mr-2" label="Write"></v-checkbox>
                       </div>
                     </td>
                   </tr>
@@ -311,7 +262,7 @@
             </div>
           </div>
           <div class="d-flex">
-            <v-btn color="primary">{{ $t('general.save') }}</v-btn>
+            <v-btn color="primary">{{ $t("general.save") }}</v-btn>
           </div>
         </v-form>
       </v-card-text>
@@ -320,24 +271,50 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 
 export default {
-  components: {
-  },
+  components: {},
   data() {
     return {
-      breadcrumbs: [{
-        text: this.$t('menu.usersManagement'),
-        disabled: false,
-        href: '#'
-      }, {
-        text: this.$t('users.rolesList'),
-        to: '/roles/list',
-        exact: true
-      }, {
-        text: this.$t('users.createRole')
-      }]
-    }
+      breadcrumbs: [
+        {
+          text: this.$t("menu.usersManagement"),
+          disabled: false,
+          href: "#"
+        },
+        {
+          text: this.$t("users.rolesList"),
+          to: "/roles/list",
+          exact: true
+        },
+        {
+          text: this.$t("users.createRole")
+        }
+      ],
+      loading: false,
+      form: {
+        name: "",
+        display_name: "",
+        permissions: []
+      }
+    };
+  },
+  computed: {
+    ...mapState("roles", ["permissions"])
+  },
+  created() {
+    this.loading = true;
+    this.getPermissions()
+      .then(() => {
+        this.loading = false;
+      })
+      .catch(() => {
+        this.loading = false;
+      });
+  },
+  methods: {
+    ...mapActions("roles", ["getPermissions"])
   }
-}
+};
 </script>
