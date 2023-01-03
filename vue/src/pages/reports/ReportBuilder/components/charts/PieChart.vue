@@ -77,11 +77,12 @@ export default {
       }
       let chart = am4core.create(this.$refs.chartdiv, am4charts.PieChart);
       chart.logo.disabled = true;
+      // chart.data = this.analytics;
       chart.data = this.analytics;
       const { config } = this.chart;
       this.backgroundStyle.backgroundColor = config?.style?.backgroundColor;
 
-      chart.colors.list = config.colors.map(item => am4core.color(item));
+      chart.colors.list = config.colors.map(color => am4core.color(color));
       let title = chart.titles.create();
       title.text = config?.title?.name;
       title.fontSize = config?.title?.fontSize;
@@ -107,12 +108,20 @@ export default {
       chart.innerRadius = am4core.percent(30);
 
       // Legend
-      if (config?.legend?.disabled == "true") {
+      if (config?.legend?.disabled == false) {
         chart.legend = new am4charts.Legend();
-        chart.legend.position = config?.legend?.position;
-        chart.legend.paddingTop = config?.legend?.paddingTop;
-        chart.legend.paddingBottom = config?.legend?.paddingBottom;
+
       }
+      if (config?.legend?.position == true      ) {
+        chart.legend.position = "bottom";
+      }
+      else {
+        chart.legend.position = "top";
+      }
+
+      chart.legend.paddingTop = config?.legend?.paddingTop;
+      chart.legend.paddingBottom = config?.legend?.paddingBottom;
+
 
       // Put a thick white border around each Slice
       pieSeries.slices.template.stroke = am4core.color(config?.stroke);
@@ -125,7 +134,7 @@ export default {
           value: "pointer"
         }
       ];
-      if (config?.alignLabels == "true") {
+      if (config?.alignLabels == false) {
         pieSeries.alignLabels = false;
         pieSeries.labels.template.bent = true;
         pieSeries.labels.template.radius = 3;

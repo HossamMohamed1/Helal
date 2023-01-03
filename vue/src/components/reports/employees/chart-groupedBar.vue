@@ -1,6 +1,11 @@
 <template>
   <div v-if="showChart">
-    <apexchart type="bar" height="350" :options="chartOptions" :series="series"></apexchart>
+    <apexchart
+      type="bar"
+      width="480"
+      :options="chartOptions"
+      :series="series"
+    ></apexchart>
   </div>
 </template>
 
@@ -10,11 +15,9 @@ export default {
     return {
       showChart: false,
       series: [{
-        name: "الأقسام",
-        data: [44, 55, 41, 64, 22, 43, 21, 33, 37, 46]
+        data: [44, 55, 41, 64, 22, 43, 21]
       }, {
-        name: "الإدارات",
-        data: [53, 32, 33, 52, 13, 44, 32, 34, 56, 53]
+        data: [53, 32, 33, 52, 13, 44, 32]
       }],
       chartOptions: {
         chart: {
@@ -41,15 +44,15 @@ export default {
           width: 1,
           colors: ['#fff']
         },
-        colors: ['#1e8e49', '#c3b086'],
         tooltip: {
           shared: true,
           intersect: false
         },
         xaxis: {
-          categories: ["موقع 1","موقع 2" ,"موقع 3" ,"موقع 4" ,"موقع 5" ,"موقع 6" ,"موقع 7" ,"موقع 8" ,"موقع 9" ,"موقع 10"],
+          categories: [2001, 2002, 2003, 2004, 2005, 2006, 2007],
         },
       },
+
     }
   },
   mounted() {

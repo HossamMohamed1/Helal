@@ -7,7 +7,7 @@
 
           <LineChart v-if="chart.type == 'Line'" :config="config" />
           <bar-chart v-else-if="chart.type == 'Bar'" :config="config" />
-          <pie-chart v-else-if="chart.type == 'Pie'" :config="config" />
+          <pie-chart v-else-if="chart.type == 'Pie'" :config="config"/>
           <x-y-bubble-chart v-else-if="chart.type == 'X Y Bubble'" :config="config"/>
         </v-col>
       </v-row>
@@ -66,8 +66,9 @@ import BarConfig from "@/pages/reports/ReportBuilder/components/configirations/B
 import PieConfig from "@/pages/reports/ReportBuilder/components/configirations/PieConfig";
 import XYBubbleConfig from "@/pages/reports/ReportBuilder/components/configirations/XYBubbleConfig";
 import XYBubbleChart from "@/pages/reports/ReportBuilder/components/charts/XYBubbleChart";
+import PieChart from "@/pages/reports/ReportBuilder/components/charts/PieChart";
 export default {
-  components: {XYBubbleChart, XYBubbleConfig, PieConfig, BarConfig, LineConfig, BarChart, LineChart },
+  components: {PieChart, XYBubbleChart, XYBubbleConfig, PieConfig, BarConfig, LineConfig, BarChart, LineChart },
   data() {
     return {
       loading: false,

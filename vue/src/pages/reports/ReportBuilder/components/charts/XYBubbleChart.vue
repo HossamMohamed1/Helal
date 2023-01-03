@@ -5,7 +5,6 @@
     flat
   >
     <div>
-      XYBubble
       <div dir="ltr" ref="chartdiv" style="height: 500px"></div>
     </div>
   </v-card>
@@ -71,124 +70,127 @@ export default {
         this.chartObject.dispose();
       }
       let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);
-      const line = this.analytics?.line;
-      chart.data = line.map(item => {
-        let keys = Object.keys(item);
-        keys = keys.filter(item => item != "date");
+      chart.maskBullets = false;
 
-        for (let index = 0; index < keys.length; index++) {
-          const key = keys[index];
-          // item = { key: parseFloat() };
-          item[key] = item[key];
-        }
-        return item;
-      });
-      chart.logo.disabled = true;
+
+      chart.data = this.analytics;
       const { config } = this.chart;
-      chart.colors.list = config.colors.map(color => am4core.color(color));
-      this.backgroundStyle.backgroundColor = config?.style?.backgroundColor;
+      // Title
       let title = chart.titles.create();
       title.text = config?.title?.name;
-      title.fontSize = config?.title?.fontSize;
+      title.fontSize = parseInt(config?.title?.fontSize);
       title.fill = am4core.color(config?.title?.fill);
-      title.fontWeight = config?.title?.fontWeight;
-      title.marginBottom = config?.title?.marginBottom;
+      title.fontWeight = parseInt(config?.title?.fontWeight);
+      title.marginBottom = parseInt(config?.title?.marginBottom);
+
       title.align = config?.title?.align;
+      let xAxis = chart.xAxes.push(new am4charts.CategoryAxis());
 
-      if (config?.legend?.disabled == "true") {
-        chart.legend = new am4charts.Legend();
-        chart.legend.position = config?.legend?.position;
-        chart.legend.paddingTop = config?.legend?.paddingTop;
-        chart.legend.paddingBottom = config?.legend?.paddingBottom;
-      }
+      let yAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+      // Axis Titles
+      xAxis.title.text = config?.xLabel?.text;
+      xAxis.title.fontSize = parseInt(config?.xLabel?.fontSize);
+      xAxis.title.fill = config?.xLabel?.fill;
+      xAxis.title.marginTop = parseInt(config?.xLabel?.marginTop);
+      yAxis.title.text = config?.yLabel?.text;
+      yAxis.title.fontSize = parseInt(config?.yLabel?.fontSize);
+      yAxis.title.fill = config?.yLabel?.fill;
 
-      var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-      dateAxis.renderer.minGridDistance = 50;
-      dateAxis.title.text = config?.xLabel?.text;
-      dateAxis.title.paddingTop = config?.xLabel?.paddingTop;
-      dateAxis.renderer.grid.template.disabled = true;
+      yAxis.title.marginRight = parseInt(config?.yLabel?.marginRight);
 
-      function createAxisAndSeries(field, name, opposite, bullet) {
-        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-        // valueAxis.title.text = config?.yLabel;
-        valueAxis.renderer.grid.template.disabled = true;
 
-        if (chart.yAxes.indexOf(valueAxis) != 0) {
-          valueAxis.syncWithAxis = chart.yAxes.getIndex(0);
-        }
+      // Background
+      this.backgroundStyle.backgroundColor =
+        config?.style?.backgroundColor;
+      yAxis.dataFields.category = "y";
+      xAxis.renderer.minGridDistance = 20;
+      yAxis.renderer.minGridDistance = 20;
 
-        var series = chart.series.push(new am4charts.LineSeries());
-        series.dataFields.valueY = field;
-        series.dataFields.dateX = "date";
-        series.absoluteWidth = 30;
-        series.strokeWidth = 2;
-        series.yAxis = valueAxis;
-        series.name = name;
-        series.tooltipText = "{name}: [bold]{valueY}[/] Units";
-        series.tensionX = 0.8;
-        series.showOnInit = true;
+      xAxis.dataFields.category = "x";
+      xAxis.renderer.grid.template.disabled = true;
+      yAxis.renderer.grid.template.disabled = true;
+      xAxis.renderer.axisFills.template.disabled = true;
+      yAxis.renderer.axisFills.template.disabled = true;
+      yAxis.renderer.ticks.template.disabled = true;
 
-        var interfaceColors = new am4core.InterfaceColorSet();
+      xAxis.renderer.ticks.template.disabled = true;
+      yAxis.renderer.labels.template.rotation = 45;
 
-        switch (bullet) {
-          case "triangle":
-            var bullet = series.bullets.push(new am4charts.Bullet());
-            bullet.width = 12;
-            bullet.height = 12;
-            bullet.horizontalCenter = "middle";
-            bullet.verticalCenter = "middle";
+      xAxis.renderer.labels.template.rotation = 45;
 
-            var triangle = bullet.createChild(am4core.Triangle);
-            triangle.stroke = interfaceColors.getFor("background");
-            triangle.strokeWidth = 2;
-            triangle.direction = "top";
-            triangle.width = 12;
-            triangle.height = 12;
-            break;
-          case "rectangle":
-            var bullet = series.bullets.push(new am4charts.Bullet());
-            bullet.width = 10;
-            bullet.height = 10;
-            bullet.horizontalCenter = "middle";
-            bullet.verticalCenter = "middle";
+      yAxis.renderer.inversed = true;
+      let series = chart.series.push(new am4charts.ColumnSeries());
+      series.dataFields.categoryY = "y";
+      series.dataFields.categoryX = "x";
+      series.dataFields.value = "value";
+      series.columns.template.disabled = true;
 
-            var rectangle = bullet.createChild(am4core.Rectangle);
-            rectangle.stroke = interfaceColors.getFor("background");
-            rectangle.strokeWidth = 2;
-            rectangle.width = 10;
-            rectangle.height = 10;
-            break;
-          default:
-            var bullet = series.bullets.push(new am4charts.CircleBullet());
-            bullet.circle.stroke = interfaceColors.getFor("background");
-            bullet.circle.strokeWidth = 2;
-            break;
-        }
+      series.sequencedInterpolation = true;
 
-        valueAxis.renderer.line.strokeOpacity = 1;
-        valueAxis.renderer.line.strokeWidth = 2;
-        valueAxis.renderer.line.stroke = series.stroke;
-        valueAxis.renderer.labels.template.fill = series.stroke;
-        valueAxis.renderer.opposite = opposite;
-      }
-
-      let keys = [];
-
-      line.forEach(item => {
-        Object.keys(item).forEach(item => {
-          if (!keys.includes(item)) {
-            keys.push(item);
-          }
-        });
+      //series.defaultState.transitionDuration = 3000;
+      let bullet = series.bullets.push(new am4core.Circle());
+      bullet.tooltipText =
+        "[bold]{title}:[/]\nPopulation: {value.value}\nIncome: {valueX.value}\nLife expectancy:{valueY.value}";
+      bullet.propertyFields.fill = "color";
+      bullet.strokeOpacity = 0;
+      bullet.fontSize = 10;
+      bullet.adapter.add("tooltipY", function (tooltipY, target) {
+        return -target.radius + 1;
       });
+      bullet.strokeWidth = parseInt(config?.bullets?.strokeWidth);
 
-      keys
-        .filter(item => item != "date")
-        .forEach((item, index) => {
-          createAxisAndSeries(item, item.toUpperCase(), index != 0, "circle");
-        });
+      bullet.stroke = am4core.color(config?.bullets?.fill);
 
+      series.heatRules.push({
+        property: "radius",
+        target: bullet,
+        min: 2,
+        max: 40,
+      });
+      bullet.hiddenState.properties.scale = 0.01;
+
+      bullet.hiddenState.properties.opacity = 1;
+      let hoverState = bullet.states.create("hover");
+      hoverState.properties.strokeOpacity = parseFloat(config?.bullets?.strokeOpacity);
+
+      hoverState.properties.fillOpacity = parseFloat(config?.bullets?.fillOpacity);
+      //Zoom
+      if (config?.zoom?.scrollbarX == "true") {
+        chart.scrollbarX = new am4core.Scrollbar();
+      }
+
+      if (config?.zoom?.scrollbarY == "true") {
+        chart.scrollbarY = new am4core.Scrollbar();
+      }
+
+      if (config?.zoom?.cursor == "zoomXY") {
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.behavior = "zoomXY";
+      }
+      else if(config?.zoom?.cursor == "zoomX"){
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.behavior = "zoomX";
+      }
+      else{
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.behavior = "zoomY";
+      }
+      chart.scrollbarX.marginBottom = 35;
+      if(config?.zoom?.scrollbarXBottom == "bottom"){
+        chart.scrollbarX.parent = chart.bottomAxesContainer;
+        chart.scrollbarX.marginBottom = 20;
+      }
+      if(config?.zoom?.scrollbarYLeft == "left"){
+        chart.scrollbarY.parent = chart.leftAxesContainer;
+        chart.scrollbarY.marginRight = 35;
+      }
+
+      chart.fontSize = parseInt(config?.fontSize);
       this.chartObject = chart;
+
+
+
+
     }
   },
   mounted() {

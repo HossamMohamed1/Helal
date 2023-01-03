@@ -94,12 +94,20 @@ export default {
       title.marginBottom = config?.title?.marginBottom;
       title.align = config?.title?.align;
 
-      if (config?.legend?.disabled == "true") {
+      // Legend
+      if (config?.legend?.disabled == false) {
         chart.legend = new am4charts.Legend();
-        chart.legend.position = config?.legend?.position;
-        chart.legend.paddingTop = config?.legend?.paddingTop;
-        chart.legend.paddingBottom = config?.legend?.paddingBottom;
+
       }
+      if (config?.legend?.position == true      ) {
+        chart.legend.position = "bottom";
+      }
+      else {
+        chart.legend.position = "top";
+      }
+
+      chart.legend.paddingTop = config?.legend?.paddingTop;
+      chart.legend.paddingBottom = config?.legend?.paddingBottom;
 
       var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
       dateAxis.renderer.minGridDistance = 50;
@@ -170,6 +178,42 @@ export default {
         valueAxis.renderer.labels.template.fill = series.stroke;
         valueAxis.renderer.opposite = opposite;
       }
+
+      //Zoom
+      // chart.scrollbarX = new am4core.Scrollbar();
+      // chart.scrollbarY = new am4core.Scrollbar();
+      //
+      // if (config?.zoom?.scrollbarX == false) {
+      //   chart.scrollbarX = new am4core.Scrollbar();
+      // }
+      //
+      // if (config?.zoom?.scrollbarY == false) {
+      //   chart.scrollbarY = new am4core.Scrollbar();
+      // }
+      //
+      // if (config?.zoom?.cursor == "zoomXY") {
+      //   chart.cursor = new am4charts.XYCursor();
+      //   chart.cursor.behavior = "zoomXY";
+      // }
+      // else if(config?.zoom?.cursor == "zoomX"){
+      //   chart.cursor = new am4charts.XYCursor();
+      //   chart.cursor.behavior = "zoomX";
+      // }
+      // else{
+      //   chart.cursor = new am4charts.XYCursor();
+      //   chart.cursor.behavior = "zoomY";
+      // }
+      // chart.scrollbarX.marginBottom = 35;
+      // if(config?.zoom?.scrollbarXBottom == "bottom"){
+      //   chart.scrollbarX.parent = chart.bottomAxesContainer;
+      //   chart.scrollbarX.marginBottom = 20;
+      // }
+      // if(config?.zoom?.scrollbarYLeft == "left"){
+      //   chart.scrollbarY.parent = chart.leftAxesContainer;
+      //   chart.scrollbarY.marginRight = 35;
+      // }
+      //
+      // chart.fontSize = parseInt(config?.fontSize);
 
       let keys = [];
 

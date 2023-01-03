@@ -31,6 +31,7 @@ export default {
           enabled: false
         },
         stroke: {
+          width: [2, 2, 2, 2, 2],
           curve: 'smooth'
         },
         colors: ['#1e8e49', '#fd9162', '#a7a7a7', '#41b27b', '#c9de77'],

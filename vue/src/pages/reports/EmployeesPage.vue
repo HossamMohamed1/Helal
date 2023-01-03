@@ -100,6 +100,7 @@
     </v-row>
 
     <v-row class="flex-grow-0 mb-1" dense>
+
       <v-col cols="12" lg="6">
         <v-card>
           <div
@@ -116,53 +117,8 @@
               class="d-flex align-center align-content-space-between"
             >
               <div>
-                {{
-                  $t("employees.employeesInPublicAgenciesAndAdministrations")
-                }}
+                {{ $t("employees.employeesInPublicAgenciesAndAdministrations") }}
               </div>
-              <!--              <div>-->
-              <!--                <v-menu-->
-              <!--                  ref="menu"-->
-              <!--                  v-model="menu"-->
-              <!--                  :close-on-content-click="false"-->
-              <!--                  :return-value.sync="date"-->
-              <!--                  transition="scale-transition"-->
-              <!--                  offset-y-->
-              <!--                  min-width="auto"-->
-              <!--                >-->
-              <!--                  <template v-slot:activator="{ on, attrs }">-->
-              <!--                    <v-text-field-->
-              <!--                      v-model="date"-->
-              <!--                      prepend-icon="mdi-calendar"-->
-              <!--                      readonly-->
-              <!--                      v-bind="attrs"-->
-              <!--                      v-on="on"-->
-              <!--                    ></v-text-field>-->
-              <!--                  </template>-->
-              <!--                  <v-date-picker-->
-              <!--                    v-model="date"-->
-              <!--                    no-title-->
-              <!--                    scrollable-->
-              <!--                    range-->
-              <!--                  >-->
-              <!--                    <v-spacer></v-spacer>-->
-              <!--                    <v-btn-->
-              <!--                      text-->
-              <!--                      color="primary"-->
-              <!--                      @click="menu = false"-->
-              <!--                    >-->
-              <!--                      Cancel-->
-              <!--                    </v-btn>-->
-              <!--                    <v-btn-->
-              <!--                      text-->
-              <!--                      color="primary"-->
-              <!--                      @click="$refs.menu.save(date)"-->
-              <!--                    >-->
-              <!--                      OK-->
-              <!--                    </v-btn>-->
-              <!--                  </v-date-picker>-->
-              <!--                </v-menu>-->
-              <!--              </div>-->
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-agencies></chart-agencies>
@@ -170,27 +126,7 @@
           </div>
         </v-card>
       </v-col>
-      <v-col cols="12" lg="6">
-        <v-card>
-          <div
-            v-if="loading"
-            class="d-flex flex-grow-1 align-center justify-center"
-          >
-            <v-progress-circular
-              indeterminate
-              color="primary"
-            ></v-progress-circular>
-          </div>
-          <div v-else class="d-flex flex-column flex-grow-1">
-            <v-card-title>
-              {{ $t("employees.employeesByHeadquarters") }}
-            </v-card-title>
-            <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
-              <chart-headquarters></chart-headquarters>
-            </div>
-          </div>
-        </v-card>
-      </v-col>
+
       <v-col cols="12" lg="6">
         <v-card>
           <div
@@ -212,6 +148,99 @@
           </div>
         </v-card>
       </v-col>
+
+      <v-col cols="12" lg="6">
+        <v-card>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
+          </div>
+          <div v-else class="d-flex flex-column flex-grow-1">
+            <v-card-title>
+              عدد الموظفين حسب الأعمار وتوزبعهم في الإدارات
+            </v-card-title>
+            <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
+              <chart-emps-ages-administrations/>
+            </div>
+          </div>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" lg="6">
+        <v-card>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
+          </div>
+          <div v-else class="d-flex flex-column flex-grow-1">
+            <v-card-title>
+              عدد الموظفين حسب الأعمار وتوزبعهم في الأقسام
+            </v-card-title>
+            <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
+              <chart-emps-ages-departments/>
+            </div>
+          </div>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" lg="6">
+        <v-card>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
+          </div>
+          <div v-else class="d-flex flex-column flex-grow-1">
+            <v-card-title>
+              {{ $t("employees.employeesAccordingToTheirQualificationsIn") }}
+              {{ $t("employees.administrations") }}
+            </v-card-title>
+            <div class="d-flex flex-column flex-grow-1">
+              <!--              <chart-administration1-qualifications></chart-administration1-qualifications>-->
+              <chart-administration-qualifications/>
+            </div>
+          </div>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" lg="6">
+        <v-card>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
+          </div>
+          <div v-else class="d-flex flex-column flex-grow-1">
+            <v-card-title>
+              {{ $t("employees.employeesAccordingToTheirRanksIn") }}
+              {{ $t("employees.administrations") }}
+            </v-card-title>
+            <div class="d-flex flex-column flex-grow-1">
+              <chart-administration-ranks/>
+              <!--              <chart-administration1-ranks></chart-administration1-ranks>-->
+            </div>
+          </div>
+        </v-card>
+      </v-col>
+
       <v-col cols="12" lg="6">
         <v-card>
           <div
@@ -247,33 +276,10 @@
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t("employees.employeesAccordingToTheirQualificationsIn") }}
-              {{ $t("employees.administration1") }}
+              عدد الموظفين حسب الجنسية
             </v-card-title>
-            <div class="d-flex flex-column flex-grow-1">
-              <chart-administration1-qualifications></chart-administration1-qualifications>
-            </div>
-          </div>
-        </v-card>
-      </v-col>
-      <v-col cols="12" lg="6">
-        <v-card>
-          <div
-            v-if="loading"
-            class="d-flex flex-grow-1 align-center justify-center"
-          >
-            <v-progress-circular
-              indeterminate
-              color="primary"
-            ></v-progress-circular>
-          </div>
-          <div v-else class="d-flex flex-column flex-grow-1">
-            <v-card-title>
-              {{ $t("employees.employeesAccordingToTheirRanksIn") }}
-              {{ $t("employees.administration1") }}
-            </v-card-title>
-            <div class="d-flex flex-column flex-grow-1">
-              <chart-administration1-ranks></chart-administration1-ranks>
+            <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
+              <chart-nationalities/>
             </div>
           </div>
         </v-card>
@@ -292,15 +298,16 @@
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t("employees.employeesAccordingToTheirQualificationsIn") }}
-              {{ $t("employees.administration2") }}
+              <!--              {{ $t("employees.employeesByHeadquarters") }}-->
+              عدد الأقسام/ الإدارات حسب الموقع
             </v-card-title>
-            <div class="d-flex flex-column flex-grow-1">
-              <chart-administration2-qualifications></chart-administration2-qualifications>
+            <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
+              <chart-headquarters></chart-headquarters>
             </div>
           </div>
         </v-card>
       </v-col>
+
       <v-col cols="12" lg="6">
         <v-card>
           <div
@@ -314,15 +321,64 @@
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              {{ $t("employees.employeesAccordingToTheirRanksIn") }}
-              {{ $t("employees.administration2") }}
+              <!--              {{ $t("employees.employeesByHeadquarters") }}-->
+              عدد الأقسام/ الإدارات حسب الحالة
             </v-card-title>
-            <div class="d-flex flex-column flex-grow-1">
-              <chart-administration2-ranks></chart-administration2-ranks>
+            <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
+              <chart-status/>
             </div>
           </div>
         </v-card>
       </v-col>
+
+      <v-col cols="12" lg="6">
+        <v-card>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
+          </div>
+          <div v-else class="d-flex flex-column flex-grow-1">
+            <v-card-title>
+              عدد الأقسام/ الإدارات حسب حالات الحضور والغياب والإجازات والمهام والاستئذان
+            </v-card-title>
+            <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
+              <chart-attendance-locations/>
+            </div>
+          </div>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" lg="6">
+        <v-card>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
+          </div>
+          <div v-else class="d-flex flex-column flex-grow-1">
+            <v-card-title
+              class="d-flex align-center align-content-space-between"
+            >
+              <div>
+                الموظفين في الأقسام
+              </div>
+            </v-card-title>
+            <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
+              <chart-agencies></chart-agencies>
+            </div>
+          </div>
+        </v-card>
+      </v-col>
+
     </v-row>
   </div>
 </template>
@@ -338,13 +394,29 @@ import ChartGender from "../../components/reports/employees/chart-gender";
 import ChartAttendance from "../../components/reports/employees/chart-attendance";
 import ChartAgencies from "../../components/reports/employees/chart-agencies";
 import ChartHeadquarters from "../../components/reports/employees/chart-headquarters";
-import ChartAdministration1Qualifications from "../../components/reports/employees/chart-administration1-qualifications";
-import ChartAdministration2Qualifications from "../../components/reports/employees/chart-administration2-qualifications";
+import ChartAdministration1Qualifications
+  from "../../components/reports/employees/chart-administration1-qualifications";
+import ChartAdministration2Qualifications
+  from "../../components/reports/employees/chart-administration2-qualifications";
 import ChartAdministration1Ranks from "../../components/reports/employees/chart-administration1-ranks";
 import ChartAdministration2Ranks from "../../components/reports/employees/chart-administration2-ranks";
+import ChartEmpsAgesAdministrations from "@/components/reports/employees/chart-emps-ages-administrations";
+import ChartAdministrationQualifications from "@/components/reports/employees/chart-administration-qualifications";
+import ChartAdministrationRanks from "@/components/reports/employees/chart-administration-ranks";
+import ChartNationalities from "@/components/reports/employees/chart-nationalities";
+import ChartStatus from "@/components/reports/employees/chart-status";
+import ChartAttendanceLocations from "@/components/reports/employees/chart-attendance-locations";
+import ChartEmpsAgesDepartments from "@/components/reports/employees/chart-emps-ages-departments";
 
 export default {
   components: {
+    ChartEmpsAgesDepartments,
+    ChartAttendanceLocations,
+    ChartStatus,
+    ChartNationalities,
+    ChartAdministrationRanks,
+    ChartAdministrationQualifications,
+    ChartEmpsAgesAdministrations,
     ChartAdministration2Ranks,
     ChartAdministration1Ranks,
     ChartAdministration2Qualifications,
@@ -451,8 +523,10 @@ export default {
     }
   },
   watch: {
-    selectedUsers(val) {},
-    created() {}
+    selectedUsers(val) {
+    },
+    created() {
+    }
   },
   mounted() {
     let count = 0;
