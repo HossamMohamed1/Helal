@@ -49,7 +49,7 @@ class MeController extends Controller
             ]);
 
         } catch (Exception $e) {
-            return $e->getMessage();
+            // return $e->getMessage();
             return response()->json(['message' => 'Unknown error'], 500);
         }
     }

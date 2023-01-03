@@ -308,6 +308,7 @@ export default {
     createNewRole: "إنشاء صلاحية جديدة",
     viewRole: "عرض الصلاحية",
     editRole: "تعديل الصلاحية",
+    deleteRole: "مسح الصلاحية",
     roleName: "اسم الصلاحية",
     roleDetails: "تفاصيل الصلاحية",
     nameOnScreen: "الإسم على الشاشة",
