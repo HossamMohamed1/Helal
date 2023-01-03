@@ -471,6 +471,7 @@ export default {
     agency2: "وكالة 2",
     agency3: "وكالة 3",
     agency4: "وكالة 4",
+    administrations: "الإدارات",
     administration1: "إدارة 1",
     administration2: "إدارة 2",
     administration3: "إدارة 3",

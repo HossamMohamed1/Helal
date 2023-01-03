@@ -83,18 +83,14 @@ export default {
       categoryAxis.renderer.inside = config?.labels?.valign != "bottom";
 
       categoryAxis.renderer.grid.template.disabled = false;
-      categoryAxis.renderer.labels.template.valign = config?.labels?.valign;
-      categoryAxis.renderer.labels.template.fontSize = parseInt(
-        config?.labels?.fontSize
-      );
 
-      categoryAxis.renderer.labels.template.fill = am4core.color(
-        config?.labels?.fill
-      );
+      categoryAxis.renderer.labels.template.valign = config?.labels?.valign;
+      categoryAxis.renderer.labels.template.fontSize = parseInt(config?.labels?.fontSize);
+      categoryAxis.renderer.labels.template.fill = am4core.color(config?.labels?.fill);
       categoryAxis.renderer.labels.template.rotation = config?.labels?.rotation;
       categoryAxis.renderer.labels.template.marginTop = 20;
-
       categoryAxis.renderer.labels.template.visible = config?.labels?.disabled;
+
 
       categoryAxis.renderer.cellStartLocation = config?.cellStartLocation;
       categoryAxis.renderer.cellEndLocation = config?.cellEndLocation;
@@ -114,12 +110,19 @@ export default {
       title.align = config?.title?.align;
 
       // Legend
-      if (config?.legend?.disabled == "true") {
+      if (config?.legend?.disabled == false) {
         chart.legend = new am4charts.Legend();
-        chart.legend.position = config?.legend?.position;
-        chart.legend.paddingTop = parseInt(config?.legend?.paddingTop);
-        chart.legend.paddingBottom = parseInt(config?.legend?.paddingBottom);
+
       }
+      if (config?.legend?.position == true) {
+        chart.legend.position = "bottom";
+      }
+      else {
+        chart.legend.position = "top";
+      }
+
+      chart.legend.paddingTop = config?.legend?.paddingTop;
+      chart.legend.paddingBottom = config?.legend?.paddingBottom;
 
       function createSeries(field, name) {
         var series = chart.series.push(new am4charts.ColumnSeries());

@@ -117,7 +117,7 @@ class ChartsController extends Controller
                     "fill" => "#000",
                 ],
                 "legend" => [
-                    "disabled" => false,
+                    "disabled" => true,
                     "align" => "center",
                     "position" => "bottom", // Top or Bottom
                     "paddingBottom" => 20, // if Position is Top
@@ -157,12 +157,12 @@ class ChartsController extends Controller
                     "fill" => "#000",
                 ],
                 "legend" => [
-                    "disabled" => false,
+                    "disabled" => true,
                     "name" => "chart name",
                     "align" => "center",
                     "position" => "bottom", // Top or Bottom
                     "paddingBottom" => 20, // if Position is Top
-                    "paddingTop" => 20, // if Position is Bottom
+                    "paddingTop" => 0, // if Position is Bottom
                 ],
                 "xLabel" => [
                     "text" => "", //Default Empty string
@@ -218,7 +218,7 @@ class ChartsController extends Controller
                     "fill" => "#000",
                 ],
                 "legend" => [
-                    "disabled" => false,
+                    "disabled" => true,
                     "align" => "center",
                     "position" => "bottom", // Top or Bottom
                     "paddingBottom" => 10, // if Position is Top
@@ -233,8 +233,8 @@ class ChartsController extends Controller
                 //"zoom" => true,
                 "zoom" => [
                     "cursor" => "zoomXY",
-                    "scrollbarX" => "true",
-                    "scrollbarY" => "true",
+                    "scrollbarX" => "false",
+                    "scrollbarY" => "false",
                     "scrollbarXBottom" => "top",
                     "scrollbarYLeft" => "right",
                 ],
@@ -244,7 +244,8 @@ class ChartsController extends Controller
 
             ];
 
-        } else if (strtolower($request->type) == 'xybubble') {
+        } else if ($request->type == 'X Y Bubble' || $request->type == 'xybubble'){
+//         else if (strtolower($request->type) == 'X Y Bubble') {
             $requestData['img'] = 'xybubble.jpg';
             $requestData['config'] = [
                 "bullets" => [
@@ -284,7 +285,7 @@ class ChartsController extends Controller
                     "marginRight" => "0",
                 ], //Default Empty string
                 "style" => [
-                    "backgroundColor" => "#ececec",
+                    "backgroundColor" => "#fff",
                 ],
             ];
         }
