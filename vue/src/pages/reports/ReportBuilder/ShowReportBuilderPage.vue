@@ -16,18 +16,22 @@
         <!-- <div class="title mb-2">
           {{ $t("reports.showReport") }}
         </div> -->
-        <v-tabs v-model="tab" :show-arrows="false" background-color="transparent">
+        <v-tabs
+          v-model="tab"
+          :show-arrows="false"
+          background-color="transparent"
+        >
           <v-tab to="#tabs-edit">{{ $t("editchart") }}</v-tab>
           <v-tab to="#tabs-show">{{ $t("showchart") }}</v-tab>
         </v-tabs>
 
         <v-tabs-items v-model="tab">
           <v-tab-item value="tabs-edit">
-            <Edit/>
+            <Edit />
           </v-tab-item>
 
           <v-tab-item value="tabs-show">
-            <show/>
+            <show />
           </v-tab-item>
         </v-tabs-items>
 
@@ -52,12 +56,11 @@
 </template>
 
 <script>
-import axios from "axios";
-import Edit from './components/edit.vue'
-import Show from './components/show.vue'
+import Edit from "./components/edit.vue";
+import Show from "./components/show.vue";
 
 export default {
-  components: {Edit, Show},
+  components: { Edit, Show },
   data() {
     return {
       breadcrumbs: [
@@ -70,7 +73,6 @@ export default {
           text: this.$t("reports.showReport"),
           disabled: true,
           href: "#"
-
         }
       ],
       tab: null,
@@ -78,41 +80,8 @@ export default {
       chartAnalysis: {}
     };
   },
-  mounted() {
-    // this.getChartData();
-    // this.getAnaysisData();
-  },
-  methods: {
-    // getChartData() {
-    //   this.$axios
-    //     .get("charts/show/" + this.$route.params.id, {
-    //       headers: {
-    //         "Content-Type": "multipart/form-data"
-    //       }
-    //     })
-    //     .then(response => {
-    //       this.chartData = response.data;
-    //     })
-    //     .catch(error => {
-    //       console.log({ error });
-    //     });
-    // },
-    // getAnaysisData() {
-    //   this.$axios
-    //     .get("charts/analysis/" + this.$route.params.id, {
-    //       headers: {
-    //         "Content-Type": "multipart/form-data"
-    //       }
-    //     })
-    //     .then(response => {
-    //       this.chartAnalysis = response.data;
-    //       console.log(this.chartAnalysis);
-    //     })
-    //     .catch(error => {
-    //       console.log({ error });
-    //     });
-    // }
-  }
+  mounted() {},
+  methods: {}
 };
 </script>
 <style scoped>

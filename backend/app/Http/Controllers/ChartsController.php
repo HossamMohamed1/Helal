@@ -103,8 +103,7 @@ class ChartsController extends Controller
                 ],
             ];
 
-        }
-        else if (strtolower($request->type) == 'pie') {
+        } else if (strtolower($request->type) == 'pie') {
             $requestData['img'] = 'pie.jpg';
             $requestData['config'] = [
                 "chart_type" => "pie",
@@ -138,8 +137,7 @@ class ChartsController extends Controller
 
             ];
 
-        }
-        else if (strtolower($request->type) == 'bar' || strtolower($request->type) == 'column') {
+        } else if (strtolower($request->type) == 'bar' || strtolower($request->type) == 'column') {
             $requestData['img'] = 'bar.jpg';
             $requestData['config'] = [
                 "chart_type" => "bar",
@@ -203,8 +201,7 @@ class ChartsController extends Controller
                 ],
             ];
 
-        } else if ($request->type == 'Line' || $request->type == 'line')
-        {
+        } else if ($request->type == 'Line' || $request->type == 'line') {
             $requestData['img'] = 'line.jpg';
             $requestData['config'] = [
                 "chart_type" => "line",
@@ -244,7 +241,7 @@ class ChartsController extends Controller
 
             ];
 
-        } else if ($request->type == 'X Y Bubble' || $request->type == 'xybubble'){
+        } else if ($request->type == 'X Y Bubble' || $request->type == 'xybubble') {
 //         else if (strtolower($request->type) == 'X Y Bubble') {
             $requestData['img'] = 'xybubble.jpg';
             $requestData['config'] = [
@@ -502,6 +499,7 @@ class ChartsController extends Controller
         foreach ($rows as $row) {
             $post[] = url($row);
         }
+
         try {
 
             $data = $this->getAiResponse($post, $chart);
@@ -557,7 +555,7 @@ class ChartsController extends Controller
     }
     public function getAiResponse($data, $chart)
     {
-        $type = $chart->type == 'column' ? 'bar' : $chart->type;
+        $type = $chart->type == 'column' ? 'bar' : (strtolower($chart->type) == 'x y bubble' ? 'xybubble' : $chart->type);
 
         if (strtolower($chart->type) == 'line') {
             $post = [
@@ -572,7 +570,7 @@ class ChartsController extends Controller
                 'type' => strtolower($type),
             ];
         }
-        // return $post;
+
         $url = env('AI_API') . '/analysis';
 
         $ch = curl_init($url);

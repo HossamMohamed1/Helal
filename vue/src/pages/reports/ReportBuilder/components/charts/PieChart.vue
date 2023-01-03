@@ -65,7 +65,8 @@ export default {
         this.loading = false;
         this.loadChart();
       })
-      .catch(() => {
+      .catch(err => {
+        console.log(err);
         this.loading = false;
       });
   },
@@ -77,12 +78,19 @@ export default {
       }
       let chart = am4core.create(this.$refs.chartdiv, am4charts.PieChart);
       chart.logo.disabled = true;
-      // chart.data = this.analytics;
-      chart.data = this.analytics;
       const { config } = this.chart;
+
+      chart.data = this.analytics.map((item, key) => {
+        let index = parseInt(
+          Math.round(Math.random() * (config?.colors?.length - 1 - 0)) + 0
+        );
+        item["color"] = am4core.color(config.colors[index]);
+        return item;
+      });
+
       this.backgroundStyle.backgroundColor = config?.style?.backgroundColor;
 
-      chart.colors.list = config.colors.map(color => am4core.color(color));
+      // chart.colors.list = config.colors.map(color => am4core.color(color));
       let title = chart.titles.create();
       title.text = config?.title?.name;
       title.fontSize = config?.title?.fontSize;
@@ -94,6 +102,7 @@ export default {
       var pieSeries = chart.series.push(new am4charts.PieSeries());
       pieSeries.dataFields.value = "value";
       pieSeries.dataFields.category = "name";
+      pieSeries.slices.template.propertyFields.fill = "color";
       pieSeries.slices.template.stroke = am4core.color("#fff");
       pieSeries.slices.template.strokeOpacity = 1;
 
@@ -111,17 +120,15 @@ export default {
       if (config?.legend?.disabled == false) {
         chart.legend = new am4charts.Legend();
 
-      }
-      if (config?.legend?.position == true      ) {
-        chart.legend.position = "bottom";
-      }
-      else {
-        chart.legend.position = "top";
-      }
+        if (config?.legend?.position == true) {
+          chart.legend.position = "bottom";
+        } else {
+          chart.legend.position = "top";
+        }
 
-      chart.legend.paddingTop = config?.legend?.paddingTop;
-      chart.legend.paddingBottom = config?.legend?.paddingBottom;
-
+        chart.legend.paddingTop = config?.legend?.paddingTop;
+        chart.legend.paddingBottom = config?.legend?.paddingBottom;
+      }
 
       // Put a thick white border around each Slice
       pieSeries.slices.template.stroke = am4core.color(config?.stroke);

@@ -45,15 +45,13 @@ const actions = {
     const response = await axios.get(`charts/show/${id}`);
     const chart = response?.data?.chart ?? [];
     commit("SET_CHART", chart);
-    console.log(chart)
   },
   async loadAnalytics({ commit }, id) {
     const response = await axios.get(`charts/analysis/${id}`);
     const { series } = response?.data ?? {};
-    commit("SET_ANALYTICS", series);
+    commit("SET_ANALYTICS", series ?? []);
   },
   async updateChart({ commit }, data) {
-    // console.log(data);
     const response = await axios.post(`charts/edit/${data.id}`, data);
     const { chart } = response?.data ?? {};
     commit("SET_CHART", chart);
