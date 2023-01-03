@@ -16,7 +16,7 @@ export default [
       import(/* webpackChunkName: "roles-list" */ "@/pages/roles/RolesPage.vue")
   },
   {
-    path: "/roles/edit",
+    path: "/roles/edit/:id",
     name: "roles-edit",
     meta: {
       auth: true

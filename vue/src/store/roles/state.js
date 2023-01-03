@@ -1,3 +1,3 @@
-const state = { roles: [] };
+const state = { roles: [], role: {}, permissions: [] };
 
 export default state;

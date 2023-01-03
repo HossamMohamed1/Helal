@@ -44,7 +44,10 @@
             <v-btn color="dark" to="/roles/view">
               {{ $t("users.viewRole") }}
             </v-btn>
-            <v-btn color="dark" to="/roles/edit">
+            <v-btn
+              color="dark"
+              :to="{ name: 'roles-edit', params: { id: item.id } }"
+            >
               {{ $t("users.editRole") }}
             </v-btn>
           </v-card-actions>
