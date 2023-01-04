@@ -306,6 +306,7 @@ export default {
     rolesList: "Roles List",
     createRole: "Create Role",
     createNewRole: "Create New Role",
+    deleteRole: "Delete Role",
     viewRole: "View Role",
     editRole: "Edit Role",
     roleName: "Role Name",

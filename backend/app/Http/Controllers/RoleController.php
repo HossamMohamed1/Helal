@@ -59,4 +59,36 @@ class RoleController extends Controller
             'permissions' => $permissions,
         ]);
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'display_name' => 'required',
+            'permissions' => 'required|array',
+            'permissions.*' => 'required|exists:permissions,name',
+        ]);
+
+        $data = $request->only([
+            'name',
+            'display_name',
+        ]);
+        $data['guard_name'] = 'web';
+        $role = Role::create($data);
+        $role->syncPermissions($request->permissions);
+
+        return response()->json([
+            'message' => 'Role has been created successfully',
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $role = Role::findOrFail($id);
+        $role->delete();
+
+        return response()->json([
+            'message' => 'Role has been deleted successfully',
+        ]);
+    }
 }

@@ -8,6 +8,10 @@
           <LineChart v-if="chart.type == 'Line'" :config="config" />
           <bar-chart v-else-if="chart.type == 'Bar'" :config="config" />
           <pie-chart v-else-if="chart.type == 'Pie'" :config="config" />
+          <x-y-bubble-chart
+            v-else-if="chart.type == 'X Y Bubble'"
+            :config="config"
+          />
         </v-col>
       </v-row>
     </v-card>
@@ -37,13 +41,18 @@
           @closeDraw="right = false"
         />
         <bar-config
-          v-else="chart.type == 'Bar'"
+          v-else-if="chart.type == 'Bar'"
           :config="config"
           @closeDraw="right = false"
         />
 
         <pie-config
-          v-else="chart.type == 'Pie'"
+          v-else-if="chart.type == 'Pie'"
+          :config="config"
+          @closeDraw="right = false"
+        />
+        <x-y-bubble-config
+          v-else-if="chart.type == 'X Y Bubble'"
           :config="config"
           @closeDraw="right = false"
         />
@@ -56,16 +65,27 @@ import { mapActions, mapState } from "vuex";
 
 import LineChart from "@/pages/reports/ReportBuilder/components/charts/LineChart";
 import BarChart from "@/pages/reports/ReportBuilder/components/charts/BarChart";
-import PieChart from "./charts/PieChart.vue";
 import LineConfig from "@/pages/reports/ReportBuilder/components/configirations/LineConfig";
 import BarConfig from "@/pages/reports/ReportBuilder/components/configirations/BarConfig";
+import PieConfig from "@/pages/reports/ReportBuilder/components/configirations/PieConfig";
+import XYBubbleConfig from "@/pages/reports/ReportBuilder/components/configirations/XYBubbleConfig";
+import XYBubbleChart from "@/pages/reports/ReportBuilder/components/charts/XYBubbleChart";
+import PieChart from "@/pages/reports/ReportBuilder/components/charts/PieChart";
 export default {
-  components: { BarConfig, LineConfig, BarChart, LineChart, PieChart },
+  components: {
+    PieChart,
+    XYBubbleChart,
+    XYBubbleConfig,
+    PieConfig,
+    BarConfig,
+    LineConfig,
+    BarChart,
+    LineChart
+  },
   data() {
     return {
       loading: false,
       right: false // Config aside
-      // c/haramain.test/onfig: []
     };
   },
   created() {

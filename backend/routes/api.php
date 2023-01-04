@@ -54,9 +54,11 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'charts'], function ()
 
 Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'roles'], function () {
     Route::get('', [RoleController::class, 'index']);
+    Route::post('', [RoleController::class, 'store']);
     Route::get('permissions', [RoleController::class, 'permissions']);
     Route::get('{id}', [RoleController::class, 'show']);
     Route::put('{id}', [RoleController::class, 'update'])->name('roles.update');
+    Route::delete('{id}', [RoleController::class, 'destroy']);
     // Route::get('', 'RoleController@index')->name('roles.index');
     // Route::post('', 'RoleController@store')->name('roles.store');
     // Route::delete('{id}', 'RoleController@destroy')->name('roles.destroy');

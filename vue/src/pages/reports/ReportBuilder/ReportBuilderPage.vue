@@ -34,7 +34,7 @@
       <v-breadcrumbs :items="breadcrumbs" class="pa-0 py-2"></v-breadcrumbs>
     </div>
 
-    <v-row dense style="margin: 10px;">
+    <v-row dense style="margin: 10px;" class="builder-cards">
       <v-col cols="12" sm="6" lg="3" v-if="loading && reports.length == 0">
         <v-card :loading="loading">
           <v-img
@@ -70,8 +70,10 @@
                 {{ report.name | capitalize }}
                 <div>
                   <v-btn
-                    small
+                    x-small
+                    icon
                     class="mr-1"
+                    title="تعديل"
                     :to="{
                       name: 'edit-report-builder',
                       params: { id: report.id }
@@ -82,9 +84,10 @@
                     </v-icon>
                   </v-btn>
                   <v-btn
-                    small
+                    x-small
+                    icon
                     class="mr-1"
-                    color="error"
+                    title="حذف"
                     @click.prevent="deleteReport(report.id)"
                   >
                     <v-icon small>
@@ -173,5 +176,19 @@ export default {
 
 .reportrange-text {
   padding: 8px 10px !important;
+}
+
+.builder-cards .v-card__title {
+  font-weight: 600;
+  background: #f1f1f1 !important;
+  color: #1e8e49;
+  font-weight: 400;
+}
+.v-image__image--cover {
+  background-size: 88% 80%;
+  background-position: 50% 11% !important;
+}
+a{
+  text-decoration: none;
 }
 </style>

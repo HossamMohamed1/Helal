@@ -98,7 +98,7 @@ export default {
           text: this.$t("users.editRole")
         }
       ],
-      form: { name: "", display_name: "" },
+      form: { name: "", display_name: "", permissions: [] },
       loading: false
     };
   },
