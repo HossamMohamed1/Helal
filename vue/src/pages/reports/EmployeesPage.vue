@@ -9,6 +9,11 @@
           <small class="mx-1">({{ $t("dashboard.thismonth") }})</small>
         </div>
         <v-spacer></v-spacer>
+        <div style="width: 120px; height: 40px;" class="mx-1">
+          <v-btn color="primary" to="#" class="mt-1">
+            {{ $t("reports.createReport") }}
+          </v-btn>
+        </div>
         <div style="width: 160px; height: 40px;" class="mx-1">
           <v-select
             v-model="defaultSelectedGender"

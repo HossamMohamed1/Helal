@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,10 +26,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/test', function () {
-    // dd(config('database.connections.oracle'));
-    // return phpinfo();
-    // $query = "SELECT * from wakeb.dept;";
-    // return  \DB::connection('oracle')->select($query)
 
     $data = \App\Models\Employee::select(DB::raw('count(genderid) as total'))->first()->toArray();
 
