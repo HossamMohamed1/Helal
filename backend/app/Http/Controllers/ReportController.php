@@ -40,16 +40,7 @@ class ReportController extends Controller
                 abort(404);
             }
 
-            //cards data
-            $cards = ReportService::cards($request->type);
-
-            return view('dashboard.reports.index', [
-                'title' => __('dashboard.report_title', ['title' => handleTrans($request->type)]),
-                'filter' => $filter,
-                'data' => $result,
-                'cards' => $cards
-            ]);
-
+            return successData($result);
         } catch (\Error $e) {
             return errorMessage($e->getMessage());
         }

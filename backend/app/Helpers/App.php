@@ -37,6 +37,16 @@ if (!function_exists('successMessage')) {
     }
 }
 
+if (!function_exists('successData')) {
+    function successData($data = [],$message = 'success')
+    {
+        return request()->expectsJson()
+            ? response()->json(['message' => $message,'data'=> $data])
+            : redirect()->back()->with(['status' => 'success', 'message' => $message]);
+    }
+}
+
+
 if (!function_exists('handleTrans')) {
     function handleTrans($trans = '', $return = null)
     {

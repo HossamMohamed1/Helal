@@ -30,6 +30,7 @@ class EmployeeReport extends BaseReport
             return $this->getReport($filter);
 
         } catch (Exception $e) {
+            dd($e);
             throw new GeneralException($e->getMessage());
         }
     }
@@ -45,7 +46,7 @@ class EmployeeReport extends BaseReport
         $func_name = "{$type}Query";
 
         if (method_exists($this, $func_name)) {
-            $queries[$type] = $this->$func_name($filter, $filter['type_list'][$type] ?? []);
+            $queries[$filter['type']] = $this->$func_name($filter);
         }
 
         $this->queries = $queries ?? [];
@@ -58,21 +59,10 @@ class EmployeeReport extends BaseReport
     {
         $result = [];
         foreach ($this->queries as $key => $query) {
-            $data = json_decode($query->get()
-                ->mapWithKeys(function ($item) use ($filter) {
-                    return [$item->{$filter['groupBy']} => $item];
-                }), true, 512, JSON_THROW_ON_ERROR);
+        
+            $data = $query->first();
 
-            $columns = $filter['columns']['data'];
-
-            $result[$key] = collect($data)->map(function ($item) use ($columns) {
-                foreach ($columns as $column) {
-                    if (!isset($item[$column])) {
-                        $item[$column] = 0;
-                    }
-                }
-                return $item;
-            })->toArray();
+            $result[$key] = $data;
         }
 
         return $result;
@@ -84,7 +74,7 @@ class EmployeeReport extends BaseReport
      */
     private function employeeGenderQuery($filter): Builder
     {
-        return DB::table($this->mainTable)->select(
+        return DB::connection('oracle')->table($this->mainTable)->select(
             DB::raw("COUNT(CASE WHEN genderid = 1 then 1 ELSE NULL END) as male"),
             DB::raw("COUNT(CASE WHEN genderid = 2 then 1 ELSE NULL END) as female")
         );
