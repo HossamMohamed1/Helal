@@ -91,8 +91,9 @@ class ChartsController extends Controller
     public function edit($id, Request $request): JsonResponse
     {
         $requestData = $request->only(['name', 'type', 'data', 'config', 'input_index', 'output_index']);
-
-        $chart = Chart::where('id', $id)->update($requestData);
+        // leave it cause i use this in vue
+        $chart = Chart::where('id', $id)->first();
+        $chart->update($requestData);
 
         return response()->json([
             'message' => 'Chart has been successfully updated',

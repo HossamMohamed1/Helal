@@ -9,6 +9,11 @@
           <small class="mx-1">({{ $t("dashboard.thismonth") }})</small>
         </div>
         <v-spacer></v-spacer>
+        <div style="width: 120px; height: 40px;" class="mx-1">
+          <v-btn color="primary" to="#" class="mt-1">
+            {{ $t("reports.createReport") }}
+          </v-btn>
+        </div>
         <div style="width: 160px; height: 40px;" class="mx-1">
           <v-select
             v-model="defaultSelectedGender"
@@ -410,6 +415,10 @@
         </v-card>
       </v-col>
     </v-row>
+
+    <files-management/>
+
+
   </div>
 </template>
 
@@ -436,9 +445,11 @@ import ChartNationalities from "@/components/reports/employees/chart-nationaliti
 import ChartStatus from "@/components/reports/employees/chart-status";
 import ChartAttendanceLocations from "@/components/reports/employees/chart-attendance-locations";
 import ChartEmpsAgesDepartments from "@/components/reports/employees/chart-emps-ages-departments";
+import FilesManagement from "@/components/reports/employees/files-management";
 
 export default {
   components: {
+    FilesManagement,
     ChartEmpsAgesDepartments,
     ChartAttendanceLocations,
     ChartStatus,

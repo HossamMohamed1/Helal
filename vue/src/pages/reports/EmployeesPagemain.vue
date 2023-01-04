@@ -58,9 +58,7 @@
                     @click="ranges.clickRange(range)"
                   >
                     <b>{{ name }}</b>
-                    <small
-                      class="text-muted"
-                    >
+                    <small class="text-muted">
                       {{ range[0].toDateString() }} -
                       {{ range[1].toDateString() }}
                     </small>
@@ -79,7 +77,8 @@
                   v-if="!data.in_selection"
                   class="btn btn-primary btn-sm"
                   @click="data.clickApply"
-                >{{ $t("general.chooseDate") }}</a>
+                  >{{ $t("general.chooseDate") }}</a
+                >
               </div>
             </div>
           </date-range-picker>

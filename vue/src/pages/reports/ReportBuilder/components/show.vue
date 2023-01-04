@@ -9,7 +9,7 @@
           <bar-chart v-else-if="chart.type == 'Bar'" :config="config" />
           <pie-chart v-else-if="chart.type == 'Pie'" :config="config" />
           <x-y-bubble-chart
-            v-else-if="chart.type == 'X Y Bubble'"
+            v-else-if="chart.type == 'XYBubble'"
             :config="config"
           />
         </v-col>
@@ -52,7 +52,7 @@
           @closeDraw="right = false"
         />
         <x-y-bubble-config
-          v-else-if="chart.type == 'X Y Bubble'"
+          v-else-if="chart.type == 'XYBubble'"
           :config="config"
           @closeDraw="right = false"
         />
