@@ -381,6 +381,7 @@ export default {
   },
   tables: {
     username: "username",
+    department: "department",
     name: "name",
     serial: "Serial",
     id: "ID",
@@ -454,6 +455,7 @@ export default {
     employeesInPublicAgenciesAndAdministrations:
       "Employees In Public Agencies And Administrations",
     employeesByGender: "Employees By Gender",
+    employeesByDepartment: "Employees By Department",
     employeesByHeadquarters: "Employees By Headquarters",
     employeesAccordingToTheirQualifications:
       "Employees According To Their Qualifications And Distribution In departments",

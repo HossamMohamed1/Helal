@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with(['roles'])->where('id', '!=', primaryID())
+        $users = User::with(['roles', 'permissions'])->where('id', '!=', primaryID())
             ->where('id', '!=', auth()->id())->get();
 
         return response()->json([
