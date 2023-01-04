@@ -16,7 +16,7 @@ return [
 
     'type' => [
         'employee_gender' => [
-            'columns' => ['count'],
+            'columns' => ['male','female'],
             'unit' => 'number',
             'className' => 'EmployeeReport'
         ]

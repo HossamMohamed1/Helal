@@ -16,9 +16,9 @@ class ChartService
     public static function prepareBar($data, $filter): array
     {
         $result = [];
-        $result['locations'] = array_keys($data);
+        $result['labels'] = array_keys($data);
 
-        foreach ($filter['options']['columns']  as $column) {
+        foreach ($filter['options']['columns'] as $column) {
             $value = array_values(Arr::pluck($data, $column));
             $result['result'][] = [
                 'name' => handleTrans($column),
@@ -62,15 +62,17 @@ class ChartService
      */
     public static function preparePie($data, $filter): array
     {
-        foreach ($filter['options']['columns'] as $column) {
-            $value = array_values(array_map(static fn($item) => (int)$item, Arr::pluck($data, $column)));
 
-            $result[$column] = [
-                'name' => array_filter(Arr::pluck($data, $filter['groupBy'])),
-                'value' => $value ?? [0],
+        // foreach ($filter['options']['columns'] as $column) {
+        //     $value = array_values(array_map(static fn($item) => (int)$item, Arr::pluck($data, $column)));
+
+
+            $result = [
+                'labels' => $filter['options']['columns'],
+                'value' => array_values($data['list']),
             ];
 
-        }
+        // }
 
         return $result ?? [];
     }

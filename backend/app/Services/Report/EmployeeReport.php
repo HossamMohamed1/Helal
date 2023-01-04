@@ -24,13 +24,14 @@ class EmployeeReport extends BaseReport
      */
     public function report($filter): array
     {
+        DB::enableQueryLog();
+        
         try {
             $this->prepare($filter);
 
             return $this->getReport($filter);
 
         } catch (Exception $e) {
-            dd($e);
             throw new GeneralException($e->getMessage());
         }
     }
@@ -59,24 +60,27 @@ class EmployeeReport extends BaseReport
     {
         $result = [];
         foreach ($this->queries as $key => $query) {
-        
-            $data = $query->first();
-
+            $data = json_decode($query->get()
+                ->mapWithKeys(function ($item) use ($filter) {
+                    return ['list' => $item];
+                }), true, 512, JSON_THROW_ON_ERROR);
+                
             $result[$key] = $data;
         }
 
-        return $result;
+        return count($result) > 1 ? $result : \Arr::first($result);
     }
 
     /**
      * @param $filter
-     * @return Builder
      */
-    private function employeeGenderQuery($filter): Builder
-    {
-        return DB::connection('oracle')->table($this->mainTable)->select(
-            DB::raw("COUNT(CASE WHEN genderid = 1 then 1 ELSE NULL END) as male"),
-            DB::raw("COUNT(CASE WHEN genderid = 2 then 1 ELSE NULL END) as female")
-        );
+    private function employeeGenderQuery($filter)
+   {
+        return DB::connection('oracle')
+            ->table($this->mainTable)
+            ->select(
+                DB::raw("COUNT(CASE WHEN genderid = 1 then 1 ELSE NULL END) as male"),
+                DB::raw("COUNT(CASE WHEN genderid = 2 then 1 ELSE NULL END) as female")
+            );
     }
 }

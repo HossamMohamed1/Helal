@@ -35,15 +35,15 @@ class ReportService
 
             $charts = Arr::wrap($filter['charts']);
 
-            // //prepare data for each chart by ChartService
-            // foreach ($charts as $chart) {
-            //     $method = 'prepare' . ucfirst($chart);
-            //     if (method_exists(new ChartService(), $method)) {
-            //         $result[$chart] = ChartService::$method($data, $filter);
-            //     }
-            // }
+            //prepare data for each chart by ChartService
+            foreach ($charts as $chart) {
+                $method = 'prepare' . ucfirst($chart);
+                if (method_exists(new ChartService(), $method)) {
+                    $result[$chart] = ChartService::$method($data, $filter);
+                }
+            }
 
-            return $data ?? [];
+            return $result ?? [];
         } catch (Exception $e) {
             throw new GeneralException($e->getMessage());
         }
