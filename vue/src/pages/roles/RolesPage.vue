@@ -84,9 +84,6 @@ export default {
     };
   },
   computed: {
-    // roles() {
-    //   return this.$store.state.roles.roles;
-    // }
     ...mapState("roles", ["roles"])
   },
   mounted() {

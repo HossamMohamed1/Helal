@@ -38,21 +38,21 @@ Route::get('test', function () {
     //     ];
     // });
 
-    $content = [
-        ["org", "WEB", "DEVOPPS "],
-    ];
+    $content = [];
 
     $faker = Faker\Factory::create();
     // return [$faker];
-    for ($i = 0; $i < 10; $i++) {
+    for ($i = 0; $i < 5; $i++) {
         $content[] = [
             $faker->name,
-            rand(10, 100),
+            $faker->email,
             rand(20, 30),
         ];
     }
 
-    file_put_contents(public_path('excel/1672301408-part-1.json'), collect($content));
+    return $content;
+
+    // file_put_contents(public_path('excel/1672301408-part-1.json'), collect($content));
     // return $content;
 
     return ['message' => true];
