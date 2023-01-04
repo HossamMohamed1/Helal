@@ -32,9 +32,10 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $exception)
     {
-        if ($exception instanceof ModelNotFoundException && $request->expectsJson()) {
+        if ($exception instanceof GeneralException && $request->expectsJson()) {
+            dd($exception);
             return response()->json([
-                'message' => "The record not found in your database",
+                'message' => $exception,
                 'code' => 404
             ], 404);
         }

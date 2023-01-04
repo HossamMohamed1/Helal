@@ -415,6 +415,10 @@
         </v-card>
       </v-col>
     </v-row>
+
+    <files-management/>
+
+
   </div>
 </template>
 
@@ -441,9 +445,11 @@ import ChartNationalities from "@/components/reports/employees/chart-nationaliti
 import ChartStatus from "@/components/reports/employees/chart-status";
 import ChartAttendanceLocations from "@/components/reports/employees/chart-attendance-locations";
 import ChartEmpsAgesDepartments from "@/components/reports/employees/chart-emps-ages-departments";
+import FilesManagement from "@/components/reports/employees/files-management";
 
 export default {
   components: {
+    FilesManagement,
     ChartEmpsAgesDepartments,
     ChartAttendanceLocations,
     ChartStatus,

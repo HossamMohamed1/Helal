@@ -79,9 +79,39 @@
             ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
-            <v-card-title>
-              {{ $t("menu.permits") }}
-            </v-card-title>
+            <div class="d-flex align-center justify-space-between">
+              <v-card-title>
+                {{ $t("menu.permits") }}
+              </v-card-title>
+              <v-menu offset-y>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    text
+                    color="green"
+                    v-bind="attrs"
+                    v-on="on"
+                    class="font-weight-bold text-h4"
+                  >
+                    ...
+                  </v-btn>
+                </template>
+                <v-list>
+                  <v-list-item>
+                    <v-list-item-icon><v-icon >mdi-chart-pie</v-icon></v-list-item-icon>
+                    <v-list-item-content>
+                     Pie Chart
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-icon><v-icon >mdi-chart-bar</v-icon></v-list-item-icon>
+                    <v-list-item-content>
+                     Bar Chart
+                    </v-list-item-content>
+                  </v-list-item>
+
+                </v-list>
+              </v-menu>
+            </div>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-permits-status></chart-permits-status>
             </div>
@@ -100,9 +130,39 @@
             ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
-            <v-card-title>
-              {{ $t("employees.employeesByGender") }}
-            </v-card-title>
+            <div class="d-flex align-center justify-space-between">
+              <v-card-title>
+                {{ $t("employees.employeesByGender") }}
+              </v-card-title>
+              <v-menu offset-y>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    text
+                    color="green"
+                    v-bind="attrs"
+                    v-on="on"
+                    class="font-weight-bold text-h4"
+                  >
+                    ...
+                  </v-btn>
+                </template>
+                <v-list>
+                  <v-list-item>
+                    <v-list-item-icon><v-icon >mdi-chart-pie</v-icon></v-list-item-icon>
+                    <v-list-item-content>
+                      Pie Chart
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-icon><v-icon >mdi-chart-bar</v-icon></v-list-item-icon>
+                    <v-list-item-content>
+                      Bar Chart
+                    </v-list-item-content>
+                  </v-list-item>
+
+                </v-list>
+              </v-menu>
+            </div>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-gender></chart-gender>
             </div>
@@ -326,8 +386,14 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .vue-daterange-picker {
   margin: 0;
+}
+.v-list-item{
+  cursor: pointer;
+}
+.v-list-item:hover{
+  background: #f2f2f2;
 }
 </style>

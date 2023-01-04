@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChartsController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\MeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -31,6 +32,16 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('updateProfile', [MeController::class, 'updateProfileInfo']);
     Route::resource('users', UserController::class);
 });
+
+
+/***
+ * Report Charts Api
+ */
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'report'], function () {
+    Route::get('charts', [ReportController::class, 'charts']);
+});
+
+
 Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'charts'], function () {
     Route::get('index', [ChartsController::class, 'index']);
     Route::get('show/{id}', [ChartsController::class, 'show']);
