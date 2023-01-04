@@ -20,6 +20,13 @@ const actions = {
     const response = await axios.get(`roles/permissions`);
     const { permissions } = response?.data ?? {};
     commit("SET_PERMISSIONS", permissions);
+  },
+  async storeRole({ commit }, data) {
+    const response = await axios.post("roles", data);
+    console.log(response?.data);
+  },
+  async removeRole({}, id) {
+    await axios.delete(`/roles/${id}`);
   }
 };
 

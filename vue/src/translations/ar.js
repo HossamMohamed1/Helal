@@ -308,6 +308,7 @@ export default {
     createNewRole: "إنشاء صلاحية جديدة",
     viewRole: "عرض الصلاحية",
     editRole: "تعديل الصلاحية",
+    deleteRole: "مسح الصلاحية",
     roleName: "اسم الصلاحية",
     roleDetails: "تفاصيل الصلاحية",
     nameOnScreen: "الإسم على الشاشة",
@@ -380,6 +381,7 @@ export default {
   },
   tables: {
     username: "اللقب",
+    department: "القسم",
     name: "الإسم",
     id: "الرقم التعريفي",
     serial: "الرقم التسلسلي",
@@ -453,6 +455,7 @@ export default {
     employeesInPublicAgenciesAndAdministrations:
       "الموظفين في الوكالات والادارات العامة",
     employeesByGender: "الموظفين حسب الجنس",
+    employeesByDepartment: "الموظفين حسب القسم",
     employeesByHeadquarters: "الموظفين حسب المقر",
     employeesAccordingToTheirQualifications:
       "الموظفين حسب مؤهلاتهم وتوزيهم في الادارات",

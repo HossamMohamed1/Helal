@@ -50,6 +50,9 @@
             >
               {{ $t("users.editRole") }}
             </v-btn>
+            <v-btn color="dark" @click.prevent="deleteRole(item)">
+              {{ $t("users.deleteRole") }}
+            </v-btn>
           </v-card-actions>
         </v-card>
       </div>
@@ -58,6 +61,7 @@
 </template>
 
 <script>
+import { ask } from "@/helpers";
 import { mapActions, mapState } from "vuex";
 
 export default {
@@ -80,16 +84,13 @@ export default {
     };
   },
   computed: {
-    // roles() {
-    //   return this.$store.state.roles.roles;
-    // }
     ...mapState("roles", ["roles"])
   },
   mounted() {
     this.open();
   },
   methods: {
-    ...mapActions("roles", ["getRoles"]),
+    ...mapActions("roles", ["getRoles", "removeRole"]),
     open() {
       this.isLoading = true;
       this.getRoles()
@@ -99,6 +100,21 @@ export default {
         .catch(() => {
           this.isLoading = false;
         });
+    },
+    async deleteRole({ name, id }) {
+      const message = `Are you sure to delete role ${name} ?`;
+      const { isConfirmed } = await ask(message);
+      if (isConfirmed) {
+        this.loading = true;
+        this.removeRole(id)
+          .then(() => {
+            this.loading = false;
+            this.open();
+          })
+          .catch(() => {
+            this.loading = false;
+          });
+      }
     }
   }
 };

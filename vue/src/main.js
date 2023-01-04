@@ -21,6 +21,7 @@ import "./plugins/clipboard";
 import "./plugins/moment";
 import "./plugins/ckeditor";
 import "./plugins/vue-ctk-date-time-picker";
+import "./plugins/vue-gates";
 
 // FILTERS
 import "./filters/capitalize";
@@ -86,7 +87,16 @@ export default new Vue({
   // },
   created() {
     if (window.location.pathname != "/auth/signin") {
-      store.dispatch("auth/user");
+      store.dispatch("auth/user").then(() => {
+        const user = this.$store.state.auth.user;
+        const roles = user.roles.map(item => item.name);
+        const permissions = user.permissions.map(item => item.name);
+        this.$gates.setRoles(roles);
+        this.$gates.setPermissions(permissions);
+        console.log(roles);
+
+        console.log(this.$gates.getRoles());
+      });
     }
   }
 }).$mount("#app");

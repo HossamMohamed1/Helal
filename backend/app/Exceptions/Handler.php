@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Exceptions;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -17,16 +17,6 @@ class Handler extends ExceptionHandler
         //
     ];
 
-    /**
-     * A list of the inputs that are never flashed for validation exceptions.
-     *
-     * @var array<int, string>
-     */
-    protected $dontFlash = [
-        'current_password',
-        'password',
-        'password_confirmation',
-    ];
 
     /**
      * Register the exception handling callbacks for the application.
@@ -39,16 +29,32 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
     public function render($request, Throwable $exception)
     {
-         if ($exception instanceof ModelNotFoundException and $request->expectsJson()) {
-            return response()->json(['errors' => [
-                'message' => "The record not found in your database",
-            ]], 404);
-
+        if ($exception instanceof GeneralException && $request->expectsJson()) {
+            dd($exception);
+            return response()->json([
+                'message' => $exception,
+                'code' => 404
+            ], 404);
         }
 
- 
+        if ($exception instanceof ChartTypeException && $request->expectsJson()) {
+            return response()->json([
+                'message' => "Incorrect Type Of Chart",
+                'code' => 400
+            ], 400);
+        }
+
+        if ($exception instanceof ChartNotDefined && $request->expectsJson()) {
+            return response()->json([
+                'message' => "Chart Not Found",
+                'code' => 404
+            ], 404);
+        }
+
+
         return parent::render($request, $exception);
     }
 

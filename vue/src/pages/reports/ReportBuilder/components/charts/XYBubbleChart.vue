@@ -71,8 +71,7 @@ export default {
       }
       let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);
       chart.maskBullets = false;
-
-
+      console.log(this.analytics);
       chart.data = this.analytics;
       const { config } = this.chart;
       // Title
@@ -98,10 +97,8 @@ export default {
 
       yAxis.title.marginRight = parseInt(config?.yLabel?.marginRight);
 
-
       // Background
-      this.backgroundStyle.backgroundColor =
-        config?.style?.backgroundColor;
+      this.backgroundStyle.backgroundColor = config?.style?.backgroundColor;
       yAxis.dataFields.category = "y";
       xAxis.renderer.minGridDistance = 20;
       yAxis.renderer.minGridDistance = 20;
@@ -134,7 +131,7 @@ export default {
       bullet.propertyFields.fill = "color";
       bullet.strokeOpacity = 0;
       bullet.fontSize = 10;
-      bullet.adapter.add("tooltipY", function (tooltipY, target) {
+      bullet.adapter.add("tooltipY", function(tooltipY, target) {
         return -target.radius + 1;
       });
       bullet.strokeWidth = parseInt(config?.bullets?.strokeWidth);
@@ -145,15 +142,19 @@ export default {
         property: "radius",
         target: bullet,
         min: 2,
-        max: 40,
+        max: 40
       });
       bullet.hiddenState.properties.scale = 0.01;
 
       bullet.hiddenState.properties.opacity = 1;
       let hoverState = bullet.states.create("hover");
-      hoverState.properties.strokeOpacity = parseFloat(config?.bullets?.strokeOpacity);
+      hoverState.properties.strokeOpacity = parseFloat(
+        config?.bullets?.strokeOpacity
+      );
 
-      hoverState.properties.fillOpacity = parseFloat(config?.bullets?.fillOpacity);
+      hoverState.properties.fillOpacity = parseFloat(
+        config?.bullets?.fillOpacity
+      );
       //Zoom
       if (config?.zoom?.scrollbarX == "true") {
         chart.scrollbarX = new am4core.Scrollbar();
@@ -166,31 +167,25 @@ export default {
       if (config?.zoom?.cursor == "zoomXY") {
         chart.cursor = new am4charts.XYCursor();
         chart.cursor.behavior = "zoomXY";
-      }
-      else if(config?.zoom?.cursor == "zoomX"){
+      } else if (config?.zoom?.cursor == "zoomX") {
         chart.cursor = new am4charts.XYCursor();
         chart.cursor.behavior = "zoomX";
-      }
-      else{
+      } else {
         chart.cursor = new am4charts.XYCursor();
         chart.cursor.behavior = "zoomY";
       }
       chart.scrollbarX.marginBottom = 35;
-      if(config?.zoom?.scrollbarXBottom == "bottom"){
+      if (config?.zoom?.scrollbarXBottom == "bottom") {
         chart.scrollbarX.parent = chart.bottomAxesContainer;
         chart.scrollbarX.marginBottom = 20;
       }
-      if(config?.zoom?.scrollbarYLeft == "left"){
+      if (config?.zoom?.scrollbarYLeft == "left") {
         chart.scrollbarY.parent = chart.leftAxesContainer;
         chart.scrollbarY.marginRight = 35;
       }
 
       chart.fontSize = parseInt(config?.fontSize);
       this.chartObject = chart;
-
-
-
-
     }
   },
   mounted() {

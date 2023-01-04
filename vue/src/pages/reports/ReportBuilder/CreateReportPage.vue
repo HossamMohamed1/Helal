@@ -108,7 +108,7 @@ export default {
         { name: "Network", image: "/visualization/network.jpg" },
         { name: "Bar", image: "/visualization/bar.jpg" },
         { name: "Line", image: "/visualization/line.jpg" },
-        { name: "X Y Bubble", image: "/visualization/xybubble.jpg" },
+        { name: "XYBubble", image: "/visualization/xybubble.jpg" },
         { name: "Pie", image: "/visualization/pie.jpg" }
       ],
       report: {

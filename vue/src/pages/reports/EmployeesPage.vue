@@ -100,7 +100,6 @@
     </v-row>
 
     <v-row class="flex-grow-0 mb-1" dense>
-
       <v-col cols="12" lg="6">
         <v-card>
           <div
@@ -113,15 +112,18 @@
             ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
-            <v-card-title
-              class="d-flex align-center align-content-space-between"
-            >
-              <div>
-                {{ $t("employees.employeesInPublicAgenciesAndAdministrations") }}
-              </div>
+            <v-card-title>
+              {{ $t("employees.employeesByDepartment") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
-              <chart-agencies></chart-agencies>
+              <!-- <chart-department></chart-department> -->
+              <v-data-table
+                :headers="headers"
+                :items="users"
+                class="flex-grow-1"
+                :loading="isLoading"
+                :options="{ itemsPerPage: 5 }"
+              ></v-data-table>
             </div>
           </div>
         </v-card>
@@ -161,11 +163,39 @@
             ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
+            <v-card-title
+              class="d-flex align-center align-content-space-between"
+            >
+              <div>
+                {{
+                  $t("employees.employeesInPublicAgenciesAndAdministrations")
+                }}
+              </div>
+            </v-card-title>
+            <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
+              <chart-agencies></chart-agencies>
+            </div>
+          </div>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" lg="6">
+        <v-card>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
+          </div>
+          <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
               عدد الموظفين حسب الأعمار وتوزبعهم في الإدارات
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
-              <chart-emps-ages-administrations/>
+              <chart-emps-ages-administrations />
             </div>
           </div>
         </v-card>
@@ -187,7 +217,7 @@
               عدد الموظفين حسب الأعمار وتوزبعهم في الأقسام
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
-              <chart-emps-ages-departments/>
+              <chart-emps-ages-departments />
             </div>
           </div>
         </v-card>
@@ -211,7 +241,7 @@
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1">
               <!--              <chart-administration1-qualifications></chart-administration1-qualifications>-->
-              <chart-administration-qualifications/>
+              <chart-administration-qualifications />
             </div>
           </div>
         </v-card>
@@ -234,7 +264,7 @@
               {{ $t("employees.administrations") }}
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1">
-              <chart-administration-ranks/>
+              <chart-administration-ranks />
               <!--              <chart-administration1-ranks></chart-administration1-ranks>-->
             </div>
           </div>
@@ -279,7 +309,7 @@
               عدد الموظفين حسب الجنسية
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
-              <chart-nationalities/>
+              <chart-nationalities />
             </div>
           </div>
         </v-card>
@@ -325,7 +355,7 @@
               عدد الأقسام/ الإدارات حسب الحالة
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
-              <chart-status/>
+              <chart-status />
             </div>
           </div>
         </v-card>
@@ -344,10 +374,11 @@
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
-              عدد الأقسام/ الإدارات حسب حالات الحضور والغياب والإجازات والمهام والاستئذان
+              عدد الأقسام/ الإدارات حسب حالات الحضور والغياب والإجازات والمهام
+              والاستئذان
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
-              <chart-attendance-locations/>
+              <chart-attendance-locations />
             </div>
           </div>
         </v-card>
@@ -378,7 +409,6 @@
           </div>
         </v-card>
       </v-col>
-
     </v-row>
 
     <files-management/>
@@ -395,13 +425,12 @@ import DateRangePicker from "vue2-daterange-picker";
 import "vue2-daterange-picker/dist/vue2-daterange-picker.css";
 
 import ChartGender from "../../components/reports/employees/chart-gender";
+import ChartDepartment from "../../components/reports/employees/chart-departments";
 import ChartAttendance from "../../components/reports/employees/chart-attendance";
 import ChartAgencies from "../../components/reports/employees/chart-agencies";
 import ChartHeadquarters from "../../components/reports/employees/chart-headquarters";
-import ChartAdministration1Qualifications
-  from "../../components/reports/employees/chart-administration1-qualifications";
-import ChartAdministration2Qualifications
-  from "../../components/reports/employees/chart-administration2-qualifications";
+import ChartAdministration1Qualifications from "../../components/reports/employees/chart-administration1-qualifications";
+import ChartAdministration2Qualifications from "../../components/reports/employees/chart-administration2-qualifications";
 import ChartAdministration1Ranks from "../../components/reports/employees/chart-administration1-ranks";
 import ChartAdministration2Ranks from "../../components/reports/employees/chart-administration2-ranks";
 import ChartEmpsAgesAdministrations from "@/components/reports/employees/chart-emps-ages-administrations";
@@ -432,7 +461,8 @@ export default {
     ChartAttendance,
     ChartGender,
     TrackCard,
-    DateRangePicker
+    DateRangePicker,
+    ChartDepartment
   },
   // filters: {
   //   dateCell(value) {
@@ -459,7 +489,7 @@ export default {
         }
       ],
       loadingInterval: null,
-
+      isLoading: false,
       isLoading1: true,
       isLoading2: true,
       isLoading3: true,
@@ -513,7 +543,39 @@ export default {
       dateRange: {
         startDate: "2022-11-1",
         endDate: "2022-12-1"
-      }
+      },
+      users: [
+        {
+          name: "Murphy Bayer",
+          email: "celestine.reilly@dickens.com",
+          department: "Sales"
+        },
+        {
+          name: "Katlyn Gorczany",
+          email: "rblanda@yahoo.com",
+          department: "HR"
+        },
+        {
+          name: "Justen Bins",
+          email: "dorothy65@yahoo.com",
+          department: "Managment"
+        },
+        {
+          name: "Mr. Damion Runte",
+          email: "vpredovic@hotmail.com",
+          department: "Marketing"
+        },
+        {
+          name: "Donnie McKenzie",
+          email: "kohler.ramona@hotmail.com",
+          department: "Development"
+        }
+      ],
+      headers: [
+        { text: this.$t("tables.name"), value: "name" },
+        { text: this.$t("tables.email"), value: "email" },
+        { text: this.$t("tables.department"), value: "department" }
+      ]
 
       // date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       // menu: false,
@@ -529,10 +591,8 @@ export default {
     }
   },
   watch: {
-    selectedUsers(val) {
-    },
-    created() {
-    }
+    selectedUsers(val) {},
+    created() {}
   },
   mounted() {
     let count = 0;

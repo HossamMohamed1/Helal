@@ -7,8 +7,11 @@
 
           <LineChart v-if="chart.type == 'Line'" :config="config" />
           <bar-chart v-else-if="chart.type == 'Bar'" :config="config" />
-          <pie-chart v-else-if="chart.type == 'Pie'" :config="config"/>
-          <x-y-bubble-chart v-else-if="chart.type == 'X Y Bubble'" :config="config"/>
+          <pie-chart v-else-if="chart.type == 'Pie'" :config="config" />
+          <x-y-bubble-chart
+            v-else-if="chart.type == 'X Y Bubble'"
+            :config="config"
+          />
         </v-col>
       </v-row>
     </v-card>
@@ -46,12 +49,13 @@
         <pie-config
           v-else-if="chart.type == 'Pie'"
           :config="config"
-          @closeDraw="right = false"/>
+          @closeDraw="right = false"
+        />
         <x-y-bubble-config
           v-else-if="chart.type == 'X Y Bubble'"
           :config="config"
-          @closeDraw="right = false"/>
-
+          @closeDraw="right = false"
+        />
       </v-navigation-drawer>
     </div>
   </div>
@@ -68,12 +72,20 @@ import XYBubbleConfig from "@/pages/reports/ReportBuilder/components/configirati
 import XYBubbleChart from "@/pages/reports/ReportBuilder/components/charts/XYBubbleChart";
 import PieChart from "@/pages/reports/ReportBuilder/components/charts/PieChart";
 export default {
-  components: {PieChart, XYBubbleChart, XYBubbleConfig, PieConfig, BarConfig, LineConfig, BarChart, LineChart },
+  components: {
+    PieChart,
+    XYBubbleChart,
+    XYBubbleConfig,
+    PieConfig,
+    BarConfig,
+    LineConfig,
+    BarChart,
+    LineChart
+  },
   data() {
     return {
       loading: false,
       right: false // Config aside
-      // c/haramain.test/onfig: []
     };
   },
   created() {

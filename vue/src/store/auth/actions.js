@@ -1,5 +1,7 @@
 import axios from "@/plugins/axios";
 import router from "@/router";
+// import Vue from "vue";
+import $gates from "@/plugins/vue-gates";
 
 export default {
   async login({ commit }, data) {
@@ -20,8 +22,11 @@ export default {
     try {
       const response = await axios.get("user");
       const { user } = response?.data ?? {};
+
       commit("SET_USER", user);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   },
   async logout({ commit }) {
     try {

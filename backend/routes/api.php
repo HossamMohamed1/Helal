@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChartsController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\MeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -31,6 +32,16 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('updateProfile', [MeController::class, 'updateProfileInfo']);
     Route::resource('users', UserController::class);
 });
+
+
+/***
+ * Report Charts Api
+ */
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'report'], function () {
+    Route::get('charts', [ReportController::class, 'charts']);
+});
+
+
 Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'charts'], function () {
     Route::get('index', [ChartsController::class, 'index']);
     Route::get('show/{id}', [ChartsController::class, 'show']);
@@ -54,9 +65,11 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'charts'], function ()
 
 Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'roles'], function () {
     Route::get('', [RoleController::class, 'index']);
+    Route::post('', [RoleController::class, 'store']);
     Route::get('permissions', [RoleController::class, 'permissions']);
     Route::get('{id}', [RoleController::class, 'show']);
     Route::put('{id}', [RoleController::class, 'update'])->name('roles.update');
+    Route::delete('{id}', [RoleController::class, 'destroy']);
     // Route::get('', 'RoleController@index')->name('roles.index');
     // Route::post('', 'RoleController@store')->name('roles.store');
     // Route::delete('{id}', 'RoleController@destroy')->name('roles.destroy');
