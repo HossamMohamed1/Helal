@@ -1,8 +1,8 @@
-import { sleep } from "@/helpers";
+import axios from "@/plugins/axios";
 const actions = {
   async fetchChart({ commit }, data) {
-    await sleep(2000);
-    return data;
+    const response = await axios .get('report/charts',{params:data})
+    return response?.data?.data;
   }
 };
 

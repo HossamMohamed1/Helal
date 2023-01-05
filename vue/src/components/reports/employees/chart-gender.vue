@@ -17,7 +17,7 @@ export default {
     return {
       chartType: "donut",
       loading: false,
-      series: [10, 10],
+      series: [0, 0],
       chartOptions: {
         chart: {
           type: "pie"
@@ -61,13 +61,18 @@ export default {
   mounted() {
     this.loading = true;
     let data = {
-      type: this.chartType == "donut" ? "pie" : this.chartType,
-      table: "employee_per_gender"
+      charts: ['pie'],
+      type: "employee_gender"
     };
     this.fetchChart(data).then(res => {
       this.loading = false;
-      console.log(data);
-    });
+      const {pie} = res
+      console.log(pie?.value);
+      this.series = pie?.value.map(item => parseInt(item));
+      this.chartOptions.labels = pie?.labels
+    }).catch(()=>{
+      this.loading = false;
+    })
   },
   methods: {
     ...mapActions("statistics", ["fetchChart"])
