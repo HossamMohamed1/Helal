@@ -573,7 +573,7 @@ export default {
   created() {
     this.fetchUsers()
       .then(res => {
-        console.log(res);
+        this.users = res;
       })
       .catch(() => {});
   },

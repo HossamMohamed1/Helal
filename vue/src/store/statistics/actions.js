@@ -8,7 +8,7 @@ const actions = {
   async fetchUsers({}) {
     const response = await axios.get("report/employee");
 
-    return response?.data?.emp;
+    return response?.data?.emp ?? [];
   }
 };
 
