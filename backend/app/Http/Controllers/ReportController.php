@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Models\Employee;
 
 class ReportController extends Controller
 {
@@ -44,6 +45,16 @@ class ReportController extends Controller
         } catch (\Error $e) {
             return errorMessage($e->getMessage());
         }
+    }
+
+    public function employee(){
+
+        $employe = Employee::get();
+
+        return response()->json([
+            'emp'=>$employe
+        ]);
+        return $employe;
     }
 
 }
