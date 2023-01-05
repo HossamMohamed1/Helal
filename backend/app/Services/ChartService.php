@@ -86,14 +86,13 @@ class ChartService
      */
     public static function prepareTable($data, $filter): array
     {
-        foreach ($filter['type_list'] as $type => $columns) {
-            $final = array_values($data);
-            $data = [
-                'table' => $final,
-                'columns' => array_keys($final[0] ?? [])
-            ];
-        }
-
+        
+        $final = array_values($data);
+        $data = [
+            'table' => $final,
+            'columns' => array_keys($final[0] ?? [])
+        ];
+        
         return $data;
     }
 }

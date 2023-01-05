@@ -83,4 +83,17 @@ class EmployeeReport extends BaseReport
                 DB::raw("COUNT(CASE WHEN genderid = 2 then 1 ELSE NULL END) as female")
             );
     }
+
+        /**
+     * @param $filter
+     */
+    private function employeeDepartmentQuery($filter)
+   {
+        return DB::connection('oracle')
+            ->table($this->mainTable)
+            ->join()
+            ->select(
+                'departments',''
+            );
+    }
 }
