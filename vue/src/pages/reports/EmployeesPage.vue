@@ -444,6 +444,7 @@ import ChartStatus from "@/components/reports/employees/chart-status";
 import ChartAttendanceLocations from "@/components/reports/employees/chart-attendance-locations";
 import ChartEmpsAgesDepartments from "@/components/reports/employees/chart-emps-ages-departments";
 import FilesManagement from "@/components/reports/employees/files-management";
+import { mapActions } from "vuex";
 
 export default {
   components: {
@@ -567,12 +568,14 @@ export default {
     }
   },
   watch: {
-    selectedUsers(val) {},
-    created() {
-      this.fetchUsers().then(res => {
+    selectedUsers(val) {}
+  },
+  created() {
+    this.fetchUsers()
+      .then(res => {
         console.log(res);
-      });
-    }
+      })
+      .catch(() => {});
   },
   mounted() {
     let count = 0;
@@ -589,7 +592,8 @@ export default {
   methods: {
     clear() {
       clearInterval(this.loadingInterval);
-    }
+    },
+    ...mapActions("statistics", ["fetchUsers"])
   }
 };
 </script>
