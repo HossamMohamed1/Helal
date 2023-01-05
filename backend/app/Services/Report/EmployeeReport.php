@@ -4,14 +4,14 @@ namespace App\Services\Report;
 
 use App\Exceptions\GeneralException;
 use Exception;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use JsonException;
 
 class EmployeeReport extends BaseReport
 {
-    public array $queries = [];
-
+    public $queries = [];
+    public $mainTable;
     public function __construct()
     {
         $this->mainTable = 'V_ALL_USER_EMP_INFO';
@@ -25,7 +25,7 @@ class EmployeeReport extends BaseReport
     public function report($filter): array
     {
         DB::enableQueryLog();
-        
+
         try {
             $this->prepare($filter);
 
@@ -61,21 +61,21 @@ class EmployeeReport extends BaseReport
         $result = [];
         foreach ($this->queries as $key => $query) {
             $data = json_decode($query->get()
-                ->mapWithKeys(function ($item) use ($filter) {
-                    return ['list' => $item];
-                }), true, 512, JSON_THROW_ON_ERROR);
-                
+                    ->mapWithKeys(function ($item) use ($filter) {
+                        return ['list' => $item];
+                    }), true, 512, JSON_THROW_ON_ERROR);
+
             $result[$key] = $data;
         }
 
-        return count($result) > 1 ? $result : \Arr::first($result);
+        return count($result) > 1 ? $result : Arr::first($result);
     }
 
     /**
      * @param $filter
      */
     private function employeeGenderQuery($filter)
-   {
+    {
         return DB::connection('oracle')
             ->table($this->mainTable)
             ->select(
@@ -84,16 +84,16 @@ class EmployeeReport extends BaseReport
             );
     }
 
-        /**
+    /**
      * @param $filter
      */
     private function employeeDepartmentQuery($filter)
-   {
+    {
         return DB::connection('oracle')
             ->table($this->mainTable)
-            ->join()
+            ->join('', '')
             ->select(
-                'departments',''
+                'departments', ''
             );
     }
 }

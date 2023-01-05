@@ -14,7 +14,7 @@ class ReportService
      */
     public static function prepareObject($type)
     {
-        $path = "\\App\\Services\\Report\\".config("report.type.$type.className");
+        $path = "\\App\\Services\\Report\\" . config("report.type.$type.className");
 
         $reportClass = new $path();
 
