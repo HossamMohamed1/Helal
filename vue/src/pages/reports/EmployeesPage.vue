@@ -416,9 +416,7 @@
       </v-col>
     </v-row>
 
-    <files-management/>
-
-
+    <files-management />
   </div>
 </template>
 
@@ -549,37 +547,10 @@ export default {
         startDate: "2022-11-1",
         endDate: "2022-12-1"
       },
-      users: [
-        {
-          name: "Murphy Bayer",
-          email: "celestine.reilly@dickens.com",
-          department: "Sales"
-        },
-        {
-          name: "Katlyn Gorczany",
-          email: "rblanda@yahoo.com",
-          department: "HR"
-        },
-        {
-          name: "Justen Bins",
-          email: "dorothy65@yahoo.com",
-          department: "Managment"
-        },
-        {
-          name: "Mr. Damion Runte",
-          email: "vpredovic@hotmail.com",
-          department: "Marketing"
-        },
-        {
-          name: "Donnie McKenzie",
-          email: "kohler.ramona@hotmail.com",
-          department: "Development"
-        }
-      ],
+      users: [],
       headers: [
-        { text: this.$t("tables.name"), value: "name" },
-        { text: this.$t("tables.email"), value: "email" },
-        { text: this.$t("tables.department"), value: "department" }
+        { text: this.$t("tables.name"), value: "job_desc" },
+        { text: this.$t("tables.department"), value: "dept_desc" }
       ]
 
       // date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
@@ -597,7 +568,11 @@ export default {
   },
   watch: {
     selectedUsers(val) {},
-    created() {}
+    created() {
+      this.fetchUsers().then(res => {
+        console.log(res);
+      });
+    }
   },
   mounted() {
     let count = 0;
