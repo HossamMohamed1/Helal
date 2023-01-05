@@ -382,6 +382,7 @@ export default {
   tables: {
     username: "username",
     department: "department",
+    job_desc: "Job Description",
     name: "name",
     serial: "Serial",
     id: "ID",

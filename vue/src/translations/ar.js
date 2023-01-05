@@ -382,6 +382,7 @@ export default {
   tables: {
     username: "اللقب",
     department: "القسم",
+    job_desc: "المسمى الوظيفى",
     name: "الإسم",
     id: "الرقم التعريفي",
     serial: "الرقم التسلسلي",

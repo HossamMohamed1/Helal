@@ -550,7 +550,7 @@ export default {
       },
       users: [],
       headers: [
-        { text: this.$t("tables.name"), value: "job_desc" },
+        { text: this.$t("tables.job_desc"), value: "job_desc" },
         { text: this.$t("tables.department"), value: "dept_desc" }
       ]
 
