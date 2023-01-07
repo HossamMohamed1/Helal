@@ -34,7 +34,7 @@
       <v-breadcrumbs :items="breadcrumbs" class="pa-0 py-2"></v-breadcrumbs>
     </div>
 
-    <v-row dense style="margin: 10px;" class="builder-cards">
+    <v-row dense style="margin: 10px" class="builder-cards">
       <v-col cols="12" sm="6" lg="3" v-if="loading && reports.length == 0">
         <v-card :loading="loading">
           <v-img
@@ -59,13 +59,17 @@
         >
           <v-card :loading="loading">
             <v-img
-              v-bind:src="'/visualization/' + report.img"
+              v-bind:src="
+                require('@/assets/images/visualization/' + report.img)
+              "
               class="white--text align-end"
               height="200px"
               style="background-size: contain"
             >
               <v-card-title
-                style="background: linear-gradient(to top, #167e3e, transparent);"
+                style="
+                  background: linear-gradient(to top, #167e3e, transparent);
+                "
               >
                 {{ report.name | capitalize }}
                 <div>
@@ -76,12 +80,10 @@
                     title="تعديل"
                     :to="{
                       name: 'edit-report-builder',
-                      params: { id: report.id }
+                      params: { id: report.id },
                     }"
                   >
-                    <v-icon small>
-                      mdi-pen
-                    </v-icon>
+                    <v-icon small> mdi-pen </v-icon>
                   </v-btn>
                   <v-btn
                     x-small
@@ -90,9 +92,7 @@
                     title="حذف"
                     @click.prevent="deleteReport(report.id)"
                   >
-                    <v-icon small>
-                      mdi-delete
-                    </v-icon>
+                    <v-icon small> mdi-delete </v-icon>
                   </v-btn>
                 </div>
               </v-card-title>
@@ -116,7 +116,7 @@ import { ask } from "@/helpers";
 export default {
   components: {
     TrackCard,
-    DateRangePicker
+    DateRangePicker,
   },
   data() {
     return {
@@ -124,29 +124,29 @@ export default {
         {
           text: this.$t("menu.reportBuilder"),
           disabled: false,
-          href: "#"
+          href: "#",
         },
         {
           text: this.$t("menu.reportBuilder"),
           to: "/reports/report-builder",
-          exact: true
-        }
+          exact: true,
+        },
       ],
 
       dateRange: {
         startDate: "2022-11-1",
-        endDate: "2022-12-1"
+        endDate: "2022-12-1",
       },
 
       // reports: [],
-      loading: false
+      loading: false,
     };
   },
   created() {
     this.loadReports();
   },
   computed: {
-    ...mapState("reports", ["reports"])
+    ...mapState("reports", ["reports"]),
   },
   methods: {
     ...mapActions("reports", ["getReports", "removeReport"]),
@@ -165,8 +165,8 @@ export default {
       if (isConfirmed) {
         this.removeReport(id);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
@@ -188,7 +188,7 @@ export default {
   background-size: 88% 80%;
   background-position: 50% 11% !important;
 }
-a{
+a {
   text-decoration: none;
 }
 </style>

@@ -8,7 +8,7 @@ export default [
     lastSignIn: "2019-08-14T20:00:53Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar19.svg"
+    avatar: require("@/assets/images/images/avatars/avatar19.svg"),
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ export default [
     lastSignIn: "2019-09-20T01:11:13Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar1.svg"
+    avatar: require("@/assets/images/images/avatars/avatar1.svg"),
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ export default [
     lastSignIn: "2019-06-05T10:03:10Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar14.svg"
+    avatar: require("@/assets/images/images/avatars/avatar14.svg"),
   },
   {
     id: 4,
@@ -41,7 +41,7 @@ export default [
     lastSignIn: "2019-09-21T04:56:23Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar6.svg"
+    avatar: require("@/assets/images/images/avatars/avatar6.svg"),
   },
   {
     id: 5,
@@ -52,7 +52,7 @@ export default [
     lastSignIn: "2020-05-23T15:07:18Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar1.svg"
+    avatar: require("@/assets/images/images/avatars/avatar1.svg"),
   },
   {
     id: 6,
@@ -63,7 +63,7 @@ export default [
     lastSignIn: "2020-05-19T20:12:01Z",
     disabled: false,
     role: "مشرف",
-    avatar: "/images/avatars/avatar7.svg"
+    avatar: require("@/assets/images/images/avatars/avatar7.svg"),
   },
   {
     id: 7,
@@ -74,7 +74,7 @@ export default [
     lastSignIn: "2019-07-05T11:55:38Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar6.svg"
+    avatar: require("@/assets/images/images/avatars/avatar6.svg"),
   },
   {
     id: 8,
@@ -85,7 +85,7 @@ export default [
     lastSignIn: "2019-07-03T07:40:23Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar3.svg"
+    avatar: require("@/assets/images/images/avatars/avatar3.svg"),
   },
   {
     id: 9,
@@ -96,7 +96,7 @@ export default [
     lastSignIn: "2020-02-17T08:31:17Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar1.svg"
+    avatar: require("@/assets/images/images/avatars/avatar1.svg"),
   },
   {
     id: 10,
@@ -107,7 +107,7 @@ export default [
     lastSignIn: "2020-04-08T10:57:40Z",
     disabled: false,
     role: "مشرف",
-    avatar: "/images/avatars/avatar18.svg"
+    avatar: require("@/assets/images/images/avatars/avatar18.svg"),
   },
   {
     id: 11,
@@ -118,7 +118,7 @@ export default [
     lastSignIn: "2019-12-04T02:08:07Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar14.svg"
+    avatar: require("@/assets/images/images/avatars/avatar14.svg"),
   },
   {
     id: 12,
@@ -129,7 +129,7 @@ export default [
     lastSignIn: "2019-09-03T20:54:17Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar15.svg"
+    avatar: require("@/assets/images/images/avatars/avatar15.svg"),
   },
   {
     id: 13,
@@ -140,7 +140,7 @@ export default [
     lastSignIn: "2020-06-05T19:04:53Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar5.svg"
+    avatar: require("@/assets/images/images/avatars/avatar5.svg"),
   },
   {
     id: 14,
@@ -151,7 +151,7 @@ export default [
     lastSignIn: "2019-10-08T13:59:08Z",
     disabled: false,
     role: "مشرف",
-    avatar: "/images/avatars/avatar11.svg"
+    avatar: require("@/assets/images/images/avatars/avatar11.svg"),
   },
   {
     id: 15,
@@ -162,7 +162,7 @@ export default [
     lastSignIn: "2019-10-26T23:09:49Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar17.svg"
+    avatar: require("@/assets/images/images/avatars/avatar17.svg"),
   },
   {
     id: 16,
@@ -173,7 +173,7 @@ export default [
     lastSignIn: "2019-11-03T08:02:09Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar20.svg"
+    avatar: require("@/assets/images/images/avatars/avatar20.svg"),
   },
   {
     id: 17,
@@ -184,7 +184,7 @@ export default [
     lastSignIn: "2020-03-15T02:42:14Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar9.svg"
+    avatar: require("@/aseets/images/images/avatars/avatar9.svg"),
   },
   {
     id: 18,
@@ -195,7 +195,7 @@ export default [
     lastSignIn: "2020-04-01T11:27:55Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar9.svg"
+    avatar: require("@/aseets/images/images/avatars/avatar9.svg"),
   },
   {
     id: 19,
@@ -206,7 +206,7 @@ export default [
     lastSignIn: "2020-04-05T23:13:11Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar6.svg"
+    avatar: require("@/assets/images/images/avatars/avatar6.svg"),
   },
   {
     id: 20,
@@ -217,7 +217,7 @@ export default [
     lastSignIn: "2020-05-25T15:02:42Z",
     disabled: false,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar7.svg"
+    avatar: require("@/assets/images/images/avatars/avatar7.svg"),
   },
   {
     id: 21,
@@ -228,7 +228,7 @@ export default [
     lastSignIn: "2019-06-19T22:52:25Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar15.svg"
+    avatar: require("@/assets/images/images/avatars/avatar15.svg"),
   },
   {
     id: 22,
@@ -239,7 +239,7 @@ export default [
     lastSignIn: "2020-06-20T17:44:19Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar18.svg"
+    avatar: require("@/assets/images/images/avatars/avatar18.svg"),
   },
   {
     id: 23,
@@ -250,7 +250,7 @@ export default [
     lastSignIn: "2020-06-07T04:04:25Z",
     disabled: false,
     role: "مشرف",
-    avatar: "/images/avatars/avatar19.svg"
+    avatar: require("@/assets/images/images/avatars/avatar19.svg"),
   },
   {
     id: 24,
@@ -261,7 +261,7 @@ export default [
     lastSignIn: "2020-04-19T07:22:13Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar14.svg"
+    avatar: require("@/assets/images/images/avatars/avatar14.svg"),
   },
   {
     id: 25,
@@ -272,7 +272,7 @@ export default [
     lastSignIn: "2020-01-28T05:41:14Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar5.svg"
+    avatar: require("@/assets/images/images/avatars/avatar5.svg"),
   },
   {
     id: 26,
@@ -283,7 +283,7 @@ export default [
     lastSignIn: "2020-05-15T03:54:39Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar3.svg"
+    avatar: require("@/assets/images/images/avatars/avatar3.svg"),
   },
   {
     id: 27,
@@ -294,7 +294,7 @@ export default [
     lastSignIn: "2019-09-21T07:43:14Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar14.svg"
+    avatar: require("@/assets/images/images/avatars/avatar14.svg"),
   },
   {
     id: 28,
@@ -305,7 +305,7 @@ export default [
     lastSignIn: "2019-06-01T20:12:33Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar7.svg"
+    avatar: require("@/assets/images/images/avatars/avatar7.svg"),
   },
   {
     id: 29,
@@ -316,7 +316,7 @@ export default [
     lastSignIn: "2020-02-07T19:55:16Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar7.svg"
+    avatar: require("@/assets/images/images/avatars/avatar7.svg"),
   },
   {
     id: 30,
@@ -327,7 +327,7 @@ export default [
     lastSignIn: "2020-02-21T13:15:18Z",
     disabled: false,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar9.svg"
+    avatar: require("@/aseets/images/images/avatars/avatar9.svg"),
   },
   {
     id: 31,
@@ -338,7 +338,7 @@ export default [
     lastSignIn: "2019-08-16T06:29:42Z",
     disabled: false,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar13.svg"
+    avatar: require("@/assets/images/images/avatars/avatar13.svg"),
   },
   {
     id: 32,
@@ -349,7 +349,7 @@ export default [
     lastSignIn: "2019-11-10T14:51:40Z",
     disabled: false,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar2.svg"
+    avatar: require("@/assets/images/images/avatars/avatar2.svg"),
   },
   {
     id: 33,
@@ -360,7 +360,7 @@ export default [
     lastSignIn: "2020-06-28T00:45:28Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar6.svg"
+    avatar: require("@/assets/images/images/avatars/avatar6.svg"),
   },
   {
     id: 34,
@@ -371,7 +371,7 @@ export default [
     lastSignIn: "2019-06-14T23:43:34Z",
     disabled: false,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar11.svg"
+    avatar: require("@/assets/images/images/avatars/avatar11.svg"),
   },
   {
     id: 35,
@@ -382,7 +382,7 @@ export default [
     lastSignIn: "2020-01-06T11:12:42Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar9.svg"
+    avatar: require("@/aseets/images/images/avatars/avatar9.svg"),
   },
   {
     id: 36,
@@ -393,7 +393,7 @@ export default [
     lastSignIn: "2020-06-14T02:45:09Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar10.svg"
+    avatar: require("@/assets/images/images/avatars/avatar10.svg"),
   },
   {
     id: 37,
@@ -404,7 +404,7 @@ export default [
     lastSignIn: "2019-06-28T16:05:39Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar7.svg"
+    avatar: require("@/assets/images/images/avatars/avatar7.svg"),
   },
   {
     id: 38,
@@ -415,7 +415,7 @@ export default [
     lastSignIn: "2019-12-08T20:51:57Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar10.svg"
+    avatar: require("@/assets/images/images/avatars/avatar10.svg"),
   },
   {
     id: 39,
@@ -426,7 +426,7 @@ export default [
     lastSignIn: "2020-04-01T01:41:57Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar1.svg"
+    avatar: require("@/assets/images/images/avatars/avatar1.svg"),
   },
   {
     id: 40,
@@ -437,7 +437,7 @@ export default [
     lastSignIn: "2019-08-08T03:42:06Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar14.svg"
+    avatar: require("@/assets/images/images/avatars/avatar14.svg"),
   },
   {
     id: 41,
@@ -448,7 +448,7 @@ export default [
     lastSignIn: "2019-06-02T18:18:49Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar6.svg"
+    avatar: require("@/assets/images/images/avatars/avatar6.svg"),
   },
   {
     id: 42,
@@ -459,7 +459,7 @@ export default [
     lastSignIn: "2020-03-24T00:43:08Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar8.svg"
+    avatar: require("@/assets/images/images/avatars/avatar8.svg"),
   },
   {
     id: 43,
@@ -470,7 +470,7 @@ export default [
     lastSignIn: "2019-09-26T00:17:30Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar19.svg"
+    avatar: require("@/assets/images/images/avatars/avatar19.svg"),
   },
   {
     id: 44,
@@ -481,7 +481,7 @@ export default [
     lastSignIn: "2019-07-14T07:29:06Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar3.svg"
+    avatar: require("@/assets/images/images/avatars/avatar3.svg"),
   },
   {
     id: 45,
@@ -492,7 +492,7 @@ export default [
     lastSignIn: "2019-06-25T20:39:55Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar15.svg"
+    avatar: require("@/assets/images/images/avatars/avatar15.svg"),
   },
   {
     id: 46,
@@ -503,7 +503,7 @@ export default [
     lastSignIn: "2019-10-16T11:35:14Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar4.svg"
+    avatar: require("@/assets/images/images/avatars/avatar4.svg"),
   },
   {
     id: 47,
@@ -514,7 +514,7 @@ export default [
     lastSignIn: "2020-05-12T04:40:12Z",
     disabled: false,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar6.svg"
+    avatar: require("@/assets/images/images/avatars/avatar6.svg"),
   },
   {
     id: 48,
@@ -525,7 +525,7 @@ export default [
     lastSignIn: "2020-02-21T01:59:35Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar19.svg"
+    avatar: require("@/assets/images/images/avatars/avatar19.svg"),
   },
   {
     id: 49,
@@ -536,7 +536,7 @@ export default [
     lastSignIn: "2020-04-26T05:22:46Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar1.svg"
+    avatar: require("@/assets/images/images/avatars/avatar1.svg"),
   },
   {
     id: 50,
@@ -547,7 +547,7 @@ export default [
     lastSignIn: "2020-05-20T08:43:08Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar3.svg"
+    avatar: require("@/assets/images/images/avatars/avatar3.svg"),
   },
   {
     id: 51,
@@ -558,7 +558,7 @@ export default [
     lastSignIn: "2020-04-14T00:22:58Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar14.svg"
+    avatar: require("@/assets/images/images/avatars/avatar14.svg"),
   },
   {
     id: 52,
@@ -569,7 +569,7 @@ export default [
     lastSignIn: "2020-02-13T00:16:46Z",
     disabled: false,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar12.svg"
+    avatar: require("@/aseets/images/images/avatars/avatar12.svg"),
   },
   {
     id: 53,
@@ -580,7 +580,7 @@ export default [
     lastSignIn: "2019-06-09T04:14:35Z",
     disabled: false,
     role: "مشرف",
-    avatar: "/images/avatars/avatar14.svg"
+    avatar: require("@/assets/images/images/avatars/avatar14.svg"),
   },
   {
     id: 54,
@@ -591,7 +591,7 @@ export default [
     lastSignIn: "2019-08-26T07:00:23Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar12.svg"
+    avatar: require("@/aseets/images/images/avatars/avatar12.svg"),
   },
   {
     id: 55,
@@ -602,7 +602,7 @@ export default [
     lastSignIn: "2020-07-17T18:14:13Z",
     disabled: false,
     role: "مشرف",
-    avatar: "/images/avatars/avatar14.svg"
+    avatar: require("@/assets/images/images/avatars/avatar14.svg"),
   },
   {
     id: 56,
@@ -613,7 +613,7 @@ export default [
     lastSignIn: "2020-06-24T14:16:06Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar18.svg"
+    avatar: require("@/assets/images/images/avatars/avatar18.svg"),
   },
   {
     id: 57,
@@ -624,7 +624,7 @@ export default [
     lastSignIn: "2020-05-21T20:20:47Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar12.svg"
+    avatar: require("@/aseets/images/images/avatars/avatar12.svg"),
   },
   {
     id: 58,
@@ -635,7 +635,7 @@ export default [
     lastSignIn: "2020-06-05T04:01:14Z",
     disabled: false,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar16.svg"
+    avatar: require("@/assets/images/images/avatars/avatar16.svg"),
   },
   {
     id: 59,
@@ -646,7 +646,7 @@ export default [
     lastSignIn: "2020-03-13T21:50:29Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar18.svg"
+    avatar: require("@/assets/images/images/avatars/avatar18.svg"),
   },
   {
     id: 60,
@@ -657,7 +657,7 @@ export default [
     lastSignIn: "2019-11-21T14:24:08Z",
     disabled: false,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar16.svg"
+    avatar: require("@/assets/images/images/avatars/avatar16.svg"),
   },
   {
     id: 61,
@@ -668,7 +668,7 @@ export default [
     lastSignIn: "2020-06-02T15:41:45Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar13.svg"
+    avatar: require("@/assets/images/images/avatars/avatar13.svg"),
   },
   {
     id: 62,
@@ -679,7 +679,7 @@ export default [
     lastSignIn: "2019-12-05T22:33:54Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar11.svg"
+    avatar: require("@/assets/images/images/avatars/avatar11.svg"),
   },
   {
     id: 63,
@@ -690,7 +690,7 @@ export default [
     lastSignIn: "2019-11-03T16:50:11Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar16.svg"
+    avatar: require("@/assets/images/images/avatars/avatar16.svg"),
   },
   {
     id: 64,
@@ -701,7 +701,7 @@ export default [
     lastSignIn: "2020-05-04T07:00:39Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar6.svg"
+    avatar: require("@/assets/images/images/avatars/avatar6.svg"),
   },
   {
     id: 65,
@@ -712,7 +712,7 @@ export default [
     lastSignIn: "2019-11-15T05:56:00Z",
     disabled: false,
     role: "مشرف",
-    avatar: "/images/avatars/avatar9.svg"
+    avatar: require("@/aseets/images/images/avatars/avatar9.svg"),
   },
   {
     id: 66,
@@ -723,7 +723,7 @@ export default [
     lastSignIn: "2020-04-09T00:37:33Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar4.svg"
+    avatar: require("@/assets/images/images/avatars/avatar4.svg"),
   },
   {
     id: 67,
@@ -734,7 +734,7 @@ export default [
     lastSignIn: "2019-08-19T11:03:56Z",
     disabled: false,
     role: "مشرف",
-    avatar: "/images/avatars/avatar18.svg"
+    avatar: require("@/assets/images/images/avatars/avatar18.svg"),
   },
   {
     id: 68,
@@ -745,7 +745,7 @@ export default [
     lastSignIn: "2019-06-14T23:06:20Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar4.svg"
+    avatar: require("@/assets/images/images/avatars/avatar4.svg"),
   },
   {
     id: 69,
@@ -756,7 +756,7 @@ export default [
     lastSignIn: "2020-05-22T11:49:07Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar16.svg"
+    avatar: require("@/assets/images/images/avatars/avatar16.svg"),
   },
   {
     id: 70,
@@ -767,7 +767,7 @@ export default [
     lastSignIn: "2020-01-26T13:17:57Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar20.svg"
+    avatar: require("@/assets/images/images/avatars/avatar20.svg"),
   },
   {
     id: 71,
@@ -778,7 +778,7 @@ export default [
     lastSignIn: "2019-09-12T05:17:08Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar20.svg"
+    avatar: require("@/assets/images/images/avatars/avatar20.svg"),
   },
   {
     id: 72,
@@ -789,7 +789,7 @@ export default [
     lastSignIn: "2019-08-15T11:35:24Z",
     disabled: false,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar10.svg"
+    avatar: require("@/assets/images/images/avatars/avatar10.svg"),
   },
   {
     id: 73,
@@ -800,7 +800,7 @@ export default [
     lastSignIn: "2019-06-22T15:26:04Z",
     disabled: false,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar16.svg"
+    avatar: require("@/assets/images/images/avatars/avatar16.svg"),
   },
   {
     id: 74,
@@ -811,7 +811,7 @@ export default [
     lastSignIn: "2019-09-05T21:46:43Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar3.svg"
+    avatar: require("@/assets/images/images/avatars/avatar3.svg"),
   },
   {
     id: 75,
@@ -822,7 +822,7 @@ export default [
     lastSignIn: "2019-09-25T15:54:39Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar2.svg"
+    avatar: require("@/assets/images/images/avatars/avatar2.svg"),
   },
   {
     id: 76,
@@ -833,7 +833,7 @@ export default [
     lastSignIn: "2020-03-30T07:18:57Z",
     disabled: false,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar10.svg"
+    avatar: require("@/assets/images/images/avatars/avatar10.svg"),
   },
   {
     id: 77,
@@ -844,7 +844,7 @@ export default [
     lastSignIn: "2020-01-09T12:55:45Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar6.svg"
+    avatar: require("@/assets/images/images/avatars/avatar6.svg"),
   },
   {
     id: 78,
@@ -855,7 +855,7 @@ export default [
     lastSignIn: "2019-07-08T14:19:29Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar12.svg"
+    avatar: require("@/aseets/images/images/avatars/avatar12.svg"),
   },
   {
     id: 79,
@@ -866,7 +866,7 @@ export default [
     lastSignIn: "2020-02-18T12:24:31Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar9.svg"
+    avatar: require("@/aseets/images/images/avatars/avatar9.svg"),
   },
   {
     id: 80,
@@ -877,7 +877,7 @@ export default [
     lastSignIn: "2019-09-30T04:00:05Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar11.svg"
+    avatar: require("@/assets/images/images/avatars/avatar11.svg"),
   },
   {
     id: 81,
@@ -888,7 +888,7 @@ export default [
     lastSignIn: "2019-08-17T15:49:01Z",
     disabled: false,
     role: "مشرف",
-    avatar: "/images/avatars/avatar19.svg"
+    avatar: require("@/assets/images/images/avatars/avatar19.svg"),
   },
   {
     id: 82,
@@ -899,7 +899,7 @@ export default [
     lastSignIn: "2020-02-07T12:09:58Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar4.svg"
+    avatar: require("@/assets/images/images/avatars/avatar4.svg"),
   },
   {
     id: 83,
@@ -910,7 +910,7 @@ export default [
     lastSignIn: "2019-12-03T05:08:40Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar11.svg"
+    avatar: require("@/assets/images/images/avatars/avatar11.svg"),
   },
   {
     id: 84,
@@ -921,7 +921,7 @@ export default [
     lastSignIn: "2019-10-06T19:50:54Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar16.svg"
+    avatar: require("@/assets/images/images/avatars/avatar16.svg"),
   },
   {
     id: 85,
@@ -932,7 +932,7 @@ export default [
     lastSignIn: "2019-10-28T08:28:56Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar11.svg"
+    avatar: require("@/assets/images/images/avatars/avatar11.svg"),
   },
   {
     id: 86,
@@ -943,7 +943,7 @@ export default [
     lastSignIn: "2019-11-16T21:54:21Z",
     disabled: false,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar13.svg"
+    avatar: require("@/assets/images/images/avatars/avatar13.svg"),
   },
   {
     id: 87,
@@ -954,7 +954,7 @@ export default [
     lastSignIn: "2019-06-09T18:51:32Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar3.svg"
+    avatar: require("@/assets/images/images/avatars/avatar3.svg"),
   },
   {
     id: 88,
@@ -965,7 +965,7 @@ export default [
     lastSignIn: "2020-02-01T03:53:14Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar9.svg"
+    avatar: require("@/aseets/images/images/avatars/avatar9.svg"),
   },
   {
     id: 89,
@@ -976,7 +976,7 @@ export default [
     lastSignIn: "2019-12-17T12:14:20Z",
     disabled: false,
     role: "مشرف",
-    avatar: "/images/avatars/avatar4.svg"
+    avatar: require("@/assets/images/images/avatars/avatar4.svg"),
   },
   {
     id: 90,
@@ -987,7 +987,7 @@ export default [
     lastSignIn: "2019-06-15T06:18:52Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar17.svg"
+    avatar: require("@/assets/images/images/avatars/avatar17.svg"),
   },
   {
     id: 91,
@@ -998,7 +998,7 @@ export default [
     lastSignIn: "2019-12-18T09:09:27Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar6.svg"
+    avatar: require("@/assets/images/images/avatars/avatar6.svg"),
   },
   {
     id: 92,
@@ -1009,7 +1009,7 @@ export default [
     lastSignIn: "2020-06-23T19:18:41Z",
     disabled: false,
     role: "مشرف",
-    avatar: "/images/avatars/avatar11.svg"
+    avatar: require("@/assets/images/images/avatars/avatar11.svg"),
   },
   {
     id: 93,
@@ -1020,7 +1020,7 @@ export default [
     lastSignIn: "2020-05-02T23:13:52Z",
     disabled: true,
     role: "مشرف",
-    avatar: "/images/avatars/avatar6.svg"
+    avatar: require("@/assets/images/images/avatars/avatar6.svg"),
   },
   {
     id: 94,
@@ -1031,7 +1031,7 @@ export default [
     lastSignIn: "2020-05-08T10:00:56Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar16.svg"
+    avatar: require("@/assets/images/images/avatars/avatar16.svg"),
   },
   {
     id: 95,
@@ -1042,7 +1042,7 @@ export default [
     lastSignIn: "2019-12-19T10:55:45Z",
     disabled: false,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar12.svg"
+    avatar: require("@/aseets/images/images/avatars/avatar12.svg"),
   },
   {
     id: 96,
@@ -1053,7 +1053,7 @@ export default [
     lastSignIn: "2019-08-11T10:13:41Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar10.svg"
+    avatar: require("@/assets/images/images/avatars/avatar10.svg"),
   },
   {
     id: 97,
@@ -1064,7 +1064,7 @@ export default [
     lastSignIn: "2019-08-25T02:16:55Z",
     disabled: false,
     role: "مشرف",
-    avatar: "/images/avatars/avatar17.svg"
+    avatar: require("@/assets/images/images/avatars/avatar17.svg"),
   },
   {
     id: 98,
@@ -1075,7 +1075,7 @@ export default [
     lastSignIn: "2019-11-26T19:02:02Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar19.svg"
+    avatar: require("@/assets/images/images/avatars/avatar19.svg"),
   },
   {
     id: 99,
@@ -1086,7 +1086,7 @@ export default [
     lastSignIn: "2020-04-10T01:42:43Z",
     disabled: true,
     role: "مستخدم",
-    avatar: "/images/avatars/avatar6.svg"
+    avatar: require("@/assets/images/images/avatars/avatar6.svg"),
   },
   {
     id: 100,
@@ -1097,6 +1097,6 @@ export default [
     lastSignIn: "2019-06-04T09:10:39Z",
     disabled: true,
     role: "ADMIN",
-    avatar: "/images/avatars/avatar19.svg"
-  }
+    avatar: require("@/assets/images/images/avatars/avatar19.svg"),
+  },
 ];

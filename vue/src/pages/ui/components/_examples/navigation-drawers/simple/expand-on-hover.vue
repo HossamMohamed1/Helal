@@ -2,31 +2,31 @@
   <div class="ma-12 pa-12">
     <template>
       <v-card>
-        <v-navigation-drawer
-          permanent
-          expand-on-hover
-        >
+        <v-navigation-drawer permanent expand-on-hover>
           <v-list>
             <v-list-item class="px-2">
               <v-list-item-avatar>
-                <v-img src="/images/avatars/avatar13.svg"></v-img>
+                <v-img
+                  :src="require('@/assets/images/images/avatars/avatar13.svg')"
+                ></v-img>
               </v-list-item-avatar>
             </v-list-item>
 
             <v-list-item link>
               <v-list-item-content>
-                <v-list-item-title class="title">Sandra Adams</v-list-item-title>
-                <v-list-item-subtitle>sandra_a88@gmail.com</v-list-item-subtitle>
+                <v-list-item-title class="title"
+                  >Sandra Adams</v-list-item-title
+                >
+                <v-list-item-subtitle
+                  >sandra_a88@gmail.com</v-list-item-subtitle
+                >
               </v-list-item-content>
             </v-list-item>
           </v-list>
 
           <v-divider></v-divider>
 
-          <v-list
-            nav
-            dense
-          >
+          <v-list nav dense>
             <v-list-item link>
               <v-list-item-icon>
                 <v-icon>mdi-folder</v-icon>
@@ -55,5 +55,5 @@
 <script>
 export default {
   //
-}
+};
 </script>

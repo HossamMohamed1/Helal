@@ -3,41 +3,41 @@ export default [
     path: "/reports",
     redirect: "reports-employees",
     meta: {
-      auth: true
-    }
+      auth: true,
+    },
   },
   {
     path: "/reports/employees",
     name: "reports-employees",
     meta: {
-      auth: true
+      auth: true,
     },
     component: () =>
       import(
         /* webpackChunkName: "reports-list" */ "@/pages/reports/EmployeesPage.vue"
-      )
+      ),
   },
   {
     path: "/reports/permits",
     name: "reports-permits",
     meta: {
-      auth: true
+      auth: true,
     },
     component: () =>
       import(
         /* webpackChunkName: "reports-permits" */ "@/pages/reports/PermitsPage.vue"
-      )
+      ),
   },
   {
     path: "/reports/complaints",
     name: "reports-complaints",
     meta: {
-      auth: true
+      auth: true,
     },
     component: () =>
       import(
         /* webpackChunkName: "reports-complaints" */ "@/pages/reports/ComplaintsPage.vue"
-      )
+      ),
   },
   {
     path: "/reports/report-builder",
@@ -45,7 +45,7 @@ export default [
     component: () =>
       import(
         /* webpackChunkName: "report-builder" */ "@/pages/reports/ReportBuilder/ReportBuilderPage.vue"
-      )
+      ),
   },
 
   {
@@ -54,7 +54,7 @@ export default [
     component: () =>
       import(
         /* webpackChunkName: "report-builder-create" */ "@/pages/reports/ReportBuilder/CreateReportPage.vue"
-      )
+      ),
   },
   {
     path: "/reports/report-builder/:id",
@@ -62,7 +62,7 @@ export default [
     component: () =>
       import(
         /* webpackChunkName: "report-builder-show" */ "@/pages/reports/ReportBuilder/ShowReportBuilderPage.vue"
-      )
+      ),
   },
   {
     path: "/reports/report-builder/:id/edit",
@@ -70,6 +70,6 @@ export default [
     component: () =>
       import(
         /* webpackChunkName: "report-builder-show" */ "@/pages/reports/ReportBuilder/EditReportPage.vue"
-      )
-  }
+      ),
+  },
 ];

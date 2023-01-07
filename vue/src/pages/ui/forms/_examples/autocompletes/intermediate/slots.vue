@@ -1,9 +1,5 @@
 <template>
-  <v-card
-    color="blue-grey darken-1"
-    dark
-    :loading="isUpdating"
-  >
+  <v-card color="blue-grey darken-1" dark :loading="isUpdating">
     <template v-slot:progress>
       <v-progress-linear
         absolute
@@ -14,24 +10,13 @@
     </template>
     <v-img
       height="200"
-      src="/images/demo/cards/dark-beach.jpg"
+      :src="require('@/assets/images/images/demo/cards/dark-beach.jpg')"
     >
       <v-row>
-        <v-col
-          class="text-right"
-          cols="12"
-        >
-          <v-menu
-            bottom
-            left
-            transition="slide-y-transition"
-          >
+        <v-col class="text-right" cols="12">
+          <v-menu bottom left transition="slide-y-transition">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                icon
-                v-bind="attrs"
-                v-on="on"
-              >
+              <v-btn icon v-bind="attrs" v-on="on">
                 <v-icon>mdi-dots-vertical</v-icon>
               </v-btn>
             </template>
@@ -47,11 +32,7 @@
             </v-list>
           </v-menu>
         </v-col>
-        <v-row
-          class="pa-4"
-          align="center"
-          justify="center"
-        >
+        <v-row class="pa-4" align="center" justify="center">
           <v-col class="text-center">
             <h3 class="headline">{{ name }}</h3>
             <span class="grey--text text--lighten-1">{{ title }}</span>
@@ -62,10 +43,7 @@
     <v-form>
       <v-container>
         <v-row>
-          <v-col
-            cols="12"
-            md="6"
-          >
+          <v-col cols="12" md="6">
             <v-text-field
               v-model="name"
               :disabled="isUpdating"
@@ -74,10 +52,7 @@
               label="Name"
             ></v-text-field>
           </v-col>
-          <v-col
-            cols="12"
-            md="6"
-          >
+          <v-col cols="12" md="6">
             <v-text-field
               v-model="title"
               :disabled="isUpdating"
@@ -119,11 +94,15 @@
                 </template>
                 <template v-else>
                   <v-list-item-avatar>
-                    <img :src="data.item.avatar">
+                    <img :src="data.item.avatar" />
                   </v-list-item-avatar>
                   <v-list-item-content>
-                    <v-list-item-title v-html="data.item.name"></v-list-item-title>
-                    <v-list-item-subtitle v-html="data.item.group"></v-list-item-subtitle>
+                    <v-list-item-title
+                      v-html="data.item.name"
+                    ></v-list-item-title>
+                    <v-list-item-subtitle
+                      v-html="data.item.group"
+                    ></v-list-item-subtitle>
                   </v-list-item-content>
                 </template>
               </template>
@@ -159,51 +138,51 @@
 
 <script>
 export default {
-  data () {
+  data() {
     const srcs = {
-      1: '/images/avatars/avatar2.svg',
-      2: '/images/avatars/avatar1.svg',
-      3: '/images/avatars/avatar3.svg',
-      4: '/images/avatars/avatar4.svg',
-      5: '/images/avatars/avatar5.svg'
-    }
+      1: require("@/assets/images/images/avatars/avatar2.svg"),
+      2: require("@/assets/images/images/avatars/avatar1.svg"),
+      3: require("@/assets/images/images/avatars/avatar3.svg"),
+      4: require("@/assets/images/images/avatars/avatar4.svg"),
+      5: require("@/assets/images/images/avatars/avatar5.svg"),
+    };
 
     return {
       autoUpdate: true,
-      friends: ['Sandra Adams', 'Britta Holt'],
+      friends: ["Sandra Adams", "Britta Holt"],
       isUpdating: false,
-      name: 'Midnight Crew',
+      name: "Midnight Crew",
       people: [
-        { header: 'Group 1' },
-        { name: 'Sandra Adams', group: 'Group 1', avatar: srcs[1] },
-        { name: 'Ali Connors', group: 'Group 1', avatar: srcs[2] },
-        { name: 'Trevor Hansen', group: 'Group 1', avatar: srcs[3] },
-        { name: 'Tucker Smith', group: 'Group 1', avatar: srcs[2] },
+        { header: "Group 1" },
+        { name: "Sandra Adams", group: "Group 1", avatar: srcs[1] },
+        { name: "Ali Connors", group: "Group 1", avatar: srcs[2] },
+        { name: "Trevor Hansen", group: "Group 1", avatar: srcs[3] },
+        { name: "Tucker Smith", group: "Group 1", avatar: srcs[2] },
         { divider: true },
-        { header: 'Group 2' },
-        { name: 'Britta Holt', group: 'Group 2', avatar: srcs[4] },
-        { name: 'Jane Smith ', group: 'Group 2', avatar: srcs[5] },
-        { name: 'John Smith', group: 'Group 2', avatar: srcs[1] },
-        { name: 'Sandra Williams', group: 'Group 2', avatar: srcs[3] }
+        { header: "Group 2" },
+        { name: "Britta Holt", group: "Group 2", avatar: srcs[4] },
+        { name: "Jane Smith ", group: "Group 2", avatar: srcs[5] },
+        { name: "John Smith", group: "Group 2", avatar: srcs[1] },
+        { name: "Sandra Williams", group: "Group 2", avatar: srcs[3] },
       ],
-      title: 'The summer breeze'
-    }
+      title: "The summer breeze",
+    };
   },
 
   watch: {
-    isUpdating (val) {
+    isUpdating(val) {
       if (val) {
-        setTimeout(() => (this.isUpdating = false), 3000)
+        setTimeout(() => (this.isUpdating = false), 3000);
       }
-    }
+    },
   },
 
   methods: {
-    remove (item) {
-      const index = this.friends.indexOf(item.name)
+    remove(item) {
+      const index = this.friends.indexOf(item.name);
 
-      if (index >= 0) this.friends.splice(index, 1)
-    }
-  }
-}
+      if (index >= 0) this.friends.splice(index, 1);
+    },
+  },
+};
 </script>

@@ -3,8 +3,8 @@
     <v-row class="flex" justify="center">
       <v-card
         :ripple="false"
-        style="margin: 0 auto; max-width: 600px; width: 100%;"
-        img="/images/demo/cards/desert.jpg"
+        style="margin: 0 auto; max-width: 600px; width: 100%"
+        :img="require('@/assets/images/images/demo/cards/desert.jpg')"
         height="300px"
         @click="show"
       ></v-card>
@@ -18,11 +18,7 @@
       offset-y
     >
       <v-list>
-        <v-list-item
-          v-for="(item, index) in items"
-          :key="index"
-          @click=""
-        >
+        <v-list-item v-for="(item, index) in items" :key="index" @click="">
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
       </v-list>
@@ -37,25 +33,25 @@ export default {
     x: 0,
     y: 0,
     items: [
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me 2' }
-    ]
+      { title: "Click Me" },
+      { title: "Click Me" },
+      { title: "Click Me" },
+      { title: "Click Me 2" },
+    ],
   }),
 
   methods: {
-    show (e) {
-      e.preventDefault()
-      this.showMenu = false
-      this.x = e.clientX
-      this.y = e.clientY
+    show(e) {
+      e.preventDefault();
+      this.showMenu = false;
+      this.x = e.clientX;
+      this.y = e.clientY;
       this.$nextTick(() => {
-        this.showMenu = true
-      })
-    }
-  }
-}
+        this.showMenu = true;
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>

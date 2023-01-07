@@ -1,14 +1,12 @@
 <template>
   <v-card height="350px">
-    <v-navigation-drawer
-      absolute
-      permanent
-      right
-    >
+    <v-navigation-drawer absolute permanent right>
       <template v-slot:prepend>
         <v-list-item two-line>
           <v-list-item-avatar>
-            <img src="/images/avatars/avatar10.svg">
+            <img
+              :src="require('@/assets/images/images/avatars/avatar10.svg')"
+            />
           </v-list-item-avatar>
 
           <v-list-item-content>
@@ -21,11 +19,7 @@
       <v-divider></v-divider>
 
       <v-list dense>
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          @click=""
-        >
+        <v-list-item v-for="item in items" :key="item.title" @click="">
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -41,14 +35,14 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       items: [
-        { title: 'Home', icon: 'mdi-home-city' },
-        { title: 'My Account', icon: 'mdi-account' },
-        { title: 'Users', icon: 'mdi-account-group-outline' }
-      ]
-    }
-  }
-}
+        { title: "Home", icon: "mdi-home-city" },
+        { title: "My Account", icon: "mdi-account" },
+        { title: "Users", icon: "mdi-account-group-outline" },
+      ],
+    };
+  },
+};
 </script>

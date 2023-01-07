@@ -7,12 +7,7 @@
       offset-x
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="indigo"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
+        <v-btn color="indigo" dark v-bind="attrs" v-on="on">
           Menu as Popover
         </v-btn>
       </template>
@@ -21,7 +16,10 @@
         <v-list>
           <v-list-item>
             <v-list-item-avatar>
-              <img src="/images/avatars/avatar1.svg" alt="John">
+              <img
+                :src="require('@/assets/images/images/avatars/avatar1.svg')"
+                alt="John"
+              />
             </v-list-item-avatar>
 
             <v-list-item-content>
@@ -30,11 +28,7 @@
             </v-list-item-content>
 
             <v-list-item-action>
-              <v-btn
-                :class="fav ? 'red--text' : ''"
-                icon
-                @click="fav = !fav"
-              >
+              <v-btn :class="fav ? 'red--text' : ''" icon @click="fav = !fav">
                 <v-icon>mdi-heart</v-icon>
               </v-btn>
             </v-list-item-action>
@@ -76,7 +70,7 @@ export default {
     fav: true,
     menu: false,
     message: false,
-    hints: true
-  })
-}
+    hints: true,
+  }),
+};
 </script>

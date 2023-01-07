@@ -1,20 +1,8 @@
 <template>
   <v-container>
-    <v-row
-      align="center"
-      justify="center"
-    >
-      <v-badge
-        bordered
-        color="error"
-        icon="mdi-lock"
-        overlap
-      >
-        <v-btn
-          class="white--text"
-          color="error"
-          depressed
-        >
+    <v-row align="center" justify="center">
+      <v-badge bordered color="error" icon="mdi-lock" overlap>
+        <v-btn class="white--text" color="error" depressed>
           Lock Account
         </v-btn>
       </v-badge>
@@ -30,25 +18,27 @@
         offset-y="10"
       >
         <v-avatar size="40">
-          <v-img src="/images/avatars/avatar1.svg"></v-img>
+          <v-img
+            :src="require('@/assets/images/images/avatars/avatar1.svg')"
+          ></v-img>
         </v-avatar>
       </v-badge>
 
       <div class="mx-3"></div>
 
-      <v-badge
-        avatar
-        bordered
-        overlap
-      >
+      <v-badge avatar bordered overlap>
         <template v-slot:badge>
           <v-avatar>
-            <v-img src="/images/avatars/avatar8.svg"></v-img>
+            <v-img
+              :src="require('@/assets/images/images/avatars/avatar8.svg')"
+            ></v-img>
           </v-avatar>
         </template>
 
         <v-avatar size="40">
-          <v-img src="/images/avatars/avatar1.svg"></v-img>
+          <v-img
+            :src="require('@/assets/images/images/avatars/avatar1.svg')"
+          ></v-img>
         </v-avatar>
       </v-badge>
     </v-row>

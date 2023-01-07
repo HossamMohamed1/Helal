@@ -1,22 +1,14 @@
 <template>
-  <v-card
-    class="mx-auto"
-    height="300"
-    width="300"
-  >
+  <v-card class="mx-auto" height="300" width="300">
     <v-navigation-drawer
       absolute
       dark
-      src="/images/demo/cards/desert.jpg"
+      :src="require('@/assets/images/images/demo/cards/desert.jpg')"
       width="100%"
       permanent
     >
       <v-list>
-        <v-list-item
-          v-for="([icon, text], i) in items"
-          :key="i"
-          link
-        >
+        <v-list-item v-for="([icon, text], i) in items" :key="i" link>
           <v-list-item-icon>
             <v-icon>{{ icon }}</v-icon>
           </v-list-item-icon>
@@ -34,10 +26,10 @@
 export default {
   data: () => ({
     items: [
-      ['mdi-email', 'Inbox'],
-      ['mdi-account-supervisor-circle', 'Supervisors'],
-      ['mdi-clock-start', 'Clock-in']
-    ]
-  })
-}
+      ["mdi-email", "Inbox"],
+      ["mdi-account-supervisor-circle", "Supervisors"],
+      ["mdi-clock-start", "Clock-in"],
+    ],
+  }),
+};
 </script>

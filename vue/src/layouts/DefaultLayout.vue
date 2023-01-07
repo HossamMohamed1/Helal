@@ -146,7 +146,7 @@ export default {
     ToolbarUser,
     ToolbarApps,
     ToolbarLanguage,
-    ToolbarNotifications
+    ToolbarNotifications,
   },
   data() {
     return {
@@ -154,7 +154,7 @@ export default {
       showSearch: false,
 
       navigation: config.navigation,
-      logo: "/images/haramain.png"
+      logo: require("@/assets/images/images/haramain.png"),
     };
   },
   computed: {
@@ -163,14 +163,14 @@ export default {
       "isContentBoxed",
       "menuTheme",
       "toolbarTheme",
-      "isToolbarDetached"
-    ])
+      "isToolbarDetached",
+    ]),
   },
   methods: {
     onKeyup(e) {
       this.$refs.search.focus();
-    }
-  }
+    },
+  },
 };
 </script>
 
