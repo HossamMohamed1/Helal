@@ -24,8 +24,6 @@ class EmployeeReport extends BaseReport
      */
     public function report($filter): array
     {
-        DB::enableQueryLog();
-
         try {
             $this->prepare($filter);
 
@@ -47,10 +45,8 @@ class EmployeeReport extends BaseReport
         $func_name = "{$type}Query";
 
         if (method_exists($this, $func_name)) {
-            $queries[$filter['type']] = $this->$func_name($filter);
+            $this->query = $this->$func_name($filter);
         }
-
-        $this->queries = $queries ?? [];
     }
 
     /**
@@ -59,16 +55,20 @@ class EmployeeReport extends BaseReport
     public function getReport($filter): array
     {
         $result = [];
-        foreach ($this->queries as $key => $query) {
-            $data = json_decode($query->get()
+     
+        $result = $this->query->first();
+        dd($result);
+        $data = json_decode($this->query->get()
                     ->mapWithKeys(function ($item) use ($filter) {
                         return ['list' => $item];
                     }), true, 512, JSON_THROW_ON_ERROR);
 
-            $result[$key] = $data;
-        }
+        $result = $data;
+        
 
-        return count($result) > 1 ? $result : Arr::first($result);
+        dd($result);
+
+        return $data;
     }
 
     /**
