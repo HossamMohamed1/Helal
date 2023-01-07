@@ -43,6 +43,7 @@
               ></v-text-field>
               <v-text-field
                 v-model="user.email"
+                type="email"
                 :label="$t('tables.email')"
                 :error-messages="errors['email']"
               ></v-text-field>
@@ -84,21 +85,21 @@ export default {
   props: {
     user: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     errors: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     loading: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       showPassword: false,
-      avatar: {}
+      avatar: {},
     };
   },
   methods: {
@@ -127,7 +128,7 @@ export default {
         name,
         password,
         confirm_password,
-        username
+        username,
       };
       if (this.avatar.length) {
         data["avatar"] = this.avatar[0];
@@ -137,12 +138,12 @@ export default {
       this.$emit("createUser", form);
       document.getElementById("update-avatar").files = null;
       this.avatar = {};
-    }
+    },
   },
   mounted() {
-    document.getElementById("update-avatar").addEventListener("change", e => {
+    document.getElementById("update-avatar").addEventListener("change", (e) => {
       this.avatar = e.target.files;
     });
-  }
+  },
 };
 </script>

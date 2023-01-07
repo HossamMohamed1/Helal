@@ -113,9 +113,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         if (request()->hasFile('avatar') && $request->avatar != '') {
-            $imagePath = Storage::disk('public')->path(str_replace(url('storage') . '/', '', $user->avatar));
-
             if ($user->avatar) {
+                $imagePath = Storage::disk('public')->path(str_replace(url('storage') . '/', '', $user->avatar));
                 if (file_exists($imagePath)) {
                     unlink($imagePath);
                 }
@@ -138,6 +137,13 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+
+        if ($user->avatar) {
+            $imagePath = Storage::disk('public')->path(str_replace(url('storage') . '/', '', $user->avatar));
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
         $user->delete();
 
         return response()->json([
