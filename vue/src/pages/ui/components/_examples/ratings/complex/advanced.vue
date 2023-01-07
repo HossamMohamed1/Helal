@@ -1,38 +1,32 @@
 <template>
-  <v-card
-    class="mx-auto overflow-hidden"
-    style="max-width: 600px;"
-  >
+  <v-card class="mx-auto overflow-hidden" style="max-width: 600px">
     <v-row>
       <v-col class="d-flex" cols="6">
         <v-img
-          src="/images/demo/cards/cooking.png"
+          :src="require('@/assets/images/images/demo/cards/cooking.png')"
         ></v-img>
       </v-col>
       <v-col cols="6">
-        <v-container
-          class="pa-0 pl-2"
-          style="margin: -4px 0"
-        >
+        <v-container class="pa-0 pl-2" style="margin: -4px 0">
           <v-row>
             <v-col class="d-flex" cols="7">
               <v-img
-                src="/images/demo/cards/desert.jpg"
+                :src="require('@/assets/images/images/demo/cards/desert.jpg')"
               ></v-img>
             </v-col>
             <v-col class="d-flex" cols="5">
               <v-img
-                src="/images/demo/cards/foster.jpg"
+                :src="require('@/assets/images/images/demo/cards/foster.jpg')"
               ></v-img>
             </v-col>
             <v-col class="d-flex" cols="5">
               <v-img
-                src="/images/demo/cards/house.jpg"
+                :src="require('@/assets/images/images/demo/cards/house.jpg')"
               ></v-img>
             </v-col>
             <v-col class="d-flex" cols="7">
               <v-img
-                src="/images/demo/cards/road.jpg"
+                :src="require('@/assets/images/images/demo/cards/road.jpg')"
               ></v-img>
             </v-col>
           </v-row>
@@ -45,24 +39,15 @@
         <div class="grey--text font-weight-light">Let's go</div>
       </div>
       <v-spacer></v-spacer>
-      <v-dialog
-        v-model="dialog"
-        width="400"
-      >
+      <v-dialog v-model="dialog" width="400">
         <template v-slot:activator="{ on }">
-          <v-icon v-on="on">
-            mdi-share-variant
-          </v-icon>
+          <v-icon v-on="on"> mdi-share-variant </v-icon>
         </template>
         <v-card>
           <v-card-title>
             <span class="title font-weight-bold">Share</span>
             <v-spacer></v-spacer>
-            <v-btn
-              class="mx-0"
-              icon
-              @click="dialog = false"
-            >
+            <v-btn class="mx-0" icon @click="dialog = false">
               <v-icon>mdi-close-circle-outline</v-icon>
             </v-btn>
           </v-card-title>
@@ -99,13 +84,11 @@
     </v-card-title>
     <v-divider></v-divider>
     <v-card-actions>
-      <span class="pl-2 grey--text text--darken-2 font-weight-light caption">16,544 reviews</span>
-      <v-spacer></v-spacer>
-      <v-rating
-        v-model="rating"
-        length="10"
-        readonly
+      <span class="pl-2 grey--text text--darken-2 font-weight-light caption"
+        >16,544 reviews</span
       >
+      <v-spacer></v-spacer>
+      <v-rating v-model="rating" length="10" readonly>
         <template v-slot:item="props">
           <v-icon
             :color="props.isFilled ? 'purple darken-4' : ''"
@@ -122,17 +105,17 @@ export default {
   data: () => ({
     copied: false,
     dialog: false,
-    rating: 10
+    rating: 10,
   }),
 
   methods: {
-    copy () {
-      const markup = this.$refs.link
+    copy() {
+      const markup = this.$refs.link;
 
-      markup.focus()
-      document.execCommand('selectAll', false, null)
-      this.copied = document.execCommand('copy')
-    }
-  }
-}
+      markup.focus();
+      document.execCommand("selectAll", false, null);
+      this.copied = document.execCommand("copy");
+    },
+  },
+};
 </script>

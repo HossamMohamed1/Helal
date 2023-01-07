@@ -2,7 +2,10 @@
   <div>
     <!-- channel toolbar -->
     <v-app-bar flat height="64">
-      <v-app-bar-nav-icon class="hidden-lg-and-up" @click="$emit('toggle-menu')"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        class="hidden-lg-and-up"
+        @click="$emit('toggle-menu')"
+      ></v-app-bar-nav-icon>
       <div class="title font-weight-bold"># {{ $route.params.id }}</div>
 
       <v-spacer></v-spacer>
@@ -42,12 +45,15 @@
     >
       <v-list dense>
         <v-subheader class="mx-1 overline">
-          {{ $t('chat.online', { count: users.length }) }}
+          {{ $t("chat.online", { count: users.length }) }}
         </v-subheader>
         <v-list-item v-for="item in users" :key="item.id" class="mb-1">
           <user-avatar :user="item" class="mx-1" />
           <v-list-item-content>
-            <v-list-item-title :class="{ 'primary--text': item.id === user.id }">{{ item.name }}</v-list-item-title>
+            <v-list-item-title
+              :class="{ 'primary--text': item.id === user.id }"
+              >{{ item.name }}</v-list-item-title
+            >
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -56,12 +62,12 @@
 </template>
 
 <script>
-import InputBox from '../components/InputBox'
-import UserAvatar from '../components/UserAvatar'
-import ChannelMessage from '../components/ChannelMessage'
+import InputBox from "../components/InputBox";
+import UserAvatar from "../components/UserAvatar";
+import ChannelMessage from "../components/ChannelMessage";
 
 // Demo messages and users
-import getMessage, { users } from '../content/messages'
+import getMessage, { users } from "../content/messages";
 
 /*
 |---------------------------------------------------------------------
@@ -75,14 +81,14 @@ export default {
   components: {
     InputBox,
     UserAvatar,
-    ChannelMessage
+    ChannelMessage,
   },
   props: {
     // Current logged user
     user: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   data() {
     return {
@@ -90,72 +96,69 @@ export default {
       usersDrawer: true,
 
       // channel information and messages
-      channel: '',
+      channel: "",
       messages: [],
 
       // online users
-      users: [
-        this.user,
-        ...users
-      ],
+      users: [this.user, ...users],
 
       // demo random message timeout
-      timeoutGenerator: null
-    }
+      timeoutGenerator: null,
+    };
   },
   watch: {
-    '$route.params.id'() {
-      this.startChannel(this.$route.params.id)
-    }
+    "$route.params.id"() {
+      this.startChannel(this.$route.params.id);
+    },
   },
   mounted() {
-    this.startChannel(this.$route.params.id)
+    this.startChannel(this.$route.params.id);
   },
   beforeDestroy() {
-    clearTimeout(this.timeoutGenerator)
+    clearTimeout(this.timeoutGenerator);
   },
   methods: {
     startChannel(channelId) {
-      clearTimeout(this.timeoutGenerator)
+      clearTimeout(this.timeoutGenerator);
 
-      this.messages = []
+      this.messages = [];
 
       // DEMO: generate random message to fill the channel
-      this.messages.push(getMessage())
-      this.messages.push(getMessage())
-      this.messages.push(getMessage(this.user))
-      this.messages.push(getMessage())
+      this.messages.push(getMessage());
+      this.messages.push(getMessage());
+      this.messages.push(getMessage(this.user));
+      this.messages.push(getMessage());
 
-      this.channel = channelId
+      this.channel = channelId;
 
-      this.sendRandom()
+      this.sendRandom();
     },
     // Random message generator
     sendRandom() {
       this.timeoutGenerator = setTimeout(() => {
-        this.messages.push(getMessage())
-        this.scrollToBottom()
-        this.sendRandom()
-      }, 1000 * (Math.floor(Math.random() * 15) + 1))
+        this.messages.push(getMessage());
+        this.scrollToBottom();
+        this.sendRandom();
+      }, 1000 * (Math.floor(Math.random() * 15) + 1));
     },
     // Send message to channel
     sendMessage(message) {
       this.messages.push({
-        id: '_' + Math.random().toString(36).substr(2, 9),
+        id: "_" + Math.random().toString(36).substr(2, 9),
         user: this.user,
         text: message,
-        timestamp: (new Date()).getTime()
-      })
+        timestamp: new Date().getTime(),
+      });
 
-      this.scrollToBottom()
+      this.scrollToBottom();
     },
     scrollToBottom() {
       this.$nextTick(() => {
-        this.$refs.messages.scrollTop = this.$refs.messages.scrollHeight
-      })
-    }
-  }
-}
+        this.$refs.messages.scrollTop = this.$refs.messages.scrollHeight;
+      });
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 // List Transition Animation
@@ -183,7 +186,7 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
-  background: url("/images/chat/chat-bg-2.png");
+  background: url("../../../assets/images/images/chat/chat-bg-2.png");
 
   .messages {
     flex-grow: 1;

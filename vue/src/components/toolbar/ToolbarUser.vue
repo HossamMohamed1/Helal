@@ -4,7 +4,9 @@
       <v-btn icon class="elevation-2" v-on="on">
         <v-badge color="success" dot bordered offset-x="10" offset-y="10">
           <v-avatar size="40">
-            <v-img src="/images/avatars/avatar1.svg"></v-img>
+            <v-img
+              :src="require('@/assets/images/images/avatars/avatar1.svg')"
+            ></v-img>
           </v-avatar>
         </v-badge>
       </v-btn>
@@ -60,11 +62,11 @@ import config from "../../configs";
 export default {
   data() {
     return {
-      menu: config.toolbar.user
+      menu: config.toolbar.user,
     };
   },
   methods: {
-    ...mapActions("auth", ["logout"])
-  }
+    ...mapActions("auth", ["logout"]),
+  },
 };
 </script>

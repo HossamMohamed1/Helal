@@ -1,18 +1,10 @@
 <template>
-  <v-row
-    class="d-flex"
-    justify="center"
-  >
-    <v-menu
-      v-model="showMenu"
-      absolute
-      offset-y
-      style="max-width: 600px"
-    >
+  <v-row class="d-flex" justify="center">
+    <v-menu v-model="showMenu" absolute offset-y style="max-width: 600px">
       <template v-slot:activator="{ on, attrs }">
         <v-card
           class="portrait"
-          img="/images/demo/cards/girl.jpg"
+          :img="require('@/assets/images/images/demo/cards/girl.jpg')"
           height="300"
           width="600"
           v-bind="attrs"
@@ -21,11 +13,7 @@
       </template>
 
       <v-list>
-        <v-list-item
-          v-for="(item, index) in items"
-          :key="index"
-          @click=""
-        >
+        <v-list-item v-for="(item, index) in items" :key="index" @click="">
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
       </v-list>
@@ -38,11 +26,11 @@ export default {
   data: () => ({
     showMenu: false,
     items: [
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me 2' }
-    ]
-  })
-}
+      { title: "Click Me" },
+      { title: "Click Me" },
+      { title: "Click Me" },
+      { title: "Click Me 2" },
+    ],
+  }),
+};
 </script>

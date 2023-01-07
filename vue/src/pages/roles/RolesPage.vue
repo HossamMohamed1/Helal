@@ -73,18 +73,18 @@ export default {
         {
           text: this.$t("menu.usersManagement"),
           disabled: false,
-          href: "#"
+          href: "#",
         },
         {
-          text: this.$t("users.rolesList")
-        }
-      ]
+          text: this.$t("users.rolesList"),
+        },
+      ],
 
       // roles: []
     };
   },
   computed: {
-    ...mapState("roles", ["roles"])
+    ...mapState("roles", ["roles"]),
   },
   mounted() {
     this.open();
@@ -115,8 +115,8 @@ export default {
             this.loading = false;
           });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

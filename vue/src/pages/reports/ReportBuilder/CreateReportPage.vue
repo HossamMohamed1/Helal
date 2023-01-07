@@ -95,29 +95,44 @@ export default {
         {
           text: this.$t("menu.reportBuilder"),
           disabled: false,
-          href: "#"
+          href: "#",
         },
         {
           text: this.$t("menu.reportBuilder"),
           to: "/reports/report-builder",
-          exact: true
-        }
+          exact: true,
+        },
       ],
 
       types: [
-        { name: "Network", image: "/visualization/network.jpg" },
-        { name: "Bar", image: "/visualization/bar.jpg" },
-        { name: "Line", image: "/visualization/line.jpg" },
-        { name: "XYBubble", image: "/visualization/xybubble.jpg" },
-        { name: "Pie", image: "/visualization/pie.jpg" }
+        {
+          name: "Network",
+          image: require("@/assets/images/visualization/network.jpg"),
+        },
+        {
+          name: "Bar",
+          image: require("@/assets/images/visualization/bar.jpg"),
+        },
+        {
+          name: "Line",
+          image: require("@/assets/images/visualization/line.jpg"),
+        },
+        {
+          name: "XYBubble",
+          image: require("@/assets/images/visualization/xybubble.jpg"),
+        },
+        {
+          name: "Pie",
+          image: require("@/assets/images/visualization/pie.jpg"),
+        },
       ],
       report: {
         name: null,
         type: undefined,
-        file: undefined
+        file: undefined,
       },
       validationError: [],
-      loading: false
+      loading: false,
     };
   },
   methods: {
@@ -131,7 +146,7 @@ export default {
           this.loading = false;
           this.$router.push("/reports/report-builder");
         })
-        .catch(error => {
+        .catch((error) => {
           this.loading = false;
 
           if (error?.response?.status == 422) {
@@ -154,8 +169,8 @@ export default {
         // }
       }
       return form;
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

@@ -40,9 +40,7 @@
                 </v-card-text>
                 <v-card-actions class="mb-1">
                   <v-spacer></v-spacer>
-                  <v-btn color="primary" dark @click="submitFile">
-                    حفظ
-                  </v-btn>
+                  <v-btn color="primary" dark @click="submitFile"> حفظ </v-btn>
                   <v-btn color="dark" dark @click="dialog = false">
                     إلغاء
                   </v-btn>
@@ -60,8 +58,12 @@
                   <div
                     class="py-1 px-1 d-flex align-center justify-space-between"
                   >
-                    <div class="d-flex align-center ">
-                      <img src="/images/txt.png" alt="file" width="24" />
+                    <div class="d-flex align-center">
+                      <img
+                        :src="require('@/assets/images/images/txt.png')"
+                        alt="file"
+                        width="24"
+                      />
                       <div class="text-h6 mx-1 font-weight-medium">
                         {{ file.name }}
                       </div>
@@ -122,8 +124,12 @@
                   <div
                     class="py-1 px-1 d-flex align-center justify-space-between"
                   >
-                    <div class="d-flex align-center ">
-                      <img src="/images/txt.png" alt="file" width="24" />
+                    <div class="d-flex align-center">
+                      <img
+                        :src="require('@/assets/images/images/txt.png')"
+                        alt="file"
+                        width="24"
+                      />
                       <div class="text-h6 mx-1 font-weight-medium">
                         {{ file.name }}
                       </div>
@@ -189,13 +195,13 @@ export default {
       files: [
         {
           id: 1,
-          name: "File  name 1"
+          name: "File  name 1",
         },
         {
           id: 2,
-          name: "File  name 2"
-        }
-      ]
+          name: "File  name 2",
+        },
+      ],
     };
   },
   mounted() {},
@@ -214,8 +220,8 @@ export default {
       //   res.data.files; // binary representation of the file
       //   res.status; // HTTP status
       // });
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

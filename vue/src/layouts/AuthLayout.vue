@@ -12,7 +12,12 @@
         </div>
         <v-btn to="/" class="my-4">Take me back</v-btn>
       </div>
-      <img class="w-full" src="/images/illustrations/signin-illustration.svg" />
+      <img
+        class="w-full"
+        :src="
+          require('@/assets/images/images/illustrations/signin-illustration.svg')
+        "
+      />
     </v-sheet>
 
     <div
@@ -33,8 +38,8 @@ import { mapState } from "vuex";
 
 export default {
   computed: {
-    ...mapState("app", ["product"])
-  }
+    ...mapState("app", ["product"]),
+  },
 };
 </script>
 

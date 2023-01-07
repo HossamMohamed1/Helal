@@ -58,28 +58,43 @@ export default {
         {
           text: this.$t("menu.reportBuilder"),
           disabled: false,
-          href: "#"
+          href: "#",
         },
         {
           text: this.$t("menu.reportBuilder"),
           to: "/reports/report-builder",
-          exact: true
-        }
+          exact: true,
+        },
       ],
 
       types: [
-        { name: "Network", image: "/visualization/network.jpg" },
-        { name: "Bar", image: "/visualization/bar.jpg" },
-        { name: "Line", image: "/visualization/line.jpg" },
-        { name: "X Y Bubble", image: "/visualization/xybubble.jpg" },
-        { name: "Pie", image: "/visualization/pie.jpg" }
+        {
+          name: "Network",
+          image: require("@/assets/images/visualization/network.jpg"),
+        },
+        {
+          name: "Bar",
+          image: require("@/assets/images/visualization/bar.jpg"),
+        },
+        {
+          name: "Line",
+          image: require("@/assets/images/visualization/line.jpg"),
+        },
+        {
+          name: "X Y Bubble",
+          image: require("@/assets/images/visualization/xybubble.jpg"),
+        },
+        {
+          name: "Pie",
+          image: require("@/assets/images/visualization/pie.jpg"),
+        },
       ],
       report: {
         name: null,
-        type: undefined
+        type: undefined,
       },
       validationError: [],
-      loading: false
+      loading: false,
     };
   },
   created() {
@@ -92,7 +107,7 @@ export default {
           name: this.chart.name,
           type: this.chart.type,
           id: this.chart.id,
-          _method: "PUT"
+          _method: "PUT",
         };
       })
       .catch(() => {
@@ -100,7 +115,7 @@ export default {
       });
   },
   computed: {
-    ...mapState("reports", ["chart"])
+    ...mapState("reports", ["chart"]),
   },
   methods: {
     ...mapActions("reports", ["getChart", "updateChart"]),
@@ -113,7 +128,7 @@ export default {
           this.loading = false;
           this.$router.push("/reports/report-builder");
         })
-        .catch(error => {
+        .catch((error) => {
           this.loading = false;
 
           if (error?.response?.status == 422) {
@@ -132,8 +147,8 @@ export default {
         }
       }
       return form;
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
