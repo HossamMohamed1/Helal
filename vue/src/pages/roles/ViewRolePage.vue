@@ -6,51 +6,43 @@
         <v-breadcrumbs :items="breadcrumbs" class="pa-0 py-2"></v-breadcrumbs>
       </div>
       <v-spacer></v-spacer>
-      <v-btn color="primary" to="/roles/create">
+      <v-btn color="primary" :to="{ name: 'roles-create' }">
         {{ $t("users.createRole") }}
       </v-btn>
     </div>
 
-    <v-row>
+    <v-row v-if="role.id">
       <v-col cols="12" lg="3">
-        <v-card class="mx-auto">
+        <v-card class="mx-auto" :loading="isLoading">
           <v-card-text class="px-3 pt-3">
             <div class="title font-weight-bold text--primary">
-              {{ $t("texts.administrator") }}
+              {{ role.display_name | capitalize }}
             </div>
-            <p>{{ $t("texts.totalUsersWithThisRole") }}: 5</p>
+            <p></p>
+            <!-- <p>{{ $t("texts.totalUsersWithThisRole") }}: 5</p> -->
             <div class="d-flex flex-column">
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span
-                >{{ $t("texts.SomeAdminControls") }}
-              </div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span
-                >{{ $t("texts.ViewFinancialSummariesOnly") }}
-              </div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span
-                >{{ $t("texts.ViewAndEditAPIControls") }}
-              </div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span
-                >{{ $t("texts.ViewAndEditDisputes") }}
-              </div>
-              <div class="d-flex align-center mb-1 text--primary">
-                <span class="bullet bg-primary mx-1"></span
-                >{{ $t("texts.SomeAdminControls") }}
+              <div
+                class="d-flex align-center mb-1 text--primary"
+                :key="index"
+                v-for="(item, index) in role.permissions"
+              >
+                <span class="bullet bg-primary mx-1"></span>
+                {{ item.replace("-", " ") | uppercase }}
               </div>
             </div>
           </v-card-text>
           <v-card-actions class="px-3 pb-3">
-            <v-btn color="dark" to="/roles/edit">
+            <v-btn
+              color="dark"
+              :to="{ name: 'roles-edit', params: { id: role.id } }"
+            >
               {{ $t("users.editRole") }}
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
       <v-col cols="12" lg="9">
-        <v-card>
+        <v-card :loading="isLoading">
           <v-row dense class="pa-2 align-center">
             <v-col cols="12">
               <div class="title">
@@ -106,6 +98,7 @@
             :items="roles"
             :search="searchQuery"
             class="flex-grow-1"
+            :loading="isLoading"
           >
             <template v-slot:item.id="{ item }">
               <div class="font-weight-bold">
@@ -129,9 +122,7 @@
               <v-icon v-if="item.verified" small color="success">
                 mdi-check-circle
               </v-icon>
-              <v-icon v-else small>
-                mdi-circle-outline
-              </v-icon>
+              <v-icon v-else small> mdi-circle-outline </v-icon>
             </template>
 
             <template v-slot:item.disabled="{ item }">
@@ -173,10 +164,10 @@
 <script>
 import roles from "./content/roles";
 import CopyLabel from "../../components/common/CopyLabel";
-
+import { mapActions, mapState } from "vuex";
 export default {
   components: {
-    CopyLabel
+    CopyLabel,
   },
   data() {
     return {
@@ -185,16 +176,16 @@ export default {
         {
           text: this.$t("menu.usersManagement"),
           disabled: false,
-          href: "#"
+          href: "#",
         },
         {
           text: this.$t("users.rolesList"),
           to: "/roles/list",
-          exact: true
+          exact: true,
         },
         {
-          text: this.$t("users.viewRole")
-        }
+          text: this.$t("users.viewRole"),
+        },
       ],
 
       searchQuery: "",
@@ -207,20 +198,37 @@ export default {
         { text: this.$t("tables.role"), value: "role" },
         { text: this.$t("tables.created"), value: "created" },
         { text: this.$t("tables.lastSignIn"), value: "lastSignIn" },
-        { text: this.$t("tables.disabled"), value: "disabled" },
-        { text: "", sortable: false, align: "right", value: "action" }
+        // { text: this.$t("tables.disabled"), value: "disabled" },
+        // { text: "", sortable: false, align: "right", value: "action" },
       ],
 
-      roles
+      roles,
     };
   },
+  computed: { ...mapState("roles", ["role"]) },
   watch: {
-    selectedRoles(val) {}
+    selectedRoles(val) {},
+  },
+  created() {
+    this.open();
   },
   methods: {
     searchRole() {},
-    open() {}
-  }
+    ...mapActions("roles", ["getRole"]),
+
+    open() {
+      this.isLoading = true;
+      const { id } = this.$route.params;
+
+      this.getRole(id)
+        .then(() => {
+          this.isLoading = false;
+        })
+        .catch(() => {
+          this.isLoading = false;
+        });
+    },
+  },
 };
 </script>
 

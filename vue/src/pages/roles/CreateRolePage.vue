@@ -89,28 +89,28 @@ export default {
         {
           text: this.$t("menu.usersManagement"),
           disabled: false,
-          href: "#"
+          href: "#",
         },
         {
           text: this.$t("users.rolesList"),
           to: "/roles/list",
-          exact: true
+          exact: true,
         },
         {
-          text: this.$t("users.createRole")
-        }
+          text: this.$t("users.createRole"),
+        },
       ],
       loading: false,
       form: {
         name: "",
         display_name: "",
-        permissions: []
+        permissions: [],
       },
-      errors: {}
+      errors: {},
     };
   },
   computed: {
-    ...mapState("roles", ["permissions"])
+    ...mapState("roles", ["permissions"]),
   },
   created() {
     this.loading = true;
@@ -132,14 +132,14 @@ export default {
           this.loading = false;
           this.$router.push({ name: "roles-list" });
         })
-        .catch(error => {
+        .catch((error) => {
           this.loading = false;
           if (error.response.status == 422) {
             const { errors } = error?.response?.data ?? {};
             this.errors = errors ?? {};
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>
