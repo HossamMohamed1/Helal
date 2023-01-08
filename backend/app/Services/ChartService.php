@@ -18,9 +18,9 @@ class ChartService
         $result = [];
         $result['labels'] = array_keys($data);
 
-        foreach ($filter['options']['columns'] as $column) {
+        foreach ($filter['columns'] as $column) {
             $value = array_values(Arr::pluck($data, $column));
-            $result['result'][] = [
+            $result[] = [
                 'name' => handleTrans($column),
                 'data' => $value
             ];
@@ -40,17 +40,18 @@ class ChartService
     public static function prepareLine($data, $filter): array
     {
         $result = [];
-        foreach ($filter['options']['columns'] as $column) {
-            $result[$column] = array_values(collect($data)
-                ->transform(function ($item, $key) use ($column) {
-                    return ['x' => $key, 'y' => $item[$column]];
-                })->toArray());
+        $result['labels'] = array_keys($data);
 
-            $result['name'] = handleTrans($column);
+        foreach ($filter['columns']  as $column) {
+            $value = array_values(Arr::pluck($data, $column));
+            $result[] = [
+                'name' => handleTrans($column),
+                'data' => $value
+            ];
 
         }
 
-        return $result ?? [];
+        return $result;
     }
 
     /**
@@ -62,17 +63,13 @@ class ChartService
      */
     public static function preparePie($data, $filter): array
     {
-
-        // foreach ($filter['options']['columns'] as $column) {
-        //     $value = array_values(array_map(static fn($item) => (int)$item, Arr::pluck($data, $column)));
-
-
-            $result = [
-                'labels' => $filter['options']['columns'],
-                'value' => array_values($data['list']),
+        foreach ($filter['columns'] as $column) {
+            $value = array_values(array_map(static fn($item) => (int)$item, Arr::pluck($data, $column)));
+            $result[$column] = [
+                'labels' => array_filter(Arr::pluck($data, $filter['groupBy'])),
+                'series' => $value ?? [0],
             ];
-
-        // }
+         }
 
         return $result ?? [];
     }
@@ -81,18 +78,15 @@ class ChartService
      * prepare data to coincide Table Chart
      *
      * @param $data
-     * @param $filter
      * @return array
      */
-    public static function prepareTable($data, $filter): array
+    public static function prepareTable($data): array
     {
-        
         $final = array_values($data);
-        $data = [
+
+        return [
             'table' => $final,
             'columns' => array_keys($final[0] ?? [])
         ];
-        
-        return $data;
     }
 }
