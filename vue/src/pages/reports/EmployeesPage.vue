@@ -567,15 +567,9 @@ export default {
     selectedUsers(val) {},
   },
   created() {
-    const data = {
-      type: "employee_list",
-      charts: ["table"],
-    };
-     console.log(data,'users/ data');
-    this.fetchChart(data)
+    this.fetchUsers()
       .then((res) => {
-        console.log(res, "table result");
-        // this.users = res;
+        this.users = res;
       })
       .catch(() => {});
   },
@@ -595,7 +589,7 @@ export default {
     clear() {
       clearInterval(this.loadingInterval);
     },
-    ...mapActions("statistics", ["fetchChart"]),
+    ...mapActions("statistics", ["fetchUsers"]),
   },
 };
 </script>
