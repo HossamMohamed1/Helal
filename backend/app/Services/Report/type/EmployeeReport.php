@@ -60,7 +60,7 @@ class EmployeeReport extends BaseReport
         }
 
         if ($this->filter['type'] == 'employee_gender') {
-            $data = collect($this->query->frist())->transform(function ($item, $key) {
+            $data = collect($this->query->first())->transform(function ($item, $key) {
                 return [
                     $this->filter['groupBy'] => $key,
                     $this->filter['columns'][0] => $item

@@ -17,13 +17,13 @@ import { mapActions, mapState } from "vuex";
 
 export default {
   computed: {
-    ...mapState("reports", ["analytics", "chart", "fileData"])
+    ...mapState("reports", ["analytics", "chart", "fileData"]),
   },
   data() {
     return {
       loading: false,
       chartObject: null,
-      backgroundStyle: { backgroundColor: "" }
+      backgroundStyle: { backgroundColor: "" },
     };
   },
   watch: {
@@ -47,11 +47,11 @@ export default {
           this.loading = false;
           this.loadChart();
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
           this.loading = false;
         });
-    }
+    },
   },
   destroyed() {
     if (this.chartObject) {
@@ -66,7 +66,7 @@ export default {
         this.loading = false;
         this.loadChart();
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         this.loading = false;
       });
@@ -139,8 +139,8 @@ export default {
       pieSeries.slices.template.cursorOverStyle = [
         {
           property: "cursor",
-          value: "pointer"
-        }
+          value: "pointer",
+        },
       ];
       if (config?.alignLabels == false) {
         pieSeries.alignLabels = false;
@@ -165,7 +165,7 @@ export default {
       hoverShadow.opacity = 0.7;
       hoverShadow.blur = 5;
       this.chartObject = chart;
-    }
-  }
+    },
+  },
 };
 </script>
