@@ -124,6 +124,8 @@
       <path value="$PROJECT_DIR$/backend/vendor/markbaker/matrix" />
       <path value="$PROJECT_DIR$/backend/vendor/markbaker/complex" />
       <path value="$PROJECT_DIR$/backend/vendor/maatwebsite/excel" />
+      <path value="$PROJECT_DIR$/backend/vendor/yajra/laravel-pdo-via-oci8" />
+      <path value="$PROJECT_DIR$/backend/vendor/yajra/laravel-oci8" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />

@@ -61,18 +61,18 @@ export default {
     // Input label
     label: {
       type: String,
-      default: ""
+      default: "",
     },
     // Email addresses
     addresses: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data() {
     return {
       model: [],
-      search: null
+      search: null,
     };
   },
   computed: {
@@ -83,36 +83,36 @@ export default {
         {
           text: "Ubaldo Romaguera",
           email: "ubaldo@notarealemailaddress.com",
-          avatar: "/images/avatars/avatar1.svg"
+          avatar: require("@/assets/images/images/avatars/avatar1.svg"),
         },
         {
           text: "Ruben Breitenberg",
           email: "ruben@notarealemailaddress.com",
-          avatar: "/images/avatars/avatar2.svg"
+          avatar: require("@/assets/images/images/avatars/avatar2.svg"),
         },
         {
           text: "Blaze Carter",
           email: "blaze@notarealemailaddress.com",
-          avatar: "/images/avatars/avatar3.svg"
+          avatar: require("@/assets/images/images/avatars/avatar3.svg"),
         },
         {
           text: "Bernita Lehner",
           email: "bernita@notarealemailaddress.com",
-          avatar: "/images/avatars/avatar4.svg"
-        }
+          avatar: require("@/assets/images/images/avatars/avatar4.svg"),
+        },
       ];
-    }
+    },
   },
 
   watch: {
     model(val, prev) {
       if (val.length === prev.length) return;
 
-      this.model = val.map(v => {
+      this.model = val.map((v) => {
         if (typeof v === "string") {
           v = {
             text: v,
-            email: v
+            email: v,
           };
 
           this.items.push(v);
@@ -122,7 +122,7 @@ export default {
       });
 
       this.search = "";
-    }
+    },
   },
 
   mounted() {
@@ -131,18 +131,16 @@ export default {
 
   methods: {
     filter(item, queryText, itemText) {
-      const hasValue = val => (val !== null ? val : "");
+      const hasValue = (val) => (val !== null ? val : "");
 
       const text = hasValue(itemText);
       const query = hasValue(queryText);
 
       return (
-        text
-          .toString()
-          .toLowerCase()
-          .indexOf(query.toString().toLowerCase()) > -1
+        text.toString().toLowerCase().indexOf(query.toString().toLowerCase()) >
+        -1
       );
-    }
-  }
+    },
+  },
 };
 </script>

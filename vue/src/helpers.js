@@ -5,7 +5,7 @@ export const makeToast = (type, message) => {
   Vue.$toast.open({
     message,
     type,
-    position: "bottom"
+    position: "bottom",
   });
 };
 
@@ -25,7 +25,11 @@ export const ask = (
     focusConfirm: false,
     customClass: {
       confirmButton: "v-btn v-size--default",
-      cancelButton: "v-btn v-size--default"
-    }
+      cancelButton: "v-btn v-size--default",
+    },
   });
+};
+
+export const sleep = (time) => {
+  return new Promise((resolve) => setTimeout(resolve, time));
 };

@@ -97,10 +97,10 @@ export default {
       categoryAxis.renderer.labels.template.fill = am4core.color(
         config?.labels?.fill
       );
+
       categoryAxis.renderer.labels.template.rotation = config?.labels?.rotation;
       categoryAxis.renderer.labels.template.marginTop = 20;
-      categoryAxis.renderer.labels.template.visible = config?.labels?.disabled;
-
+      categoryAxis.renderer.labels.template.visible = !config?.labels?.disabled;
       categoryAxis.renderer.cellStartLocation = config?.cellStartLocation;
       categoryAxis.renderer.cellEndLocation = config?.cellEndLocation;
 

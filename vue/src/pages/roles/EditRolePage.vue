@@ -87,19 +87,19 @@ export default {
         {
           text: this.$t("menu.usersManagement"),
           disabled: false,
-          href: "#"
+          href: "#",
         },
         {
           text: this.$t("users.rolesList"),
           to: "/roles/list",
-          exact: true
+          exact: true,
         },
         {
-          text: this.$t("users.editRole")
-        }
+          text: this.$t("users.editRole"),
+        },
       ],
       form: { name: "", display_name: "", permissions: [] },
-      loading: false
+      loading: false,
     };
   },
   computed: { ...mapState("roles", ["role", "permissions"]) },
@@ -131,7 +131,7 @@ export default {
         .catch(() => {
           this.loading = false;
         });
-    }
-  }
+    },
+  },
 };
 </script>

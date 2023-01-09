@@ -47,14 +47,6 @@
         <v-btn>false</v-btn>
       </v-btn-toggle>
       <div v-if="!config.labels.disabled">
-        <!--        <v-row>-->
-        <!--          <v-col cols="6 pb-0">-->
-
-        <!--          </v-col>-->
-        <!--          <v-col cols="6 pb-0">-->
-
-        <!--          </v-col>-->
-        <!--        </v-row>-->
         <v-row>
           <v-col cols="6 pb-0">
             <legend>Font Size</legend>
@@ -64,9 +56,9 @@
           </v-col>
           <v-col cols="6 pb-0">
             <legend>Rotation</legend>
-            <v-text-field solo v-model="config.labels.rotation"></v-text-field>
+            <v-text-field solo v-model="config.labels.rotation" />
             <legend>Color</legend>
-            <input type="color" v-model="config.labels.fill" /><input />
+            <input type="color" v-model="config.labels.fill" />
           </v-col>
         </v-row>
       </div>

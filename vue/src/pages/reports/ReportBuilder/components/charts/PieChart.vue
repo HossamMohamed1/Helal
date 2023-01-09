@@ -47,7 +47,8 @@ export default {
           this.loading = false;
           this.loadChart();
         })
-        .catch(() => {
+        .catch(err => {
+          console.log(err);
           this.loading = false;
         });
     }

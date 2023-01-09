@@ -6,8 +6,11 @@
         <v-breadcrumbs :items="breadcrumbs" class="pa-0 py-2"></v-breadcrumbs>
       </div>
       <v-spacer></v-spacer>
-      <v-btn color="primary" to="/roles/create">
+      <v-btn color="primary" :to="{ name: 'roles-create' }">
         {{ $t("users.createRole") }}
+      </v-btn>
+      <v-btn icon @click="open()">
+        <v-icon>mdi-refresh</v-icon>
       </v-btn>
     </div>
     <!-- roles list -->
@@ -41,7 +44,10 @@
             </div>
           </v-card-text>
           <v-card-actions class="px-3 pb-3">
-            <v-btn color="dark" to="/roles/view">
+            <v-btn
+              color="dark"
+              :to="{ name: 'roles-view', params: { id: item.id } }"
+            >
               {{ $t("users.viewRole") }}
             </v-btn>
             <v-btn
@@ -73,18 +79,18 @@ export default {
         {
           text: this.$t("menu.usersManagement"),
           disabled: false,
-          href: "#"
+          href: "#",
         },
         {
-          text: this.$t("users.rolesList")
-        }
-      ]
+          text: this.$t("users.rolesList"),
+        },
+      ],
 
       // roles: []
     };
   },
   computed: {
-    ...mapState("roles", ["roles"])
+    ...mapState("roles", ["roles"]),
   },
   mounted() {
     this.open();
@@ -115,8 +121,8 @@ export default {
             this.loading = false;
           });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

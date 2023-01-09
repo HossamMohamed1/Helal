@@ -6,7 +6,7 @@ import router from "@/router";
 const token = localStorage.getItem("token");
 axios.defaults.headers.common["Accept"] = "application/json";
 axios.defaults.headers.common["Content-Type"] = "application/json";
-axios.defaults.headers.common["Content-Type"] = 'multipart/form-data';
+axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
 // 'Content-Type': 'multipart/form-data',
 axios.defaults.baseURL =
   process.env.VUE_APP_API_URL ?? "http://hamrein-.test:800/backend/public/api";
@@ -25,7 +25,12 @@ axios.interceptors.response.use(
   function(error) {
     const message =
       error?.response?.data?.message || error?.response?.data?.errors?.message;
-    if (message && error.response.status !== 401) {
+
+    if (
+      message &&
+      typeof message == "string" &&
+      error.response.status !== 401
+    ) {
       makeToast("error", message);
     }
     // store.commit("setLoading", false);

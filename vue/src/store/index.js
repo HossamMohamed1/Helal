@@ -12,6 +12,7 @@ import Auth from "./auth";
 import Users from "./users";
 import Report from "./report";
 import roles from "./roles";
+import Statistics from "./statistics";
 Vue.use(Vuex);
 
 /**
@@ -27,7 +28,8 @@ const store = new Vuex.Store({
     auth: Auth,
     users: Users,
     roles: roles,
-    reports: Report
+    reports: Report,
+    statistics: Statistics
   }
 });
 

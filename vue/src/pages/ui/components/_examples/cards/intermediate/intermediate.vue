@@ -6,18 +6,12 @@
           <v-img
             height="200"
             width="200"
-            src="/images/demo/cards/store.jpg"
+            :src="require('@/assets/images/images/demo/cards/store.jpg')"
           ></v-img>
         </v-col>
 
-        <v-col
-          cols="auto"
-          class="text-center pl-0"
-        >
-          <v-row
-            class="flex-column ma-0 fill-height"
-            justify="center"
-          >
+        <v-col cols="auto" class="text-center pl-0">
+          <v-row class="flex-column ma-0 fill-height" justify="center">
             <v-col class="px-0">
               <v-btn icon>
                 <v-icon>mdi-heart</v-icon>

@@ -1,27 +1,30 @@
 <template>
-  <div v-if="showChart">
+  <v-card flat :loading="loading">
     <apexchart
-      type="donut"
+      :type="chartType"
       width="480"
       :options="chartOptions"
       :series="series"
     ></apexchart>
-  </div>
+  </v-card>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
-      showChart: false,
-      series: [890, 310],
+      chartType: "donut",
+      loading: false,
+      series: [0, 0],
       chartOptions: {
         chart: {
           type: "pie"
         },
         labels: [this.$t("employees.males"), this.$t("employees.females")],
         stroke: {
-          // colors: ['#29abe2', '#a4a8ad', '#d5d5d5']
+          // colors: ["#29abe2", "#a4a8ad", "#d5d5d5"]
         },
         plotOptions: {
           pie: {
@@ -29,7 +32,7 @@ export default {
               labels: {
                 show: true,
                 name: "total",
-                value: 50
+                value: 20
               }
             }
           }
@@ -56,7 +59,23 @@ export default {
     };
   },
   mounted() {
-    this.showChart = true;
+    this.loading = true;
+    let data = {
+      charts: ['pie'],
+      type: "employee_gender"
+    };
+    this.fetchChart(data).then(res => {
+      this.loading = false;
+      const {pie} = res
+      console.log(pie?.value);
+      this.series = pie?.value.map(item => parseInt(item));
+      this.chartOptions.labels = pie?.labels
+    }).catch(()=>{
+      this.loading = false;
+    })
+  },
+  methods: {
+    ...mapActions("statistics", ["fetchChart"])
   }
 };
 </script>

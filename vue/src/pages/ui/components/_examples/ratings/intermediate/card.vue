@@ -3,7 +3,7 @@
     class="mx-auto elevation-20"
     color="purple"
     dark
-    style="max-width: 400px;"
+    style="max-width: 400px"
   >
     <v-row justify="space-between">
       <v-col cols="6">
@@ -19,7 +19,7 @@
         class="shrink ma-2"
         contain
         height="125px"
-        src="/images/demo/cards/halcyon.png"
+        :src="require('@/assets/images/images/demo/cards/halcyon.png')"
         style="flex-basis: 125px"
       ></v-img>
     </v-row>
@@ -46,7 +46,7 @@
 <script>
 export default {
   data: () => ({
-    rating: 4.3
-  })
-}
+    rating: 4.3,
+  }),
+};
 </script>

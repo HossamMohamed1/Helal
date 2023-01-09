@@ -87,16 +87,18 @@ export default new Vue({
   // },
   created() {
     if (window.location.pathname != "/auth/signin") {
-      store.dispatch("auth/user").then(() => {
-        const user = this.$store.state.auth.user;
-        const roles = user.roles.map(item => item.name);
-        const permissions = user.permissions.map(item => item.name);
-        this.$gates.setRoles(roles);
-        this.$gates.setPermissions(permissions);
-        console.log(roles);
-
-        console.log(this.$gates.getRoles());
-      });
+      store
+        .dispatch("auth/user")
+        .then(() => {
+          const user = this.$store.state.auth.user;
+          const roles = user.roles.map(item => item.name);
+          const permissions = user.permissions.map(item => item.name);
+          this.$gates.setRoles(roles);
+          this.$gates.setPermissions(permissions);
+        })
+        .catch(err => {
+          // console.log(err);
+        });
     }
   }
 }).$mount("#app");

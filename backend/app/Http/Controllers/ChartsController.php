@@ -91,8 +91,9 @@ class ChartsController extends Controller
     public function edit($id, Request $request): JsonResponse
     {
         $requestData = $request->only(['name', 'type', 'data', 'config', 'input_index', 'output_index']);
-
-        $chart = Chart::where('id', $id)->update($requestData);
+        // leave it cause i use this in vue
+        $chart = Chart::where('id', $id)->first();
+        $chart->update($requestData);
 
         return response()->json([
             'message' => 'Chart has been successfully updated',
@@ -233,7 +234,7 @@ class ChartsController extends Controller
         try {
             $data = $this->getAiResponse($post, $chart);
 
-            if ($chart->type == 'line') {
+            if (strtolower($chart->type) == 'line') {
                 if (count($data->series->line) == 1) {
                     $date = $data->series->line[0];
                     ChartLineOutput::whereJsonContains('output', ['date' => $date->date])->delete();
@@ -248,15 +249,17 @@ class ChartsController extends Controller
                     $output = ChartLineOutput::where('chart_id', $chart_id)->get()->pluck('output');
 
                     $output = [
-                        'series' => $output,
+                        'series' => ['line' => $output],
+                        'summary' => [
+                            'description' => $data->series->summary->description,
+                            'correlation' => $data->series->summary->correlation,
+                            'EffsBar' => $data->series->summary->EffsBar,
+                            'paretoRanking' => $data->series->summary->paretoRanking,
+                            'InputWeights' => $data->series->summary->InputWeights,
+                            'OutputWeights' => $data->series->summary->OutputWeights,
+                        ],
                         'weights' => $data->series->weights,
-                        'EffsBar' => $data->series->summary->EffsBar,
-                        'paretoRanking' => $data->series->summary->paretoRanking,
-                        'InputWeights' => $data->series->summary->InputWeights,
-                        'OutputWeights' => $data->series->summary->OutputWeights,
-                        'correlation' => $data->series->summary->correlation,
-                        'description' => $data->series->summary->description,
-
+                        'weightedData' => $data->series->weightedData,
                     ];
 
                     if ($forStory == true) {
@@ -266,8 +269,7 @@ class ChartsController extends Controller
                 }
 
                 return response()->json([
-                    'series' => $data->series->line,
-                    'weights' => $data->series->weights,
+                    ...$data,
                 ]);
             }
 

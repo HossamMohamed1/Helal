@@ -11,9 +11,7 @@
             type="text"
           >
             <template v-slot:prepend>
-              <v-tooltip
-                bottom
-              >
+              <v-tooltip bottom>
                 <template v-slot:activator="{ on }">
                   <v-icon v-on="on">mdi-help-circle-outline</v-icon>
                 </template>
@@ -32,35 +30,30 @@
                   v-else
                   width="24"
                   height="24"
-                  src="/images/avatars/avatar9.svg"
+                  :src="require('@/assets/images/images/avatars/avatar9.svg')"
                   alt=""
-                >
+                />
               </v-fade-transition>
             </template>
             <template v-slot:append-outer>
-              <v-menu
-                style="top: -12px"
-                offset-y
-              >
+              <v-menu style="top: -12px" offset-y>
                 <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    v-bind="attrs"
-                    v-on="on"
-                  >
+                  <v-btn v-bind="attrs" v-on="on">
                     <v-icon left>mdi-menu</v-icon>
                     Menu
                   </v-btn>
                 </template>
                 <v-card>
                   <v-card-text class="pa-6">
-                    <v-btn large flat color="primary" @click="clickMe"><v-icon left>mdi-target</v-icon>Click me</v-btn>
+                    <v-btn large flat color="primary" @click="clickMe"
+                      ><v-icon left>mdi-target</v-icon>Click me</v-btn
+                    >
                   </v-card-text>
                 </v-card>
               </v-menu>
             </template>
           </v-text-field>
         </v-col>
-
       </v-row>
     </v-container>
   </v-form>
@@ -69,19 +62,19 @@
 <script>
 export default {
   data: () => ({
-    message: 'Hey!',
-    loading: false
+    message: "Hey!",
+    loading: false,
   }),
 
   methods: {
-    clickMe () {
-      this.loading = true
-      this.message = 'Wait for it...'
+    clickMe() {
+      this.loading = true;
+      this.message = "Wait for it...";
       setTimeout(() => {
-        this.loading = false
-        this.message = 'You\'ve clicked me!'
-      }, 2000)
-    }
-  }
-}
+        this.loading = false;
+        this.message = "You've clicked me!";
+      }, 2000);
+    },
+  },
+};
 </script>

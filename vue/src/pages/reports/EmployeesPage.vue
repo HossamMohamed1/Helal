@@ -9,7 +9,12 @@
           <small class="mx-1">({{ $t("dashboard.thismonth") }})</small>
         </div>
         <v-spacer></v-spacer>
-        <div style="width: 160px; height: 40px;" class="mx-1">
+        <div style="width: 120px; height: 40px" class="mx-1">
+          <v-btn color="primary" to="#" class="mt-1">
+            {{ $t("reports.createReport") }}
+          </v-btn>
+        </div>
+        <div style="width: 160px; height: 40px" class="mx-1">
           <v-select
             v-model="defaultSelectedGender"
             label=""
@@ -18,7 +23,7 @@
             solo
           ></v-select>
         </div>
-        <div style="width: 120px; height: 40px;" class="mx-1">
+        <div style="width: 120px; height: 40px" class="mx-1">
           <v-select
             v-model="defaultSelected"
             label=""
@@ -305,9 +310,7 @@
             ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
-            <v-card-title>
-              عدد الموظفين حسب الجنسية
-            </v-card-title>
+            <v-card-title> عدد الموظفين حسب الجنسية </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-nationalities />
             </div>
@@ -399,9 +402,7 @@
             <v-card-title
               class="d-flex align-center align-content-space-between"
             >
-              <div>
-                الموظفين في الأقسام
-              </div>
+              <div>الموظفين في الأقسام</div>
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-agencies></chart-agencies>
@@ -411,9 +412,7 @@
       </v-col>
     </v-row>
 
-    <files-management/>
-
-
+    <files-management />
   </div>
 </template>
 
@@ -441,6 +440,7 @@ import ChartStatus from "@/components/reports/employees/chart-status";
 import ChartAttendanceLocations from "@/components/reports/employees/chart-attendance-locations";
 import ChartEmpsAgesDepartments from "@/components/reports/employees/chart-emps-ages-departments";
 import FilesManagement from "@/components/reports/employees/files-management";
+import { mapActions } from "vuex";
 
 export default {
   components: {
@@ -462,7 +462,7 @@ export default {
     ChartGender,
     TrackCard,
     DateRangePicker,
-    ChartDepartment
+    ChartDepartment,
   },
   // filters: {
   //   dateCell(value) {
@@ -480,13 +480,13 @@ export default {
         {
           text: this.$t("menu.reports"),
           disabled: false,
-          href: "#"
+          href: "#",
         },
         {
           text: this.$t("employees.employeesReports"),
           to: "/reports/employees",
-          exact: true
-        }
+          exact: true,
+        },
       ],
       loadingInterval: null,
       isLoading: false,
@@ -502,9 +502,9 @@ export default {
             ["2020-02-02", 34],
             ["2020-02-03", 43],
             ["2020-02-04", 40],
-            ["2020-02-05", 43]
-          ]
-        }
+            ["2020-02-05", 43],
+          ],
+        },
       ],
 
       customersSeries: [
@@ -514,9 +514,9 @@ export default {
             ["2020-02-02", 13],
             ["2020-02-03", 11],
             ["2020-02-04", 13],
-            ["2020-02-05", 12]
-          ]
-        }
+            ["2020-02-05", 12],
+          ],
+        },
       ],
       // Selects filters
       administrations: [
@@ -528,54 +528,27 @@ export default {
         this.$t("employees.administration6"),
         this.$t("employees.administration7"),
         this.$t("employees.administration8"),
-        this.$t("employees.administration9")
+        this.$t("employees.administration9"),
       ],
       defaultSelected: this.$t("employees.administration1"),
 
       gender: [
         this.$t("employees.all"),
         this.$t("employees.males"),
-        this.$t("employees.females")
+        this.$t("employees.females"),
       ],
       defaultSelectedGender: this.$t("employees.all"),
 
       // Date filter
       dateRange: {
         startDate: "2022-11-1",
-        endDate: "2022-12-1"
+        endDate: "2022-12-1",
       },
-      users: [
-        {
-          name: "Murphy Bayer",
-          email: "celestine.reilly@dickens.com",
-          department: "Sales"
-        },
-        {
-          name: "Katlyn Gorczany",
-          email: "rblanda@yahoo.com",
-          department: "HR"
-        },
-        {
-          name: "Justen Bins",
-          email: "dorothy65@yahoo.com",
-          department: "Managment"
-        },
-        {
-          name: "Mr. Damion Runte",
-          email: "vpredovic@hotmail.com",
-          department: "Marketing"
-        },
-        {
-          name: "Donnie McKenzie",
-          email: "kohler.ramona@hotmail.com",
-          department: "Development"
-        }
-      ],
+      users: [],
       headers: [
-        { text: this.$t("tables.name"), value: "name" },
-        { text: this.$t("tables.email"), value: "email" },
-        { text: this.$t("tables.department"), value: "department" }
-      ]
+        { text: this.$t("tables.job_desc"), value: "job_desc" },
+        { text: this.$t("tables.department"), value: "dept_desc" },
+      ],
 
       // date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       // menu: false,
@@ -588,11 +561,17 @@ export default {
       return this.$vuetify.theme.isDark
         ? this.$vuetify.theme.defaults.dark
         : this.$vuetify.theme.defaults.light;
-    }
+    },
   },
   watch: {
     selectedUsers(val) {},
-    created() {}
+  },
+  created() {
+    this.fetchUsers()
+      .then((res) => {
+        this.users = res;
+      })
+      .catch(() => {});
   },
   mounted() {
     let count = 0;
@@ -609,8 +588,9 @@ export default {
   methods: {
     clear() {
       clearInterval(this.loadingInterval);
-    }
-  }
+    },
+    ...mapActions("statistics", ["fetchUsers"]),
+  },
 };
 </script>
 <style>
