@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -17,48 +19,48 @@ export default {
       series: [
         {
           name: this.$t("employees.administration1"),
-          data: [20, 44, 40, 35, 28, 42]
+          data: [20, 44, 40, 35, 28, 42],
         },
         {
           name: this.$t("employees.administration2"),
-          data: [35, 36, 21, 25, 13, 18]
-        }
+          data: [35, 36, 21, 25, 13, 18],
+        },
       ],
       chartOptions: {
         chart: {
           height: 350,
           type: "line",
           zoom: {
-            enabled: false
-          }
+            enabled: false,
+          },
         },
         dataLabels: {
-          enabled: false
+          enabled: false,
         },
         stroke: {
           width: [2, 2, 2, 2, 2],
-          curve: "smooth"
+          curve: "smooth",
           // dashArray: [0, 8, 5]
         },
         title: {
           text: "",
-          align: "center"
+          align: "center",
         },
         legend: {
-          tooltipHoverFormatter: function(val, opts) {
+          tooltipHoverFormatter: function (val, opts) {
             return (
               val +
               " - " +
               opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] +
               ""
             );
-          }
+          },
         },
         markers: {
           size: 0,
           hover: {
-            sizeOffset: 6
-          }
+            sizeOffset: 6,
+          },
         },
         xaxis: {
           categories: [
@@ -67,43 +69,57 @@ export default {
             this.$t("employees.qualifications3"),
             this.$t("employees.qualifications4"),
             this.$t("employees.qualifications5"),
-            this.$t("employees.qualifications6")
-          ]
+            this.$t("employees.qualifications6"),
+          ],
         },
         colors: ["#1e8e49", "#c3b086"],
         tooltip: {
           y: [
             {
               title: {
-                formatter: function(val) {
+                formatter: function (val) {
                   return val + " موظف ";
-                }
-              }
+                },
+              },
             },
             {
               title: {
-                formatter: function(val) {
+                formatter: function (val) {
                   return val + " موظف ";
-                }
-              }
+                },
+              },
             },
             {
               title: {
-                formatter: function(val) {
+                formatter: function (val) {
                   return val;
-                }
-              }
-            }
-          ]
+                },
+              },
+            },
+          ],
         },
         grid: {
-          borderColor: "#f1f1f1"
-        }
-      }
+          borderColor: "#f1f1f1",
+        },
+      },
     };
   },
   mounted() {
     this.showChart = true;
-  }
+    const data = {
+      charts: ["line"],
+      type: "employee_qualification",
+    };
+
+    this.fetchChart(data).then((res) => {
+      // console.log(re);
+      const { line } = res;
+      const { labels, result } = line;
+      console.log(labels, result);
+    });
+  },
+  methods: {
+    ...mapActions("statistics", ["fetchChart"]),
+  },
 };
 </script>
