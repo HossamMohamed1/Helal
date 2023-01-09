@@ -21,7 +21,7 @@ class ChartService
         foreach ($filter['columns'] as $column) {
             $value = array_values(Arr::pluck($data, $column));
             $result['result'][] = [
-                'name' => handleTrans($column),
+                'name' => self::display($column,$filter['type']),
                 'data' => $value
             ];
 
