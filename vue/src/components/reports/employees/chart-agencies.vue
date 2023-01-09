@@ -82,13 +82,15 @@ export default {
       charts: ["bar"],
       type: "employee_department",
     };
+    this.showChart = false;
+
     this.fetchChart(data)
       .then((res) => {
         const { bar } = res ?? {};
         const { labels, result } = bar ?? {};
         this.series = result;
         this.chartOptions.xaxis.categories = labels;
-        console.log(result);
+        // console.log(result);
         this.showChart = true;
       })
       .catch((err) => {
