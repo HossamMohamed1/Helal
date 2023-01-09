@@ -118,7 +118,7 @@ class EmployeeReport extends BaseReport
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                "$this->mainTable.DEPT_DESC as {$this->filter['groupBy']}"
+                $this->filter['groupBy']
             );
     }
 
@@ -131,7 +131,8 @@ class EmployeeReport extends BaseReport
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                "$this->mainTable.LOCATION_NO as {$this->filter['groupBy']}"
+                $this->filter['groupBy'],
+                "dept_desc"
             );
     }
 
@@ -144,7 +145,7 @@ class EmployeeReport extends BaseReport
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                "$this->mainTable.JOB_DESC as {$this->filter['groupBy']}"
+                $this->filter['groupBy']
             );
     }
 

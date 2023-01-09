@@ -24,38 +24,38 @@ return [
         'employee_gender' => [
             'columns' => ['count'],
             'unit' => 'number',
-            'groupBy' => 'gender',
+            'groupBy' => 'genderid',
             'className' => 'EmployeeReport',
         ],
         'employee_department' => [
             'columns' => ['count'],
             'unit' => 'number',
-            'groupBy' => 'department',
+            'groupBy' => 'departmentid',
             'className' => 'EmployeeReport',
         ],
         'employee_location' => [
-            'columns' => ['count'],
+            'columns' => ['count','dept_desc'],
             'unit' => 'number',
-            'groupBy' => 'location',
+            'groupBy' => 'location_no',
             'className' => 'EmployeeReport',
         ],
         'employee_nationality' => [
             'columns' => ['count'],
             'unit' => 'number',
-            'groupBy' => 'nationality',
+            'groupBy' => 'nationalityid',
             'className' => 'EmployeeReport',
         ],
         'employee_major' => [
             'columns' => ['count'],
             'unit' => 'number',
-            'groupBy' => 'employee_major',
+            'groupBy' => 'major_desc',
             'className' => 'EmployeeReport',
         ],
         '
         employee_job' => [
             'columns' => ['count'],
             'unit' => 'number',
-            'groupBy' => 'job',
+            'groupBy' => 'job_desc',
             'className' => 'EmployeeReport',
         ],
         'employee_age' => [
@@ -67,7 +67,7 @@ return [
         'employee_qualification' => [
             'columns' => ['count'],
             'unit' => 'number',
-            'groupBy' => 'qualification',
+            'groupBy' => 'qualification_no',
             'className' => 'EmployeeReport',
         ],
         'department_status' => [
