@@ -80,12 +80,12 @@ export default {
     BarConfig,
     LineConfig,
     BarChart,
-    LineChart
+    LineChart,
   },
   data() {
     return {
       loading: false,
-      right: false // Config aside
+      right: false, // Config aside
     };
   },
   created() {
@@ -96,7 +96,7 @@ export default {
     ...mapState("reports", ["chart"]),
     config() {
       return this.chart.config;
-    }
+    },
   },
   methods: {
     ...mapActions("reports", ["getChart"]),
@@ -110,8 +110,8 @@ export default {
         .catch(() => {
           this.loading = false;
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -120,8 +120,8 @@ export default {
   position: absolute;
   top: 15px;
   left: 15px;
-  z-index: 6;
-  //box-shadow: 1px 1px 18px #1e8e49;
+  z-index: 1;
+  box-shadow: 1px 1px 18px #1e8e49;
 
   .v-icon {
     font-size: 1.3rem;
