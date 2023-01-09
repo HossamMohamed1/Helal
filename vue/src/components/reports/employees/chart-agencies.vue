@@ -17,10 +17,10 @@ export default {
     return {
       showChart: false,
       series: [
-        {
-          name: "",
-          data: [44, 55, 60, 70, 120, 100, 50, 60, 30],
-        },
+        // {
+        //   name: "",
+        //   data: [44, 55, 60, 70, 120, 100, 50, 60, 30],
+        // },
       ],
       chartOptions: {
         chart: {
@@ -84,9 +84,11 @@ export default {
     };
     this.fetchChart(data)
       .then((res) => {
-        const { bar } = res ??{};
-        const {labels,result} = bar ??{}
-        console.log( labels,result);
+        const { bar } = res ?? {};
+        const { labels, result } = bar ?? {};
+        this.series = result;
+        this.chartOptions.xaxis.categories = labels;
+        console.log(result);
       })
       .catch((err) => {
         console.log(err);
