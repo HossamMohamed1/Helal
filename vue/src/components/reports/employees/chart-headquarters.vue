@@ -78,7 +78,7 @@ export default {
 
     const data = {
       charts: ["bar"],
-      type: "department_status",
+      type: "department_location",
     };
 
     this.fetchChart(data)
