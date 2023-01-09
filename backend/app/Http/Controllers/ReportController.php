@@ -41,7 +41,8 @@ class ReportController extends Controller
             }
 
             return successData($result);
-        } catch (\Error $e) {
+        } catch (\Exception $e) {
+            dd($e);
             return errorMessage($e->getMessage());
         }
     }
@@ -54,7 +55,6 @@ class ReportController extends Controller
         return response()->json([
             'emp' => $employe
         ]);
-        return $employe;
     }
 
 }
