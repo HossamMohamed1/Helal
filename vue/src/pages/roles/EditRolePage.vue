@@ -46,6 +46,7 @@
                       <div class="d-flex">
                         <v-checkbox
                           v-for="permission in item"
+                          :key="permission.name"
                           class="mr-2 mb-0"
                           v-model="form.permissions"
                           :value="permission.name"

@@ -49,6 +49,7 @@
                         <v-checkbox
                           v-for="permission in item"
                           class="mr-2 mb-0"
+                          :key="permission.name"
                           v-model="form.permissions"
                           :value="permission.name"
                           multiple
