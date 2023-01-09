@@ -44,15 +44,15 @@ export default {
         },
         xaxis: {
           categories: [
-            this.$t("employees.administration1"),
-            this.$t("employees.administration2"),
-            this.$t("employees.administration3"),
-            this.$t("employees.administration4"),
-            this.$t("employees.administration5"),
-            this.$t("employees.administration6"),
-            this.$t("employees.administration7"),
-            this.$t("employees.administration8"),
-            this.$t("employees.administration9"),
+            // this.$t("employees.administration1"),
+            // this.$t("employees.administration2"),
+            // this.$t("employees.administration3"),
+            // this.$t("employees.administration4"),
+            // this.$t("employees.administration5"),
+            // this.$t("employees.administration6"),
+            // this.$t("employees.administration7"),
+            // this.$t("employees.administration8"),
+            // this.$t("employees.administration9"),
           ],
           // title: {
           //   text: 'Drones'
@@ -89,11 +89,11 @@ export default {
         this.series = result;
         this.chartOptions.xaxis.categories = labels;
         console.log(result);
+        this.showChart = true;
       })
       .catch((err) => {
         console.log(err);
       });
-    this.showChart = true;
   },
   methods: {
     ...mapActions("statistics", ["fetchChart"]),
