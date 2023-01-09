@@ -74,7 +74,7 @@ export default {
   },
   mounted() {
     this.showChart = false;
-    // this.fetchChart(data ).then
+
     const data = {
       charts: ["bar"],
       type: "department_status",
@@ -84,7 +84,7 @@ export default {
       .then((res) => {
         const { bar } = res;
         const { labels, result } = bar;
-        // console.log(labels, result);
+
         this.series = result;
         this.chartOptions.xaxis.categories = labels;
         this.showChart = true;
