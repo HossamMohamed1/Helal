@@ -85,7 +85,7 @@ export default {
       .then((res) => {
         const { bar } = res;
         const { labels, result } = bar;
-
+        console.log("aa", labels, result);
         this.series = result;
         this.chartOptions.xaxis.categories = labels;
         this.showChart = true;
