@@ -84,9 +84,12 @@ export default {
     };
     this.fetchChart(data)
       .then((res) => {
-        console.log(res);
+        const { bar } = res;
+        console.log(res, bar);
       })
-      .catch();
+      .catch((err) => {
+        console.log(err);
+      });
     this.showChart = true;
   },
   methods: {
