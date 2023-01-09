@@ -569,9 +569,9 @@ export default {
   created() {
     const data = {
       type: "employee_list",
-      charts: ["list"],
+      charts: ["table"],
     };
-    // console.log(data);
+     console.log(data,'users/ data');
     this.fetchChart(data)
       .then((res) => {
         console.log(res, "table result");

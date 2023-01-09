@@ -2,6 +2,7 @@
   <v-card flat :loading="loading">
     <apexchart
       :type="chartType"
+      v-if="!loading"
       width="480"
       :options="chartOptions"
       :series="series"
@@ -68,7 +69,7 @@ export default {
       .then((res) => {
         this.loading = false;
         const { pie } = res;
-        this.series = pie?.value.map((item) => parseInt(item));
+        this.series = pie?.series.map((item) => parseInt(item));
         this.chartOptions.labels = pie?.labels;
       })
       .catch(() => {

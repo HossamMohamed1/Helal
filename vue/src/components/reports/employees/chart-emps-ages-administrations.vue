@@ -117,8 +117,8 @@ export default {
       };
       this.fetchChart(data)
         .then((res) => {
-          // console.log(res);
-          this.series = res;
+          console.log(res,'admin');
+          // this.series = res;
         })
         .catch();
     },
