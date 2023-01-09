@@ -16,16 +16,7 @@ export default {
   data() {
     return {
       showChart: false,
-      series: [
-        {
-          name: "الأقسام",
-          data: [44, 55, 41, 64, 22, 43, 21, 33, 37, 46],
-        },
-        {
-          name: "الإدارات",
-          data: [53, 32, 33, 52, 13, 44, 32, 34, 56, 53],
-        },
-      ],
+      series: [],
       chartOptions: {
         chart: {
           type: "bar",
@@ -57,18 +48,7 @@ export default {
           intersect: false,
         },
         xaxis: {
-          categories: [
-            "موقع 1",
-            "موقع 2",
-            "موقع 3",
-            "موقع 4",
-            "موقع 5",
-            "موقع 6",
-            "موقع 7",
-            "موقع 8",
-            "موقع 9",
-            "موقع 10",
-          ],
+          categories: [],
         },
       },
     };
@@ -85,7 +65,6 @@ export default {
       .then((res) => {
         const { bar } = res;
         const { labels, result } = bar;
-        console.log("aa", labels, result);
         this.series = result;
         this.chartOptions.xaxis.categories = labels;
         this.showChart = true;
