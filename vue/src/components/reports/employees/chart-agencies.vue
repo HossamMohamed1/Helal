@@ -90,7 +90,6 @@ export default {
         const { labels, result } = bar ?? {};
         this.series = result;
         this.chartOptions.xaxis.categories = labels;
-        // console.log(result);
         this.showChart = true;
       })
       .catch((err) => {

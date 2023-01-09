@@ -104,7 +104,6 @@ export default {
     };
   },
   mounted() {
-    this.showChart = true;
     this.loadChartData();
   },
   methods: {
@@ -117,10 +116,17 @@ export default {
       };
       this.fetchChart(data)
         .then((res) => {
-          console.log(res,'admin');
-          // this.series = res;
+          const { line } = res ?? {};
+          const { labels, result } = line ?? {};
+          this.series = result.map((item, index) => {
+            return { ...item, name: labels[index] };
+          });
+
+          this.showChart = true;
         })
-        .catch();
+        .catch(() => {
+          this.showChart = true;
+        });
     },
   },
 };
