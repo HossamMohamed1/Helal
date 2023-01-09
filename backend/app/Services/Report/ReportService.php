@@ -53,6 +53,7 @@ class ReportService
 
             return $result ?? [];
         } catch (Exception $e) {
+            dd($e);
             throw new GeneralException($e->getMessage());
         }
     }
