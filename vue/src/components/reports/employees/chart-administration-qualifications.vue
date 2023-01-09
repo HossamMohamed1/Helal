@@ -17,14 +17,14 @@ export default {
     return {
       showChart: false,
       series: [
-        {
-          name: this.$t("employees.administration1"),
-          data: [20, 44, 40, 35, 28, 42],
-        },
-        {
-          name: this.$t("employees.administration2"),
-          data: [35, 36, 21, 25, 13, 18],
-        },
+        // {
+        //   name: this.$t("employees.administration1"),
+        //   data: [20, 44, 40, 35, 28, 42],
+        // },
+        // {
+        //   name: this.$t("employees.administration2"),
+        //   data: [35, 36, 21, 25, 13, 18],
+        // },
       ],
       chartOptions: {
         chart: {
@@ -64,12 +64,12 @@ export default {
         },
         xaxis: {
           categories: [
-            this.$t("employees.qualifications1"),
-            this.$t("employees.qualifications2"),
-            this.$t("employees.qualifications3"),
-            this.$t("employees.qualifications4"),
-            this.$t("employees.qualifications5"),
-            this.$t("employees.qualifications6"),
+            // this.$t("employees.qualifications1"),
+            // this.$t("employees.qualifications2"),
+            // this.$t("employees.qualifications3"),
+            // this.$t("employees.qualifications4"),
+            // this.$t("employees.qualifications5"),
+            // this.$t("employees.qualifications6"),
           ],
         },
         colors: ["#1e8e49", "#c3b086"],
@@ -115,7 +115,9 @@ export default {
       // console.log(re);
       const { line } = res;
       const { labels, result } = line;
-      console.log(labels, result);
+      // console.log(labels, result);
+      this.series = result;
+      this.chartOptions.xaxis.categories = labels;
     });
   },
   methods: {
