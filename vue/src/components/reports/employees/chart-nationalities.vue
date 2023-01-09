@@ -16,12 +16,7 @@ export default {
   data() {
     return {
       showChart: false,
-      series: [
-        {
-          name: "",
-          data: [44, 55, 30, 80, 120, 100, 130],
-        },
-      ],
+      series: [],
       chartOptions: {
         chart: {
           type: "bar",
@@ -43,14 +38,7 @@ export default {
           colors: ["transparent"],
         },
         xaxis: {
-          categories: [
-            this.$t("nationalities.Saudi"),
-            this.$t("nationalities.Egypt"),
-            this.$t("nationalities.Moroccan"),
-            this.$t("nationalities.Tunisian"),
-            this.$t("nationalities.American"),
-            this.$t("nationalities.Japanese"),
-          ],
+          categories: [],
           // title: {
           //   text: 'Drones'
           // }
@@ -67,7 +55,7 @@ export default {
         tooltip: {
           y: {
             formatter: function (val) {
-              return +val + " موظف";
+              return val + " موظف";
             },
           },
         },
@@ -79,11 +67,12 @@ export default {
       charts: ["bar"],
       type: "employee_nationality",
     };
+    this.showChart = false;
+
     this.fetchChart(data)
       .then((res) => {
         const { bar } = res;
         const { labels, result } = bar;
-        // console.log(labels, result);
         this.series = result;
         this.chartOptions.xaxis.categories = labels;
         this.showChart = true;
