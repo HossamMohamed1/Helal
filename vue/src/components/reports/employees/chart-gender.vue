@@ -20,7 +20,7 @@ export default {
       series: [0, 0],
       chartOptions: {
         chart: {
-          type: "pie"
+          type: "pie",
         },
         labels: [this.$t("employees.males"), this.$t("employees.females")],
         stroke: {
@@ -32,50 +32,51 @@ export default {
               labels: {
                 show: true,
                 name: "total",
-                value: 20
-              }
-            }
-          }
+                value: 20,
+              },
+            },
+          },
         },
         colors: ["#1e8e49", "#c3b086"],
         legend: {
           position: "bottom",
-          horizontalAlign: "center"
+          horizontalAlign: "center",
         },
         responsive: [
           {
             breakpoint: 480,
             options: {
               chart: {
-                width: 200
+                width: 200,
               },
               legend: {
-                position: "bottom"
-              }
-            }
-          }
-        ]
-      }
+                position: "bottom",
+              },
+            },
+          },
+        ],
+      },
     };
   },
   mounted() {
     this.loading = true;
     let data = {
-      charts: ['pie'],
-      type: "employee_gender"
+      charts: ["pie"],
+      type: "employee_gender",
     };
-    this.fetchChart(data).then(res => {
-      this.loading = false;
-      const {pie} = res
-      console.log(pie?.value);
-      this.series = pie?.value.map(item => parseInt(item));
-      this.chartOptions.labels = pie?.labels
-    }).catch(()=>{
-      this.loading = false;
-    })
+    this.fetchChart(data)
+      .then((res) => {
+        this.loading = false;
+        const { pie } = res;
+        this.series = pie?.value.map((item) => parseInt(item));
+        this.chartOptions.labels = pie?.labels;
+      })
+      .catch(() => {
+        this.loading = false;
+      });
   },
   methods: {
-    ...mapActions("statistics", ["fetchChart"])
-  }
+    ...mapActions("statistics", ["fetchChart"]),
+  },
 };
 </script>
