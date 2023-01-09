@@ -18,7 +18,7 @@ return [
         'employee_list' => [
             'columns' => ['job_desc', 'dept_desc'],
             'unit' => 'number',
-            'groupBy' => 'list',
+            'groupBy' => 'job_desc',
             'className' => 'EmployeeReport',
         ],
         'employee_gender' => [
@@ -30,7 +30,7 @@ return [
         'employee_department' => [
             'columns' => ['count'],
             'unit' => 'number',
-            'groupBy' => 'departmentid',
+            'groupBy' => 'dept_desc',
             'className' => 'EmployeeReport',
         ],
         'employee_location' => [
