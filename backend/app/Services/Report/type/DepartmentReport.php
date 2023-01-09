@@ -81,7 +81,7 @@ class DepartmentReport extends BaseReport
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.DEPT_NO) as {$this->filter['columns'][0]}"),
-                "$this->mainTable.DEPT_DESC as {$this->filter['groupBy']}"
+                $this->filter['groupBy']
             );
     }
 

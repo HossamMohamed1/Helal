@@ -131,8 +131,20 @@ class EmployeeReport extends BaseReport
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                $this->filter['groupBy'],
-                "dept_desc"
+                $this->filter['groupBy']
+            );
+    }
+
+    /**
+     * @return Builder
+     */
+    private function employeeNationalityQuery(): Builder
+    {
+        return DB::connection('oracle')
+            ->table($this->mainTable)
+            ->select(
+                DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
             );
     }
 
@@ -158,7 +170,7 @@ class EmployeeReport extends BaseReport
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                DB::raw("TIMESTAMPDIFF(YEAR,BIRTHDATE,NOW()) as {$this->filter['groupBy']}")
+                DB::raw("TIMESTAMPDIFF(YEAR,BIRTHDATE,NOW())")
             );
     }
 
@@ -170,8 +182,8 @@ class EmployeeReport extends BaseReport
         return DB::connection('oracle')
             ->table("EMPLOYEE_QUALIFICATION")
             ->select(
-                DB::raw("COUNT($this->mainTable.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
-                "$this->mainTable.MAJOR_DESC as {$this->filter['groupBy']}"
+                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
             );
     }
 
@@ -183,8 +195,8 @@ class EmployeeReport extends BaseReport
         return DB::connection('oracle')
             ->table("EMPLOYEE_QUALIFICATION")
             ->select(
-                DB::raw("COUNT($this->mainTable.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
-                "$this->mainTable.QUALIFICATION_DESC as {$this->filter['groupBy']}"
+                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
             );
     }
 }

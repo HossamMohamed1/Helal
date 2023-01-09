@@ -20,7 +20,7 @@ class ChartService
 
         foreach ($filter['columns'] as $column) {
             $value = array_values(Arr::pluck($data, $column));
-            $result[] = [
+            $result['result'][] = [
                 'name' => handleTrans($column),
                 'data' => $value
             ];
@@ -44,7 +44,7 @@ class ChartService
 
         foreach ($filter['columns']  as $column) {
             $value = array_values(Arr::pluck($data, $column));
-            $result[] = [
+            $result['result'][] = [
                 'name' => handleTrans($column),
                 'data' => $value
             ];

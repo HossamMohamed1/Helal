@@ -34,7 +34,7 @@ return [
             'className' => 'EmployeeReport',
         ],
         'employee_location' => [
-            'columns' => ['count','dept_desc'],
+            'columns' => ['count'],
             'unit' => 'number',
             'groupBy' => 'location_no',
             'className' => 'EmployeeReport',
@@ -51,8 +51,7 @@ return [
             'groupBy' => 'major_desc',
             'className' => 'EmployeeReport',
         ],
-        '
-        employee_job' => [
+        'employee_job' => [
             'columns' => ['count'],
             'unit' => 'number',
             'groupBy' => 'job_desc',
@@ -61,25 +60,25 @@ return [
         'employee_age' => [
             'columns' => ['count'],
             'unit' => 'number',
-            'groupBy' => 'age',
+            'groupBy' => 'birthdate',
             'className' => 'EmployeeReport',
         ],
         'employee_qualification' => [
             'columns' => ['count'],
             'unit' => 'number',
-            'groupBy' => 'qualification_no',
+            'groupBy' => 'qualification_desc',
             'className' => 'EmployeeReport',
         ],
         'department_status' => [
             'columns' => ['count'],
             'unit' => 'number',
-            'groupBy' => 'status',
+            'groupBy' => 'dept_status',
             'className' => 'DepartmentReport',
         ],
         'department_location' => [
             'columns' => ['count'],
             'unit' => 'number',
-            'groupBy' => 'location',
+            'groupBy' => 'location_no',
             'className' => 'DepartmentReport',
         ],
         'department_age' => [
