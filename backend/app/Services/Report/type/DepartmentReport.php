@@ -81,7 +81,20 @@ class DepartmentReport extends BaseReport
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.DEPT_NO) as {$this->filter['columns'][0]}"),
-                "$this->mainTable.DEPT_DESC as {$this->filter['groupBy']}"
+                $this->filter['groupBy']
+            );
+    }
+
+        /**
+     * @return Builder
+     */
+    private function departmentLocationQuery(): Builder
+    {
+        return DB::connection('oracle')
+            ->table($this->mainTable)
+            ->select(
+                DB::raw("COUNT($this->mainTable.DEPT_NO) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
             );
     }
 

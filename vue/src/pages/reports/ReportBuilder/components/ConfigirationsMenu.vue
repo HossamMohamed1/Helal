@@ -18,27 +18,23 @@
       temporary
       width="310"
     >
-     <line-config/>
-
+      <line-config />
     </v-navigation-drawer>
   </div>
 </template>
 
 <script>
-import {mapMutations, mapState} from 'vuex'
+import { mapMutations, mapState } from "vuex";
 import LineConfig from "@/pages/reports/ReportBuilder/components/configirations/LineConfig";
 
 export default {
-  components: {LineConfig},
+  components: { LineConfig },
   data() {
     return {
       right: false,
-
-    }
+    };
   },
-
-
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -46,15 +42,15 @@ export default {
   position: fixed;
   top: 340px;
   right: -20px;
-  z-index: 6;
+  z-index: 1;
   box-shadow: 1px 1px 18px #ee44aa;
 
   .v-icon {
     margin-left: -18px;
     font-size: 1.3rem;
   }
-  input{
-    border-color:#ddd;
+  input {
+    border-color: #ddd;
   }
 }
 </style>

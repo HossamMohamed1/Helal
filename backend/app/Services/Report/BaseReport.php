@@ -10,7 +10,7 @@ abstract class BaseReport
      * Fetch report data
      *
      */
-    abstract public function report();
+    abstract public function report(): array;
 
     /**
      * Prepare Important Properties to execute report

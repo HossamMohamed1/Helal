@@ -20,13 +20,13 @@ import { mapActions, mapState } from "vuex";
 export default {
   components: {},
   props: {
-    config: {}
+    config: {},
   },
   data() {
     return {
       loading: false,
       backgroundStyle: { backgroundColor: "" },
-      chartObject: null
+      chartObject: null,
     };
   },
   destroyed() {
@@ -58,10 +58,10 @@ export default {
         .catch(() => {
           this.loading = false;
         });
-    }
+    },
   },
   computed: {
-    ...mapState("reports", ["analytics", "chart", "fileData"])
+    ...mapState("reports", ["analytics", "chart", "fileData"]),
   },
   methods: {
     ...mapActions("reports", ["loadAnalytics"]),
@@ -71,7 +71,6 @@ export default {
       }
       let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);
       chart.maskBullets = false;
-      console.log(this.analytics);
       chart.data = this.analytics;
       const { config } = this.chart;
       // Title
@@ -131,7 +130,7 @@ export default {
       bullet.propertyFields.fill = "color";
       bullet.strokeOpacity = 0;
       bullet.fontSize = 10;
-      bullet.adapter.add("tooltipY", function(tooltipY, target) {
+      bullet.adapter.add("tooltipY", function (tooltipY, target) {
         return -target.radius + 1;
       });
       bullet.strokeWidth = parseInt(config?.bullets?.strokeWidth);
@@ -142,7 +141,7 @@ export default {
         property: "radius",
         target: bullet,
         min: 2,
-        max: 40
+        max: 40,
       });
       bullet.hiddenState.properties.scale = 0.01;
 
@@ -186,7 +185,7 @@ export default {
 
       chart.fontSize = parseInt(config?.fontSize);
       this.chartObject = chart;
-    }
+    },
   },
   mounted() {
     const { id } = this.chart;
@@ -250,11 +249,11 @@ export default {
 
         chartData.push({
           date: newDate,
-          visits: visits
+          visits: visits,
         });
       }
       return chartData;
     }
-  }
+  },
 };
 </script>

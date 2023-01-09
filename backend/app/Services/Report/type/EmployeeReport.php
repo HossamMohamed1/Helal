@@ -41,15 +41,12 @@ class EmployeeReport extends BaseReport
      */
     public function prepare(): void
     {
-        $filter = $this->filter;
+        $this->filter['format_date'] = $this->guessDateFormat(@$this->filter['start'], @$this->filter['end']);
 
-        $filter['format_date'] = $this->guessDateFormat(@$filter['start'], @$filter['end']);
-
-        $type = camelCase($filter['type']);
-        $func_name = "{$type}Query";
+        $func_name = camelCase($this->filter['type']) . "Query";
 
         if (method_exists($this, $func_name)) {
-            $this->query = $this->$func_name($filter);
+            $this->query = $this->$func_name();
         }
     }
 
@@ -63,7 +60,7 @@ class EmployeeReport extends BaseReport
         }
 
         if ($this->filter['type'] == 'employee_gender') {
-            $data = collect($this->query->frist())->transform(function ($item, $key) {
+            $data = collect($this->query->first())->transform(function ($item, $key) {
                 return [
                     $this->filter['groupBy'] => $key,
                     $this->filter['columns'][0] => $item
@@ -121,7 +118,7 @@ class EmployeeReport extends BaseReport
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                "$this->mainTable.DEPT_DESC as {$this->filter['groupBy']}"
+                $this->filter['groupBy']
             );
     }
 
@@ -134,7 +131,20 @@ class EmployeeReport extends BaseReport
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                "$this->mainTable.LOCATION_NO as {$this->filter['groupBy']}"
+                $this->filter['groupBy']
+            );
+    }
+
+    /**
+     * @return Builder
+     */
+    private function employeeNationalityQuery(): Builder
+    {
+        return DB::connection('oracle')
+            ->table($this->mainTable)
+            ->select(
+                DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
             );
     }
 
@@ -147,7 +157,7 @@ class EmployeeReport extends BaseReport
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                "$this->mainTable.JOB_DESC as {$this->filter['groupBy']}"
+                $this->filter['groupBy']
             );
     }
 
@@ -160,7 +170,7 @@ class EmployeeReport extends BaseReport
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                DB::raw("TIMESTAMPDIFF(YEAR,BIRTHDATE,NOW()) as {$this->filter['groupBy']}")
+                DB::raw("TIMESTAMPDIFF(YEAR,BIRTHDATE,NOW())")
             );
     }
 
@@ -172,8 +182,8 @@ class EmployeeReport extends BaseReport
         return DB::connection('oracle')
             ->table("EMPLOYEE_QUALIFICATION")
             ->select(
-                DB::raw("COUNT($this->mainTable.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
-                "$this->mainTable.MAJOR_DESC as {$this->filter['groupBy']}"
+                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
             );
     }
 
@@ -185,8 +195,8 @@ class EmployeeReport extends BaseReport
         return DB::connection('oracle')
             ->table("EMPLOYEE_QUALIFICATION")
             ->select(
-                DB::raw("COUNT($this->mainTable.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
-                "$this->mainTable.QUALIFICATION_DESC as {$this->filter['groupBy']}"
+                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
             );
     }
 }

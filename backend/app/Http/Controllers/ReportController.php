@@ -29,7 +29,7 @@ class ReportController extends Controller
                 if ($request->expectsJson()) {
                     return errorMessage('Not found any report for this type');
                 }
-                abort(404);
+                abort(400, 'Not found any report for this type');
             }
 
             $filter += $options;
@@ -37,24 +37,27 @@ class ReportController extends Controller
                 if ($request->expectsJson()) {
                     return errorMessage('Error In Show Report');
                 }
-                abort(404);
+                abort(400, 'Error In Show Report');
             }
 
             return successData($result);
-        } catch (\Error $e) {
+        } catch (\Exception$e) {
+            // dd($e);
             return errorMessage($e->getMessage());
         }
     }
 
     public function employee()
     {
+        try {
+            $employe = Employee::get();
 
-        $employe = Employee::get();
-
-        return response()->json([
-            'emp' => $employe
-        ]);
-        return $employe;
+            return response()->json([
+                'emp' => $employe,
+            ]);
+        } catch (\Throwable$th) {
+            abort(400, 'Error In Show Report');
+        }
     }
 
 }

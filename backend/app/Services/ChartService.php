@@ -20,7 +20,7 @@ class ChartService
 
         foreach ($filter['columns'] as $column) {
             $value = array_values(Arr::pluck($data, $column));
-            $result[] = [
+            $result['result'][] = [
                 'name' => handleTrans($column),
                 'data' => $value
             ];
@@ -44,7 +44,7 @@ class ChartService
 
         foreach ($filter['columns']  as $column) {
             $value = array_values(Arr::pluck($data, $column));
-            $result[] = [
+            $result['result'][] = [
                 'name' => handleTrans($column),
                 'data' => $value
             ];
@@ -63,13 +63,17 @@ class ChartService
      */
     public static function preparePie($data, $filter): array
     {
+        $result = [];
         foreach ($filter['columns'] as $column) {
-            $value = array_values(array_map(static fn($item) => (int)$item, Arr::pluck($data, $column)));
             $result[$column] = [
                 'labels' => array_filter(Arr::pluck($data, $filter['groupBy'])),
-                'series' => $value ?? [0],
+                'series' => array_values(array_map(static fn($item) => $item, Arr::pluck($data, $column))) ?? [0],
             ];
          }
+
+        if(count($result) == 1){
+            $result = Arr::first($result);
+        }
 
         return $result ?? [];
     }

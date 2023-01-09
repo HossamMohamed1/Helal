@@ -15,22 +15,7 @@ export default {
   data() {
     return {
       showChart: false,
-      series: [
-        {
-          name: this.$t("employees.administration1"),
-          data: [
-            45, 52, 38, 24, 33, 26, 21, 20, 44, 45, 30, 35, 37, 38, 53, 55, 33,
-            26, 21, 20, 44, 45,
-          ],
-        },
-        {
-          name: this.$t("employees.administration2"),
-          data: [
-            35, 41, 62, 42, 13, 18, 29, 37, 24, 45, 52, 38, 24, 33, 26, 21, 42,
-            13, 18, 29, 37, 24,
-          ],
-        },
-      ],
+      series: [],
       chartOptions: {
         chart: {
           height: 350,
@@ -69,10 +54,7 @@ export default {
           },
         },
         xaxis: {
-          categories: [
-            20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 30, 35, 40, 41, 42, 43,
-            44, 45, 50, 55, 60,
-          ],
+          categories: [],
         },
         colors: ["#1e8e49", "#c3b086", "#c3b080"],
         tooltip: {
@@ -107,20 +89,27 @@ export default {
     };
   },
   mounted() {
-    this.showChart = true;
     this.loadChartData();
   },
   methods: {
     ...mapActions("statistics", ["fetchChart"]),
     loadChartData() {
-      // console.log("object");
       const data = {
         charts: ["line"],
         type: "employee_age",
       };
-      this.fetchChart(data).then((res) => {
-        console.log(res);
-      });
+      this.fetchChart(data)
+        .then((res) => {
+          const { line } = res ?? {};
+          const { labels, result } = line ?? {};
+          this.series = result;
+          this.chartOptions.xaxis.categories = labels;
+
+          this.showChart = true;
+        })
+        .catch(() => {
+          this.showChart = true;
+        });
     },
   },
 };

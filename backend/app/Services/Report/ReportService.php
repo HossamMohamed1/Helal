@@ -10,7 +10,7 @@ use Illuminate\Support\Arr;
 class ReportService
 {
     /**
-     * @param $type
+     * @param $filter
      * @return false|mixed
      */
     public static function prepareObject($filter)
@@ -18,11 +18,11 @@ class ReportService
         $type = $filter['type'];
 
         try {
-            $path = "\\App\\Services\\Report\\" . config("report.type.$type.className");
+            $path = "\\App\\Services\\Report\\type\\" . config("report.type.$type.className");
 
             $reportClass = new $path($filter);
 
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return false;
         }
 
@@ -53,6 +53,7 @@ class ReportService
 
             return $result ?? [];
         } catch (Exception $e) {
+            dd($e);
             throw new GeneralException($e->getMessage());
         }
     }

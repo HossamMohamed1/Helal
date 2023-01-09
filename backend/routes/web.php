@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/test', function () {
-
+    return config('report.type');
     $data = \App\Models\Employee::select(DB::raw('count(genderid) as total'))->first()->toArray();
 
     dd($data);

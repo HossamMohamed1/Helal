@@ -23,8 +23,8 @@ if (!function_exists('errorMessage')) {
         $message = trans('dashboard.something_error') . '' . (env('APP_DEBUG') ? " : $message" : '');
 
         return request()->expectsJson()
-            ? response()->json(['message' => $message], 400)
-            : redirect()->back()->with(['status' => 'error', 'message' => $message]);
+        ? response()->json(['message' => $message], 400)
+        : redirect()->back()->with(['status' => 'error', 'message' => $message]);
     }
 }
 
@@ -32,20 +32,19 @@ if (!function_exists('successMessage')) {
     function successMessage($message = 'success')
     {
         return request()->expectsJson()
-            ? response()->json(['message' => $message])
-            : redirect()->back()->with(['status' => 'success', 'message' => $message]);
+        ? response()->json(['message' => $message])
+        : redirect()->back()->with(['status' => 'success', 'message' => $message]);
     }
 }
 
 if (!function_exists('successData')) {
-    function successData($data = [],$message = 'success')
+    function successData($data = [], $message = '')
     {
         return request()->expectsJson()
-            ? response()->json(['message' => $message,'data'=> $data])
-            : redirect()->back()->with(['status' => 'success', 'message' => $message]);
+        ? response()->json(['message' => $message, 'data' => $data])
+        : redirect()->back()->with(['status' => 'success', 'message' => $message]);
     }
 }
-
 
 if (!function_exists('handleTrans')) {
     function handleTrans($trans = '', $return = null)
@@ -65,7 +64,7 @@ if (!function_exists('handleTrans')) {
 
 function camelCase($string, $capitalizeFirstCharacter = false)
 {
-    $str = str_replace(' ', '', ucwords(str_replace(['-','_'], ' ', $string)));
+    $str = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $string)));
 
     if (!$capitalizeFirstCharacter) {
         $str[0] = strtolower($str[0]);
