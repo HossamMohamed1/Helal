@@ -41,15 +41,12 @@ class EmployeeReport extends BaseReport
      */
     public function prepare(): void
     {
-        $filter = $this->filter;
+        $this->filter['format_date'] = $this->guessDateFormat(@$this->filter['start'], @$this->filter['end']);
 
-        $filter['format_date'] = $this->guessDateFormat(@$filter['start'], @$filter['end']);
-
-        $type = camelCase($filter['type']);
-        $func_name = "{$type}Query";
+        $func_name = camelCase($this->filter['type']) . "Query";
 
         if (method_exists($this, $func_name)) {
-            $this->query = $this->$func_name($filter);
+            $this->query = $this->$func_name();
         }
     }
 

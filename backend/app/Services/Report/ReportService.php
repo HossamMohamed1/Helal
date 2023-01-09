@@ -10,7 +10,7 @@ use Illuminate\Support\Arr;
 class ReportService
 {
     /**
-     * @param $type
+     * @param $filter
      * @return false|mixed
      */
     public static function prepareObject($filter)
