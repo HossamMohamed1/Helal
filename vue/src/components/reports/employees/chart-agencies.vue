@@ -1,11 +1,13 @@
 <template>
   <div v-if="showChart">
-    <apexchart
-      type="bar"
-      height="350"
-      :options="chartOptions"
-      :series="series"
-    ></apexchart>
+    <v-card>
+      <apexchart
+        type="bar"
+        height="350"
+        :options="chartOptions"
+        :series="series"
+      ></apexchart>
+    </v-card>
   </div>
 </template>
 
@@ -92,8 +94,8 @@ export default {
         this.chartOptions.xaxis.categories = labels;
         this.showChart = true;
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        this.showChart = true;
       });
   },
   methods: {

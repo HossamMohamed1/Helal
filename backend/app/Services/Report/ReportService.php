@@ -22,7 +22,7 @@ class ReportService
 
             $reportClass = new $path($filter);
 
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return false;
         }
 
