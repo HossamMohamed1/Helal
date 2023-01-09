@@ -105,20 +105,24 @@ export default {
     };
   },
   mounted() {
-    this.showChart = true;
     const data = {
       charts: ["line"],
       type: "employee_qualification",
     };
-
-    this.fetchChart(data).then((res) => {
-      // console.log(re);
-      const { line } = res;
-      const { labels, result } = line;
-      // console.log(labels, result);
-      this.series = result;
-      this.chartOptions.xaxis.categories = labels;
-    });
+    this.showChart = false;
+    this.fetchChart(data)
+      .then((res) => {
+        this.showChart = true;
+        // console.log(re);
+        const { line } = res;
+        const { labels, result } = line;
+        // console.log(labels, result);
+        this.series = result;
+        this.chartOptions.xaxis.categories = labels;
+      })
+      .catch(() => {
+        this.showChart = false;
+      });
   },
   methods: {
     ...mapActions("statistics", ["fetchChart"]),
