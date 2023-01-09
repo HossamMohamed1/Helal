@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ReportService;
+use App\Models\Employee;
+use App\Services\Report\ReportService;
 use Exception;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Models\Employee;
 
 class ReportController extends Controller
 {
@@ -18,22 +17,22 @@ class ReportController extends Controller
     }
 
     /**
-     * @return View|RedirectResponse|JsonResponse
+     * @return JsonResponse|RedirectResponse
      * @throws Exception
      */
     public function charts(Request $request)
     {
         try {
             $filter = $request->all();
-            $filter['groupBy'] = $request->groupBy ?? 'list';
 
-            if (!$filter['options'] = ReportService::getReportList($request->type)) {
+            if (!$options = ReportService::getReportOption($request->type)) {
                 if ($request->expectsJson()) {
                     return errorMessage('Not found any report for this type');
                 }
                 abort(404);
             }
 
+            $filter += $options;
             if (!$result = ReportService::report($filter)) {
                 if ($request->expectsJson()) {
                     return errorMessage('Error In Show Report');
@@ -47,12 +46,13 @@ class ReportController extends Controller
         }
     }
 
-    public function employee(){
+    public function employee()
+    {
 
         $employe = Employee::get();
 
         return response()->json([
-            'emp'=>$employe
+            'emp' => $employe
         ]);
         return $employe;
     }

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Report;
 
 use App\Exceptions\GeneralException;
+use App\Services\ChartService;
 use Exception;
 use Illuminate\Support\Arr;
 
@@ -12,11 +13,18 @@ class ReportService
      * @param $type
      * @return false|mixed
      */
-    public static function prepareObject($type)
+    public static function prepareObject($filter)
     {
-        $path = "\\App\\Services\\Report\\" . config("report.type.$type.className");
+        $type = $filter['type'];
 
-        $reportClass = new $path();
+        try {
+            $path = "\\App\\Services\\Report\\type\\" . config("report.type.$type.className");
+
+            $reportClass = new $path($filter);
+
+        }catch (Exception $e){
+            return false;
+        }
 
         return is_object($reportClass) ? $reportClass : false;
     }
@@ -27,11 +35,11 @@ class ReportService
     public static function report($filter)
     {
         try {
-            if (!$reportObject = self::prepareObject($filter['type'])) {
+            if (!$reportObject = self::prepareObject($filter)) {
                 return false;
             }
 
-            $data = $reportObject->report($filter) ?? [];
+            $data = $reportObject->report() ?? [];
 
             $charts = Arr::wrap($filter['charts']);
 
@@ -47,6 +55,15 @@ class ReportService
         } catch (Exception $e) {
             throw new GeneralException($e->getMessage());
         }
+    }
+
+    /**
+     * @param $type
+     * @return array|false
+     */
+    public function getReportOption($type)
+    {
+        return config("report.type.$type") ?? false;
     }
 
     /**
@@ -67,12 +84,4 @@ class ReportService
         }
     }
 
-    /**
-     * @param $type
-     * @return array|false
-     */
-    public function getReportList($type)
-    {
-        return config("report.type.$type") ?? false;
-    }
 }

@@ -9,25 +9,22 @@ abstract class BaseReport
     /**
      * Fetch report data
      *
-     * @param $filter
      */
-    abstract public function report($filter);
+    abstract public function report(): array;
 
     /**
      * Prepare Important Properties to execute report
      *
-     * @param $filter
      * @return void
      */
-    abstract public function prepare($filter): void;
+    abstract public function prepare(): void;
 
     /**
      * Return Data to draw report
      *
-     * @param $filter
      * @return array
      */
-    abstract public function getReport($filter): array;
+    abstract public function getReport(): array;
 
     /**
      * Guess Correct Date Format Based on duration
@@ -52,8 +49,8 @@ abstract class BaseReport
                 return '%h:00 %p';
             case ($diff < 32 && $diff >= 1):
                 return '%d-%m-%Y';
-//            case ($diff < 32 && $diff > 15):
-//                return 'Week %u-%b-%Y';
+            case ($diff < 32 && $diff > 15):
+                return 'Week %u-%b-%Y';
             case ($diff < 367 && $diff >= 32):
                 return '%b-%Y';
             case ($diff > 367):

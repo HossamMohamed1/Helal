@@ -51,6 +51,7 @@
               <v-text-field
                 v-model="user.email"
                 :label="$t('tables.email')"
+                type="email"
                 :error-messages="errors['email']"
               ></v-text-field>
 
@@ -136,16 +137,16 @@ export default {
   props: {
     user: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     errors: {
       type: Object,
-      default: {}
+      default: {},
     },
     loading: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -153,7 +154,7 @@ export default {
       deleteDialog: false,
       disableDialog: false,
       avatar: {},
-      showPassword: false
+      showPassword: false,
     };
   },
   methods: {
@@ -167,7 +168,7 @@ export default {
         name,
         password,
         confirm_password,
-        username
+        username,
       };
       if (this.avatar.length) {
         data["avatar"] = this.avatar[0];
@@ -192,12 +193,12 @@ export default {
         }
       }
       return form;
-    }
+    },
   },
   mounted() {
-    document.getElementById("update-avatar").addEventListener("change", e => {
+    document.getElementById("update-avatar").addEventListener("change", (e) => {
       this.avatar = e.target.files;
     });
-  }
+  },
 };
 </script>

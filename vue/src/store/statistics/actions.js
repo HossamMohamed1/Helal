@@ -9,7 +9,7 @@ const actions = {
     const response = await axios.get("report/employee");
 
     return response?.data?.emp ?? [];
-  }
+  },
 };
 
 export default actions;

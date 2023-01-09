@@ -39,7 +39,7 @@ import InformationTab from "./CreateUser/InformationTab";
 export default {
   components: {
     AccountTab,
-    InformationTab
+    InformationTab,
   },
   data() {
     return {
@@ -49,7 +49,7 @@ export default {
         name: "",
         username: "",
         password: "",
-        confirm_password: ""
+        confirm_password: "",
       },
       tab: null,
       errors: {},
@@ -58,17 +58,17 @@ export default {
         {
           text: this.$t("menu.usersManagement"),
           disabled: false,
-          href: "#"
+          href: "#",
         },
         {
           text: this.$t("users.usersList"),
           to: "/users/list",
-          exact: true
+          exact: true,
         },
         {
-          text: this.$t("users.createUser")
-        }
-      ]
+          text: this.$t("users.createUser"),
+        },
+      ],
     };
   },
   methods: {
@@ -81,14 +81,14 @@ export default {
           this.loading = false;
           this.$router.push({ name: "users-list" });
         })
-        .catch(error => {
+        .catch((error) => {
           this.loading = false;
           if (error.response.status == 422) {
             const { errors } = error?.response?.data ?? {};
             this.errors = errors ?? {};
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>

@@ -20,19 +20,19 @@ export const routes = [
     path: "/",
     redirect: "/dashboard/analytics",
     meta: {
-      auth: true
-    }
+      auth: true,
+    },
   },
   {
     path: "/dashboard/analytics",
     name: "dashboard-analytics",
     meta: {
-      auth: true
+      auth: true,
     },
     component: () =>
       import(
         /* webpackChunkName: "dashboard" */ "@/pages/dashboard/DashboardPage.vue"
-      )
+      ),
   },
   ...AppsRoutes,
   ...UIRoutes,
@@ -48,7 +48,7 @@ export const routes = [
     path: "/blank",
     name: "blank",
     component: () =>
-      import(/* webpackChunkName: "blank" */ "@/pages/BlankPage.vue")
+      import(/* webpackChunkName: "blank" */ "@/pages/BlankPage.vue"),
   },
   {
     path: "*",
@@ -56,20 +56,20 @@ export const routes = [
     component: () =>
       import(/* webpackChunkName: "error" */ "@/pages/error/NotFoundPage.vue"),
     meta: {
-      layout: "error"
-    }
-  }
+      layout: "error",
+    },
+  },
 ];
 
 const router = new Router({
   mode: "history",
-  base: process.env.BASE_URL || "/",
+  base: process.env.VUE_APP_SUB_DIR || "/",
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) return savedPosition;
 
     return { x: 0, y: 0 };
   },
-  routes
+  routes,
 });
 
 /**
