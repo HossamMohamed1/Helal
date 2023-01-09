@@ -15,22 +15,7 @@ export default {
   data() {
     return {
       showChart: false,
-      series: [
-        // {
-        //   name: this.$t("employees.administration1"),
-        //   data: [
-        //     45, 52, 38, 24, 33, 26, 21, 20, 44, 45, 30, 35, 37, 38, 53, 55, 33,
-        //     26, 21, 20, 44, 45,
-        //   ],
-        // },
-        // {
-        //   name: this.$t("employees.administration2"),
-        //   data: [
-        //     35, 41, 62, 42, 13, 18, 29, 37, 24, 45, 52, 38, 24, 33, 26, 21, 42,
-        //     13, 18, 29, 37, 24,
-        //   ],
-        // },
-      ],
+      series: [],
       chartOptions: {
         chart: {
           height: 350,
@@ -109,7 +94,6 @@ export default {
   methods: {
     ...mapActions("statistics", ["fetchChart"]),
     loadChartData() {
-      // console.log("object");
       const data = {
         charts: ["line"],
         type: "employee_age",

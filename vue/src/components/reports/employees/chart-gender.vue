@@ -23,7 +23,7 @@ export default {
         chart: {
           type: "pie",
         },
-        labels: [this.$t("employees.males"), this.$t("employees.females")],
+        labels: [],
         stroke: {
           // colors: ["#29abe2", "#a4a8ad", "#d5d5d5"]
         },
