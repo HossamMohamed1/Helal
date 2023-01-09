@@ -84,8 +84,9 @@ export default {
     };
     this.fetchChart(data)
       .then((res) => {
-        const { bar } = res;
-        console.log(res, bar);
+        const { bar } = res ??{};
+        const {labels,result} = bar ??{}
+        console.log( labels,result);
       })
       .catch((err) => {
         console.log(err);
