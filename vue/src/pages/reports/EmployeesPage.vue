@@ -410,6 +410,30 @@
           </div>
         </v-card>
       </v-col>
+
+      <v-col cols="12" lg="6">
+        <v-card>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
+          </div>
+          <div v-else class="d-flex flex-column flex-grow-1">
+            <v-card-title
+              class="d-flex align-center align-content-space-between"
+            >
+              <div>عدد الأقسام حسب توزيع الاعمار للموظفين</div>
+            </v-card-title>
+            <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
+              <age-department-count />
+            </div>
+          </div>
+        </v-card>
+      </v-col>
     </v-row>
 
     <files-management />
@@ -440,6 +464,7 @@ import ChartStatus from "@/components/reports/employees/chart-status";
 import ChartAttendanceLocations from "@/components/reports/employees/chart-attendance-locations";
 import ChartEmpsAgesDepartments from "@/components/reports/employees/chart-emps-ages-departments";
 import FilesManagement from "@/components/reports/employees/files-management";
+import AgeDepartmentCount from "@/components/reports/employees/AgeDepartmentCount";
 import { mapActions } from "vuex";
 
 export default {
@@ -463,6 +488,7 @@ export default {
     TrackCard,
     DateRangePicker,
     ChartDepartment,
+    AgeDepartmentCount,
   },
   // filters: {
   //   dateCell(value) {
