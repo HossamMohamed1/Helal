@@ -118,9 +118,8 @@ export default {
         .then((res) => {
           const { line } = res ?? {};
           const { labels, result } = line ?? {};
-          this.series = result.map((item, index) => {
-            return { ...item, name: labels[index] };
-          });
+          this.series = result;
+          this.chartOptions.xaxis.categories = labels;
 
           this.showChart = true;
         })
