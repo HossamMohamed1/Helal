@@ -479,7 +479,7 @@
             <v-card-title
               class="d-flex align-center align-content-space-between"
             >
-              <div>الموظفين في الأقسام</div>
+              <div>عدد الموظفين في الأقسام</div>
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-agencies></chart-agencies>
