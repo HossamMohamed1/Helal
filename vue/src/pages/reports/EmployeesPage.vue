@@ -183,7 +183,7 @@
 
     <v-row class="flex-grow-0 mb-1" dense>
       <v-col cols="12" lg="6">
-        <v-card>
+        <v-card style="height: 100%">
           <div
             v-if="loading"
             class="d-flex flex-grow-1 align-center justify-center"
