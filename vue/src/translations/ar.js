@@ -561,7 +561,8 @@ export default {
     reportType: "نوع التقرير",
     uploadFile: "تحميل ملف",
     showReport: "عرض التقرير",
-    updateReport: "تعديل تقرير"
+    updateReport: "تعديل تقرير",
+    columns: "الأعمدة"
   },
   dates: {
     Jan: "يناير",

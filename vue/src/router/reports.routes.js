@@ -18,6 +18,17 @@ export default [
       ),
   },
   {
+    path: "/reports/employees-v2",
+    name: "reports-employees-v2",
+    meta: {
+      auth: true,
+    },
+    component: () =>
+      import(
+        /* webpackChunkName: "reports-list" */ "@/pages/reports/EmployeePage2.vue"
+      ),
+  },
+  {
     path: "/reports/permits",
     name: "reports-permits",
     meta: {

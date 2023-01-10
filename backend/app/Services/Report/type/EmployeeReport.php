@@ -13,7 +13,7 @@ class EmployeeReport extends BaseReport
 {
     public $query = null;
     public string $mainTable;
-    public array $filter;
+    public  array $filter;
 
     public function __construct($filter)
     {
@@ -31,7 +31,6 @@ class EmployeeReport extends BaseReport
             $this->prepare();
 
             return $this->getReport();
-
         } catch (Exception $e) {
             throw new GeneralException($e->getMessage());
         }
@@ -63,17 +62,15 @@ class EmployeeReport extends BaseReport
             $data = collect($this->query->first())->transform(function ($item, $key) {
                 return [
                     $this->filter['groupBy'] => $key,
-                    $this->filter['columns'][0] => $item
+                    $this->filter['columns'][0] => $item,
                 ];
             })->toArray();
-
         } else {
             $data = json_decode($this->query->groupBy($this->filter['groupBy'])
                 ->get()
                 ->mapWithKeys(function ($item) {
                     return [$item->{$this->filter['groupBy']} => $item];
-                }), true, 512, JSON_THROW_ON_ERROR);;
-
+                }), true, 512, JSON_THROW_ON_ERROR);
         }
 
         return $data;
@@ -84,12 +81,12 @@ class EmployeeReport extends BaseReport
      */
     private function employeeGenderQuery(): Builder
     {
-//        return DB::connection('oracle')
-//            ->table($this->mainTable)
-//            ->select(
-//                DB::raw("COUNT($this->mainTable.EMP_NO"),
-//                "$this->mainTable.GENDERID as {$this->filter['groupBy']}"
-//            );
+        //        return DB::connection('oracle')
+        //            ->table($this->mainTable)
+        //            ->select(
+        //                DB::raw("COUNT($this->mainTable.EMP_NO"),
+        //                "$this->mainTable.GENDERID as {$this->filter['groupBy']}"
+        //            );
 
         return DB::connection('oracle')
             ->table($this->mainTable)
@@ -166,7 +163,8 @@ class EmployeeReport extends BaseReport
      */
     private function employeeAgeQuery(): Builder
     {
-        return dd(DB::connection('oracle')
+        // to_char(sysdate,'day dd month yyyy','nls_calendar=''arabic hijrah''')
+        return DB::connection('oracle')
             ->table($this->mainTable)
             ->select(
                 // DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
