@@ -166,12 +166,12 @@ class EmployeeReport extends BaseReport
      */
     private function employeeAgeQuery(): Builder
     {
-        return DB::connection('oracle')
+        return dd(DB::connection('oracle')
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                DB::raw("TIMESTAMPDIFF(YEAR,BIRTHDATE,NOW())")
-            );
+                DB::raw("round(months_between(TRUNC(sysdate), to_date(birthdate,'DD-MON-YYYY') )/12) as age")
+            )->first());
     }
 
     /**
