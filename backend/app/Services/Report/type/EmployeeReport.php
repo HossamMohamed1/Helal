@@ -168,7 +168,7 @@ class EmployeeReport extends BaseReport
             ->table($this->mainTable)
             ->select(
                 // DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                DB::raw("round(months_between(to_char(sysdate,'DD-MON-YYYY','nls_calendar=''arabic hijrah'''), to_date(birthdate,'DD-MON-YYYY') )/12) as age")
+                DB::raw("round(months_between(to_char(sysdate,'DD-MM-YYYY','nls_calendar=''arabic hijrah'''), to_date(birthdate,'DD-MM-YYYY') )/12) as age")
             )->first();
     }
 

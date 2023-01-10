@@ -119,6 +119,7 @@
           </template>
         </div>
       </div>
+      <v-breadcrumbs :items="breadcrumbs" class="pa-0 py-2"></v-breadcrumbs>
     </div>
     {{ cards }}
   </div>
@@ -131,6 +132,18 @@ export default {
   components: { DateRangePicker },
   data() {
     return {
+      breadcrumbs: [
+        {
+          text: this.$t("menu.reports"),
+          disabled: false,
+          href: "#",
+        },
+        {
+          text: this.$t("employees.employeesReports"),
+          to: "/reports/employees",
+          exact: true,
+        },
+      ],
       dialog: false,
       types: [
         {
