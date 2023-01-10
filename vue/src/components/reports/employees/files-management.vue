@@ -53,7 +53,7 @@
         <v-tabs-items v-model="tab" class="py-3">
           <v-tab-item>
             <v-row>
-              <v-col cols="2" v-for="file in files">
+              <v-col cols="2" v-for="(file, index) in files" :key="index">
                 <v-card class="grey lighten-4 shadow-none">
                   <div
                     class="py-1 px-1 d-flex align-center justify-space-between"
@@ -119,7 +119,11 @@
 
           <v-tab-item>
             <v-row>
-              <v-col cols="2" v-for="file in files">
+              <v-col
+                cols="2"
+                v-for="(file, index) in files"
+                :key="index + files.length"
+              >
                 <v-card class="grey lighten-4 shadow-none">
                   <div
                     class="py-1 px-1 d-flex align-center justify-space-between"
