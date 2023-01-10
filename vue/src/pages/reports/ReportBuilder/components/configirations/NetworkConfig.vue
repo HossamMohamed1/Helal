@@ -11,7 +11,6 @@
     <v-divider></v-divider>
 
     <div class="pa-2">
-
       <div class="font-weight-bold mt-3 mb-1">Node Distance</div>
       <v-row>
         <v-col class="col-6 pb-0">
@@ -31,7 +30,6 @@
           ></v-text-field>
         </v-col>
       </v-row>
-
 
       <div class="font-weight-bold mt-3 mb-1">Nodes Interaction</div>
       <v-row>
@@ -71,8 +69,10 @@
             mandatory
             class="mb-2"
           >
-            <v-btn>One Direction</v-btn> <!--cubicBezier-->
-            <v-btn>Tow Direction</v-btn> <!--dynamic-->
+            <v-btn value="cubicBezier">One Direction</v-btn>
+            <!--cubicBezier-->
+            <v-btn value="dynamic">Tow Direction</v-btn>
+            <!--dynamic-->
           </v-btn-toggle>
         </v-col>
         <v-col class="col-12 pb-0">
@@ -83,17 +83,16 @@
             mandatory
             class="mb-2"
           >
-            <v-btn>Active</v-btn>
-            <v-btn>In Active</v-btn>
+            <v-btn :value="true">Active</v-btn>
+            <v-btn :value="false">In Active</v-btn>
           </v-btn-toggle>
         </v-col>
-
       </v-row>
 
       <div class="font-weight-bold mt-3 mb-1">Navigation Buttons</div>
       <v-row>
         <v-col class="col-12 pb-0">
-<!--          <legend></legend>-->
+          <!--          <legend></legend>-->
           <v-btn-toggle
             v-model="config.interaction.navigationButtons"
             color="primary"
@@ -107,12 +106,9 @@
       </v-row>
 
       <div class="font-weight-bold mt-3 mb-1">Font Style</div>
-      <input type="color" v-model="config.color">
-
+      <input type="color" v-model="config.font.color" />
       <div class="font-weight-bold mt-3 mb-1">Chart background</div>
-      <input type="color" v-model="config.style.backgroundColor">
-
-
+      <input type="color" v-model="config.style.backgroundColor" />
     </div>
 
     <v-divider></v-divider>
@@ -136,14 +132,15 @@ export default {
   components: {},
   data() {
     return {
-      loading: false
+      loading: false,
     };
   },
   computed: {
     ...mapState("reports", ["chart"]),
     config() {
-      return this.chart.config;
-    }
+      console.log(this.chart?.config);
+      return this.chart?.config ?? {};
+    },
   },
   methods: {
     ...mapActions("reports", ["updateChart"]),
@@ -152,7 +149,7 @@ export default {
       const data = {
         ...this.chart,
         config: this.config,
-        _method: "PUT"
+        _method: "PUT",
       };
       this.loading = true;
       this.updateChart(data)
@@ -162,7 +159,7 @@ export default {
         .catch(() => {
           this.loading = false;
         });
-    }
-  }
+    },
+  },
 };
 </script>

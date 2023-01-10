@@ -4,23 +4,19 @@
     :loading="loading"
     flat
   >
-    <network ref="network"
-             :nodes="nodes"
-             :edges="edges"
-             :options="options"
-             style="height: 550px"
+    <network
+      ref="network"
+      :nodes="nodes"
+      :edges="edges"
+      :options="options"
+      style="height: 550px"
     />
-    <div>
-
-    </div>
   </v-card>
 </template>
 <script>
 // import "vue-vis-network/dist/vueVisNetwork.css";
 
-import {mapActions, mapState} from "vuex";
-import * as am4core from "@amcharts/amcharts4/core";
-import * as am4charts from "@amcharts/amcharts4/charts";
+import { mapActions, mapState } from "vuex";
 
 export default {
   components: {},
@@ -30,27 +26,10 @@ export default {
   data() {
     return {
       loading: false,
-      backgroundStyle: {backgroundColor: ""},
+      backgroundStyle: { backgroundColor: "" },
       chartObject: null,
-      nodes: [
-        {id: 1, label: 'circle', shape: 'circle'},
-        {id: 2, label: 'ellipse', shape: 'ellipse'},
-        {id: 3, label: 'database', shape: 'database'},
-        {id: 4, label: 'box', shape: 'box'},
-        {id: 5, label: 'diamond', shape: 'diamond'},
-        {id: 6, label: 'dot', shape: 'dot'},
-        {id: 7, label: 'square', shape: 'square'},
-        {id: 8, label: 'triangle', shape: 'triangle'},
-      ],
-      edges: [
-        {from: 1, to: 2},
-        {from: 2, to: 3},
-        {from: 2, to: 4},
-        {from: 2, to: 5},
-        {from: 5, to: 6},
-        {from: 5, to: 7},
-        {from: 6, to: 8}
-      ],
+      nodes: [],
+      edges: [],
       options: {
         configure: {
           enabled: false,
@@ -90,12 +69,12 @@ export default {
             enabled: true,
             fit: true,
             iterations: 1000,
-            onlyDynamicEdges: false,
+            onlyDynamicEdges: true,
             updateInterval: 50,
           },
         },
-      }
-    }
+      },
+    };
   },
   destroyed() {
     if (this.chartObject) {
@@ -104,7 +83,7 @@ export default {
   },
   watch: {
     fileData() {
-      let {id} = this.chart;
+      let { id } = this.chart;
       this.loading = true;
       this.loadAnalytics(id)
         .then(() => {
@@ -116,61 +95,45 @@ export default {
         });
     },
     chart() {
-      let {id} = this.chart;
+      let { id } = this.chart;
       this.loading = true;
       this.loadAnalytics(id)
         .then(() => {
           this.loading = false;
           this.loadChart();
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
           this.loading = false;
         });
-    }
+    },
   },
   computed: {
-    ...mapState("reports", ["analytics", "chart", "fileData"])
+    ...mapState("reports", ["analytics", "chart", "fileData"]),
   },
   methods: {
     ...mapActions("reports", ["loadAnalytics"]),
     loadChart() {
-      if (this.chartObject) {
-        this.chartObject.dispose();
-      }
-
-
-      this.nodes = line.map(item => {
-        let keys = Object.keys(item);
-        keys = keys.filter(item => item != "date");
-
-        for (let index = 0; index < keys.length; index++) {
-          const key = keys[index];
-          item[key] = item[key];
-        }
-        return item;
-      });
-      const {config} = this.chart;
-
-
-      // Label Font
+      console.log(this.chart.config);
+      this.nodes = this.analytics?.nodes ?? [];
+      this.edges = this.analytics?.edges ?? [];
+      const { config } = this.chart;
       this.nodes = this.nodes.map((item) => {
         return {
           ...item,
-          font: {color: config?.font?.color ?? "red"},
+          font: { color: config?.font?.color ?? "red" },
         };
       });
 
-      // this.nodes.map((node) => (node.font.color = config?.font?.color));
-
       // Background Color
-      this.backgroundStyle.backgroundColor =
-        config?.style?.backgroundColor;
 
-      //InterActions
+      this.backgroundStyle.backgroundColor = config?.style?.backgroundColor;
       this.options.interaction.dragNodes =
         config?.interaction?.dragNodes == "true" ||
         config?.interaction?.dragNodes == true;
+
+      // Background Color
+      // InterActions
       this.options.interaction.hideEdgesOnDrag =
         config?.interaction?.hideEdgesOnDrag == "true" ||
         config?.interaction?.hideEdgesOnDrag == true;
@@ -178,32 +141,29 @@ export default {
         config?.interaction?.hideNodesOnDrag == "true" ||
         config?.interaction?.hideNodesOnDrag == true;
       this.options.interaction.navigationButtons =
-        config?.interaction?.navigationButtons == "true" ||
-        config?.interaction?.navigationButtons == true;
-        //
+        config?.interaction?.navigationButtons == 0;
+
       this.options.physics.repulsion.nodeDistance = parseInt(
         config?.physics?.repulsion?.nodeDistance
       );
       this.options.physics.repulsion.centralGravity = parseFloat(
         config?.physics?.repulsion?.centralGravity
       );
-
-      //config.smooth.type
+      // config.smooth.type
       this.options.edges.smooth.type = config?.edges?.smooth?.type;
-
-
-    }
+    },
   },
   mounted() {
-    const {id} = this.chart;
+    const { id } = this.chart;
     this.loadAnalytics(id)
       .then(() => {
         this.loading = false;
         this.loadChart();
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         this.loading = false;
       });
-  }
+  },
 };
 </script>
