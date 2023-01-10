@@ -66,7 +66,16 @@ export default {
         const { bar } = res;
         const { labels, result } = bar;
         this.series = result;
-        this.chartOptions.xaxis.categories = labels;
+        this.chartOptions.xaxis.categories = labels.map((item) => {
+          let location = item;
+          if (item == 1) {
+            location = "مكه المكرمة";
+          } else {
+            location = "المدينه المنورة";
+          }
+
+          return location;
+        });
         this.showChart = true;
       })
       .catch(() => {
