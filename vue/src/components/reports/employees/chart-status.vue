@@ -69,9 +69,9 @@ export default {
         this.chartOptions.xaxis.categories = labels.map((item) => {
           let location = item;
           if (item == 0) {
-            location = "inactive";
+            location = "غير نشط";
           } else {
-            location = "active";
+            location = "نشط";
           }
 
           return location;

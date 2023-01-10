@@ -9,7 +9,7 @@
           <small class="mx-1">({{ $t("dashboard.thismonth") }})</small>
         </div>
         <v-spacer></v-spacer>
-        <div style="width: 120px; height: 40px" >
+        <div style="width: 120px; height: 40px">
           <v-dialog v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn color="primary" dark v-bind="attrs" v-on="on" class="mt-1">
@@ -55,7 +55,7 @@
                       <v-autocomplete
                         :items="columns"
                         :label="$t('reports.columns')"
-                        v-model="columnsValues"
+                        v-model="report.columns"
                         multiple
                         dense
                         chips
@@ -86,9 +86,7 @@
               <v-card-actions class="mb-1">
                 <v-spacer></v-spacer>
                 <v-btn color="primary" dark @click="submitFile"> حفظ </v-btn>
-                <v-btn color="dark" dark @click="dialog = false">
-                  إلغاء
-                </v-btn>
+                <v-btn color="dark" dark @click="dialog = false"> إلغاء </v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -185,7 +183,7 @@
 
     <v-row class="flex-grow-0 mb-1" dense>
       <v-col cols="12" lg="6">
-        <v-card>
+        <v-card style="height: 100%">
           <div
             v-if="loading"
             class="d-flex flex-grow-1 align-center justify-center"
@@ -481,7 +479,7 @@
             <v-card-title
               class="d-flex align-center align-content-space-between"
             >
-              <div>الموظفين في الأقسام</div>
+              <div>عدد الموظفين في الأقسام</div>
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-agencies></chart-agencies>
@@ -515,7 +513,7 @@
       </v-col>
     </v-row>
 
-<!--    <files-management />-->
+    <!--    <files-management />-->
   </div>
 </template>
 
@@ -593,6 +591,7 @@ export default {
           exact: true,
         },
       ],
+
       loadingInterval: null,
       isLoading: false,
       isLoading1: true,
@@ -638,10 +637,21 @@ export default {
       report: {
         name: null,
         type: undefined,
-        file: undefined,
+        columns: [],
       },
-      columns:["الموظفين", "الجنس", "الأقسام", "الإدارات", "المؤهلات", "الوكالات", "الجنسيه", "الحضور والغياب", "الأجازات", "الأعمار", "الموقع"],
-      columnsValues:[],
+      columns: [
+        "الموظفين",
+        "الجنس",
+        "الأقسام",
+        "الإدارات",
+        "المؤهلات",
+        "الوكالات",
+        "الجنسيه",
+        "الحضور والغياب",
+        "الأجازات",
+        "الأعمار",
+        "الموقع",
+      ],
       validationError: [],
 
       customersSeries: [
@@ -727,6 +737,10 @@ export default {
       clearInterval(this.loadingInterval);
     },
     ...mapActions("statistics", ["fetchUsers"]),
+    submitFile() {
+      console.log("object", this.report);
+      this.dialog = false;
+    },
   },
 };
 </script>

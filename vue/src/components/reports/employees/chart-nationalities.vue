@@ -74,7 +74,12 @@ export default {
         const { bar } = res;
         const { labels, result } = bar;
         this.series = result;
-        this.chartOptions.xaxis.categories = labels;
+        this.chartOptions.xaxis.categories = labels.map((item) => {
+          // if (item == 1) {
+          //   //
+          // }
+          return item;
+        });
         this.showChart = true;
       })
       .catch(() => {
