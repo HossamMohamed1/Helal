@@ -41,7 +41,8 @@ import mixins from "./mixins";
 
 // Set this to false to prevent the production tip on Vue startup.
 Vue.config.productionTip = false;
-
+import {Network} from "vue-vis-network";
+Vue.component('network', Network);
 // Laravel Echo
 
 /*
