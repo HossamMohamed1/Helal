@@ -21,6 +21,31 @@
               :chartData="chartData[type]"
               v-if="chartData[type]"
             />
+            <div v-else>
+              <v-card
+                v-if="loading"
+                flat
+                height="400"
+                class="d-flex flex-grow-1 align-center justify-center"
+              >
+                <v-progress-circular
+                  indeterminate
+                  color="primary"
+                ></v-progress-circular>
+              </v-card>
+              <v-card
+                flat
+                height="400"
+                class="d-flex flex-grow-1 align-center justify-center"
+                v-else
+              >
+                <v-img
+                  :src="emptyImage"
+                  aspect-ratio="1"
+                  class="blue-grey lighten-4 rounded elevation-3"
+                ></v-img>
+              </v-card>
+            </div>
           </v-card>
         </v-tab-item>
       </v-tabs-items>
@@ -40,6 +65,7 @@ export default {
       loading: false,
       chartData: {},
       tab: 0,
+      emptyImage: require("@/assets/images/no data.png"),
     };
   },
   props: {
