@@ -78,7 +78,7 @@ class ReportService
                 return false;
             }
 
-            return $reportObject->report($filter) ?? [];
+            return $reportObject->cards() ?? [];
         } catch (Exception $e) {
             throw new GeneralException($e->getMessage());
         }

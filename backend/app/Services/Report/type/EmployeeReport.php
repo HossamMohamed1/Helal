@@ -118,9 +118,8 @@ class EmployeeReport extends BaseReport
                 $this->filter['groupBy']
             )->groupBy($this->filter['groupBy'])
             ->get()
-            ->map(function ($item) use ($labels) {
-                $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $$item->{$this->filter['groupBy']};
-                return $item;
+            ->mapWithKeys(function ($item, $key) use ($labels) {
+                return [$labels[$key] ?? $key => $item];
             });
     }
 
