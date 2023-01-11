@@ -11,7 +11,7 @@ use JsonException;
 
 class EmployeeReport extends BaseReport
 {
-    public $query = null;
+    public $result = null;
     public string $mainTable;
     public  array $filter;
 
@@ -45,7 +45,7 @@ class EmployeeReport extends BaseReport
         $func_name = camelCase($this->filter['type']) . "Query";
 
         if (method_exists($this, $func_name)) {
-            $this->query = $this->$func_name();
+            $this->result = $this->$func_name();
         }
     }
 
@@ -54,12 +54,11 @@ class EmployeeReport extends BaseReport
      */
     public function getReport(): array
     {
-        if (empty($this->query)) {
+        if (empty($this->result)) {
             return [];
         }
-        
-        $data = json_decode($this->query->groupBy($this->filter['groupBy'])
-            ->get()
+
+        $data = json_decode($this->result
             ->mapWithKeys(function ($item) {
                 return [$item->{$this->filter['groupBy']} => $item];
             }), true, 512, JSON_THROW_ON_ERROR);
@@ -77,7 +76,8 @@ class EmployeeReport extends BaseReport
         ->select(
             DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
             $this->filter['groupBy']
-        );
+        )->groupBy($this->filter['groupBy'])
+        ->get();
     }
 
     /**
