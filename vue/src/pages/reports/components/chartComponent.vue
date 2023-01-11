@@ -16,7 +16,11 @@
           :value="`tab-${i}`"
         >
           <v-card flat>
-            <mainChart :type="type" :chartData="chartData[type]" />
+            <mainChart
+              :type="type"
+              :chartData="chartData[type]"
+              v-if="chartData[type]"
+            />
           </v-card>
         </v-tab-item>
       </v-tabs-items>
