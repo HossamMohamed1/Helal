@@ -1,6 +1,6 @@
 <template>
   <div>
-    <apexchart width="480" :options="chartOptions" :series="series"></apexchart>
+    <apexchart width="480" :options="chartOptions" :type="chartType" :series="series"></apexchart>
   </div>
 </template>
 <script>
@@ -15,15 +15,12 @@ export default {
       default: {},
     },
   },
-  data() {
-    return { labels: [] };
-  },
   computed: {
     labels() {
-      return chartData?.labels ?? [];
+      return this.chartData?.labels ?? [];
     },
     series() {
-      return chartData?.result ?? [];
+      return this.chartData?.result ?? [];
     },
     chartOptions() {
       const options = this.$store.state.statistics.chartOptions[this.chartType];
