@@ -6,7 +6,6 @@
           <div class="display-1 d-flex align-center">
             {{ $t("employees.employeesReports") }}
           </div>
-          <small class="mx-1">({{ $t("dashboard.thismonth") }})</small>
         </div>
         <v-spacer></v-spacer>
         <div style="width: 120px; height: 40px">
@@ -131,12 +130,10 @@
       >
         <div class="d-flex flex-column flex-grow-1 h-full">
           <track-card
-            :label="card.label"
+            :label="$t(card.label)"
             class="h-full"
             :color="card.color"
             :value="card.value"
-            :percentage="card.percentage"
-            :percentage-label="card['percentage-label']"
             :loading="card.loading"
             :series="card.ordersSeries"
           ></track-card>

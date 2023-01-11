@@ -13,26 +13,19 @@
           <div class="d-flex align-center">
             <div class="text-h4">{{ value }}</div>
             <v-spacer></v-spacer>
-            <div class="d-flex flex-column text-right">
-              <div class="font-weight-bold">
-                <trend-percent :value="percentage" />
-              </div>
-              <div class="caption">{{ percentageLabel }}</div>
-            </div>
           </div>
         </div>
-
       </div>
     </div>
   </v-card>
 </template>
 
 <script>
-import moment from 'moment'
-import TrendPercent from '../common/TrendPercent'
+import moment from "moment";
+import TrendPercent from "../common/TrendPercent";
 
 function formatDate(date) {
-  return date ? moment(date).format('D MMM') : ''
+  return date ? moment(date).format("D MMM") : "";
 }
 
 /*
@@ -46,41 +39,33 @@ function formatDate(date) {
 */
 export default {
   components: {
-    TrendPercent
+    TrendPercent,
   },
   props: {
     series: {
       type: Array,
-      default: () => ([])
+      default: () => [],
     },
     label: {
       type: String,
-      default: ''
+      default: "",
     },
     color: {
       type: String,
-      default: '#333333'
+      default: "#333333",
     },
     value: {
       type: Number,
-      default: 0
-    },
-    percentage: {
-      type: Number,
-      default: 0
-    },
-    percentageLabel: {
-      type: String,
-      default: 'vs. last week'
+      default: 0,
     },
     options: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     loading: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     chartOptions() {
@@ -89,45 +74,45 @@ export default {
           animations: {
             speed: 400,
             animateGradually: {
-              enabled: false
-            }
+              enabled: false,
+            },
           },
-          width: '100%',
+          width: "100%",
           height: 60,
-          type: 'area',
+          type: "area",
           sparkline: {
-            enabled: true
-          }
+            enabled: true,
+          },
         },
         colors: [this.color],
         fill: {
-          type: 'solid',
+          type: "solid",
           colors: [this.color],
-          opacity: 0.15
+          opacity: 0.15,
         },
         stroke: {
-          curve: 'smooth',
-          width: 2
+          curve: "smooth",
+          width: 2,
         },
         xaxis: {
-          type: 'datetime'
+          type: "datetime",
         },
         tooltip: {
           followCursor: true,
-          theme: 'dark', //this.$vuetify.theme.isDark ? 'light' : 'dark',
-          custom: function({ ctx, series, seriesIndex, dataPointIndex, w }) {
-            const seriesName = w.config.series[seriesIndex].name
-            const dataPoint = w.config.series[seriesIndex].data[dataPointIndex]
+          theme: "dark", //this.$vuetify.theme.isDark ? 'light' : 'dark',
+          custom: function ({ ctx, series, seriesIndex, dataPointIndex, w }) {
+            const seriesName = w.config.series[seriesIndex].name;
+            const dataPoint = w.config.series[seriesIndex].data[dataPointIndex];
 
             return `<div class="rounded-lg pa-1 caption">
               <div class="font-weight-bold">${formatDate(dataPoint[0])}</div>
               <div>${dataPoint[1]} ${seriesName}</div>
-            </div>`
-          }
+            </div>`;
+          },
         },
-        ...this.options
-      }
-    }
-  }
-}
+        ...this.options,
+      };
+    },
+  },
+};
 </script>
