@@ -9,7 +9,7 @@
       :nodes="nodes"
       :edges="edges"
       :options="options"
-      style="height: 550px"
+      style="height: 600px"
     />
   </v-card>
 </template>
@@ -150,7 +150,13 @@ export default {
         config?.physics?.repulsion?.centralGravity
       );
       // config.smooth.type
-      this.options.edges.smooth.type = config?.edges?.smooth?.type;
+      // if (config?.edges?.smooth?.type == true)
+      // {
+      //   this.options.edges.smooth.type = "cubicBezier"
+      // }
+      // else {
+      //   this.options.edges.smooth.type = "dynamic"
+      // }
     },
   },
   mounted() {

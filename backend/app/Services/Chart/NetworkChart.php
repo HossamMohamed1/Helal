@@ -56,7 +56,7 @@ class NetworkChart implements BaseChartInterface
                 ],
             ],
             "style" => [
-                "backgroundColor" => "#ececec",
+                "backgroundColor" => "#fff",
             ],
             "font" => [
                 "size" => 10,
