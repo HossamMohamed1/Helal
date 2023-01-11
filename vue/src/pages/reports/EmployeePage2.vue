@@ -150,10 +150,15 @@
   </div>
 </template>
 <script>
-import DateRangePicker from "vue2-daterange-picker";
+// import DateRangePicker from "vue2-daterange-picker";
+const DateRangePicker = () =>
+  import(/* webpackChunkName: "DateRangePicker" */ "vue2-daterange-picker");
 import "vue2-daterange-picker/dist/vue2-daterange-picker.css";
 import { mapState } from "vuex";
-import TrackCard from "../../components/dashboard/TrackCard";
+const TrackCard = () =>
+  import(
+    /* webpackChunkName: "TrackCard" */ "../../components/dashboard/TrackCard.vue"
+  );
 // import ChartComponent from "./components/chartComponent";
 const ChartComponent = () =>
   import(
@@ -240,6 +245,18 @@ export default {
   },
   computed: {
     ...mapState("statistics", ["cards", "reports"]),
+  },
+  mounted() {
+    const cards = this.cards.map((item) => {
+      return { ...item, loading: true };
+    });
+    this.$store.commit("statistics/setCards", cards);
+    setTimeout(() => {
+      const cards = this.cards.map((item) => {
+        return { ...item, loading: false };
+      });
+      this.$store.commit("statistics/setCards", cards);
+    }, 5000);
   },
   methods: {
     submitFile() {
