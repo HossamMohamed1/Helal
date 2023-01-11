@@ -9,7 +9,7 @@ export default {
     faq: "FAQ",
     contact: "Contact Us",
     tos: "Terms of Service",
-    policy: "Privacy Policy"
+    policy: "Privacy Policy",
   },
   board: {
     titlePlaceholder: "Enter a title for this card",
@@ -20,14 +20,14 @@ export default {
       TODO: "TO DO",
       INPROGRESS: "INPROGRESS",
       TESTING: "TESTING",
-      DONE: "DONE"
-    }
+      DONE: "DONE",
+    },
   },
   chat: {
     online: "Users Online ({count})",
     addChannel: "Add Channel",
     channel: "Channel | Channels",
-    message: "Message"
+    message: "Message",
   },
   email: {
     compose: "Compose Email",
@@ -45,13 +45,13 @@ export default {
     generalMail: "General mail notice",
     newUserMail: "Mail notification when a new user is added",
     mailWhenUserUpdate: "Mail notification when user update",
-    mailNotificationForms: "Mail notification forms"
+    mailNotificationForms: "Mail notification forms",
   },
   todo: {
     addTask: "Add Task",
     tasks: "Tasks",
     completed: "Completed",
-    labels: "Labels"
+    labels: "Labels",
   },
   dashboard: {
     activity: "Activity",
@@ -65,17 +65,17 @@ export default {
     orders: "Orders",
     customers: "Customers",
     tickets: "Support Tickets",
-    viewReport: "View Report"
+    viewReport: "View Report",
   },
   usermenu: {
     profile: "Profile",
     signin: "Sign In",
     dashboard: "Dashboard",
-    signout: "Sign Out"
+    signout: "Sign Out",
   },
   error: {
     notfound: "Page Not Found",
-    other: "An Error Ocurred"
+    other: "An Error Ocurred",
   },
   check: {
     title: "Set New Password",
@@ -86,7 +86,7 @@ export default {
     error: "The action link is invalid",
     verifylink: "Verifying link...",
     verifyemail: "Verifying email address...",
-    emailverified: "Email verified! Redirecting..."
+    emailverified: "Email verified! Redirecting...",
   },
   forgot: {
     title: "Forgot Password?",
@@ -94,7 +94,7 @@ export default {
       "Enter your account email address and we will send you a link to reset your password.",
     email: "Email",
     button: "Request Password Reset",
-    backtosign: "Back to Sign In"
+    backtosign: "Back to Sign In",
   },
   login: {
     title: "Sign In",
@@ -105,7 +105,7 @@ export default {
     forgot: "Forgot password?",
     noaccount: "Don't have an account?",
     create: "Create one here",
-    error: "The email / password combination is invalid"
+    error: "The email / password combination is invalid",
   },
   register: {
     title: "Create Account",
@@ -116,13 +116,13 @@ export default {
     orsign: "Or sign up with",
     agree: "By signing up, you agree to the",
     account: "Already have an account?",
-    signin: "Sign In"
+    signin: "Sign In",
   },
   utility: {
-    maintenance: "In Maintenance"
+    maintenance: "In Maintenance",
   },
   faq: {
-    call: "Have other questions? Please reach out "
+    call: "Have other questions? Please reach out ",
   },
   ecommerce: {
     products: "Products",
@@ -152,7 +152,7 @@ export default {
     discount: "Discount",
     subtotal: "Subtotal",
     continue: "Continue Shopping",
-    checkout: "Checkout"
+    checkout: "Checkout",
   },
   menu: {
     search: 'Search (press "ctrl + /" to focus)',
@@ -209,10 +209,10 @@ export default {
     employees: "Employees",
     permits: "Permits",
     complaints: "Complaints",
-    reportBuilder: "Report Builder"
+    reportBuilder: "Report Builder",
   },
   breadcrumbs: {
-    pipesList: "Pipes List"
+    pipesList: "Pipes List",
   },
   // Vuetify components translations
   $vuetify: {
@@ -220,7 +220,7 @@ export default {
     close: "Close",
     dataIterator: {
       noResultsText: "No matching records found",
-      loadingText: "Loading items..."
+      loadingText: "Loading items...",
     },
     dataTable: {
       itemsPerPageText: "Rows per page:",
@@ -230,9 +230,9 @@ export default {
         sortNone: "Not sorted.",
         activateNone: "Activate to remove sorting.",
         activateDescending: "Activate to sort descending.",
-        activateAscending: "Activate to sort ascending."
+        activateAscending: "Activate to sort ascending.",
       },
-      sortBy: "Sort by"
+      sortBy: "Sort by",
     },
     dataFooter: {
       itemsPerPageText: "Items per page:",
@@ -241,33 +241,33 @@ export default {
       prevPage: "Previous page",
       firstPage: "First page",
       lastPage: "Last page",
-      pageText: "{0}-{1} of {2}"
+      pageText: "{0}-{1} of {2}",
     },
     datePicker: {
       itemsSelected: "{0} selected",
       nextMonthAriaLabel: "Next month",
       nextYearAriaLabel: "Next year",
       prevMonthAriaLabel: "Previous month",
-      prevYearAriaLabel: "Previous year"
+      prevYearAriaLabel: "Previous year",
     },
     noDataText: "No data available",
     carousel: {
       prev: "Previous visual",
       next: "Next visual",
       ariaLabel: {
-        delimiter: "Carousel slide {0} of {1}"
-      }
+        delimiter: "Carousel slide {0} of {1}",
+      },
     },
     calendar: {
-      moreEvents: "{0} more"
+      moreEvents: "{0} more",
     },
     fileInput: {
       counter: "{0} files",
-      counterSize: "{0} files ({1} in total)"
+      counterSize: "{0} files ({1} in total)",
     },
     timePicker: {
       am: "AM",
-      pm: "PM"
+      pm: "PM",
     },
     pagination: {
       ariaLabel: {
@@ -275,9 +275,9 @@ export default {
         next: "Next page",
         previous: "Previous page",
         page: "Goto Page {0}",
-        currentPage: "Current Page, Page {0}"
-      }
-    }
+        currentPage: "Current Page, Page {0}",
+      },
+    },
   },
   settings: {
     siteInformation: "Site Information",
@@ -300,7 +300,7 @@ export default {
     userNotification: "USer Notification",
     modelsNotifications: "Models Notifications",
     email: "Email",
-    emailAndNotifications: "Email and Notifications"
+    emailAndNotifications: "Email and Notifications",
   },
   users: {
     rolesList: "Roles List",
@@ -364,7 +364,7 @@ export default {
     Gender: "Gender",
     Male: "Male",
     Female: "Female",
-    Other: "Other"
+    Other: "Other",
   },
   charts: {
     Station1: "Station 1",
@@ -377,7 +377,7 @@ export default {
     drone1: "Drone 1",
     drone2: "Drone 2",
     drone3: "Drone 3",
-    drone4: "Drone 4"
+    drone4: "Drone 4",
   },
   tables: {
     username: "username",
@@ -402,7 +402,7 @@ export default {
     role: "Role",
     created: "Created",
     lastSignIn: "Last SignIn",
-    disabled: "Disabled"
+    disabled: "Disabled",
   },
   texts: {
     editor: "Editor",
@@ -445,7 +445,7 @@ export default {
     NoAdminControls: "No Admin Controls",
     ViewPayoutsOnly: "View Payouts only",
     ViewDisputesOnly: "View Disputes only",
-    ResponseToCustomerFeedback: "Response to Customer Feedback"
+    ResponseToCustomerFeedback: "Response to Customer Feedback",
   },
   employees: {
     employeesReports: "Employees Reports",
@@ -455,6 +455,10 @@ export default {
     attendees: "Attendees",
     employeesInPublicAgenciesAndAdministrations:
       "Employees In Public Agencies And Administrations",
+    employee_nationality: "Employees by nationality",
+    employee_job: "Employee be job",
+    department_status: "Department status",
+    department_location: "Department by location",
     employeesByGender: "Employees By Gender",
     employeesByDepartment: "Employees By Department",
     employeesByHeadquarters: "Employees By Headquarters",
@@ -507,7 +511,7 @@ export default {
     rank5: "Rank 5",
     rank6: "Rank 6",
     employee: "Employee",
-    all: "All Employees"
+    all: "All Employees",
   },
   permits: {
     permitsReports: "Permits Reports",
@@ -530,7 +534,7 @@ export default {
     all: "All Permits",
     employeesAndVisitors: "Employees and Visitors",
     employees: "Employees",
-    visitors: "Visitors"
+    visitors: "Visitors",
   },
   complaints: {
     complaintsReports: "Complaints Reports",
@@ -556,7 +560,7 @@ export default {
     morningShift: "Morning Shift",
     eveningShift: "Evening Shift",
     midnightShift: "Midnight Shift",
-    all: "All Complaints"
+    all: "All Complaints",
   },
   reports: {
     createReport: "Create Report",
@@ -564,7 +568,7 @@ export default {
     reportType: "Report Type",
     uploadFile: "Upload File",
     showReport: "Report Show",
-    updateReport: "Update Report"
+    updateReport: "Update Report",
   },
   dates: {
     Jan: "Jan",
@@ -579,7 +583,7 @@ export default {
     Oct: "Oct",
     Nov: "Nov",
     Dec: "Dec",
-    ramadanDays: "Days Of The Month Of Ramadan"
+    ramadanDays: "Days Of The Month Of Ramadan",
   },
   nationalities: {
     Saudi: "Saudi",
@@ -587,7 +591,7 @@ export default {
     Moroccan: "Moroccan",
     Tunisian: "Tunisian",
     American: "American",
-    Japanese: "Japanese"
+    Japanese: "Japanese",
   },
   general: {
     notification: "Notification",
@@ -636,9 +640,9 @@ export default {
     calenderFooter: "Selected Date",
     chooseDate: "Choose Current",
     haramain: "Haramain",
-    all: "All"
+    all: "All",
   },
   "input rquired": "Required",
   showchart: "Show",
-  editchart: "Edit"
+  editchart: "Edit",
 };

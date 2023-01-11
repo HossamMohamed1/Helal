@@ -78,14 +78,14 @@ const chartOptions = {
         {
           title: {
             formatter: function (val) {
-              return val + " موظف ";
+              return val;
             },
           },
         },
         {
           title: {
             formatter: function (val) {
-              return val + " موظف ";
+              return val;
             },
           },
         },

@@ -9,7 +9,7 @@ export default {
     faq: "التعليمات",
     contact: "اتصل بنا",
     tos: "شروط الخدمة",
-    policy: "سياسة الخصوصية"
+    policy: "سياسة الخصوصية",
   },
   board: {
     titlePlaceholder: "أدخل عنوانًا لهذه البطاقة",
@@ -20,14 +20,14 @@ export default {
       TODO: "لكى يفعل",
       INPROGRESS: "في تقدم",
       TESTING: "اختبارات",
-      DONE: "منجز"
-    }
+      DONE: "منجز",
+    },
   },
   chat: {
     online: "المستخدمون المتصلون ({count})",
     addChannel: "أضف قناة",
     channel: "القناة | القنوات",
-    message: "رسالة"
+    message: "رسالة",
   },
   email: {
     compose: "إنشاء بريد إلكتروني",
@@ -45,13 +45,13 @@ export default {
     generalMail: "إشعار البريد العام",
     newUserMail: "إشعار البريد عند اضافة مستخدم جديد",
     mailWhenUserUpdate: "إشعار البريد عند تحديث المستخدم",
-    mailNotificationForms: "نماذج الإشعار بالبريد"
+    mailNotificationForms: "نماذج الإشعار بالبريد",
   },
   todo: {
     addTask: "إضافة مهمة",
     tasks: "مهام",
     completed: "منجز",
-    labels: "ملصقات"
+    labels: "ملصقات",
   },
   dashboard: {
     activity: "نشاط",
@@ -65,17 +65,17 @@ export default {
     orders: "الطلب #٪ s",
     customers: "العملاء",
     tickets: "تذاكر الدعم الفني",
-    viewReport: "عرض التقرير"
+    viewReport: "عرض التقرير",
   },
   usermenu: {
     profile: "الملف الشخصي",
     signin: "تسجيل الدخول",
     dashboard: "لوحة القيادة",
-    signout: "خروج"
+    signout: "خروج",
   },
   error: {
     notfound: "الصفحة غير موجودة",
-    other: "خطأ ocurred ل"
+    other: "خطأ ocurred ل",
   },
   check: {
     title: "تعيين كلمة مرور جديدة",
@@ -86,7 +86,7 @@ export default {
     error: "ارتباط الإجراء غير صالح",
     verifylink: "التحقق من الارتباط ...",
     verifyemail: "التحقق من عنوان البريد الإلكتروني ...",
-    emailverified: "تم التحقق من البريد الإلكتروني! إعادة توجيه..."
+    emailverified: "تم التحقق من البريد الإلكتروني! إعادة توجيه...",
   },
   forgot: {
     title: "هل نسيت كلمة المرور؟",
@@ -94,7 +94,7 @@ export default {
       "أدخل عنوان البريد الإلكتروني لحسابك وسنرسل لك رابطًا لإعادة تعيين كلمة المرور الخاصة بك.",
     email: "البريد الإلكتروني",
     button: "اعادة تعيين كلمة المرور طلب",
-    backtosign: "العودة إلى تسجيل الدخول"
+    backtosign: "العودة إلى تسجيل الدخول",
   },
   login: {
     title: "تسجيل الدخول",
@@ -105,7 +105,7 @@ export default {
     forgot: "هل نسيت كلمة المرور؟",
     noaccount: "ليس لديك حساب؟",
     create: "قم بإنشاء واحدة هنا",
-    error: "تركيبة البريد الإلكتروني / كلمة المرور غير صالحة"
+    error: "تركيبة البريد الإلكتروني / كلمة المرور غير صالحة",
   },
   register: {
     title: "إنشاء حساب",
@@ -116,13 +116,13 @@ export default {
     orsign: "أو اشترك مع",
     agree: "بالتسجيل ، فإنك توافق على",
     account: "هل لديك حساب؟",
-    signin: "تسجيل الدخول"
+    signin: "تسجيل الدخول",
   },
   utility: {
-    maintenance: "في الصيانة"
+    maintenance: "في الصيانة",
   },
   faq: {
-    call: "هل لديك أسئلة أخرى؟ الرجاء التواصل"
+    call: "هل لديك أسئلة أخرى؟ الرجاء التواصل",
   },
   ecommerce: {
     products: "منتجات",
@@ -152,7 +152,7 @@ export default {
     discount: "خصم",
     subtotal: "المجموع الفرعي",
     continue: "مواصلة التسوق",
-    checkout: "الدفع"
+    checkout: "الدفع",
   },
   menu: {
     search: "بحث (اضغط على 'ctrl + /' للتركيز)",
@@ -209,17 +209,17 @@ export default {
     employees: "الموظفين",
     permits: "التصاريح",
     complaints: "البلاغات",
-    reportBuilder: "بناء التقارير"
+    reportBuilder: "بناء التقارير",
   },
   breadcrumbs: {
-    pipesList: "قائمة الأنابيب"
+    pipesList: "قائمة الأنابيب",
   },
   $vuetify: {
     badge: "شارة",
     close: "قريب",
     dataIterator: {
       noResultsText: "لا توجد سجلات مطابقة",
-      loadingText: "جارٍ تحميل العناصر ..."
+      loadingText: "جارٍ تحميل العناصر ...",
     },
     dataTable: {
       itemsPerPageText: "عدد الصفوف في الصفحة:",
@@ -229,9 +229,9 @@ export default {
         sortNone: "لم يتم الفرز.",
         activateNone: "تنشيط لإزالة الفرز.",
         activateDescending: "تنشيط للترتيب تنازليًا.",
-        activateAscending: "قم بالتفعيل للترتيب تصاعديًا."
+        activateAscending: "قم بالتفعيل للترتيب تصاعديًا.",
       },
-      sortBy: "ترتيب حسب"
+      sortBy: "ترتيب حسب",
     },
     dataFooter: {
       itemsPerPageText: "مواد لكل صفحة:",
@@ -240,33 +240,33 @@ export default {
       prevPage: "الصفحة السابقة",
       firstPage: "الصفحة الأولى",
       lastPage: "آخر صفحة",
-      pageText: "{0} - {1} من {2}"
+      pageText: "{0} - {1} من {2}",
     },
     datePicker: {
       itemsSelected: "تم تحديد {0}",
       nextMonthAriaLabel: "الشهر القادم",
       nextYearAriaLabel: "العام القادم",
       prevMonthAriaLabel: "الشهر الماضى",
-      prevYearAriaLabel: "السنة الماضية"
+      prevYearAriaLabel: "السنة الماضية",
     },
     noDataText: "لا تتوافر بيانات",
     carousel: {
       prev: "المرئية السابقة",
       next: "المرئي التالي",
       ariaLabel: {
-        delimiter: "شريحة الرف الدائري {0} من {1}"
-      }
+        delimiter: "شريحة الرف الدائري {0} من {1}",
+      },
     },
     calendar: {
-      moreEvents: "{0} أخرى"
+      moreEvents: "{0} أخرى",
     },
     fileInput: {
       counter: "{0} ملفات",
-      counterSize: "{0} من الملفات (إجمالي {1})"
+      counterSize: "{0} من الملفات (إجمالي {1})",
     },
     timePicker: {
       am: "AM",
-      pm: "PM"
+      pm: "PM",
     },
     pagination: {
       ariaLabel: {
@@ -274,9 +274,9 @@ export default {
         next: "الصفحة التالية",
         previous: "الصفحة السابقة",
         page: "الانتقال إلى الصفحة {0}",
-        currentPage: "الصفحة الحالية ، الصفحة {0}"
-      }
-    }
+        currentPage: "الصفحة الحالية ، الصفحة {0}",
+      },
+    },
   },
   settings: {
     siteInformation: "معلومات الموقع",
@@ -300,7 +300,7 @@ export default {
     userNotification: "إشعارات المستخدم",
     modelsNotifications: "نماذج الإشعارات",
     email: "بريد",
-    emailAndNotifications: "بريد وإشعارات"
+    emailAndNotifications: "بريد وإشعارات",
   },
   users: {
     rolesList: "قائمة الصلاحيات",
@@ -364,7 +364,7 @@ export default {
     Gender: "النوع",
     Male: "ذكر",
     Female: "انثى",
-    Other: "آخرى"
+    Other: "آخرى",
   },
   charts: {
     Station1: "موقع 1",
@@ -377,7 +377,7 @@ export default {
     drone1: "طائرة 1",
     drone2: "طائرة 2",
     drone3: "طائرة 3",
-    drone4: "طائرة 4"
+    drone4: "طائرة 4",
   },
   tables: {
     username: "اللقب",
@@ -402,7 +402,7 @@ export default {
     role: "الصلاحية",
     created: "تاريخ الإنشاء",
     lastSignIn: "آخر تسجيل دخول",
-    disabled: "التفعيل"
+    disabled: "التفعيل",
   },
   texts: {
     editor: "محرر",
@@ -445,7 +445,7 @@ export default {
     NoAdminControls: "لا توجد ضوابط إدارية",
     ViewPayoutsOnly: "عرض المدفوعات فقط",
     ViewDisputesOnly: "عرض النزاعات فقط",
-    ResponseToCustomerFeedback: "الرد على ملاحظات العملاء"
+    ResponseToCustomerFeedback: "الرد على ملاحظات العملاء",
   },
   employees: {
     employeesReports: "تقارير الموظفين",
@@ -456,6 +456,8 @@ export default {
     employeesInPublicAgenciesAndAdministrations:
       "الموظفين في الوكالات والادارات العامة",
     employeesByGender: "الموظفين حسب الجنس",
+    employee_nationality: "عدد الموظفين حسب الجنسية",
+    employee_job: "عدد الموظفين بالنسبه للوظائف",
     employeesByDepartment: "الموظفين حسب القسم",
     employeesByHeadquarters: "الموظفين حسب المقر",
     employeesAccordingToTheirQualifications:
@@ -466,6 +468,8 @@ export default {
     employeesAccordingToTheirRanksIn: "الموظفين حسب مراتبهم وتوزيهم في ",
     EmployeesAccordingAttendance:
       "الموظفين حسب حالات الحضور والغياب والأجازات والمهام ولاإستئذان",
+    department_status: "عدد الأقسام/ الإدارات حسب الحالة",
+    department_location: "الاقسام حسب المقر",
     absence: "الغياب",
     vacations: "الأجازات",
     tasks: "المهام",
@@ -506,7 +510,7 @@ export default {
     rank5: "مرتبة 5",
     rank6: "مرتبة 6",
     employee: "موظف",
-    all: "جميع الموظفين"
+    all: "جميع الموظفين",
   },
   permits: {
     permitsReports: "تقارير التصاريح",
@@ -527,7 +531,7 @@ export default {
     all: "جميع التصاريح",
     employeesAndVisitors: "العاملين والزائرين",
     employees: "العاملين",
-    visitors: "الزائرين"
+    visitors: "الزائرين",
   },
   complaints: {
     complaintsReports: "تقارير البلاغات",
@@ -553,7 +557,7 @@ export default {
     morningShift: "الوردية الصباحية",
     eveningShift: "الوردية المسائية",
     midnightShift: "وردية منتصف الليل",
-    all: "جميع البلاغات"
+    all: "جميع البلاغات",
   },
   reports: {
     createReport: "إنشاء تقرير",
@@ -562,7 +566,7 @@ export default {
     uploadFile: "تحميل ملف",
     showReport: "عرض التقرير",
     updateReport: "تعديل تقرير",
-    columns: "الأعمدة"
+    columns: "الأعمدة",
   },
   dates: {
     Jan: "يناير",
@@ -577,7 +581,7 @@ export default {
     Oct: "أكتوبر",
     Nov: "نوفمبر",
     Dec: "ديسمبر",
-    ramadanDays: "أيام شهر رمضان"
+    ramadanDays: "أيام شهر رمضان",
   },
   nationalities: {
     Saudi: "سعودي",
@@ -585,7 +589,7 @@ export default {
     Moroccan: "مغربي",
     Tunisian: "تونسي",
     American: "امريكي",
-    Japanese: "يباني"
+    Japanese: "يباني",
   },
   general: {
     notification: "الاشعارات",
@@ -640,9 +644,9 @@ export default {
     calenderFooter: "التاريخ المختار",
     chooseDate: "إختر",
     haramain: "الحرمين",
-    all: "الجميع"
+    all: "الجميع",
   },
   "input rquired": "الحقل مطلوب",
   showchart: "العرض",
-  editchart: "التعديل"
+  editchart: "التعديل",
 };
