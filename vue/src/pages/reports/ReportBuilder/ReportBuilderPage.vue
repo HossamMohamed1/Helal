@@ -57,11 +57,12 @@
         <router-link
           :to="{ name: 'show-report-builder', params: { id: report.id } }"
         >
-          <v-card :loading="loading">s
+          <v-card :loading="loading">
+<!--            v-bind:src="-->
+<!--            require('@/assets/images/visualization/' + report.img)-->
+<!--            "-->
             <v-img
-              v-bind:src="
-                require('@/assets/images/visualization/' + report.img)
-              "
+
               class="white--text align-end"
               height="200px"
               style="background-size: contain"
