@@ -35,8 +35,6 @@ export default {
       }
     },
   },
-  mounted() {
-    console.log(this.chartType);
-  },
+  mounted() {},
 };
 </script>

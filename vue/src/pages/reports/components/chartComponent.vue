@@ -61,9 +61,11 @@ export default {
     this.fetchChart(data)
       .then((res) => {
         this.loading = false;
+        console.log(res, "chart error", data["charts"]);
         this.chartData = res;
       })
       .catch((err) => {
+        console.log(err, "chart error", data["charts"]);
         this.loading = false;
       });
   },
