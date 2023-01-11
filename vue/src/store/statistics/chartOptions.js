@@ -1,5 +1,4 @@
 const chartOptions = {
-  labels: [],
   bar: {
     chart: {
       type: "bar",
@@ -30,7 +29,7 @@ const chartOptions = {
       intersect: false,
     },
     xaxis: {
-      categories: chartOptions.labels,
+      categories: [],
     },
   },
   line: {
@@ -71,7 +70,7 @@ const chartOptions = {
       },
     },
     xaxis: {
-      categories: chartOptions.labels,
+      categories: [],
     },
     colors: ["#1e8e49", "#fd9162", "#a7a7a7", "#41b27b", "#c9de77"],
     tooltip: {
