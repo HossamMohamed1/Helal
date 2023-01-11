@@ -256,7 +256,7 @@ export default {
         return { ...item, loading: false };
       });
       this.$store.commit("statistics/setCards", cards);
-    }, 5000);
+    }, 2000);
   },
   methods: {
     submitFile() {
