@@ -17,7 +17,7 @@
         >
           <v-card flat>
             <mainChart
-              :type="type"
+              :chartType="type"
               :chartData="chartData[type]"
               v-if="chartData[type]"
             />
@@ -43,7 +43,10 @@ export default {
     };
   },
   props: {
-    report: { type: Object, default: {} },
+    report: {
+      type: Object,
+      default: {},
+    },
   },
   computed: {
     chartTypes() {
