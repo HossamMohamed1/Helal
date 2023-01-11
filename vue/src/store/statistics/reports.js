@@ -3,7 +3,7 @@ const reports = [
   {
     title: i18n.t("employees.employeesByGender"),
     chart: "employee_gender",
-    type: "pie",
+    type: "bar",
   },
 ];
 
