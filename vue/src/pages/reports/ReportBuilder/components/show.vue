@@ -8,10 +8,8 @@
           <LineChart v-if="chart.type == 'Line'" :config="config" />
           <bar-chart v-else-if="chart.type == 'Bar'" :config="config" />
           <pie-chart v-else-if="chart.type == 'Pie'" :config="config" />
-          <x-y-bubble-chart
-            v-else-if="chart.type == 'XYBubble'"
-            :config="config"
-          />
+          <x-y-bubble-chart v-else-if="chart.type == 'XYBubble'" :config="config"/>
+          <network-chart v-else-if="chart.type == 'Network'" :config="config"/>
         </v-col>
       </v-row>
     </v-card>
@@ -56,6 +54,10 @@
           :config="config"
           @closeDraw="right = false"
         />
+        <network-config
+          v-else-if="chart.type == 'Network'"
+          :config="config"
+          @closeDraw="right = false"/>
       </v-navigation-drawer>
     </div>
   </div>
@@ -71,8 +73,12 @@ import PieConfig from "@/pages/reports/ReportBuilder/components/configirations/P
 import XYBubbleConfig from "@/pages/reports/ReportBuilder/components/configirations/XYBubbleConfig";
 import XYBubbleChart from "@/pages/reports/ReportBuilder/components/charts/XYBubbleChart";
 import PieChart from "@/pages/reports/ReportBuilder/components/charts/PieChart";
+import NetworkConfig from "@/pages/reports/ReportBuilder/components/configirations/NetworkConfig";
+import NetworkChart from "@/pages/reports/ReportBuilder/components/charts/NetworkChart";
 export default {
   components: {
+    NetworkChart,
+    NetworkConfig,
     PieChart,
     XYBubbleChart,
     XYBubbleConfig,

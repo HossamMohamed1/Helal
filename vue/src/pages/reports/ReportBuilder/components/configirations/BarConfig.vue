@@ -48,13 +48,13 @@
       </v-btn-toggle>
       <div v-if="!config.labels.disabled">
         <v-row>
-          <v-col cols="6 pb-0">
+          <v-col cols="6" class="pb-0">
             <legend>Font Size</legend>
             <v-text-field solo v-model="config.labels.fontSize"></v-text-field>
             <legend>Width</legend>
             <v-text-field solo v-model="config.labels.width"></v-text-field>
           </v-col>
-          <v-col cols="6 pb-0">
+          <v-col cols="6" class="pb-0">
             <legend>Rotation</legend>
             <v-text-field solo v-model="config.labels.rotation" />
             <legend>Color</legend>
@@ -65,7 +65,7 @@
 
       <div class="font-weight-bold mt-3 mb-1">Axis Titles</div>
       <v-row>
-        <v-col cols="6 pb-0">
+        <v-col cols="6" class="pb-0">
           <legend>X Title</legend>
           <v-text-field
             placeholder="Enter XAxis Title"
@@ -73,7 +73,7 @@
             v-model="config.xLabel.text"
           ></v-text-field>
         </v-col>
-        <v-col cols="6 pb-0">
+        <v-col cols="6" class="pb-0">
           <legend>Y Title</legend>
           <v-text-field
             placeholder="Enter YAxis Title"
@@ -94,7 +94,7 @@
         ></v-text-field>
 
         <v-row v-if="config.title.name">
-          <v-col cols="6 pb-0">
+          <v-col cols="6" class="pb-0">
             <legend>Font Size</legend>
             <v-text-field
               solo
@@ -105,7 +105,7 @@
             <legend>Font Weight</legend>
             <v-text-field solo v-model="config.title.fontWeight"></v-text-field>
           </v-col>
-          <v-col cols="6 pb-0">
+          <v-col cols="6" class="pb-0">
             <legend>Margin Bottom</legend>
             <v-text-field
               solo
@@ -122,7 +122,7 @@
 
       <div class="font-weight-bold mt-3 mb-1">Chart Legend</div>
       <v-row>
-        <v-col cols="6 pb-0">
+        <v-col cols="6" class="pb-0">
           <legend>Legend</legend>
           <v-btn-toggle
             v-model="config.legend.disabled"
@@ -134,7 +134,7 @@
             <v-btn>false</v-btn>
           </v-btn-toggle>
         </v-col>
-        <!--          <v-col cols="6 pb-0">-->
+        <!--          <v-col cols="6" class="pb-0">-->
         <!--            <legend>Align</legend>-->
         <!--            <v-btn-toggle-->
         <!--              v-model="config.legend.align"-->
@@ -147,7 +147,7 @@
         <!--              <v-btn>left</v-btn>-->
         <!--            </v-btn-toggle>-->
         <!--          </v-col>-->
-        <v-col cols="6 pb-0" v-if="!config.legend.disabled">
+        <v-col cols="6" class="pb-0" v-if="!config.legend.disabled">
           <legend>Position</legend>
           <v-btn-toggle
             v-model="config.legend.position"
@@ -159,7 +159,7 @@
             <v-btn>bottom</v-btn>
           </v-btn-toggle>
         </v-col>
-        <v-col cols="6 pb-0" v-if="!config.legend.disabled">
+        <v-col cols="6" class="pb-0" v-if="!config.legend.disabled">
           <legend>Padding Bottom</legend>
           <v-text-field
             solo
@@ -167,7 +167,7 @@
             v-model="config.legend.paddingBottom"
           ></v-text-field
         ></v-col>
-        <v-col cols="6 pb-0" v-if="!config.legend.disabled">
+        <v-col cols="6" class="pb-0" v-if="!config.legend.disabled">
           <legend>Padding Top</legend>
           <v-text-field
             solo
@@ -179,7 +179,7 @@
 
       <!--      <div class="font-weight-bold mt-3 mb-1">Zooming</div>-->
       <!--      <v-row v-if="config.zoom">-->
-      <!--        <v-col cols="6 pb-0">-->
+      <!--        <v-col cols="6" class="pb-0">-->
       <!--          <legend>scrollbar X</legend>-->
       <!--          <v-btn-toggle-->
       <!--            v-model="config.zoom.scrollbarX"-->
@@ -191,7 +191,7 @@
       <!--            <v-btn>false</v-btn>-->
       <!--          </v-btn-toggle>-->
       <!--        </v-col>-->
-      <!--        <v-col cols="6 pb-0">-->
+      <!--        <v-col cols="6" class="pb-0">-->
       <!--          <legend>Position</legend>-->
       <!--          <v-btn-toggle-->
       <!--            v-model="config.zoom.scrollbarXBottom"-->
@@ -205,7 +205,7 @@
       <!--        </v-col>-->
       <!--      </v-row>-->
       <!--      <v-row v-if="config.zoom">-->
-      <!--        <v-col cols="6 pb-0">-->
+      <!--        <v-col cols="6" class="pb-0">-->
       <!--          <legend>scrollbar Y</legend>-->
       <!--          <v-btn-toggle-->
       <!--            v-model="config.zoom.scrollbarY"-->
@@ -217,7 +217,7 @@
       <!--            <v-btn>false</v-btn>-->
       <!--          </v-btn-toggle>-->
       <!--        </v-col>-->
-      <!--        <v-col cols="6 pb-0">-->
+      <!--        <v-col cols="6" class="pb-0">-->
       <!--          <legend>Position</legend>-->
       <!--          <v-btn-toggle-->
       <!--            v-model="config.zoom.scrollbarYLeft"-->

@@ -196,6 +196,30 @@
             ></v-progress-circular>
           </div>
           <div v-else class="d-flex flex-column flex-grow-1">
+            <v-card-title
+              class="d-flex align-center align-content-space-between"
+            >
+              <div>عدد الموظفين بالنسبه للوظائف</div>
+            </v-card-title>
+            <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
+              <chart-jobs></chart-jobs>
+            </div>
+          </div>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" lg="6">
+        <v-card>
+          <div
+            v-if="loading"
+            class="d-flex flex-grow-1 align-center justify-center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
+          </div>
+          <div v-else class="d-flex flex-column flex-grow-1">
             <v-card-title>
               عدد الموظفين حسب الأعمار وتوزبعهم في الإدارات
             </v-card-title>
@@ -380,30 +404,6 @@
             <v-card-title
               class="d-flex align-center align-content-space-between"
             >
-              <div>عدد الموظفين في الأقسام</div>
-            </v-card-title>
-            <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
-              <chart-agencies></chart-agencies>
-            </div>
-          </div>
-        </v-card>
-      </v-col>
-
-      <v-col cols="12" lg="6">
-        <v-card>
-          <div
-            v-if="loading"
-            class="d-flex flex-grow-1 align-center justify-center"
-          >
-            <v-progress-circular
-              indeterminate
-              color="primary"
-            ></v-progress-circular>
-          </div>
-          <div v-else class="d-flex flex-column flex-grow-1">
-            <v-card-title
-              class="d-flex align-center align-content-space-between"
-            >
               <div>عدد الأقسام حسب توزيع الاعمار للموظفين</div>
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
@@ -429,6 +429,8 @@ import ChartGender from "../../components/reports/employees/chart-gender";
 import ChartDepartment from "../../components/reports/employees/chart-departments";
 import ChartAttendance from "../../components/reports/employees/chart-attendance";
 import ChartAgencies from "../../components/reports/employees/chart-agencies";
+import ChartJobs from "../../components/reports/employees/chart-jobs";
+// chart-jobs
 import ChartHeadquarters from "../../components/reports/employees/chart-headquarters";
 import ChartAdministration1Qualifications from "../../components/reports/employees/chart-administration1-qualifications";
 import ChartAdministration2Qualifications from "../../components/reports/employees/chart-administration2-qualifications";
@@ -467,6 +469,7 @@ export default {
     DateRangePicker,
     ChartDepartment,
     AgeDepartmentCount,
+    ChartJobs,
   },
   // filters: {
   //   dateCell(value) {
