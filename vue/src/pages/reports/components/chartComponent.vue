@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { options } from "@amcharts/amcharts4/core";
 import { mapActions } from "vuex";
 export default {
   data() {
@@ -31,8 +32,12 @@ export default {
       const options =
         this.$store.state.statistics.chartOptions[this.report.type];
       const labels = this.labels;
-      console.log(labels);
-      return { ...options, labels };
+      if (this.report.type == "pie") {
+        // console.log(labels);
+        return { ...options, labels };
+      } else {
+        return { ...options, xaxis: { categories: labels } };
+      }
     },
   },
 
