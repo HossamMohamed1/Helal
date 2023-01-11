@@ -9,87 +9,10 @@
           <small class="mx-1">({{ $t("dashboard.thismonth") }})</small>
         </div>
         <v-spacer></v-spacer>
-        <div style="width: 120px; height: 40px">
-          <v-dialog v-model="dialog" persistent max-width="600px">
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" dark v-bind="attrs" v-on="on" class="mt-1">
-                {{ $t("reports.createReport") }}
-              </v-btn>
-            </template>
-            <v-card>
-              <v-card-title>
-                <span class="text-h5">{{ $t("reports.createReport") }}</span>
-              </v-card-title>
-              <v-card-text class="pb-0">
-                <v-container>
-                  <v-row>
-                    <v-col cols="12">
-                      <v-autocomplete
-                        v-model="report.type"
-                        :items="types"
-                        :error-messages="validationError['type']"
-                        :label="$t('reports.reportType')"
-                        item-text="name"
-                        item-value="name"
-                      >
-                        <template v-slot:item="data">
-                          <template v-if="typeof data.item !== 'object'">
-                            <v-list-item-content
-                              v-text="data.item"
-                            ></v-list-item-content>
-                          </template>
-                          <template v-else>
-                            <v-list-item-avatar>
-                              <img :src="data.item.image" />
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                              <v-list-item-title
-                                v-html="data.item.name"
-                              ></v-list-item-title>
-                            </v-list-item-content>
-                          </template>
-                        </template>
-                      </v-autocomplete>
-                    </v-col>
-                    <v-col cols="12">
-                      <v-autocomplete
-                        :items="columns"
-                        :label="$t('reports.columns')"
-                        v-model="report.columns"
-                        multiple
-                        dense
-                        chips
-                        small-chips
-                      >
-                        <template v-slot:item="data">
-                          <template v-if="typeof data.item !== 'object'">
-                            <v-list-item-content
-                              v-text="data.item"
-                            ></v-list-item-content>
-                          </template>
-                          <template v-else>
-                            <v-list-item-avatar>
-                              <img :src="data.item.image" />
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                              <v-list-item-title
-                                v-html="data.item.name"
-                              ></v-list-item-title>
-                            </v-list-item-content>
-                          </template>
-                        </template>
-                      </v-autocomplete>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-card-text>
-              <v-card-actions class="mb-1">
-                <v-spacer></v-spacer>
-                <v-btn color="primary" dark @click="submitFile"> حفظ </v-btn>
-                <v-btn color="dark" dark @click="dialog = false"> إلغاء </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
+        <div style="width: 120px; height: 40px" class="mx-1">
+          <v-btn color="primary" to="#" class="mt-1">
+            {{ $t("reports.createReport") }}
+          </v-btn>
         </div>
         <div style="width: 160px; height: 40px" class="mx-1">
           <v-select
@@ -183,7 +106,7 @@
 
     <v-row class="flex-grow-0 mb-1" dense>
       <v-col cols="12" lg="6">
-        <v-card style="height: 100%">
+        <v-card>
           <div
             v-if="loading"
             class="d-flex flex-grow-1 align-center justify-center"
@@ -302,28 +225,6 @@
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-emps-ages-administrations />
-            </div>
-          </div>
-        </v-card>
-      </v-col>
-
-      <v-col cols="12" lg="6">
-        <v-card>
-          <div
-            v-if="loading"
-            class="d-flex flex-grow-1 align-center justify-center"
-          >
-            <v-progress-circular
-              indeterminate
-              color="primary"
-            ></v-progress-circular>
-          </div>
-          <div v-else class="d-flex flex-column flex-grow-1">
-            <v-card-title>
-              عدد الموظفين حسب الأعمار وتوزبعهم في الأقسام
-            </v-card-title>
-            <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
-              <chart-emps-ages-departments />
             </div>
           </div>
         </v-card>
@@ -513,7 +414,7 @@
       </v-col>
     </v-row>
 
-    <!--    <files-management />-->
+    <files-management />
   </div>
 </template>
 
@@ -594,7 +495,6 @@ export default {
           exact: true,
         },
       ],
-
       loadingInterval: null,
       isLoading: false,
       isLoading1: true,
@@ -613,49 +513,6 @@ export default {
           ],
         },
       ],
-
-      dialog: false,
-      types: [
-        {
-          name: "Network",
-          image: require("@/assets/images/visualization/network.jpg"),
-        },
-        {
-          name: "Bar",
-          image: require("@/assets/images/visualization/bar.jpg"),
-        },
-        {
-          name: "Line",
-          image: require("@/assets/images/visualization/line.jpg"),
-        },
-        {
-          name: "XYBubble",
-          image: require("@/assets/images/visualization/xybubble.jpg"),
-        },
-        {
-          name: "Pie",
-          image: require("@/assets/images/visualization/pie.jpg"),
-        },
-      ],
-      report: {
-        name: null,
-        type: undefined,
-        columns: [],
-      },
-      columns: [
-        "الموظفين",
-        "الجنس",
-        "الأقسام",
-        "الإدارات",
-        "المؤهلات",
-        "الوكالات",
-        "الجنسيه",
-        "الحضور والغياب",
-        "الأجازات",
-        "الأعمار",
-        "الموقع",
-      ],
-      validationError: [],
 
       customersSeries: [
         {
@@ -740,10 +597,6 @@ export default {
       clearInterval(this.loadingInterval);
     },
     ...mapActions("statistics", ["fetchUsers"]),
-    submitFile() {
-      console.log("object", this.report);
-      this.dialog = false;
-    },
   },
 };
 </script>

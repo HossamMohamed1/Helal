@@ -81,13 +81,6 @@ class EmployeeReport extends BaseReport
      */
     private function employeeGenderQuery(): Builder
     {
-        //        return DB::connection('oracle')
-        //            ->table($this->mainTable)
-        //            ->select(
-        //                DB::raw("COUNT($this->mainTable.EMP_NO"),
-        //                "$this->mainTable.GENDERID as {$this->filter['groupBy']}"
-        //            );
-
         return DB::connection('oracle')
             ->table($this->mainTable)
             ->select(
@@ -163,13 +156,12 @@ class EmployeeReport extends BaseReport
      */
     private function employeeAgeQuery(): Builder
     {
-        // to_char(sysdate,'day dd month yyyy','nls_calendar=''arabic hijrah''')
-        return DB::connection('oracle')
-            ->table($this->mainTable)
-            ->select(
-                // DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                DB::raw("round(months_between(to_char(sysdate,'DD-MM-YYYY','nls_calendar=''arabic hijrah'''), to_date(birthdate,'DD-MM-YYYY') )/12) as age")
-            )->first();
+        return dd(DB::connection('oracle')
+        ->table($this->mainTable)
+        ->selectRaw(
+            //DB::raw("round(MONTHS_BETWEEN(TO_DATE(to_char(sysdate,'dd-mm-yyyy','nls_calendar=''arabic hijrah'''),'DD-MM-YYYY'), TO_DATE(birthdate,'DD-MM-YYYY')) / 12)"),
+         "EMP_NO, round(MONTHS_BETWEEN(TO_DATE(to_char(sysdate,'dd-mm-yyyy','nls_calendar=''arabic hijrah'''),'DD-MM-YYYY'), TO_DATE(birthdate,'DD-MM-YYYY')) / 12 ) as age"
+        )->get());
     }
 
     /**
@@ -189,6 +181,20 @@ class EmployeeReport extends BaseReport
      * @return Builder
      */
     private function employeeQualificationQuery(): Builder
+    {
+        return DB::connection('oracle')
+            ->table("EMPLOYEE_QUALIFICATION")
+            ->select(
+                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
+            );
+    }
+
+    
+    /**
+     * @return Builder
+     */
+    private function employeeAbsenceQuery(): Builder
     {
         return DB::connection('oracle')
             ->table("EMPLOYEE_QUALIFICATION")
