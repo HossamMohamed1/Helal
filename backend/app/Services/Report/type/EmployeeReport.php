@@ -5,7 +5,7 @@ namespace App\Services\Report\type;
 use App\Exceptions\GeneralException;
 use App\Services\Report\BaseReport;
 use Exception;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use JsonException;
 
@@ -13,7 +13,7 @@ class EmployeeReport extends BaseReport
 {
     public $result = null;
     public string $mainTable;
-    public  array $filter;
+    public array $filter;
 
     public function __construct($filter)
     {
@@ -58,130 +58,157 @@ class EmployeeReport extends BaseReport
             return [];
         }
 
-        $data = json_decode($this->result
+        return json_decode($this->result
             ->mapWithKeys(function ($item) {
                 return [$item->{$this->filter['groupBy']} => $item];
             }), true, 512, JSON_THROW_ON_ERROR);
-    
-        return $data;
     }
 
     /**
-     * @return Builder
+     * @return Collection
      */
-    private function employeeGenderQuery(): Builder
+    private function employeeGenderQuery(): Collection
     {
+        $labels = [
+            1 => 'ذكر',
+            2 => 'أنثى',
+        ];
+
         return DB::connection('oracle')
-        ->table($this->mainTable)
-        ->select(
-            DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-            $this->filter['groupBy']
-        )->groupBy($this->filter['groupBy'])
-        ->get();
+            ->table($this->mainTable)
+            ->select(
+                DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
+            )->groupBy($this->filter['groupBy'])
+            ->get()
+            ->mapWithKeys(function ($item, $key) use ($labels) {
+                return [$labels[$key] ?? $key => $item];
+            });
     }
 
     /**
-     * @return Builder
+     * @return Collection
      */
-    private function employeeDepartmentQuery(): Builder
+    private function employeeDepartmentQuery(): Collection
     {
         return DB::connection('oracle')
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
-            );
+            )->groupBy($this->filter['groupBy'])
+            ->get();
     }
 
     /**
-     * @return Builder
+     * @return Collection
      */
-    private function employeeLocationQuery(): Builder
+    private function employeeLocationQuery(): Collection
+    {
+        $labels = [
+            1 => 'مكة المكرمة',
+            2 => 'المدينة المنورة',
+        ];
+
+        return DB::connection('oracle')
+            ->table($this->mainTable)
+            ->select(
+                DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
+            )->groupBy($this->filter['groupBy'])
+            ->get()
+            ->mapWithKeys(function ($item, $key) use ($labels) {
+                return [$labels[$key] ?? $key => $item];
+            });
+    }
+
+    /**
+     * @return Collection
+     */
+    private function employeeNationalityQuery(): Collection
+    {
+        $labels = [
+            1 => 'سعودى'
+        ];
+
+        return DB::connection('oracle')
+            ->table($this->mainTable)
+            ->select(
+                DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
+            )->groupBy($this->filter['groupBy'])
+            ->get()
+            ->mapWithKeys(function ($item, $key) use ($labels) {
+                return [$labels[$key] ?? $key => $item];
+            });
+    }
+
+    /**
+     * @return Collection
+     */
+    private function employeeJobQuery(): Collection
     {
         return DB::connection('oracle')
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
-            );
+            )->groupBy($this->filter['groupBy'])
+            ->get();
     }
 
     /**
-     * @return Builder
+     * @return Collection
      */
-    private function employeeNationalityQuery(): Builder
+    private function employeeMajorQuery(): Collection
     {
         return DB::connection('oracle')
-            ->table($this->mainTable)
+            ->table("EMPLOYEE_QUALIFICATION")
             ->select(
-                DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
+                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
-            );
+            )->groupBy($this->filter['groupBy'])
+            ->get();
     }
 
     /**
-     * @return Builder
+     * @return Collection
      */
-    private function employeeJobQuery(): Builder
+    private function employeeQualificationQuery(): Collection
     {
         return DB::connection('oracle')
-            ->table($this->mainTable)
+            ->table("EMPLOYEE_QUALIFICATION")
             ->select(
-                DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
+                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
-            );
+            )->groupBy($this->filter['groupBy'])
+            ->get();
     }
 
     /**
-     * @return Builder
+     * @return Collection
      */
-    private function employeeAgeQuery(): Builder
+    private function employeeAbsenceQuery(): Collection
+    {
+        return DB::connection('oracle')
+            ->table("EMPLOYEE_QUALIFICATION")
+            ->select(
+                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
+            )->groupBy($this->filter['groupBy'])
+            ->get();
+    }
+
+    /**
+     * @return Collection
+     */
+    private function employeeAgeQuery(): Collection
     {
         return dd(DB::connection('oracle')
-        ->table($this->mainTable)
-        ->selectRaw(
+            ->table($this->mainTable)
+            ->selectRaw(
             //DB::raw("round(MONTHS_BETWEEN(TO_DATE(to_char(sysdate,'dd-mm-yyyy','nls_calendar=''arabic hijrah'''),'DD-MM-YYYY'), TO_DATE(birthdate,'DD-MM-YYYY')) / 12)"),
-         "EMP_NO, round(MONTHS_BETWEEN(TO_DATE(to_char(sysdate,'dd-mm-yyyy','nls_calendar=''arabic hijrah'''),'DD-MM-YYYY'), TO_DATE(birthdate,'DD-MM-YYYY')) / 12 ) as age"
-        )->get());
-    }
-
-    /**
-     * @return Builder
-     */
-    private function employeeMajorQuery(): Builder
-    {
-        return DB::connection('oracle')
-            ->table("EMPLOYEE_QUALIFICATION")
-            ->select(
-                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
-                $this->filter['groupBy']
-            );
-    }
-
-    /**
-     * @return Builder
-     */
-    private function employeeQualificationQuery(): Builder
-    {
-        return DB::connection('oracle')
-            ->table("EMPLOYEE_QUALIFICATION")
-            ->select(
-                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
-                $this->filter['groupBy']
-            );
-    }
-
-    
-    /**
-     * @return Builder
-     */
-    private function employeeAbsenceQuery(): Builder
-    {
-        return DB::connection('oracle')
-            ->table("EMPLOYEE_QUALIFICATION")
-            ->select(
-                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
-                $this->filter['groupBy']
-            );
+                "EMP_NO, round(MONTHS_BETWEEN(TO_DATE(to_char(sysdate,'dd-mm-yyyy','nls_calendar=''arabic hijrah'''),'DD-MM-YYYY'), TO_DATE(birthdate,'DD-MM-YYYY')) / 12 ) as age"
+            )->get());
     }
 }
