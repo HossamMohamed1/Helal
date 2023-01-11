@@ -1,10 +1,11 @@
 <template>
   <v-col cols="12" lg="6">
-    <v-card flat :loading="loading" height="350">
+    <v-card flat :loading="loading" height="355">
       <apexchart
         v-if="!loading && report.type !== 'table'"
         :type="report.type"
         width="480"
+        height="350"
         :options="chartOptions"
         :series="series"
       ></apexchart>
@@ -47,12 +48,10 @@ export default {
         const chart = res[this.report.type];
         this.labels = chart?.labels ?? [];
         this.series = chart?.series ?? [];
-        // console.log(chart);
       })
       .catch(() => {
         this.loading = false;
       });
-    console.log(data);
   },
   methods: {
     ...mapActions("statistics", ["fetchChart"]),
