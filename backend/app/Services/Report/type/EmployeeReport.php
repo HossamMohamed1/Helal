@@ -57,22 +57,13 @@ class EmployeeReport extends BaseReport
         if (empty($this->query)) {
             return [];
         }
-
-        if ($this->filter['type'] == 'employee_gender') {
-            $data = collect($this->query->first())->transform(function ($item, $key) {
-                return [
-                    $this->filter['groupBy'] => $key,
-                    $this->filter['columns'][0] => $item,
-                ];
-            })->toArray();
-        } else {
-            $data = json_decode($this->query->groupBy($this->filter['groupBy'])
-                ->get()
-                ->mapWithKeys(function ($item) {
-                    return [$item->{$this->filter['groupBy']} => $item];
-                }), true, 512, JSON_THROW_ON_ERROR);
-        }
-
+        
+        $data = json_decode($this->query->groupBy($this->filter['groupBy'])
+            ->get()
+            ->mapWithKeys(function ($item) {
+                return [$item->{$this->filter['groupBy']} => $item];
+            }), true, 512, JSON_THROW_ON_ERROR);
+    
         return $data;
     }
 
@@ -82,21 +73,11 @@ class EmployeeReport extends BaseReport
     private function employeeGenderQuery(): Builder
     {
         return DB::connection('oracle')
-            ->table($this->mainTable)
-            ->select(
-                DB::raw("COUNT(CASE WHEN genderid = 1 then 1 ELSE NULL END) as male"),
-                DB::raw("COUNT(CASE WHEN genderid = 2 then 1 ELSE NULL END) as female")
-            );
-    }
-
-    /**
-     * @return Builder
-     */
-    private function employeeListQuery(): Builder
-    {
-        return DB::connection('oracle')
-            ->table($this->mainTable)
-            ->select("$this->mainTable.JOB_DESC", "$this->mainTable.DEPT_DESC");
+        ->table($this->mainTable)
+        ->select(
+            DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
+            $this->filter['groupBy']
+        );
     }
 
     /**

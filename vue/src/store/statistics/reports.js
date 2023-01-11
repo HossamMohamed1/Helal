@@ -3,7 +3,12 @@ const reports = [
   {
     title: i18n.t("employees.employeesByGender"),
     chart: "employee_gender",
-    type: "bar",
+    type: "pie",
+  },
+  {
+    title: i18n.t("employees.employeesByGender"),
+    chart: "employee_location",
+    type: "line",
   },
 ];
 
