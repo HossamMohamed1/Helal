@@ -30,10 +30,11 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $exception)
     {
+
         if ($exception instanceof GeneralException && $request->expectsJson()) {
             // dd($exception);
             return response()->json([
-                'message' => $exception,
+                'message' => $exception->getMessage(),
                 'code' => 404,
             ], 404);
         }

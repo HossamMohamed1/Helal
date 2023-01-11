@@ -60,10 +60,16 @@ return [
         'employee_age' => [
             'columns' => ['count'],
             'unit' => 'number',
-            'groupBy' => 'birthdate',
+            'groupBy' => 'age',
             'className' => 'EmployeeReport',
         ],
         'employee_qualification' => [
+            'columns' => ['count'],
+            'unit' => 'number',
+            'groupBy' => 'qualification_desc',
+            'className' => 'EmployeeReport',
+        ],
+        'employee_absence' => [
             'columns' => ['count'],
             'unit' => 'number',
             'groupBy' => 'qualification_desc',
