@@ -2,7 +2,7 @@
   <div v-if="showChart">
     <v-card>
       <apexchart
-        type="bar"
+        type="line"
         height="350"
         :options="chartOptions"
         :series="series"
@@ -17,64 +17,75 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      showChart: false,
-      series: [
-        // {
-        //   name: "",
-        //   data: [44, 55, 60, 70, 120, 100, 50, 60, 30],
-        // },
-      ],
-      chartOptions: {
+       showChart: false,
+      series: [],
+        chartOptions: {
         chart: {
-          type: "bar",
           height: 350,
-        },
-        plotOptions: {
-          bar: {
-            horizontal: false,
-            columnWidth: "55%",
-            endingShape: "rounded",
+          type: "line",
+          zoom: {
+            enabled: false,
           },
         },
         dataLabels: {
           enabled: false,
         },
         stroke: {
-          show: true,
-          width: 2,
-          colors: ["transparent"],
+          width: [2, 2, 2, 2, 2],
+          curve: "smooth",
+          // dashArray: [0, 8, 5]
+        },
+        title: {
+          text: "",
+          align: "center",
+        },
+        legend: {
+          tooltipHoverFormatter: function (val, opts) {
+            return (
+              val +
+              " - " +
+              opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] +
+              ""
+            );
+          },
+        },
+        markers: {
+          size: 0,
+          hover: {
+            sizeOffset: 6,
+          },
         },
         xaxis: {
-          categories: [
-            // this.$t("employees.administration1"),
-            // this.$t("employees.administration2"),
-            // this.$t("employees.administration3"),
-            // this.$t("employees.administration4"),
-            // this.$t("employees.administration5"),
-            // this.$t("employees.administration6"),
-            // this.$t("employees.administration7"),
-            // this.$t("employees.administration8"),
-            // this.$t("employees.administration9"),
-          ],
-          // title: {
-          //   text: 'Drones'
-          // }
+          categories: [],
         },
-        yaxis: {
-          title: {
-            // text: 'Screenshots'
-          },
-        },
-        colors: ["#1e8e49"],
-        fill: {
-          opacity: 1,
-        },
+        colors: ["#1e8e49", "#c3b086"],
         tooltip: {
-          y: {
-            formatter: function (val) {
-              return +val + " موظف";
+          y: [
+            {
+              title: {
+                formatter: function (val) {
+                  return val + " موظف ";
+                },
+              },
             },
-          },
+            {
+              title: {
+                formatter: function (val) {
+                  return val + " موظف ";
+                },
+              },
+            },
+            {
+              title: {
+                formatter: function (val) {
+                  return val;
+                },
+              },
+            },
+          ],
+        },
+        grid: {
+          borderColor: "#f1f1f1",
         },
       },
     };
@@ -82,7 +93,7 @@ export default {
   mounted() {
     const data = {
       charts: ["bar"],
-      type: "employee_jobs",
+      type: "employee_job",
     };
     this.showChart = false;
 
