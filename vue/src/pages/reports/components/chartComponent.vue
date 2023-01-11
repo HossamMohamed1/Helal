@@ -20,7 +20,7 @@ export default {
     return {
       loading: false,
       series: [],
-      labels: [],
+      labels: ["males", "females"],
     };
   },
   props: {
