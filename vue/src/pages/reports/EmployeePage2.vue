@@ -154,7 +154,11 @@ import DateRangePicker from "vue2-daterange-picker";
 import "vue2-daterange-picker/dist/vue2-daterange-picker.css";
 import { mapState } from "vuex";
 import TrackCard from "../../components/dashboard/TrackCard";
-import ChartComponent from "./components/chartComponent";
+// import ChartComponent from "./components/chartComponent";
+const ChartComponent = () =>
+  import(
+    /* webpackChunkName: "chart-component" */ "./components/chartComponent.vue"
+  );
 export default {
   components: { DateRangePicker, TrackCard, ChartComponent },
   data() {

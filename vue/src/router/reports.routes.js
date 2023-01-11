@@ -25,7 +25,7 @@ export default [
     },
     component: () =>
       import(
-        /* webpackChunkName: "reports-list" */ "@/pages/reports/EmployeePage2.vue"
+        /* webpackChunkName: "reports-list-v2" */ "@/pages/reports/EmployeePage2.vue"
       ),
   },
   {
