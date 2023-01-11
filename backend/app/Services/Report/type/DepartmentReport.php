@@ -85,7 +85,7 @@ class DepartmentReport extends BaseReport
             )->groupBy($this->filter['groupBy'])
             ->get()
             ->mapWithKeys(function ($item, $key) use ($labels) {
-                return [$labels[$key] ?? $key => $item];
+                return [($labels[$key] ?? $key) => $item];
             });
     }
 
@@ -107,7 +107,7 @@ class DepartmentReport extends BaseReport
             )->groupBy($this->filter['groupBy'])
             ->get()
             ->mapWithKeys(function ($item, $key) use ($labels) {
-                return [$labels[$key] ?? $key => $item];
+                return [($labels[$key] ?? $key) => $item];
             });
     }
 
