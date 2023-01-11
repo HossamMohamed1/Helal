@@ -39,11 +39,7 @@
                 class="d-flex flex-grow-1 align-center justify-center"
                 v-else
               >
-                <v-img
-                  :src="emptyImage"
-                  aspect-ratio="1"
-                  class="blue-grey lighten-4 rounded elevation-3"
-                ></v-img>
+                <img :src="emptyImage" height="350" />
               </v-card>
             </div>
           </v-card>
