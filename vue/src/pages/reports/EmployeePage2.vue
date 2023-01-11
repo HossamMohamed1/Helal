@@ -121,15 +121,45 @@
       </div>
       <v-breadcrumbs :items="breadcrumbs" class="pa-0 py-2"></v-breadcrumbs>
     </div>
-    {{ cards }}
+    <v-row class="flex-grow-0 mb-1" dense>
+      <v-col
+        cols="12"
+        lg="3"
+        md="6"
+        v-for="(card, index) in cards"
+        :key="index"
+      >
+        <div class="d-flex flex-column flex-grow-1 h-full">
+          <track-card
+            :label="card.label"
+            class="h-full"
+            :color="card.color"
+            :value="card.value"
+            :percentage="card.percentage"
+            :percentage-label="card['percentage-label']"
+            :loading="card.loading"
+            :series="card.ordersSeries"
+          ></track-card>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row class="flex-grow-0 mb-1" dense>
+      <ChartComponent
+        :report="report"
+        v-for="(report, index) in reports"
+        :key="index + cards.length"
+      />
+    </v-row>
   </div>
 </template>
 <script>
 import DateRangePicker from "vue2-daterange-picker";
 import "vue2-daterange-picker/dist/vue2-daterange-picker.css";
 import { mapState } from "vuex";
+import TrackCard from "../../components/dashboard/TrackCard";
+import ChartComponent from "./components/chartComponent";
 export default {
-  components: { DateRangePicker },
+  components: { DateRangePicker, TrackCard, ChartComponent },
   data() {
     return {
       breadcrumbs: [
@@ -208,7 +238,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("statistics", ["cards"]),
+    ...mapState("statistics", ["cards", "reports"]),
   },
   methods: {
     submitFile() {
