@@ -1,16 +1,17 @@
 /**
  * Vuetify Styles Overrides
  */
-@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap");
+//@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap");
 //@font-face {
 //  font-family: 'Cairo';
 //  src: url('../../fonts/Cairo.ttf');
 //
 //}
-//@font-face {
-//  font-family: 'cairo';
-//  src: url('./@fontsource/cairo/index.css');
-//}
+@font-face {
+  font-family: 'cairo';
+  //src: url(~@fontsource/cairo/index.css~);
+}
+@import "~@fontsource/cairo/index.css";
 // Flex min-width: 0
 .v-application .d-flex {
   min-width: 0;
