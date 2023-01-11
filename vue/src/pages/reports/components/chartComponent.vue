@@ -2,7 +2,7 @@
   <v-col cols="12" lg="6">
     <v-card flat :loading="loading" height="355">
       <v-card-title class="d-flex align-center align-content-space-between">
-        <div>{{ report.title }}</div>
+        <div>{{ $t(report.title) }}</div>
       </v-card-title>
       <v-tabs v-model="tab" centered slider-color="yellow">
         <v-tab v-for="(type, i) in chartTypes" :key="i" :href="`#tab-${i}`">

@@ -65,7 +65,7 @@ class ChartService
         foreach ($filter['columns'] as $column) {
             $result[$column] = [
                 'labels' => array_filter(Arr::pluck($data, $filter['groupBy'])),
-                'result' => array_values(array_map(static fn ($item) => $item, Arr::pluck($data, $column))) ?? [0],
+                'result' => array_values(array_map(static fn ($item) => (int)$item, Arr::pluck($data, $column))) ?? [0],
             ];
         }
 

@@ -15,12 +15,6 @@ return [
      */
 
     'type' => [
-        'employee_list' => [
-            'columns' => ['job_desc', 'dept_desc'],
-            'unit' => 'number',
-            'groupBy' => 'job_desc',
-            'className' => 'EmployeeReport',
-        ],
         'employee_gender' => [
             'columns' => ['count'],
             'unit' => 'number',
