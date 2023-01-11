@@ -45,7 +45,9 @@ export default {
       .then((res) => {
         this.loading = false;
         const chart = res[this.report.type];
-        console.log(chart);
+        this.labels = chart?.labels ?? [];
+        this.series = chart?.series ?? [];
+        // console.log(chart);
       })
       .catch(() => {
         this.loading = false;
