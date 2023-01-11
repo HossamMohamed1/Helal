@@ -85,14 +85,14 @@ export default {
     };
 
     this.loading = true;
-    this.fetchChart(data)
-      .then((res) => {
-        this.loading = false;
-        this.chartData = res;
-      })
-      .catch((err) => {
-        this.loading = false;
-      });
+    // this.fetchChart(data)
+    //   .then((res) => {
+    //     this.loading = false;
+    //     this.chartData = res;
+    //   })
+    //   .catch((err) => {
+    //     this.loading = false;
+    //   });
   },
   methods: {
     ...mapActions("statistics", ["fetchChart"]),
