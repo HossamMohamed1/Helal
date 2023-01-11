@@ -31,6 +31,7 @@ export default {
       const options =
         this.$store.state.statistics.chartOptions[this.report.type];
       const labels = this.labels;
+      console.log(labels);
       return { ...options, labels };
     },
   },
@@ -46,12 +47,10 @@ export default {
       .then((res) => {
         this.loading = false;
         const chart = res[this.report.type];
-        console.log(chart)
         this.labels = chart?.labels ?? [];
         this.series = chart?.result ?? [];
       })
       .catch((err) => {
-        console.log(err)
         this.loading = false;
       });
   },
