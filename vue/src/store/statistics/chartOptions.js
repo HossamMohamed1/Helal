@@ -31,6 +31,7 @@ const chartOptions = {
     xaxis: {
       categories: [],
     },
+    colors: ["#1e8e49", "#fd9162", "#a7a7a7", "#41b27b", "#c9de77"],
   },
   line: {
     chart: {
