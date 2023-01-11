@@ -20,13 +20,13 @@ import { mapActions, mapState } from "vuex";
 export default {
   components: {},
   props: {
-    config: {}
+    config: {},
   },
   data() {
     return {
       loading: false,
       backgroundStyle: { backgroundColor: "" },
-      chartObject: null
+      chartObject: null,
     };
   },
   destroyed() {
@@ -55,14 +55,14 @@ export default {
           this.loading = false;
           this.loadChart();
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
           this.loading = false;
         });
-    }
+    },
   },
   computed: {
-    ...mapState("reports", ["analytics", "chart", "fileData"])
+    ...mapState("reports", ["analytics", "chart", "fileData"]),
   },
   methods: {
     ...mapActions("reports", ["loadAnalytics"]),
@@ -72,9 +72,9 @@ export default {
       }
       let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);
       const line = this.analytics?.line;
-      chart.data = line.map(item => {
+      chart.data = line.map((item) => {
         let keys = Object.keys(item);
-        keys = keys.filter(item => item != "date");
+        keys = keys.filter((item) => item != "date");
 
         for (let index = 0; index < keys.length; index++) {
           const key = keys[index];
@@ -84,7 +84,7 @@ export default {
       });
       chart.logo.disabled = true;
       const { config } = this.chart;
-      chart.colors.list = config.colors.map(color => am4core.color(color));
+      chart.colors.list = config.colors.map((color) => am4core.color(color));
       this.backgroundStyle.backgroundColor = config?.style?.backgroundColor;
       let title = chart.titles.create();
       title.text = config?.title?.name;
@@ -214,8 +214,8 @@ export default {
 
       let keys = [];
 
-      line.forEach(item => {
-        Object.keys(item).forEach(item => {
+      line.forEach((item) => {
+        Object.keys(item).forEach((item) => {
           if (!keys.includes(item)) {
             keys.push(item);
           }
@@ -223,13 +223,13 @@ export default {
       });
 
       keys
-        .filter(item => item != "date")
+        .filter((item) => item != "date")
         .forEach((item, index) => {
           createAxisAndSeries(item, item.toUpperCase(), index != 0, "circle");
         });
 
       this.chartObject = chart;
-    }
+    },
   },
   mounted() {
     const { id } = this.chart;
@@ -241,6 +241,6 @@ export default {
       .catch(() => {
         this.loading = false;
       });
-  }
+  },
 };
 </script>

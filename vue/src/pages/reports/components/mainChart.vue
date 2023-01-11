@@ -2,7 +2,7 @@
   <div>
     <apexchart
       width="480"
-      height="350"
+      height="400"
       :options="chartOptions"
       :type="chartType"
       :series="series"

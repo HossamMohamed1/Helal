@@ -1,6 +1,6 @@
 <template>
   <v-col cols="12" lg="6">
-    <v-card flat :loading="loading" height="355">
+    <v-card flat :loading="loading" height="100%">
       <v-card-title class="d-flex align-center align-content-space-between">
         <div>{{ $t(report.title) }}</div>
       </v-card-title>
