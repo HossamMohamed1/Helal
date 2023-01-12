@@ -12,7 +12,7 @@ axios.defaults.baseURL =
   process.env.VUE_APP_API_URL ?? "http://hamrein-.test:800/backend/public/api";
 axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 axios.interceptors.response.use(
-  function(response) {
+  function (response) {
     // store.commit('setValidationError', []);
 
     const meesage = response?.data?.message || response?.data?.msg;
@@ -22,7 +22,7 @@ axios.interceptors.response.use(
 
     return response;
   },
-  function(error) {
+  function (error) {
     const message =
       error?.response?.data?.message || error?.response?.data?.errors?.message;
 
@@ -52,13 +52,9 @@ axios.interceptors.response.use(
       axios.defaults.headers.common["Authorization"] = "";
       return router.push({ name: "auth-signin" });
     }
-    // Too Many Requests
-    else if (error.response && error.response.status === 429) {
-      // store.commit('setLoading', false);
-    }
+
     // General errors / internal server error
     else if (error.response && error.response.status === 500) {
-      // store.commit('setError', error)
       // if (error.response.data.message) {
       //     store.commit('setError', null);
       //     store.commit('setError', {
@@ -68,17 +64,11 @@ axios.interceptors.response.use(
       //     });
       // }
     } else if (error.response && error.response.status === 520) {
-      // store.commit('setError', {
-      //     a: null,
-      //     code: 520,
-      //     message: error.response.data.errors.message,
-      // });
       // store.dispatch('refreshUser');
       //   return router.push({ name: 'subscribe.index' });
     } else {
-      // store.commit('setLoading', false);
     }
-    // throw error;
+
     return Promise.reject(error);
   }
 );
