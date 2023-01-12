@@ -129,21 +129,13 @@ class EmployeeReport extends BaseReport
      */
     private function employeeNationalityQuery(): Collection
     {
-        $labels = [
-            1 => 'سعودى'
-        ];
-
-        return DB::connection('oracle')
+    return DB::connection('oracle')
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
             )->groupBy($this->filter['groupBy'])
-            ->get()
-            ->map(function ($item) use ($labels) {
-                $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $$item->{$this->filter['groupBy']};
-                return $item;
-            });
+            ->get();
     }
 
     /**
