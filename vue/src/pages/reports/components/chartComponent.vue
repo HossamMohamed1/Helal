@@ -51,7 +51,9 @@
 
 <script>
 import { mapActions } from "vuex";
-import mainChart from "./mainChart.vue";
+// import mainChart from "./mainChart.vue";
+const mainChart = () =>
+  import(/* webpackChunkName: "main-chart" */ "./mainChart.vue");
 export default {
   components: {
     mainChart,
@@ -90,6 +92,7 @@ export default {
       })
       .catch((err) => {
         this.loading = false;
+        console.log(err);
       });
   },
   methods: {
