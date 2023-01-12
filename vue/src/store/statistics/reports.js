@@ -2,7 +2,7 @@ const reports = [
   {
     title: "employees.employeesByDepartment",
     chart: "employee_department",
-    type: ["bar"],
+    type: ["line"],
   },
   {
     title: "employees.employeesByGender",
@@ -12,7 +12,7 @@ const reports = [
   {
     title: "employees.employeesByHeadquarters",
     chart: "employee_location",
-    type: ["bar"],
+    type: ["bar",'line','pie'],
   },
   {
     title: "employees.employee_nationality",
@@ -27,18 +27,18 @@ const reports = [
   {
     title: "employees.employeesAccordingToTheirRanks",
     chart: "employee_major",
-    type: ["bar"],
+    type: ["line"],
   },
   {
     title: "employees.employee_job",
     chart: "employee_job",
-    type: ["bar"],
+    type: ["line"],
   },
-  {
-    title: "employees.EmployeesAccordingAttendance",
-    chart: "employee_absence",
-    type: ["pie"],
-  },
+  // {
+  //   title: "employees.EmployeesAccordingAttendance",
+  //   chart: "employee_absence",
+  //   type: ["pie"],
+  // },
   {
     title: "employees.department_status",
     chart: "department_status",

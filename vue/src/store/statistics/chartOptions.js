@@ -109,7 +109,7 @@ const chartOptions = {
     },
     labels: [],
     stroke: {
-      // colors: ["#29abe2", "#a4a8ad", "#d5d5d5"]
+      colors: ["#29abe2", "#a4a8ad", "#d5d5d5"]
     },
     plotOptions: {
       pie: {
