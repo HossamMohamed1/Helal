@@ -199,11 +199,12 @@ class EmployeeReport extends BaseReport
      */
     private function employeeAgeQuery(): Collection
     {
-        return dd(DB::connection('oracle')
+        return DB::connection('oracle')
             ->table($this->mainTable)
-            ->selectRaw(
-            //DB::raw("round(MONTHS_BETWEEN(TO_DATE(to_char(sysdate,'dd-mm-yyyy','nls_calendar=''arabic hijrah'''),'DD-MM-YYYY'), TO_DATE(birthdate,'DD-MM-YYYY')) / 12)"),
-                "EMP_NO, round(MONTHS_BETWEEN(TO_DATE(to_char(sysdate,'dd-mm-yyyy','nls_calendar=''arabic hijrah'''),'DD-MM-YYYY'), TO_DATE(birthdate,'DD-MM-YYYY')) / 12 ) as age"
-            )->get());
+            ->select(
+                DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
+            )->groupBy($this->filter['groupBy'])
+            ->get();
     }
 }
