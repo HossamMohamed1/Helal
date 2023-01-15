@@ -199,12 +199,6 @@ class EmployeeReport extends BaseReport
      */
     private function employeeAgeQuery(): Collection
     {
-        return DB::connection('oracle')
-            ->table($this->mainTable)
-            ->select(
-                DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                $this->filter['groupBy']
-            )->groupBy($this->filter['groupBy'])
-            ->get();
+        return dd(\App\Models\Employee::first()->age);
     }
 }

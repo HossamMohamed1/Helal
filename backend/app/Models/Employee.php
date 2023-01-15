@@ -12,4 +12,11 @@ class Employee extends Model
     protected $table = 'v_all_user_emp_info';
 
     protected $connection = 'oracle';
+
+    protected $appends = ['age'];
+
+    public function getAgeAttribute() 
+    {
+        return $this->birthdate->diffInYears(\Carbon\Carbon::now());
+    }
 }
