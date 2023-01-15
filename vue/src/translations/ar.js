@@ -511,6 +511,8 @@ export default {
     rank6: "مرتبة 6",
     employee: "موظف",
     all: "جميع الموظفين",
+    employee_age: "عدد الموظفين حسب الأعمار",
+    department_age: "عدد الأقسام/ الإدارات حسب التوزيع العمري للموظفين"
   },
   permits: {
     permitsReports: "تقارير التصاريح",
