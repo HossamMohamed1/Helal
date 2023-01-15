@@ -1,5 +1,21 @@
 <template>
   <div>
+    <div class="d-flex align-center align-content-space-between">
+      <v-spacer></v-spacer>
+      <div style="height: 30px">
+        <div class="actions mx-1" @click.stop="dialog = true">
+          <v-btn ref="button" class="drawer-button" color="#1e8e49" dark>
+            <v-icon class="fa-spin">mdi-cog-outline</v-icon>
+          </v-btn>
+        </div>
+      </div>
+    </div>
+    <ChartConfigs
+      :dialog="dialog"
+      @close-modal="(val) => (dialog = val)"
+      :type="chartType"
+      :chartOptions="chartOptions"
+    />
     <apexchart
       width="100%"
       height="400"
@@ -10,7 +26,11 @@
   </div>
 </template>
 <script>
+import ChartConfigs from "./ChartConfigs.vue";
 export default {
+  components: {
+    ChartConfigs,
+  },
   props: {
     chartType: {
       type: Object,
@@ -20,6 +40,11 @@ export default {
       type: Object,
       default: {},
     },
+  },
+  data() {
+    return {
+      dialog: false,
+    };
   },
   computed: {
     labels() {
@@ -39,8 +64,6 @@ export default {
       }
     },
   },
-  mounted() {
-    console.log(this.chartOptions)
-  }
+  mounted() {},
 };
 </script>
