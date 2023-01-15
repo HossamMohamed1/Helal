@@ -5,7 +5,7 @@
       <div style="height: 30px">
         <div class="actions mx-1" @click.stop="dialog = true">
           <v-btn ref="button" class="drawer-button" color="#1e8e49" dark>
-            <v-icon class="fa-spin">mdi-cog-outline</v-icon>
+            <v-icon >mdi-cog-outline</v-icon>
           </v-btn>
         </div>
       </div>

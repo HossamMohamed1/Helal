@@ -4,7 +4,9 @@ const donut = {
   },
   labels: [],
   stroke: {
-    // colors: ['#29abe2', '#a4a8ad', '#d5d5d5']
+    show: true,
+    width: 1,
+    colors: ["#fff"],
   },
   plotOptions: {
     pie: {
@@ -13,6 +15,7 @@ const donut = {
           show: true,
           name: "total",
           value: 50,
+          size: '300'
         },
       },
     },
@@ -21,6 +24,14 @@ const donut = {
   legend: {
     position: "bottom",
     horizontalAlign: "center",
+  },
+  dataLabels: {
+    enabled: true,
+    style: {
+      fontSize: "12px",
+      colors: ["#fff"],
+    },
+
   },
   responsive: [
     {
