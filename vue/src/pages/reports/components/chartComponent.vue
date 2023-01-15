@@ -85,31 +85,35 @@ export default {
       charts: this.report.type.map((item) => item.value),
       type: this.report.chart,
     };
-    this.chartData = {
-      bar: {
-        labels: ["مكة المكرمة", "المدينة المنورة"],
-        result: [
-          {
-            name: "العدد",
-            data: ["3931", "1854"],
-          },
-        ],
-      },
-      line: {
-        labels: ["مكة المكرمة", "المدينة المنورة"],
-        result: [
-          {
-            name: "العدد",
-            data: ["3931", "1854"],
-          },
-        ],
-      },
-      pie: {
-        labels: ["مكة المكرمة", "المدينة المنورة"],
-        result: [3931, 1854],
-      },
-    };
-    // this.loading = true;
+
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+      this.chartData = {
+        bar: {
+          labels: ["مكة المكرمة", "المدينة المنورة"],
+          result: [
+            {
+              name: "العدد",
+              data: ["3931", "1854"],
+            },
+          ],
+        },
+        line: {
+          labels: ["مكة المكرمة", "المدينة المنورة"],
+          result: [
+            {
+              name: "العدد",
+              data: ["3931", "1854"],
+            },
+          ],
+        },
+        pie: {
+          labels: ["مكة المكرمة", "المدينة المنورة"],
+          result: [3931, 1854],
+        },
+      };
+    }, 2000);
     // this.fetchChart(data)
     //   .then((res) => {
     //     this.loading = false;
@@ -117,7 +121,7 @@ export default {
     //   })
     //   .catch((err) => {
     //     this.loading = false;
-    //     console.log(err);
+    //     // console.log(err);
     //   });
   },
   methods: {
