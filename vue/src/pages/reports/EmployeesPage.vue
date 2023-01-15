@@ -107,6 +107,14 @@
     </v-row>
 
     <v-row class="flex-grow-0 mb-1" dense>
+      <ChartComponent
+        :report="report"
+        v-for="(report, index) in reports"
+        :key="index + cards.length"
+      />
+    </v-row>
+
+    <v-row class="flex-grow-0 mb-1" dense>
       <v-col cols="12" lg="6">
         <v-card>
           <div
@@ -446,11 +454,13 @@ import ChartAttendanceLocations from "@/components/reports/employees/chart-atten
 import ChartEmpsAgesDepartments from "@/components/reports/employees/chart-emps-ages-departments";
 import FilesManagement from "@/components/reports/employees/files-management";
 import AgeDepartmentCount from "@/components/reports/employees/AgeDepartmentCount";
-import { mapActions } from "vuex";
+import {mapActions, mapState} from "vuex";
 import CreateReportDialog from "@/components/reports/employees/CreateReportDialog";
+import ChartComponent from "@/pages/reports/components/chartComponent";
 
 export default {
   components: {
+    ChartComponent,
     CreateReportDialog,
     FilesManagement,
     ChartEmpsAgesDepartments,
@@ -498,36 +508,39 @@ export default {
           exact: true,
         },
       ],
-      loadingInterval: null,
-      isLoading: false,
-      isLoading1: true,
-      isLoading2: true,
-      isLoading3: true,
-      isLoading4: true,
-      loading: false,
-      ordersSeries: [
-        {
-          name: "Orders",
-          data: [
-            ["2020-02-02", 34],
-            ["2020-02-03", 43],
-            ["2020-02-04", 40],
-            ["2020-02-05", 43],
-          ],
-        },
-      ],
-
-      customersSeries: [
-        {
-          name: "Customers",
-          data: [
-            ["2020-02-02", 13],
-            ["2020-02-03", 11],
-            ["2020-02-04", 13],
-            ["2020-02-05", 12],
-          ],
-        },
-      ],
+      // loadingInterval: null,
+      // isLoading: false,
+      // isLoading1: true,
+      // isLoading2: true,
+      // isLoading3: true,
+      // isLoading4: true,
+      // loading: false,
+      // ordersSeries: [
+      //   {
+      //     name: "Orders",
+      //     data: [
+      //       ["2020-02-02", 34],
+      //       ["2020-02-03", 43],
+      //       ["2020-02-04", 40],
+      //       ["2020-02-05", 43],
+      //     ],
+      //   },
+      // ],
+      //
+      // customersSeries: [
+      //   {
+      //     name: "Customers",
+      //     data: [
+      //       ["2020-02-02", 13],
+      //       ["2020-02-03", 11],
+      //       ["2020-02-04", 13],
+      //       ["2020-02-05", 12],
+      //     ],
+      //   },
+      // ],
+      dialog: false,
+      validationError: [],
+      report: {},
       // Selects filters
       administrations: [
         this.$t("employees.administration1"),
@@ -564,15 +577,10 @@ export default {
       // menu: false,
       // modal: false,
       // menu2: false
-      dialog: false
     };
   },
   computed: {
-    theme() {
-      return this.$vuetify.theme.isDark
-        ? this.$vuetify.theme.defaults.dark
-        : this.$vuetify.theme.defaults.light;
-    },
+    ...mapState("statistics", ["cards", "reports"]),
   },
   watch: {
     selectedUsers(val) {},
@@ -584,14 +592,22 @@ export default {
       })
       .catch(() => {});
   },
+  // mounted() {
+  //   let count = 0;
+  //
+  //   // DEMO delay for loading graphics
+  //   this.loadingInterval = setInterval(() => {
+  //     this[`isLoading${count++}`] = false;
+  //     if (count === 4) this.clear();
+  //   }, 400)
+  // },
   mounted() {
-    let count = 0;
-
-    // DEMO delay for loading graphics
-    this.loadingInterval = setInterval(() => {
-      this[`isLoading${count++}`] = false;
-      if (count === 4) this.clear();
-    }, 400);
+    const cards = this.cards.map((item) => ({ ...item, loading: true }));
+    this.$store.commit("statistics/setCards", cards);
+    setTimeout(() => {
+      const cards = this.cards.map((item) => ({ ...item, loading: false }));
+      this.$store.commit("statistics/setCards", cards);
+    }, 2000);
   },
   beforeDestroy() {
     this.clear();
