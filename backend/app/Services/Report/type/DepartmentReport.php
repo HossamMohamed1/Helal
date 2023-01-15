@@ -119,12 +119,12 @@ class DepartmentReport extends BaseReport
      */
     private function departmentAgeQuery(): Collection
     {
-        return DB::connection('oracle')
+        return dd(DB::connection('oracle')
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.DEPT_NO) as {$this->filter['columns'][0]}"),
-                DB::raw("TIMESTAMPDIFF(YEAR,employees.BIRTHDATE,NOW()) as {$this->filter['groupBy']}")
+                "employees.$this->filter['groupBy']"
             )->join("V_ALL_USER_EMP_INFO as employees", "$this->mainTable.DEPT_NO", "=", "employees.DEPARTMENTID")
-            ->get();
+            ->get());
     }
 }
