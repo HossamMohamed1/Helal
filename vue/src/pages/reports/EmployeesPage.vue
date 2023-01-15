@@ -105,16 +105,13 @@
         </div>
       </v-col>
     </v-row>
-
+    S
     <v-row class="flex-grow-0 mb-1" dense>
       <ChartComponent
         :report="report"
         v-for="(report, index) in reports"
         :key="index + cards.length"
       />
-    </v-row>
-
-    <v-row class="flex-grow-0 mb-1" dense>
       <v-col cols="12" lg="6">
         <v-card>
           <div
