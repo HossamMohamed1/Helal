@@ -176,9 +176,7 @@
               class="d-flex align-center align-content-space-between"
             >
               <div>
-                {{
-                  $t("employees.employeesInPublicAgenciesAndAdministrations")
-                }}
+                {{$t("employees.employeesInPublicAgenciesAndAdministrations") }}
               </div>
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
@@ -568,6 +566,7 @@ export default {
       // menu: false,
       // modal: false,
       // menu2: false
+      dialog: false
     };
   },
   computed: {
