@@ -9,14 +9,12 @@
           <small class="mx-1">({{ $t("dashboard.thismonth") }})</small>
         </div>
         <v-spacer></v-spacer>
-        <div style="width: 120px; height: 40px">
-          <template>
-            <div class="actions" @click.stop="dialog = true">
-              <v-btn color="primary">
+        <div  style="height: 30px;">
+            <div class="actions mx-1" @click.stop="dialog = true">
+              <v-btn color="primary" style="height: 40px;">
                 {{ $t("reports.createReport") }}
               </v-btn>
             </div>
-          </template>
         </div>
         <div style="width: 160px; height: 40px" class="mx-1">
           <v-select
@@ -176,9 +174,7 @@
               class="d-flex align-center align-content-space-between"
             >
               <div>
-                {{
-                  $t("employees.employeesInPublicAgenciesAndAdministrations")
-                }}
+                {{$t("employees.employeesInPublicAgenciesAndAdministrations") }}
               </div>
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
@@ -568,6 +564,7 @@ export default {
       // menu: false,
       // modal: false,
       // menu2: false
+      dialog: false
     };
   },
   computed: {

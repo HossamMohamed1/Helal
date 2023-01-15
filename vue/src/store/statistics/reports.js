@@ -2,14 +2,17 @@ const reports = [
   {
     title: "employees.employeesByDepartment",
     chart: "employee_department",
-    type: [{ text: "line", value: "line" }],
+    type: [
+      { text: "line", value: "line" },
+      // { text: "pie", value: "pie" },
+    ],
   },
   {
     title: "employees.employeesByGender",
     chart: "employee_gender",
     type: [
-      { text: "donut", value: "pie" },
       { text: "pie", value: "pie" },
+      { text: "donut", value: "pie" },
     ],
   },
   {
