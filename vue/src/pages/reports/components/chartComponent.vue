@@ -75,16 +75,13 @@ export default {
   },
   computed: {
     chartTypes() {
-      return this.report.type.map((item) => ({
-        text: item,
-        value: item == "donut" ? "pie" : item,
-      }));
+      return this.report.type;
     },
   },
 
   mounted() {
     let data = {
-      charts: this.report.type.map((item) => (item == "donut" ? "pie" : item)),
+      charts: this.report.type.map((item) => item.value),
       type: this.report.chart,
     };
 
