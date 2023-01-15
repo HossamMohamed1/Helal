@@ -17,9 +17,9 @@
         >
           <v-card flat>
             <mainChart
+              v-if="chartData[type]"
               :chartType="type"
               :chartData="chartData[type]"
-              v-if="chartData[type]"
             />
             <div v-else>
               <v-card
@@ -30,6 +30,7 @@
               >
                 <v-progress-circular
                   indeterminate
+                  size="40"
                   color="primary"
                 ></v-progress-circular>
               </v-card>
@@ -80,7 +81,7 @@ export default {
 
   mounted() {
     let data = {
-      charts: this.report.type,
+      charts: this.report.type.map((item) => (item == "donut" ? "pie" : item)),
       type: this.report.chart,
     };
 
