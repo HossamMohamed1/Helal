@@ -512,7 +512,7 @@ export default {
     employee: "موظف",
     all: "جميع الموظفين",
     employee_age: "عدد الموظفين حسب الأعمار",
-    department_age: "عدد الأقسام/ الإدارات حسب التوزيع العمري للموظفين"
+    department_age: "عدد الأقسام/ الإدارات حسب التوزيع العمري للموظفين",
   },
   permits: {
     permitsReports: "تقارير التصاريح",
@@ -617,6 +617,7 @@ export default {
     disabled: "الغاء التفعيل",
     delete: "حذف",
     settings: "الإعدادات",
+    setting: "إعدادات",
     confirmationLog: "سجل التاكيد ",
     save: "حفظ",
     cancel: "إالغاء",

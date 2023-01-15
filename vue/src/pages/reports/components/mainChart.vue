@@ -15,6 +15,7 @@
       @close-modal="(val) => (dialog = val)"
       :type="chartType"
       :chartOptions="chartOptions"
+      :title="title"
     />
     <apexchart
       width="100%"
@@ -39,6 +40,10 @@ export default {
     chartData: {
       type: Object,
       default: {},
+    },
+    title: {
+      type: String,
+      default: "",
     },
   },
   data() {

@@ -4,10 +4,26 @@
     max-width="600"
     v-model="open"
   >
-    <v-card>
-      <v-card-text>
+    <v-toolbar>
+      {{ $t("general.setting") }} {{ $t(title) }} ({{ type.text }})
+    </v-toolbar>
+    <v-card flat>
+      <div class="pa-2">
+        <div class="font-weight-bold mt-2 mb-1">Color Palette</div>
+        <div class="color-palette d-flex">
+          <input
+            type="color"
+            class="color"
+            value="#5F4690"
+            v-model="config.colors[index]"
+            :key="index"
+            v-for="(color, index) in config.colors"
+          />
+        </div>
+      </div>
+      <!-- <v-card-text>
         {{ JSON.stringify(chartOptions) }}
-      </v-card-text>
+      </v-card-text> -->
     </v-card>
   </v-dialog>
 </template>
@@ -26,6 +42,10 @@ export default {
       type: Object,
       required: true,
     },
+    title: {
+      type: String,
+      default: "",
+    },
   },
 
   computed: {
@@ -35,6 +55,14 @@ export default {
       },
       set(val) {
         this.$emit("close-modal", val);
+      },
+    },
+    config: {
+      get() {
+        return this.chartOptions;
+      },
+      set(val) {
+        console.log(val);
       },
     },
   },

@@ -617,6 +617,7 @@ export default {
     disabled: "Disabled",
     delete: "Delete",
     settings: "Settings",
+    setting: "Setting",
     confirmationLog: "Confirmation log",
     save: "Save",
     cancel: "Cancel",
