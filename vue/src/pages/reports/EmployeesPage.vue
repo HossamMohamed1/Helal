@@ -9,10 +9,14 @@
           <small class="mx-1">({{ $t("dashboard.thismonth") }})</small>
         </div>
         <v-spacer></v-spacer>
-        <div style="width: 120px; height: 40px" class="mx-1">
-          <v-btn color="primary" to="#" class="mt-1">
-            {{ $t("reports.createReport") }}
-          </v-btn>
+        <div style="width: 120px; height: 40px">
+          <template>
+            <div class="actions" @click.stop="dialog = true">
+              <v-btn color="primary">
+                {{ $t("reports.createReport") }}
+              </v-btn>
+            </div>
+          </template>
         </div>
         <div style="width: 160px; height: 40px" class="mx-1">
           <v-select
@@ -415,6 +419,7 @@
     </v-row>
 
     <files-management />
+    <create-report-dialog  v-model="dialog"/>
   </div>
 </template>
 
@@ -446,9 +451,11 @@ import ChartEmpsAgesDepartments from "@/components/reports/employees/chart-emps-
 import FilesManagement from "@/components/reports/employees/files-management";
 import AgeDepartmentCount from "@/components/reports/employees/AgeDepartmentCount";
 import { mapActions } from "vuex";
+import CreateReportDialog from "@/components/reports/employees/CreateReportDialog";
 
 export default {
   components: {
+    CreateReportDialog,
     FilesManagement,
     ChartEmpsAgesDepartments,
     ChartAttendanceLocations,
@@ -597,6 +604,11 @@ export default {
       clearInterval(this.loadingInterval);
     },
     ...mapActions("statistics", ["fetchUsers"]),
+    submitFile() {
+      console.log("object", this.report);
+      this.dialog = false;
+    },
+    open() {},
   },
 };
 </script>
