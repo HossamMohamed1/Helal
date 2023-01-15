@@ -4,9 +4,10 @@
       <v-card-title class="d-flex align-center align-content-space-between">
         <div>{{ $t(report.title) }}</div>
       </v-card-title>
+
       <v-tabs v-model="tab" centered slider-color="yellow">
         <v-tab v-for="(type, i) in chartTypes" :key="i" :href="`#tab-${i}`">
-          {{ type }}
+          {{ type.text }}
         </v-tab>
       </v-tabs>
       <v-tabs-items v-model="tab">
@@ -17,9 +18,9 @@
         >
           <v-card flat>
             <mainChart
-              v-if="chartData[type]"
-              :chartType="type"
-              :chartData="chartData[type]"
+              v-if="chartData[type.value]"
+              :chartType="type.value"
+              :chartData="chartData[type.value]"
             />
             <div v-else>
               <v-card
@@ -52,7 +53,6 @@
 
 <script>
 import { mapActions } from "vuex";
-// import mainChart from "./mainChart.vue";
 const mainChart = () =>
   import(/* webpackChunkName: "main-chart" */ "./mainChart.vue");
 export default {
@@ -75,7 +75,10 @@ export default {
   },
   computed: {
     chartTypes() {
-      return this.report.type;
+      return this.report.type.map((item) => ({
+        text: item,
+        value: item == "donut" ? "pie" : item,
+      }));
     },
   },
 
