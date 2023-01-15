@@ -3,7 +3,6 @@
 namespace App\Services\Report;
 
 use App\Exceptions\GeneralException;
-use App\Services\ChartService;
 use Exception;
 use Illuminate\Support\Arr;
 
@@ -53,7 +52,7 @@ class ReportService
 
             return $result ?? [];
         } catch (Exception $e) {
-            dd($e);
+            dd($e->getMessage());
             throw new GeneralException($e->getMessage());
         }
     }
@@ -79,7 +78,7 @@ class ReportService
                 return false;
             }
 
-            return $reportObject->report($filter) ?? [];
+            return $reportObject->cards() ?? [];
         } catch (Exception $e) {
             throw new GeneralException($e->getMessage());
         }

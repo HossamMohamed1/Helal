@@ -110,7 +110,7 @@
 
     <v-row class="flex-grow-0 mb-1" dense>
       <v-col cols="12" lg="6">
-        <v-card style="height: 100%">
+        <v-card>
           <div
             v-if="loading"
             class="d-flex flex-grow-1 align-center justify-center"
@@ -229,28 +229,6 @@
             </v-card-title>
             <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
               <chart-emps-ages-administrations />
-            </div>
-          </div>
-        </v-card>
-      </v-col>
-
-      <v-col cols="12" lg="6">
-        <v-card>
-          <div
-            v-if="loading"
-            class="d-flex flex-grow-1 align-center justify-center"
-          >
-            <v-progress-circular
-              indeterminate
-              color="primary"
-            ></v-progress-circular>
-          </div>
-          <div v-else class="d-flex flex-column flex-grow-1">
-            <v-card-title>
-              عدد الموظفين حسب الأعمار وتوزبعهم في الأقسام
-            </v-card-title>
-            <div class="d-flex flex-column flex-grow-1 justify-center pb-3">
-              <chart-emps-ages-departments />
             </div>
           </div>
         </v-card>
@@ -440,7 +418,7 @@
       </v-col>
     </v-row>
 
-    <!--    <files-management />-->
+    <files-management />
     <create-report-dialog  v-model="dialog"/>
   </div>
 </template>
@@ -524,7 +502,6 @@ export default {
           exact: true,
         },
       ],
-
       loadingInterval: null,
       isLoading: false,
       isLoading1: true,
@@ -543,49 +520,6 @@ export default {
           ],
         },
       ],
-
-      dialog: false,
-      types: [
-        {
-          name: "Network",
-          image: require("@/assets/images/visualization/network.jpg"),
-        },
-        {
-          name: "Bar",
-          image: require("@/assets/images/visualization/bar.jpg"),
-        },
-        {
-          name: "Line",
-          image: require("@/assets/images/visualization/line.jpg"),
-        },
-        {
-          name: "XYBubble",
-          image: require("@/assets/images/visualization/xybubble.jpg"),
-        },
-        {
-          name: "Pie",
-          image: require("@/assets/images/visualization/pie.jpg"),
-        },
-      ],
-      report: {
-        name: null,
-        type: undefined,
-        columns: [],
-      },
-      columns: [
-        "الموظفين",
-        "الجنس",
-        "الأقسام",
-        "الإدارات",
-        "المؤهلات",
-        "الوكالات",
-        "الجنسيه",
-        "الحضور والغياب",
-        "الأجازات",
-        "الأعمار",
-        "الموقع",
-      ],
-      validationError: [],
 
       customersSeries: [
         {

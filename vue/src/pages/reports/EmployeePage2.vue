@@ -6,7 +6,6 @@
           <div class="display-1 d-flex align-center">
             {{ $t("employees.employeesReports") }}
           </div>
-          <small class="mx-1">({{ $t("dashboard.thismonth") }})</small>
         </div>
         <v-spacer></v-spacer>
         <div style="width: 120px; height: 40px">
@@ -113,23 +112,59 @@
           <template>
             <div class="date-picker position-relative">
               <i aria-hidden="true" class="v-icon mdi mdi-calendar"></i>
-              <date-range-picker v-model="dateRange" direction="rtl">
-              </date-range-picker>
+              <date-range-picker v-model="dateRange" direction="rtl" />
             </div>
           </template>
         </div>
       </div>
       <v-breadcrumbs :items="breadcrumbs" class="pa-0 py-2"></v-breadcrumbs>
     </div>
-    {{ cards }}
+    <v-row class="flex-grow-0 mb-1" dense>
+      <v-col
+        cols="12"
+        lg="3"
+        md="6"
+        v-for="(card, index) in cards"
+        :key="index"
+      >
+        <div class="d-flex flex-column flex-grow-1 h-full">
+          <track-card
+            :label="$t(card.label)"
+            class="h-full"
+            :color="card.color"
+            :value="card.value"
+            :loading="card.loading"
+            :series="card.ordersSeries"
+          ></track-card>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row class="flex-grow-0 mb-1" dense>
+      <ChartComponent
+        :report="report"
+        v-for="(report, index) in reports"
+        :key="index + cards.length"
+      />
+    </v-row>
   </div>
 </template>
 <script>
-import DateRangePicker from "vue2-daterange-picker";
+// import DateRangePicker from "vue2-daterange-picker";
+const DateRangePicker = () =>
+  import(/* webpackChunkName: "DateRangePicker" */ "vue2-daterange-picker");
 import "vue2-daterange-picker/dist/vue2-daterange-picker.css";
 import { mapState } from "vuex";
+const TrackCard = () =>
+  import(
+    /* webpackChunkName: "TrackCard" */ "../../components/dashboard/TrackCard.vue"
+  );
+// import ChartComponent from "./components/chartComponent";
+const ChartComponent = () =>
+  import(
+    /* webpackChunkName: "chart-component" */ "./components/chartComponent.vue"
+  );
 export default {
-  components: { DateRangePicker },
+  components: { DateRangePicker, TrackCard, ChartComponent },
   data() {
     return {
       breadcrumbs: [
@@ -208,7 +243,20 @@ export default {
     };
   },
   computed: {
-    ...mapState("statistics", ["cards"]),
+    ...mapState("statistics", ["cards", "reports"]),
+  },
+  mounted() {
+    const cards = this.cards.map((item) => {
+      console.log(item);
+      return { ...item, loading: true };
+    });
+    this.$store.commit("statistics/setCards", cards);
+    setTimeout(() => {
+      const cards = this.cards.map((item) => {
+        return { ...item, loading: false };
+      });
+      this.$store.commit("statistics/setCards", cards);
+    }, 2000);
   },
   methods: {
     submitFile() {

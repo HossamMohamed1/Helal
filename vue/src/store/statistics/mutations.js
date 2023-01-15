@@ -1,7 +1,7 @@
 const mutations = {
-  SET_USER_PER_GENDER(state, value) {
-    state.userPerGender = value;
-  }
+  setCards(state, value) {
+    state.cards = value;
+  },
 };
 
 export default mutations;

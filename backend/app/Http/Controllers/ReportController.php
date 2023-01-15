@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Http\Requests\ReportRequest;
 
 class ReportController extends Controller
 {
@@ -20,7 +21,7 @@ class ReportController extends Controller
      * @return JsonResponse|RedirectResponse
      * @throws Exception
      */
-    public function charts(Request $request)
+    public function charts(ReportRequest $request)
     {
         try {
             $filter = $request->all();
@@ -42,7 +43,6 @@ class ReportController extends Controller
 
             return successData($result);
         } catch (\Exception$e) {
-            // dd($e);
             return errorMessage($e->getMessage());
         }
     }

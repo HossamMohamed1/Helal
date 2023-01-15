@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Report;
 
 use Illuminate\Support\Arr;
 
@@ -24,7 +24,6 @@ class ChartService
                 'name' => handleTrans($column),
                 'data' => $value
             ];
-
         }
 
         return $result;
@@ -48,7 +47,6 @@ class ChartService
                 'name' => handleTrans($column),
                 'data' => $value
             ];
-
         }
 
         return $result;
@@ -67,11 +65,11 @@ class ChartService
         foreach ($filter['columns'] as $column) {
             $result[$column] = [
                 'labels' => array_filter(Arr::pluck($data, $filter['groupBy'])),
-                'series' => array_values(array_map(static fn($item) => $item, Arr::pluck($data, $column))) ?? [0],
+                'result' => array_values(array_map(static fn ($item) => (int)$item, Arr::pluck($data, $column))) ?? [0],
             ];
-         }
+        }
 
-        if(count($result) == 1){
+        if (count($result) == 1) {
             $result = Arr::first($result);
         }
 

@@ -15,12 +15,6 @@ return [
      */
 
     'type' => [
-        'employee_list' => [
-            'columns' => ['job_desc', 'dept_desc'],
-            'unit' => 'number',
-            'groupBy' => 'job_desc',
-            'className' => 'EmployeeReport',
-        ],
         'employee_gender' => [
             'columns' => ['count'],
             'unit' => 'number',
@@ -64,6 +58,12 @@ return [
             'className' => 'EmployeeReport',
         ],
         'employee_qualification' => [
+            'columns' => ['count'],
+            'unit' => 'number',
+            'groupBy' => 'qualification_desc',
+            'className' => 'EmployeeReport',
+        ],
+        'employee_absence' => [
             'columns' => ['count'],
             'unit' => 'number',
             'groupBy' => 'qualification_desc',
