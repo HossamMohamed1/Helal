@@ -10,86 +10,13 @@
         </div>
         <v-spacer></v-spacer>
         <div style="width: 120px; height: 40px">
-          <v-dialog v-model="dialog" persistent max-width="600px">
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" dark v-bind="attrs" v-on="on" class="mt-1">
+          <template>
+            <div class="actions" @click.stop="dialog = true">
+              <v-btn color="primary">
                 {{ $t("reports.createReport") }}
               </v-btn>
-            </template>
-            <v-card>
-              <v-card-title>
-                <span class="text-h5">{{ $t("reports.createReport") }}</span>
-              </v-card-title>
-              <v-card-text class="pb-0">
-                <v-container>
-                  <v-row>
-                    <v-col cols="12">
-                      <v-autocomplete
-                        v-model="report.type"
-                        :items="types"
-                        :error-messages="validationError['type']"
-                        :label="$t('reports.reportType')"
-                        item-text="name"
-                        item-value="name"
-                      >
-                        <template v-slot:item="data">
-                          <template v-if="typeof data.item !== 'object'">
-                            <v-list-item-content
-                              v-text="data.item"
-                            ></v-list-item-content>
-                          </template>
-                          <template v-else>
-                            <v-list-item-avatar>
-                              <img :src="data.item.image" />
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                              <v-list-item-title
-                                v-html="data.item.name"
-                              ></v-list-item-title>
-                            </v-list-item-content>
-                          </template>
-                        </template>
-                      </v-autocomplete>
-                    </v-col>
-                    <v-col cols="12">
-                      <v-autocomplete
-                        :items="columns"
-                        :label="$t('reports.columns')"
-                        v-model="report.columns"
-                        multiple
-                        dense
-                        chips
-                        small-chips
-                      >
-                        <template v-slot:item="data">
-                          <template v-if="typeof data.item !== 'object'">
-                            <v-list-item-content
-                              v-text="data.item"
-                            ></v-list-item-content>
-                          </template>
-                          <template v-else>
-                            <v-list-item-avatar>
-                              <img :src="data.item.image" />
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                              <v-list-item-title
-                                v-html="data.item.name"
-                              ></v-list-item-title>
-                            </v-list-item-content>
-                          </template>
-                        </template>
-                      </v-autocomplete>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-card-text>
-              <v-card-actions class="mb-1">
-                <v-spacer></v-spacer>
-                <v-btn color="primary" dark @click="submitFile"> حفظ </v-btn>
-                <v-btn color="dark" dark @click="dialog = false"> إلغاء </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
+            </div>
+          </template>
         </div>
         <div style="width: 160px; height: 40px" class="mx-1">
           <v-select
@@ -514,6 +441,7 @@
     </v-row>
 
     <!--    <files-management />-->
+    <create-report-dialog  v-model="dialog"/>
   </div>
 </template>
 
@@ -545,9 +473,11 @@ import ChartEmpsAgesDepartments from "@/components/reports/employees/chart-emps-
 import FilesManagement from "@/components/reports/employees/files-management";
 import AgeDepartmentCount from "@/components/reports/employees/AgeDepartmentCount";
 import { mapActions } from "vuex";
+import CreateReportDialog from "@/components/reports/employees/CreateReportDialog";
 
 export default {
   components: {
+    CreateReportDialog,
     FilesManagement,
     ChartEmpsAgesDepartments,
     ChartAttendanceLocations,
@@ -744,6 +674,7 @@ export default {
       console.log("object", this.report);
       this.dialog = false;
     },
+    open() {},
   },
 };
 </script>
