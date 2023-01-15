@@ -3,6 +3,20 @@
     <v-card flat :loading="loading" height="100%">
       <v-card-title class="d-flex align-center align-content-space-between">
         <div>{{ $t(report.title) }}</div>
+        <v-spacer></v-spacer>
+        <div  style="height: 30px;">
+          <div class="actions mx-1" @click.stop="dialog = true">
+            <v-btn
+              ref="button"
+              class="drawer-button"
+              color="#1e8e49"
+              dark
+            >
+              <v-icon class="fa-spin">mdi-cog-outline</v-icon>
+            </v-btn>
+
+          </div>
+        </div>
       </v-card-title>
 
       <v-tabs v-model="tab" centered slider-color="yellow">
