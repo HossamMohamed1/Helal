@@ -19,7 +19,7 @@
           <v-card flat>
             <mainChart
               v-if="chartData[type.value]"
-              :chartType="type.value"
+              :chartType="type"
               :chartData="chartData[type.value]"
             />
             <div v-else>

@@ -4,7 +4,7 @@
       width="100%"
       height="400"
       :options="chartOptions"
-      :type="chartType"
+      :type="chartType.text"
       :series="series"
     ></apexchart>
   </div>
@@ -13,7 +13,7 @@
 export default {
   props: {
     chartType: {
-      type: String,
+      type: Object,
       default: "",
     },
     chartData: {
@@ -29,9 +29,10 @@ export default {
       return this.chartData?.result ?? [];
     },
     chartOptions() {
-      const options = this.$store.state.statistics.chartOptions[this.chartType];
+      const options =
+        this.$store.state.statistics.chartOptions[this.chartType.text];
       const labels = this.labels;
-      if (this.chartType == "pie" || this.chartType == "donut") {
+      if (this.chartType.text == "pie" || this.chartType.text == "donut") {
         return { ...options, labels };
       } else {
         return { ...options, xaxis: { categories: labels } };
