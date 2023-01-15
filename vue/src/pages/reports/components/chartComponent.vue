@@ -21,7 +21,7 @@
               v-if="chartData[type.value]"
               :chartType="type"
               :chartData="chartData[type.value]"
-              title="report.title"
+              :title="report.title"
             />
             <div v-else>
               <v-card
