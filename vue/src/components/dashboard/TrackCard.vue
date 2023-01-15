@@ -45,10 +45,6 @@ export default {
     TrendPercent,
   },
   props: {
-    series: {
-      type: Array,
-      default: () => [],
-    },
     label: {
       type: String,
       default: "",
@@ -70,52 +66,6 @@ export default {
       default: false,
     },
   },
-  computed: {
-    chartOptions() {
-      return {
-        chart: {
-          animations: {
-            speed: 400,
-            animateGradually: {
-              enabled: false,
-            },
-          },
-          width: "100%",
-          height: 60,
-          type: "area",
-          sparkline: {
-            enabled: true,
-          },
-        },
-        colors: [this.color],
-        fill: {
-          type: "solid",
-          colors: [this.color],
-          opacity: 0.15,
-        },
-        stroke: {
-          curve: "smooth",
-          width: 2,
-        },
-        xaxis: {
-          type: "datetime",
-        },
-        tooltip: {
-          followCursor: true,
-          theme: "dark", //this.$vuetify.theme.isDark ? 'light' : 'dark',
-          custom: function ({ ctx, series, seriesIndex, dataPointIndex, w }) {
-            const seriesName = w.config.series[seriesIndex].name;
-            const dataPoint = w.config.series[seriesIndex].data[dataPointIndex];
-
-            return `<div class="rounded-lg pa-1 caption">
-              <div class="font-weight-bold">${formatDate(dataPoint[0])}</div>
-              <div>${dataPoint[1]} ${seriesName}</div>
-            </div>`;
-          },
-        },
-        ...this.options,
-      };
-    },
-  },
+  computed: {},
 };
 </script>

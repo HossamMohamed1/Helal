@@ -112,8 +112,7 @@
           <template>
             <div class="date-picker position-relative">
               <i aria-hidden="true" class="v-icon mdi mdi-calendar"></i>
-              <date-range-picker v-model="dateRange" direction="rtl">
-              </date-range-picker>
+              <date-range-picker v-model="dateRange" direction="rtl" />
             </div>
           </template>
         </div>
@@ -248,6 +247,7 @@ export default {
   },
   mounted() {
     const cards = this.cards.map((item) => {
+      console.log(item);
       return { ...item, loading: true };
     });
     this.$store.commit("statistics/setCards", cards);

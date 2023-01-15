@@ -31,7 +31,7 @@ export default {
     chartOptions() {
       const options = this.$store.state.statistics.chartOptions[this.chartType];
       const labels = this.labels;
-      if (this.chartType == "pie") {
+      if (this.chartType == "pie" || this.chartType == "donut") {
         return { ...options, labels };
       } else {
         return { ...options, xaxis: { categories: labels } };

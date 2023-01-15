@@ -7,12 +7,12 @@ const reports = [
   {
     title: "employees.employeesByGender",
     chart: "employee_gender",
-    type: ["pie"],
+    type: ["donut", "pie"],
   },
   {
     title: "employees.employeesByHeadquarters",
     chart: "employee_location",
-    type: ["bar",'line','pie'],
+    type: ["bar", "line", "pie"],
   },
   {
     title: "employees.employee_nationality",
