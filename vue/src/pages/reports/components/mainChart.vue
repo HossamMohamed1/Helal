@@ -28,6 +28,7 @@
 </template>
 <script>
 import ChartConfigs from "./ChartConfigs.vue";
+import { getColorsRange } from "@/helpers";
 export default {
   components: {
     ChartConfigs,
@@ -62,6 +63,7 @@ export default {
       const options =
         this.$store.state.statistics.chartOptions[this.chartType.text];
       const labels = this.labels;
+
       if (this.chartType.text == "pie" || this.chartType.text == "donut") {
         return { ...options, labels };
       } else {
