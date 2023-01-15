@@ -246,15 +246,10 @@ export default {
     ...mapState("statistics", ["cards", "reports"]),
   },
   mounted() {
-    const cards = this.cards.map((item) => {
-      console.log(item);
-      return { ...item, loading: true };
-    });
+    const cards = this.cards.map((item) => ({ ...item, loading: true }));
     this.$store.commit("statistics/setCards", cards);
     setTimeout(() => {
-      const cards = this.cards.map((item) => {
-        return { ...item, loading: false };
-      });
+      const cards = this.cards.map((item) => ({ ...item, loading: false }));
       this.$store.commit("statistics/setCards", cards);
     }, 2000);
   },
