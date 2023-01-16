@@ -115,7 +115,9 @@
               <input
                 solo
                 type="color"
-                v-model="config.dataLabels.style.colors"
+                v-for="(color, key) in config.dataLabels.style.colors"
+                :key="color"
+                v-model="config.dataLabels.style.colors[key]"
               />
             </div>
           </div>
@@ -141,7 +143,13 @@
             </div>
             <div class="col-lg-3 py-0">
               <div class="font-weight-bold mb-1">Stroke Color</div>
-              <input solo type="color" v-model="config.stroke.colors" />
+              <input
+                v-for="(color, index) in config.stroke.colors"
+                :key="color"
+                solo
+                type="color"
+                v-model="config.stroke.colors[index]"
+              />
             </div>
           </div>
           <div class="row pt-2">
@@ -229,7 +237,7 @@
         </div>
       </div>
       <v-card-actions>
-        <v-btn @click="applyConfig">Apply</v-btn>
+        <v-btn color="primary" @click="applyConfig">Apply</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
