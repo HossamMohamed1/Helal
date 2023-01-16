@@ -22,7 +22,7 @@
         </div>
 
         <!--for line -->
-        <div v-if="chartOptions.chart.type == 'line'" >
+        <div v-if="chartOptions.chart.type == 'line'">
           <div>
             <div class="font-weight-bold mb-1">Curve Type</div>
             <v-select
@@ -90,8 +90,8 @@
                 color="primary"
                 mandatory
               >
-                <v-btn>Show</v-btn>
-                <v-btn>Hide</v-btn>
+                <v-btn :value="true">Show</v-btn>
+                <v-btn :value="false">Hide</v-btn>
               </v-btn-toggle>
             </div>
             <div class="col-lg-3 py-0">
@@ -127,8 +127,8 @@
                 color="primary"
                 mandatory
               >
-                <v-btn>Show</v-btn>
-                <v-btn>Hide</v-btn>
+                <v-btn :value="true">Show</v-btn>
+                <v-btn :value="false">Hide</v-btn>
               </v-btn-toggle>
             </div>
             <div class="col-lg-3 py-0">
@@ -141,11 +141,7 @@
             </div>
             <div class="col-lg-3 py-0">
               <div class="font-weight-bold mb-1">Stroke Color</div>
-              <input
-                solo
-                type="color"
-                v-model="config.stroke.colors"
-              />
+              <input solo type="color" v-model="config.stroke.colors" />
             </div>
           </div>
           <div class="row pt-2">
@@ -156,8 +152,8 @@
                 color="primary"
                 mandatory
               >
-                <v-btn>Show</v-btn>
-                <v-btn>Hide</v-btn>
+                <v-btn :value="true">Show</v-btn>
+                <v-btn :value="false">Hide</v-btn>
               </v-btn-toggle>
             </div>
             <div class="col-lg-3 pt-0">
@@ -167,8 +163,8 @@
                 color="primary"
                 mandatory
               >
-                <v-btn>Show</v-btn>
-                <v-btn>Hide</v-btn>
+                <v-btn :value="true">Show</v-btn>
+                <v-btn :value="false">Hide</v-btn>
               </v-btn-toggle>
             </div>
           </div>
@@ -213,8 +209,8 @@
                 color="primary"
                 mandatory
               >
-                <v-btn>Show</v-btn>
-                <v-btn>Hide</v-btn>
+                <v-btn :value="true">Show</v-btn>
+                <v-btn :value="false"> Hide</v-btn>
               </v-btn-toggle>
             </div>
             <div class="col-lg-3 py-0">
@@ -227,22 +223,14 @@
             </div>
             <div class="col-lg-3 py-0">
               <div class="font-weight-bold mb-1">Stroke Color</div>
-              <input
-                solo
-                type="color"
-                v-model="config.stroke.colors"
-              />
+              <input solo type="color" v-model="config.stroke.colors" />
             </div>
           </div>
-
         </div>
-
       </div>
-
-
-      <!-- <v-card-text>
-        {{ JSON.stringify(chartOptions) }}
-      </v-card-text> -->
+      <v-card-actions>
+        <v-btn @click="applyConfig">Apply</v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -266,16 +254,14 @@ export default {
       default: "",
     },
   },
-  data(){
-    return{
+  data() {
+    return {
       lineCurve: ["smooth", "straight", "stepline"],
       lineMarkersShape: ["circle", "square", "rect"],
-      barDataLabels: ["top","center", "bottom"]
-    }
+      barDataLabels: ["top", "center", "bottom"],
+    };
   },
-  mounted() {
-    console.log(this.chartOptions)
-  },
+  mounted() {},
   computed: {
     open: {
       get() {
@@ -289,9 +275,12 @@ export default {
       get() {
         return this.chartOptions;
       },
-      set(val) {
-        console.log(val);
-      },
+    },
+  },
+  methods: {
+    applyConfig() {
+      this.$emit("applyConfig", this.config);
+      // console.log(this.config);
     },
   },
 };

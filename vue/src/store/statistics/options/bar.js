@@ -10,7 +10,7 @@ const bar = {
       },
       horizontal: false,
       borderRadius: 0,
-      columnWidth: '50%'
+      columnWidth: "50%",
     },
   },
   dataLabels: {
@@ -34,7 +34,7 @@ const bar = {
     categories: [],
   },
   yaxis: {
-    reversed: false
+    reversed: false,
   },
   colors: ["#1e8e49", "#fd9162", "#a7a7a7", "#41b27b", "#c9de77"],
 };
