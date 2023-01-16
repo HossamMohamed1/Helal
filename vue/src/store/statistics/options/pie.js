@@ -4,7 +4,9 @@ const pie = {
   },
   labels: [],
   stroke: {
-    colors: ["#29abe2", "#a4a8ad", "#d5d5d5"],
+    show: true,
+    width: 1,
+    colors: ["#fff"],
   },
   plotOptions: {
     pie: {
@@ -13,6 +15,7 @@ const pie = {
           show: true,
           name: "total",
           value: 20,
+            size: '65%'
         },
       },
     },
@@ -21,6 +24,14 @@ const pie = {
   legend: {
     position: "bottom",
     horizontalAlign: "center",
+  },
+  dataLabels: {
+    enabled: true,
+    style: {
+      fontSize: "12px",
+      colors: ["#fff"],
+    },
+
   },
   responsive: [
     {

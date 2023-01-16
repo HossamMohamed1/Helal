@@ -8,6 +8,9 @@ const bar = {
       dataLabels: {
         position: "top",
       },
+      horizontal: false,
+      borderRadius: 0,
+      columnWidth: "50%",
     },
   },
   dataLabels: {
@@ -29,6 +32,9 @@ const bar = {
   },
   xaxis: {
     categories: [],
+  },
+  yaxis: {
+    reversed: false,
   },
   colors: ["#1e8e49", "#fd9162", "#a7a7a7", "#41b27b", "#c9de77"],
 };

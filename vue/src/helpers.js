@@ -13,8 +13,6 @@ export const ask = (
   message = "Do you want to save the changes?",
   type = "info"
 ) => {
-  // Vue.$swal("asd");
-
   return Swal.fire({
     title: message,
     icon: type,

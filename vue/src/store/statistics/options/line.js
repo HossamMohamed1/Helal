@@ -13,6 +13,7 @@ const line = {
     width: [2, 2, 2, 2, 2],
     // curve: 'straight',
     curve: "smooth",
+    dashArray: 0
     // dashArray: [0, 8, 5]
   },
   title: {
@@ -31,6 +32,7 @@ const line = {
   },
   markers: {
     size: 0,
+    shape: "circle",
     hover: {
       sizeOffset: 6,
     },

@@ -21,6 +21,7 @@
               v-if="chartData[type.value]"
               :chartType="type"
               :chartData="chartData[type.value]"
+              :title="report.title"
             />
             <div v-else>
               <v-card
@@ -84,31 +85,9 @@ export default {
       charts: this.report.type.map((item) => item.value),
       type: this.report.chart,
     };
-    // this.chartData = {
-    //   bar: {
-    //     labels: ["مكة المكرمة", "المدينة المنورة"],
-    //     result: [
-    //       {
-    //         name: "العدد",
-    //         data: ["3931", "1854"],
-    //       },
-    //     ],
-    //   },
-    //   line: {
-    //     labels: ["مكة المكرمة", "المدينة المنورة"],
-    //     result: [
-    //       {
-    //         name: "العدد",
-    //         data: ["3931", "1854"],
-    //       },
-    //     ],
-    //   },
-    //   pie: {
-    //     labels: ["مكة المكرمة", "المدينة المنورة"],
-    //     result: [3931, 1854],
-    //   },
-    // };
+
     this.loading = true;
+
     this.fetchChart(data)
       .then((res) => {
         this.loading = false;
@@ -116,7 +95,7 @@ export default {
       })
       .catch((err) => {
         this.loading = false;
-        console.log(err);
+        // console.log(err);
       });
   },
   methods: {

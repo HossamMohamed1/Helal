@@ -90,6 +90,7 @@ const ChartComponent = () =>
   import(
     /* webpackChunkName: "chart-component" */ "./components/chartComponent.vue"
   );
+
 export default {
   components: {
     CreateReportDialog,
