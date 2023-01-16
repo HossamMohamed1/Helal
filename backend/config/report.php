@@ -54,7 +54,7 @@ return [
         'employee_age' => [
             'columns' => ['count'],
             'unit' => 'number',
-            'groupBy' => 'birthdate',
+            'groupBy' => 'age',
             'className' => 'EmployeeReport',
         ],
         'employee_qualification' => [

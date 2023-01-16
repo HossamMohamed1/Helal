@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use JsonException;
+use App\Models\Employee;
 
 class EmployeeReport extends BaseReport
 {
@@ -57,6 +58,11 @@ class EmployeeReport extends BaseReport
         if (empty($this->result)) {
             return [];
         }
+
+        if($this->filter['type'] == 'employee_age'){
+            return $this->result->toArray();
+        }
+
 
         return json_decode($this->result
             ->mapWithKeys(function ($item) {
@@ -199,6 +205,11 @@ class EmployeeReport extends BaseReport
      */
     private function employeeAgeQuery(): Collection
     {
-        return dd(\App\Models\Employee::first()->age);
+        return Employee::select('birthdate')
+        ->get()
+        ->groupBy('age')
+        ->mapWithKeys(function ($item, $key) {
+            return [$key => ['count' => count($item), 'age' => $key]];
+        });
     }
 }
