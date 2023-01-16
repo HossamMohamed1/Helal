@@ -3,7 +3,8 @@ const line = {
     height: 350,
     type: "line",
     zoom: {
-      enabled: false,
+      enabled: true,
+      type: "xy",
     },
   },
   dataLabels: {
@@ -13,7 +14,7 @@ const line = {
     width: [2, 2, 2, 2, 2],
     // curve: 'straight',
     curve: "smooth",
-    dashArray: 0
+    dashArray: 0,
     // dashArray: [0, 8, 5]
   },
   title: {

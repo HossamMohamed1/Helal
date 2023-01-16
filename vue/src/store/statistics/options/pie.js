@@ -15,7 +15,7 @@ const pie = {
           show: true,
           name: "total",
           value: 20,
-            size: '65%'
+          size: "65%",
         },
       },
     },
@@ -28,10 +28,9 @@ const pie = {
   dataLabels: {
     enabled: true,
     style: {
-      fontSize: "12px",
+      fontSize: "12",
       colors: ["#fff"],
     },
-
   },
   responsive: [
     {

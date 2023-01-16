@@ -1,7 +1,7 @@
 const bar = {
   chart: {
     type: "bar",
-    height: 430,
+    height: 400,
   },
   plotOptions: {
     bar: {
@@ -17,7 +17,7 @@ const bar = {
     enabled: true,
     offsetX: -6,
     style: {
-      fontSize: "12px",
+      fontSize: "12",
       colors: ["#fff"],
     },
   },
@@ -32,6 +32,7 @@ const bar = {
   },
   xaxis: {
     categories: [],
+    tickPlacement: "on",
   },
   yaxis: {
     reversed: false,

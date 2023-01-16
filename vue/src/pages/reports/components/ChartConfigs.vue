@@ -188,8 +188,8 @@
                 color="primary"
                 mandatory
               >
-                <v-btn>Show</v-btn>
-                <v-btn>Hide</v-btn>
+                <v-btn :value="true">Show</v-btn>
+                <v-btn :value="false">Hide</v-btn>
               </v-btn-toggle>
             </div>
             <div class="col-lg-3 py-0">
@@ -237,7 +237,9 @@
         </div>
       </div>
       <v-card-actions>
-        <v-btn color="primary" @click="applyConfig">Apply</v-btn>
+        <v-btn color="primary" @click="applyConfig">
+          {{ $t("common.save") }}
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

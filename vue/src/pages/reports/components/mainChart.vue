@@ -57,7 +57,10 @@ export default {
     if (this.chartType.text == "pie" || this.chartType.text == "donut") {
       newOptions = { ...options, labels };
     } else {
-      newOptions = { ...options, xaxis: { categories: labels } };
+      newOptions = {
+        ...options,
+        xaxis: { ...options.xaxis, categories: labels },
+      };
     }
 
     // end get new instance for chart option for each component

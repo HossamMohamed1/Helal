@@ -18,7 +18,7 @@
         >
           <v-card flat>
             <mainChart
-              v-if="chartData[type.value]"
+              v-if="chartData[type.value] && !loading"
               :chartType="type"
               :chartData="chartData[type.value]"
               :title="report.title"
