@@ -117,6 +117,9 @@ export default {
     //     ],
     //   },
     // };
+
+    // this.loading = false;
+
     this.fetchChart(data)
       .then((res) => {
         this.loading = false;
