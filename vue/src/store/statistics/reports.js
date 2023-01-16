@@ -68,14 +68,14 @@ const reports = [
     chart: "department_location",
     type: [{ text: "bar", value: "bar" }],
   },
-  {
-    title: "employees.department_age",
-    chart: "department_age",
-    type: [
-      { text: "bar", value: "bar" },
-      { text: "line", value: "line" },
-    ],
-  },
+  // {
+  //   title: "employees.department_age",
+  //   chart: "department_age",
+  //   type: [
+  //     { text: "bar", value: "bar" },
+  //     { text: "line", value: "line" },
+  //   ],
+  // },
 ];
 
 export default reports;
