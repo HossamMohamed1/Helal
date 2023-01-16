@@ -148,7 +148,7 @@
             <div class="col-lg-3 py-0">
               <div class="font-weight-bold mb-1">Horizontal</div>
               <v-btn-toggle
-                v-model="config.plotOptions.horizontal"
+                v-model="config.plotOptions.bar.horizontal"
                 color="primary"
                 mandatory
               >
