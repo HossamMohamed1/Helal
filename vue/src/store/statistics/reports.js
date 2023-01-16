@@ -48,7 +48,7 @@ const reports = [
   {
     title: "employees.employee_age",
     chart: "employee_age",
-    type: [{ text: "line", value: "line" }],
+    type: [{ text: "bar", value: "bar" }],
   },
   // {
   //   title: "employees.EmployeesAccordingAttendance",
