@@ -87,48 +87,48 @@ export default {
     };
 
     this.loading = true;
-    this.chartData = {
-      bar: {
-        labels: [63, 53, 60, 61, 41, 42, 43, 69, 59, 49, 47, 55, 51, 48, 50],
-        result: [
-          {
-            name: "العدد",
-            data: [
-              43, 74, 57, 56, 277, 256, 247, 2, 59, 124, 177, 101, 98, 151, 105,
-            ],
-          },
-        ],
-      },
-      line: {
-        labels: [63, 53, 60, 61, 41, 42, 43, 69, 59, 49, 47, 55, 51, 48, 50],
-        result: [
-          {
-            name: "العدد",
-            data: [
-              43, 74, 57, 56, 277, 256, 247, 2, 59, 124, 177, 101, 98, 151, 105,
-            ],
-          },
-        ],
-      },
-      pie: {
-        labels: [63, 53, 60, 61, 41, 42, 43, 69, 59, 49, 47, 55, 51, 48, 50],
-        result: [
-          43, 74, 57, 56, 277, 256, 247, 2, 59, 124, 177, 101, 98, 151, 105,
-        ],
-      },
-    };
+    // this.chartData = {
+    //   bar: {
+    //     labels: [63, 53, 60, 61, 41, 42, 43, 69, 59, 49, 47, 55, 51, 48, 50],
+    //     result: [
+    //       {
+    //         name: "العدد",
+    //         data: [
+    //           43, 74, 57, 56, 277, 256, 247, 2, 59, 124, 177, 101, 98, 151, 105,
+    //         ],
+    //       },
+    //     ],
+    //   },
+    //   line: {
+    //     labels: [63, 53, 60, 61, 41, 42, 43, 69, 59, 49, 47, 55, 51, 48, 50],
+    //     result: [
+    //       {
+    //         name: "العدد",
+    //         data: [
+    //           43, 74, 57, 56, 277, 256, 247, 2, 59, 124, 177, 101, 98, 151, 105,
+    //         ],
+    //       },
+    //     ],
+    //   },
+    //   pie: {
+    //     labels: [63, 53, 60, 61, 41, 42, 43, 69, 59, 49, 47, 55, 51, 48, 50],
+    //     result: [
+    //       43, 74, 57, 56, 277, 256, 247, 2, 59, 124, 177, 101, 98, 151, 105,
+    //     ],
+    //   },
+    // };
 
-    this.loading = false;
+    // this.loading = false;
 
-    // this.fetchChart(data)
-    //   .then((res) => {
-    //     this.loading = false;
-    //     this.chartData = res;
-    //   })
-    //   .catch((err) => {
-    //     this.loading = false;
-    //     // console.log(err);
-    //   });
+    this.fetchChart(data)
+      .then((res) => {
+        this.loading = false;
+        this.chartData = res;
+      })
+      .catch((err) => {
+        this.loading = false;
+        // console.log(err);
+      });
   },
   methods: {
     ...mapActions("statistics", ["fetchChart"]),
