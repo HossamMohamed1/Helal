@@ -25,7 +25,7 @@ const area = {
     xDateFormat: "%A, %b %e",
   },
   legend: {
-    enabled: false,
+    enabled: true,
   },
   series: [
     {
