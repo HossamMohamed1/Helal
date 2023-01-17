@@ -3,14 +3,18 @@ const reports = [
     title: "employees.employeesByDepartment",
     chart: "employee_department",
     type: [
+      { text: "bar", value: "bar" },
       { text: "line", value: "line" },
-      // { text: "pie", value: "pie" },
+      { text: "pie", value: "pie" },
+      { text: "donut", value: "pie" },
     ],
   },
   {
     title: "employees.employeesByGender",
     chart: "employee_gender",
     type: [
+      { text: "bar", value: "bar" },
+      { text: "line", value: "line" },
       { text: "pie", value: "pie" },
       { text: "donut", value: "pie" },
     ],
@@ -28,12 +32,22 @@ const reports = [
   {
     title: "employees.employee_nationality",
     chart: "employee_nationality",
-    type: [{ text: "bar", value: "bar" }],
+    type: [
+      { text: "bar", value: "bar" },
+      { text: "line", value: "line" },
+      { text: "pie", value: "pie" },
+      { text: "donut", value: "pie" },
+    ],
   },
   {
     title: "employees.employeesAccordingToTheirQualifications",
     chart: "employee_qualification",
-    type: [{ text: "line", value: "line" }],
+    type: [
+      { text: "bar", value: "bar" },
+      { text: "line", value: "line" },
+      { text: "pie", value: "pie" },
+      { text: "donut", value: "pie" },
+    ],
   },
   {
     title: "employees.employeesAccordingToTheirRanks",
