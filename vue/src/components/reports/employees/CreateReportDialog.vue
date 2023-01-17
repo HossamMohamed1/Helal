@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog v-model="dialog" persistent max-width="700px">
       <v-card>
         <v-card-title>
           <span class="text-h5">{{ $t("reports.createReport") }}
@@ -38,10 +38,11 @@
 
               <v-stepper-items>
                 <v-stepper-content step="1" >
-                  <div style="min-height: 300px">
+                  <div class="stepper-cont pt-2" style="overflow-x: hidden">
                     <v-row>
                       <v-col
                         cols="6"
+                        class="pa-2"
                         v-for="(file, index) in files"
                         :key="index + files.length"
                       >
@@ -86,7 +87,7 @@
                 </v-stepper-content>
 
                 <v-stepper-content step="2">
-                  <div style="min-height: 300px">
+                  <div class="stepper-cont">
                     <v-simple-table>
                       <template v-slot:default>
                         <thead>
@@ -132,7 +133,7 @@
                 </v-stepper-content>
 
                 <v-stepper-content step="3">
-                  <div style="min-height: 300px">
+                  <div class="stepper-cont">
                     <div class="font-weight-bold mb-1">نوع الرسم البياني</div>
                     <v-autocomplete
                       v-model="report.type"
@@ -331,6 +332,12 @@ export default {
 }
 .v-list-item:hover {
   background: #f2f2f2;
+}
+.stepper-cont{
+  min-height: 400px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-left: 8px;
 }
 
 </style>
