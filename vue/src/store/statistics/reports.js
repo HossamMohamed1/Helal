@@ -3,50 +3,54 @@ const reports = [
     title: "employees.employeesByDepartment",
     chart: "employee_department",
     type: [
+      { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
+      { text: "area", value: "line" },
       { text: "pie", value: "pie" },
-      { text: "donut", value: "pie" },
     ],
   },
   {
     title: "employees.employeesByGender",
     chart: "employee_gender",
     type: [
+      { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
+      { text: "area", value: "line" },
       { text: "pie", value: "pie" },
-      { text: "donut", value: "pie" },
     ],
   },
   {
     title: "employees.employeesByHeadquarters",
     chart: "employee_location",
     type: [
+      { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
+      { text: "area", value: "line" },
       { text: "pie", value: "pie" },
-      { text: "donut", value: "pie" },
     ],
   },
   {
     title: "employees.employee_nationality",
     chart: "employee_nationality",
     type: [
+      { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
+      { text: "area", value: "line" },
       { text: "pie", value: "pie" },
-      { text: "donut", value: "pie" },
     ],
   },
   {
     title: "employees.employeesAccordingToTheirQualifications",
     chart: "employee_qualification",
     type: [
+      { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
       { text: "pie", value: "pie" },
-      { text: "donut", value: "pie" },
     ],
   },
   {
@@ -63,7 +67,7 @@ const reports = [
     title: "employees.employee_age",
     chart: "employee_age",
     type: [
-      { text: "bar", value: "bar" },
+      { text: "column", value: "bar" },
       { text: "line", value: "line" },
     ],
   },

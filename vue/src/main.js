@@ -16,6 +16,7 @@ import "./plugins/vue-head";
 import "./plugins/vue-gtag";
 import "./plugins/apexcharts";
 import "./plugins/echarts";
+import "@/plugins/hightchart";
 import "./plugins/animate";
 import "./plugins/clipboard";
 import "./plugins/moment";
@@ -41,8 +42,8 @@ import mixins from "./mixins";
 
 // Set this to false to prevent the production tip on Vue startup.
 Vue.config.productionTip = false;
-import {Network} from "vue-vis-network";
-Vue.component('network', Network);
+import { Network } from "vue-vis-network";
+Vue.component("network", Network);
 // Laravel Echo
 
 /*
@@ -80,7 +81,7 @@ export default new Vue({
   vuetify,
   router,
   store,
-  render: h => h(App),
+  render: (h) => h(App),
   // data() {
   //   return {
   //     public_path: process.env.VUE_APP_PUBLIC_DIR
@@ -92,14 +93,14 @@ export default new Vue({
         .dispatch("auth/user")
         .then(() => {
           const user = this.$store.state.auth.user;
-          const roles = user.roles.map(item => item.name);
-          const permissions = user.permissions.map(item => item.name);
+          const roles = user.roles.map((item) => item.name);
+          const permissions = user.permissions.map((item) => item.name);
           this.$gates.setRoles(roles);
           this.$gates.setPermissions(permissions);
         })
-        .catch(err => {
+        .catch((err) => {
           // console.log(err);
         });
     }
-  }
+  },
 }).$mount("#app");

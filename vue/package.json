@@ -20,6 +20,8 @@
     "axios": "^1.2.2",
     "echarts": "^4.8.0",
     "flag-icon-css": "^3.4.6",
+    "highcharts": "^10.3.2",
+    "highcharts-vue": "^1.4.0",
     "laravel-echo": "^1.10.0",
     "lodash": "^4.17.15",
     "moment": "^2.26.0",
