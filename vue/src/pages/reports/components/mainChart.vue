@@ -77,7 +77,10 @@ export default {
       newOptions = {
         ...options,
         xAxis: { ...(options?.xAxis ?? {}), categories: labels },
-        series: result,
+        series: result.map((item) => ({
+          ...item,
+          data: item.data.map((item) => parseFloat(item)),
+        })),
       };
     }
 
