@@ -20,7 +20,7 @@ const actions = {
       cards = state.cards.map((item) => ({
         ...item,
         loading: false,
-        value: parseFloat(data[item.backend] ?? 0),
+        value: parseFloat(data[item.backend] ?? item.value),
       }));
       commit("setCards", cards);
     } catch (error) {
