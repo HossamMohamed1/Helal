@@ -65,7 +65,7 @@ export default {
       loading: false,
       chartData: {},
       tab: 0,
-      emptyImage: require("@/assets/images/no data.png"),
+      emptyImage: require("@/assets/images/No data-pana.png"),
     };
   },
   props: {
@@ -167,24 +167,24 @@ export default {
     // };
 
     this.loading = false;
-    this.chartData = {
-      bar: {
-        labels: ["\u0630\u0643\u0631", "\u0623\u0646\u062b\u0649"],
-        result: [
-          { name: "\u0627\u0644\u0639\u062f\u062f", data: ["4849", "937"] },
-        ],
-      },
-      line: {
-        labels: ["\u0630\u0643\u0631", "\u0623\u0646\u062b\u0649"],
-        result: [
-          { name: "\u0627\u0644\u0639\u062f\u062f", data: ["4849", "937"] },
-        ],
-      },
-      pie: {
-        labels: ["\u0630\u0643\u0631", "\u0623\u0646\u062b\u0649"],
-        result: [4849, 937],
-      },
-    };
+    // this.chartData = {
+    //   bar: {
+    //     labels: ["\u0630\u0643\u0631", "\u0623\u0646\u062b\u0649"],
+    //     result: [
+    //       { name: "\u0627\u0644\u0639\u062f\u062f", data: ["4849", "937"] },
+    //     ],
+    //   },
+    //   line: {
+    //     labels: ["\u0630\u0643\u0631", "\u0623\u0646\u062b\u0649"],
+    //     result: [
+    //       { name: "\u0627\u0644\u0639\u062f\u062f", data: ["4849", "937"] },
+    //     ],
+    //   },
+    //   pie: {
+    //     labels: ["\u0630\u0643\u0631", "\u0623\u0646\u062b\u0649"],
+    //     result: [4849, 937],
+    //   },
+    // };
 
     // this.fetchChart(data)
     //   .then((res) => {

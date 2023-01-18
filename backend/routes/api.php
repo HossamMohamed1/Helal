@@ -39,7 +39,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
  */
 Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'report'], function () {
     Route::get('charts', [ReportController::class, 'charts']);
-    Route::get('employee', [ReportController::class, 'employee']);
+    Route::get('statistics', [ReportController::class, 'statistics']);
+    // Route::get('employee', [ReportController::class, 'employee']);
 });
 
 
