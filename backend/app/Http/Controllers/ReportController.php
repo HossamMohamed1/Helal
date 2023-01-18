@@ -62,15 +62,13 @@ class ReportController extends Controller
 
     public function statistics()
     {
-        // select count(*) as emps ,
-        // COUNT(CASE WHEN genderid = '1'  THEN 1 END) as males ,
-        // COUNT(CASE WHEN genderid = '2'  THEN 1 END) as females
-        //  from v_all_user_emp_info
-        $result = Employee::select(
-            DB::raw("count(*) as emps"),
-            DB::raw("COUNT(CASE WHEN genderid = '1'  THEN 1 END) as males"),
-            DB::raw("COUNT(CASE WHEN genderid = '2'  THEN 1 END) as females")
-        )->first();
+        $result = DB::connection('oracle')
+            ->table('v_all_user_emp_info')
+            ->select(
+                DB::raw("count(*) as emps"),
+                DB::raw("COUNT(CASE WHEN genderid = '1'  THEN 1 END) as males"),
+                DB::raw("COUNT(CASE WHEN genderid = '2'  THEN 1 END) as females")
+            )->first();
 
         return successData($result);
     }
