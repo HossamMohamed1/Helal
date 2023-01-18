@@ -166,7 +166,7 @@ export default {
     //   },
     // };
 
-    this.loading = false;
+    // this.loading = false;
     // this.chartData = {
     //   bar: {
     //     labels: ["\u0630\u0643\u0631", "\u0623\u0646\u062b\u0649"],
@@ -186,15 +186,15 @@ export default {
     //   },
     // };
 
-    // this.fetchChart(data)
-    //   .then((res) => {
-    //     this.loading = false;
-    //     this.chartData = res;
-    //   })
-    //   .catch((err) => {
-    //     this.loading = false;
-    //     // console.log(err);
-    //   });
+    this.fetchChart(data)
+      .then((res) => {
+        this.loading = false;
+        this.chartData = res;
+      })
+      .catch((err) => {
+        this.loading = false;
+        // console.log(err);
+      });
   },
   methods: {
     ...mapActions("statistics", ["fetchChart"]),
