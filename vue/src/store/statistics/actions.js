@@ -14,7 +14,9 @@ const actions = {
     try {
       let cards = state.cards.map((item) => ({ ...item, loading: true }));
       commit("setCards", cards);
-      const response = await axios.get("report/statistics");
+      const response = await axios.get("report/statistics", {
+        params: { type: "employee_card" },
+      });
       let data = response?.data?.data ?? {};
       console.log(data);
       cards = state.cards.map((item) => ({
