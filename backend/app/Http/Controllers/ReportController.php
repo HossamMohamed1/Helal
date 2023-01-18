@@ -68,7 +68,6 @@ class ReportController extends Controller
                 DB::raw("count(*) as emps"),
                 DB::raw("COUNT(CASE WHEN genderid = '1'  THEN 1 END) as males"),
                 DB::raw("COUNT(CASE WHEN genderid = '2'  THEN 1 END) as females"),
-                // DB::raw("COUNT(SELECT * from absence where employee_id = v_all_user_emp_info.emp_no limit 1) as attendees"),
                 DB::raw("0 as attendees"),
             )
             ->first();

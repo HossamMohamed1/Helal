@@ -3,18 +3,18 @@
 namespace App\Services\Report\type;
 
 use App\Exceptions\GeneralException;
+use App\Models\Employee;
 use App\Services\Report\BaseReport;
 use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use JsonException;
-use App\Models\Employee;
 
 class EmployeeReport extends BaseReport
 {
     public $result = null;
-    public string $mainTable;
-    public array $filter;
+    public $mainTable;
+    public $filter;
 
     public function __construct($filter)
     {
@@ -59,15 +59,14 @@ class EmployeeReport extends BaseReport
             return [];
         }
 
-        if($this->filter['type'] == 'employee_age'){
+        if ($this->filter['type'] == 'employee_age') {
             return $this->result->toArray();
         }
 
-
         return json_decode($this->result
-            ->mapWithKeys(function ($item) {
-                return [$item->{$this->filter['groupBy']} => $item];
-            }), true, 512, JSON_THROW_ON_ERROR);
+                ->mapWithKeys(function ($item) {
+                    return [$item->{$this->filter['groupBy']} => $item];
+                }), true, 512, JSON_THROW_ON_ERROR);
     }
 
     /**
@@ -135,7 +134,7 @@ class EmployeeReport extends BaseReport
      */
     private function employeeNationalityQuery(): Collection
     {
-    return DB::connection('oracle')
+        return DB::connection('oracle')
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
@@ -206,10 +205,23 @@ class EmployeeReport extends BaseReport
     private function employeeAgeQuery(): Collection
     {
         return Employee::select('birthdate')
-        ->get()
-        ->groupBy('age')
-        ->mapWithKeys(function ($item, $key) {
-            return [$key => ['count' => count($item), 'age' => $key]];
-        });
+            ->get()
+            ->groupBy('age')
+            ->mapWithKeys(function ($item, $key) {
+                return [$key => ['count' => count($item), 'age' => $key]];
+            });
+    }
+
+    private function employeeCardQuery(): Collection
+    {
+        return DB::connection('oracle')
+            ->table('v_all_user_emp_info')
+            ->select(
+                DB::raw("count(*) as emps"),
+                DB::raw("COUNT(CASE WHEN genderid = '1'  THEN 1 END) as males"),
+                DB::raw("COUNT(CASE WHEN genderid = '2'  THEN 1 END) as females"),
+                DB::raw("0 as attendees"),
+            )
+            ->first();
     }
 }
