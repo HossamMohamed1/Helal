@@ -17,7 +17,11 @@ const actions = {
       const response = await axios.get("report/statistics");
       let data = response?.data?.data ?? {};
       console.log(data);
-      cards = state.cards.map((item) => ({ ...item, loading: true }));
+      cards = state.cards.map((item) => ({
+        ...item,
+        loading: false,
+        value: data[item.backend],
+      }));
       commit("setCards", cards);
     } catch (error) {
       let cards = state.cards.map((item) => ({ ...item, loading: false }));
