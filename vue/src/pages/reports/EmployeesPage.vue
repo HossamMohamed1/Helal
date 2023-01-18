@@ -80,7 +80,7 @@ import CreateReportDialog from "@/components/reports/employees/CreateReportDialo
 const DateRangePicker = () =>
   import(/* webpackChunkName: "DateRangePicker" */ "vue2-daterange-picker");
 import "vue2-daterange-picker/dist/vue2-daterange-picker.css";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 const TrackCard = () =>
   import(
     /* webpackChunkName: "TrackCard" */ "../../components/dashboard/TrackCard.vue"
@@ -144,17 +144,13 @@ export default {
     ...mapState("statistics", ["cards", "reports"]),
   },
   mounted() {
-    const cards = this.cards.map((item) => ({ ...item, loading: true }));
-    this.$store.commit("statistics/setCards", cards);
-    setTimeout(() => {
-      const cards = this.cards.map((item) => ({ ...item, loading: false }));
-      this.$store.commit("statistics/setCards", cards);
-    }, 2000);
+    this.fetchCards();
   },
   methods: {
     submitFile() {
       this.dialog = false;
     },
+    ...mapActions("statistics", ["fetchCards"]),
   },
 };
 </script>

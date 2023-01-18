@@ -6,7 +6,7 @@ const state = {
   reports,
   cards: [
     {
-      id: 1,
+      backend: "emps",
       label: "employees.employees",
       color: "#8c9eff",
       loading: false,
@@ -24,7 +24,7 @@ const state = {
       ],
     },
     {
-      id: 2,
+      backend: "males",
       label: "employees.males",
       color: "#8c9eff",
       loading: false,
@@ -42,7 +42,7 @@ const state = {
       ],
     },
     {
-      id: 3,
+      backend: "females",
       label: "employees.females",
       color: "#8c9eff",
       loading: false,
@@ -60,7 +60,7 @@ const state = {
       ],
     },
     {
-      id: 4,
+      backend: "attendees",
       label: "employees.attendees",
       color: "#8c9eff",
       loading: false,
