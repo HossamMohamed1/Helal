@@ -8,6 +8,7 @@ const reports = [
       { text: "line", value: "line" },
       { text: "area", value: "line" },
       { text: "pie", value: "pie" },
+      { text: "donut", value: "pie" },
     ],
   },
   {

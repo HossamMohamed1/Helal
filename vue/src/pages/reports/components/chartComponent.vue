@@ -65,7 +65,7 @@ export default {
       loading: false,
       chartData: {},
       tab: 0,
-      emptyImage: require("@/assets/images/no data.png"),
+      emptyImage: require("@/assets/images/No data-pana.png"),
     };
   },
   props: {

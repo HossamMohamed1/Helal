@@ -1,203 +1,16 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog v-model="dialog" persistent max-width="700px">
       <v-card>
         <v-card-title>
-          <span class="text-h5">{{ $t("reports.createReport") }}</span>
+          <span class="text-h5">{{ $t("reports.createReport") }}
+          </span>
+          <v-spacer></v-spacer>
+          <v-btn color="dark" icon @click="dialog = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
         </v-card-title>
-        <v-card-text class="pb-0">
-<!--          <v-row>-->
-<!--            <v-col cols="12">-->
-<!--              <div class="d-flex align-center">-->
-<!--                <div style="width: 80%">-->
-<!--                  <div class="font-weight-bold mb-1">تحميل ملف</div>-->
-<!--                  <v-select-->
-<!--                    :items="uploadType"-->
-<!--                    label=""-->
-<!--                    solo-->
-<!--                    @change="uploadFile()"-->
-<!--                  ></v-select>-->
-<!--                  <input type="file" ref="file" style="display: none" />-->
-<!--                </div>-->
-<!--                <div v-if="fileUploaded == true" class="d-flex align-center">-->
-<!--                  <v-btn-->
-<!--                    outlined-->
-<!--                    small-->
-<!--                    color="primary"-->
-<!--                    class="mx-2"-->
-<!--                    @click.stop="dialogTable = true"-->
-<!--                    title="عرض كجدول"-->
-<!--                  >-->
-<!--                    <v-icon>mdi-table-large</v-icon>-->
-<!--                  </v-btn>-->
-<!--                  <v-dialog-->
-<!--                    v-model="dialogTable"-->
-<!--                    max-width="60vw"-->
-<!--                    height="600"-->
-<!--                    scrollable-->
-<!--                  >-->
-<!--                    <v-card>-->
-<!--                      <v-card-title>-->
-<!--                        <span class="text-h5">عرض البانات كجدول</span>-->
-<!--                      </v-card-title>-->
-<!--                      <v-simple-table>-->
-<!--                        <template v-slot:default>-->
-<!--                          <thead>-->
-<!--                          <tr>-->
-<!--                            <th class="text-right">-->
-<!--                              Name-->
-<!--                            </th>-->
-<!--                            <th class="text-right">-->
-<!--                              Calories-->
-<!--                            </th>-->
-<!--                          </tr>-->
-<!--                          </thead>-->
-<!--                          <tbody>-->
-<!--                          <tr-->
-<!--                            v-for="item in desserts"-->
-<!--                            :key="item.name"-->
-<!--                          >-->
-<!--                            <td>{{ item.name }}</td>-->
-<!--                            <td>{{ item.calories }}</td>-->
-<!--                          </tr>-->
-<!--                          </tbody>-->
-<!--                        </template>-->
-<!--                      </v-simple-table>-->
-<!--                      <v-card-actions>-->
-<!--                        <v-spacer></v-spacer>-->
-
-<!--                        <v-btn-->
-<!--                          color="green darken-1"-->
-<!--                          text-->
-<!--                          @click="dialogTable = false"-->
-<!--                        >-->
-<!--                          أغلاق-->
-<!--                        </v-btn>-->
-
-<!--                      </v-card-actions>-->
-<!--                    </v-card>-->
-<!--                  </v-dialog>-->
-
-<!--                  <v-btn-->
-<!--                    outlined-->
-<!--                    small-->
-<!--                    color="primary"-->
-<!--                    @click.stop="dialogExcel = true"-->
-<!--                  >-->
-<!--                    <v-icon>mdi-microsoft-excel</v-icon>-->
-<!--                  </v-btn>-->
-<!--                  <v-dialog-->
-<!--                    v-model="dialogExcel"-->
-<!--                    max-width="60vw"-->
-<!--                    height="600"-->
-<!--                    scrollable-->
-<!--                  >-->
-<!--                    <v-card>-->
-<!--                      <v-card-title>-->
-<!--                        <span class="text-h5">عرض البانات كملف إكسيل</span>-->
-<!--                      </v-card-title>-->
-<!--                      <table class="excel">-->
-<!--                        <thead>-->
-<!--                        <tr>-->
-<!--                          <th class="text-right">-->
-<!--                            Name-->
-<!--                          </th>-->
-<!--                          <th class="text-right">-->
-<!--                            Calories-->
-<!--                          </th>-->
-<!--                        </tr>-->
-<!--                        </thead>-->
-<!--                        <tbody>-->
-<!--                        <tr-->
-<!--                          v-for="item in desserts"-->
-<!--                          :key="item.name"-->
-<!--                        >-->
-<!--                          <td>{{ item.name }}</td>-->
-<!--                          <td>{{ item.calories }}</td>-->
-<!--                        </tr>-->
-<!--                        </tbody>-->
-<!--                      </table>-->
-<!--                      <v-card-actions>-->
-<!--                        <v-spacer></v-spacer>-->
-
-<!--                        <v-btn-->
-<!--                          color="green darken-1"-->
-<!--                          text-->
-<!--                          @click="dialogExcel = false"-->
-<!--                        >-->
-<!--                          أغلاق-->
-<!--                        </v-btn>-->
-
-<!--                      </v-card-actions>-->
-<!--                    </v-card>-->
-<!--                  </v-dialog>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </v-col>-->
-
-<!--            <v-col cols="12" v-if="fileUploaded == true">-->
-<!--              <div class="font-weight-bold mb-1">نوع الرسم البياني</div>-->
-<!--              <v-autocomplete-->
-<!--                v-model="report.type"-->
-<!--                :items="types"-->
-<!--                :error-messages="validationError['type']"-->
-<!--                :label="$t('reports.reportType')"-->
-<!--                item-text="name"-->
-<!--                item-value="name"-->
-<!--                solo-->
-<!--              >-->
-<!--                <template v-slot:item="data">-->
-<!--                  <template v-if="typeof data.item !== 'object'">-->
-<!--                    <v-list-item-content-->
-<!--                      v-text="data.item"-->
-<!--                    ></v-list-item-content>-->
-<!--                  </template>-->
-<!--                  <template v-else>-->
-<!--                    <v-list-item-avatar>-->
-<!--                      <img :src="data.item.image" />-->
-<!--                    </v-list-item-avatar>-->
-<!--                    <v-list-item-content>-->
-<!--                      <v-list-item-title-->
-<!--                        v-html="data.item.name"-->
-<!--                      ></v-list-item-title>-->
-<!--                    </v-list-item-content>-->
-<!--                  </template>-->
-<!--                </template>-->
-<!--              </v-autocomplete>-->
-<!--            </v-col>-->
-<!--            <v-col cols="12" v-if="fileUploaded == true" >-->
-<!--              <div class="font-weight-bold mb-1">أعمدة الجدول</div>-->
-<!--              <v-autocomplete-->
-<!--                :items="columns"-->
-<!--                :label="$t('reports.columns')"-->
-<!--                v-model="report.columns"-->
-
-<!--                multiple-->
-<!--                chips-->
-<!--                small-chips-->
-<!--                solo-->
-<!--              >-->
-<!--                <template v-slot:item="data">-->
-<!--                  <template v-if="typeof data.item !== 'object'">-->
-<!--                    <v-list-item-content-->
-<!--                      v-text="data.item"-->
-<!--                    ></v-list-item-content>-->
-<!--                  </template>-->
-<!--                  <template v-else>-->
-<!--                    <v-list-item-avatar>-->
-<!--                      <img :src="data.item.image" />-->
-<!--                    </v-list-item-avatar>-->
-<!--                    <v-list-item-content>-->
-<!--                      <v-list-item-title-->
-<!--                        v-html="data.item.name"-->
-<!--                      ></v-list-item-title>-->
-<!--                    </v-list-item-content>-->
-<!--                  </template>-->
-<!--                </template>-->
-<!--              </v-autocomplete>-->
-<!--            </v-col>-->
-<!--          </v-row>-->
-
+        <v-card-text>
           <template>
             <v-stepper v-model="e1">
               <v-stepper-header>
@@ -225,10 +38,11 @@
 
               <v-stepper-items>
                 <v-stepper-content step="1" >
-                  <div style="min-height: 300px">
+                  <div class="stepper-cont pt-2" style="overflow-x: hidden">
                     <v-row>
                       <v-col
                         cols="6"
+                        class="pa-2"
                         v-for="(file, index) in files"
                         :key="index + files.length"
                       >
@@ -273,7 +87,7 @@
                 </v-stepper-content>
 
                 <v-stepper-content step="2">
-                  <div style="min-height: 300px">
+                  <div class="stepper-cont">
                     <v-simple-table>
                       <template v-slot:default>
                         <thead>
@@ -319,7 +133,7 @@
                 </v-stepper-content>
 
                 <v-stepper-content step="3">
-                  <div style="min-height: 300px">
+                  <div class="stepper-cont">
                     <div class="font-weight-bold mb-1">نوع الرسم البياني</div>
                     <v-autocomplete
                       v-model="report.type"
@@ -385,17 +199,19 @@
                       @click="e1 = 2">
                       رجوع
                     </v-btn>
+                    <v-btn
+                      color="primary"
+
+                      @click="e1 = 3"
+                    >
+                      حفظ
+                    </v-btn>
                   </div>
                 </v-stepper-content>
               </v-stepper-items>
             </v-stepper>
           </template>
         </v-card-text>
-        <v-card-actions class="mb-1 mt-1">
-          <v-spacer></v-spacer>
-          <v-btn color="primary" dark @click="submitFile"> حفظ </v-btn>
-          <v-btn color="dark" dark @click="dialog = false"> إلغاء </v-btn>
-        </v-card-actions>
       </v-card>
     </v-dialog>
   </v-row>
@@ -517,5 +333,12 @@ export default {
 .v-list-item:hover {
   background: #f2f2f2;
 }
+.stepper-cont{
+  min-height: 400px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-left: 8px;
+}
+
 </style>
 
