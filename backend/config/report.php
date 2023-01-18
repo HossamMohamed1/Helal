@@ -57,6 +57,12 @@ return [
             'groupBy' => 'age',
             'className' => 'EmployeeReport',
         ],
+        'employee_card' => [
+            'columns' => ['count'],
+            'unit' => 'number',
+            'groupBy' => 'age',
+            'className' => 'EmployeeReport',
+        ],
         'employee_qualification' => [
             'columns' => ['count'],
             'unit' => 'number',
