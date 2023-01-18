@@ -212,7 +212,7 @@ class EmployeeReport extends BaseReport
             });
     }
 
-    private function employeeCardQuery(): Collection
+    public function cards()
     {
         return DB::connection('oracle')
             ->table('v_all_user_emp_info')
