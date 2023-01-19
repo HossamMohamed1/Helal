@@ -88,9 +88,9 @@ return [
             'className' => 'DepartmentReport',
         ],
         'department_age' => [
-            'columns' => ['count'],
+            'columns' => ['birthdate'],
             'unit' => 'number',
-            'groupBy' => 'age',
+            'groupBy' => 'dept_desc',
             'className' => 'DepartmentReport',
         ],
 
