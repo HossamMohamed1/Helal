@@ -1,6 +1,10 @@
 <template>
   <div>
-    <v-card :loading="loading" class="pa-2 mt-2">
+    <v-card
+      :loading="loading"
+      class="pa-2 mt-2"
+      :style="{ background: backgroundStyle.backgroundColor }"
+    >
       <v-row class="pt-2">
         <v-col>
           <!--pass config or data-->
@@ -8,8 +12,11 @@
           <LineChart v-if="chart.type == 'Line'" :config="config" />
           <bar-chart v-else-if="chart.type == 'Bar'" :config="config" />
           <pie-chart v-else-if="chart.type == 'Pie'" :config="config" />
-          <x-y-bubble-chart v-else-if="chart.type == 'XYBubble'" :config="config"/>
-          <network-chart v-else-if="chart.type == 'Network'" :config="config"/>
+          <x-y-bubble-chart
+            v-else-if="chart.type == 'XYBubble'"
+            :config="config"
+          />
+          <network-chart v-else-if="chart.type == 'Network'" :config="config" />
         </v-col>
       </v-row>
     </v-card>
@@ -57,7 +64,8 @@
         <network-config
           v-else-if="chart.type == 'Network'"
           :config="config"
-          @closeDraw="right = false"/>
+          @closeDraw="right = false"
+        />
       </v-navigation-drawer>
     </div>
   </div>
@@ -102,6 +110,11 @@ export default {
     ...mapState("reports", ["chart"]),
     config() {
       return this.chart.config;
+    },
+    backgroundStyle() {
+      return {
+        backgroundColor: this.config?.style?.backgroundColor,
+      };
     },
   },
   methods: {
