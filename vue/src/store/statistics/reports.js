@@ -24,6 +24,18 @@ const reports = [
     ],
   },
   {
+    title: "employees.employee_retirement",
+    chart: "employee_retirement",
+    type: [
+      { text: "pie", value: "pie" },
+      { text: "donut", value: "pie" },
+      { text: "column", value: "bar" },
+      { text: "bar", value: "bar" },
+      { text: "line", value: "line" },
+      { text: "area", value: "line" },
+    ],
+  },
+  {
     title: "employees.employeesByHeadquarters",
     chart: "employee_location",
     type: [

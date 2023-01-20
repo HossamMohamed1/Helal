@@ -63,7 +63,6 @@ return [
             'groupBy' => 'age',
             'className' => 'EmployeeReport',
         ],
-        // Retirement
         'employee_card' => [
             'columns' => ['count'],
             'unit' => 'number',

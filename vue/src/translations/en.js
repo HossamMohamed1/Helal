@@ -455,6 +455,8 @@ export default {
     attendees: "Attendees",
     employeesInPublicAgenciesAndAdministrations:
       "Employees In Public Agencies And Administrations",
+    employee_retirement: "Employ will retirement within 4 years",
+
     employee_nationality: "Employees by nationality",
     employee_job: "Employee be job",
     department_status: "Department status",

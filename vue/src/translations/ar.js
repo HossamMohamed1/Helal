@@ -468,6 +468,7 @@ export default {
     employeesAccordingToTheirRanksIn: "الموظفين حسب مراتبهم وتوزيهم في ",
     EmployeesAccordingAttendance:
       "الموظفين حسب حالات الحضور والغياب والأجازات والمهام ولاإستئذان",
+    employee_retirement: "الموظفين المتوقع تقاعدهم خلال 4 سنين",
     department_status: "عدد الأقسام/ الإدارات حسب الحالة",
     department_location: "الاقسام حسب المقر",
     absence: "الغياب",
