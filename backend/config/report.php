@@ -57,6 +57,13 @@ return [
             'groupBy' => 'age',
             'className' => 'EmployeeReport',
         ],
+        'employee_retirement' => [
+            'columns' => ['count'],
+            'unit' => 'number',
+            'groupBy' => 'age',
+            'className' => 'EmployeeReport',
+        ],
+        // Retirement
         'employee_card' => [
             'columns' => ['count'],
             'unit' => 'number',
@@ -70,7 +77,7 @@ return [
             'className' => 'EmployeeReport',
         ],
         'employee_absence' => [
-            'columns' => ['attendance','late','no_late','early'],
+            'columns' => ['attendance', 'late', 'no_late', 'early'],
             'unit' => 'number',
             'groupBy' => 'late_date',
             'className' => 'EmployeeReport',
