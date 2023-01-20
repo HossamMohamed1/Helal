@@ -246,19 +246,18 @@ class EmployeeReport extends BaseReport
     private function employeeRetirementQuery()
     {
         return (Employee::select('birthdate')
-        ->orderBy('birthdate','ASC')
+                ->orderBy('birthdate', 'ASC')
                 ->get()
                 ->groupBy('age')
                 ->mapWithKeys(function ($item, $key) {
                     return [$key => ['count' => count($item), 'age' => $key]];
                 })
-                ->filter(function($item) {
+                ->filter(function ($item) {
                     return $item['age'] >= 56 && $item['age'] < 60;
                 })
-                // ->sortBy('age','ASC')
-                ->map(function ($item ) {
-                    $item['age'] = 60 - $item['age'] . ' year';
-                    return(object)  $item;
+                ->map(function ($item) {
+                    $item['age'] = 60 - $item['age'] . ' سنه';
+                    return (object) $item;
                 }));
     }
 
