@@ -75,7 +75,7 @@ const bar = {
     },
   },
   tooltip: {
-    valueSuffix: "",
+    valueSuffix: " ",
   },
   plotOptions: {
     bar: {

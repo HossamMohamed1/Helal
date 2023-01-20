@@ -76,7 +76,7 @@
 
 const line = {
   chart: {
-    type: "line",
+    type: "spline",
     zoomType: "x",
   },
   title: {
