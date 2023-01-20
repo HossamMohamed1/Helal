@@ -220,7 +220,7 @@ class EmployeeReport extends BaseReport
                 DB::raw('count(case when is_early = 1 then 1 end) as early'),
                 'late_date'
             )
-            ->whereDate('late_date', '>', now()->format('Y-m-01'))
+            ->whereDate('late_date', '>=', now()->format('Y-m-01'))
             ->groupBy('late_date')
             ->orderBy('late_date', 'ASC')
             ->get()
