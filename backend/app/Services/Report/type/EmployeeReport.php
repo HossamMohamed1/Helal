@@ -5,11 +5,12 @@ namespace App\Services\Report\type;
 use App\Exceptions\GeneralException;
 use App\Models\Employee;
 use App\Services\Report\BaseReport;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use JsonException;
-use Carbon\Carbon;
+
 class EmployeeReport extends BaseReport
 {
     public $result = null;
@@ -177,19 +178,18 @@ class EmployeeReport extends BaseReport
     private function employeeMajorQuery(): Collection
     {
         return (DB::connection('oracle')
-            ->table("EMPLOYEE_QUALIFICATION")
-            ->select(
-                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
-                $this->filter['groupBy']
-            )->groupBy($this->filter['groupBy'])
-            ->get()
-        ->map(function ($item) {
-            if(empty($item->major_desc))
-            {
-                $item->major_desc = 'قبل الثانوية';
-            }
-            return $item;
-        }));
+                ->table("EMPLOYEE_QUALIFICATION")
+                ->select(
+                    DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
+                    $this->filter['groupBy']
+                )->groupBy($this->filter['groupBy'])
+                ->get()
+                ->map(function ($item) {
+                    if (empty($item->major_desc)) {
+                        $item->major_desc = 'قبل الثانوية';
+                    }
+                    return $item;
+                }));
     }
 
     /**
@@ -211,34 +211,23 @@ class EmployeeReport extends BaseReport
      */
     private function employeeAbsenceQuery(): Collection
     {
-        // select count(employee_id) as attendance 
-        // , count(case WHEN is_late = 1 then 1 end) as late 
-        // , count(case WHEN is_late = 0 then 1 end) as no_late , late_date from v_hadir_late group by late_date;
-
         return DB::connection('oracle')
-        ->table("v_hadir_late")
-        ->select(
-            DB::raw('count(employee_id) as attendance'),
-            DB::raw('count(case WHEN is_late = 1 then 1 end) as late'),
-            DB::raw('count(case WHEN is_late = 0 then 1 end) as no_late'),
-            DB::raw('count(case when is_early = 1 then 1 end) as early'),
-            'late_date'
-        )
-        ->whereDate('late_date','>',now()->format('Y-m-01'))
-        ->groupBy('late_date')
-        ->orderBy('late_date','ASC')
-        ->get()
-        ->map(function ($item) {
-            $item->late_date = (new Carbon($item->late_date))->format('Y-M-d');
-            return $item;
-        });
-        // return DB::connection('oracle')
-        //     ->table("EMPLOYEE_QUALIFICATION")
-        //     ->select(
-        //         DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
-        //         $this->filter['groupBy']
-        //     )->groupBy($this->filter['groupBy'])
-        //     ->get();
+            ->table("v_hadir_late")
+            ->select(
+                DB::raw('count(employee_id) as attendance'),
+                DB::raw('count(case WHEN is_late = 1 then 1 end) as late'),
+                DB::raw('count(case WHEN is_late = 0 then 1 end) as no_late'),
+                DB::raw('count(case when is_early = 1 then 1 end) as early'),
+                'late_date'
+            )
+            ->whereDate('late_date', '>', now()->format('Y-m-01'))
+            ->groupBy('late_date')
+            ->orderBy('late_date', 'ASC')
+            ->get()
+            ->map(function ($item) {
+                $item->late_date = (new Carbon($item->late_date))->toFormattedDateString();
+                return $item;
+            });
     }
 
     /**
