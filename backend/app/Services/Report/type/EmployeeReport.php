@@ -243,13 +243,21 @@ class EmployeeReport extends BaseReport
             });
     }
 
-    private function employeeRetirementQuery(): Collection
+    private function employeeRetirementQuery()
     {
-        return dd(Employee::select('birthdate')
+        return (Employee::select('birthdate')
                 ->get()
                 ->groupBy('age')
                 ->mapWithKeys(function ($item, $key) {
                     return [$key => ['count' => count($item), 'age' => $key]];
+                })
+                ->filter(function($item) {
+                    return $item['age'] >= 56 && $item['age'] <= 60;
+                })
+                // ->sortBy('age','ASC')
+                ->map(function ($item ) {
+                    $item['age'] = 60 - $item['age'] . ' year';
+                    return(object)  $item;
                 }));
     }
 
