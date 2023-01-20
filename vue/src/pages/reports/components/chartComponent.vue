@@ -108,41 +108,41 @@ export default {
     //   },
     // };
 
-    this.chartData = {
-      bar: {
-        labels: ["1 سنه", "2 سنه", "3 سنه", "4 سنه"],
-        result: [
-          {
-            name: "العدد",
-            data: [62, 66, 75, 67],
-          },
-        ],
-      },
-      line: {
-        labels: ["1 سنه", "2 سنه", "3 سنه", "4 سنه"],
-        result: [
-          {
-            name: "العدد",
-            data: [62, 66, 75, 67],
-          },
-        ],
-      },
-      pie: {
-        labels: ["1 سنه", "2 سنه", "3 سنه", "4 سنه"],
-        result: [62, 66, 75, 67],
-      },
-    };
+    // this.chartData = {
+    //   bar: {
+    //     labels: ["1 سنه", "2 سنه", "3 سنه", "4 سنه"],
+    //     result: [
+    //       {
+    //         name: "العدد",
+    //         data: [62, 66, 75, 67],
+    //       },
+    //     ],
+    //   },
+    //   line: {
+    //     labels: ["1 سنه", "2 سنه", "3 سنه", "4 سنه"],
+    //     result: [
+    //       {
+    //         name: "العدد",
+    //         data: [62, 66, 75, 67],
+    //       },
+    //     ],
+    //   },
+    //   pie: {
+    //     labels: ["1 سنه", "2 سنه", "3 سنه", "4 سنه"],
+    //     result: [62, 66, 75, 67],
+    //   },
+    // };
 
-    this.loading = false;
-    // this.fetchChart(data)
-    //   .then((res) => {
-    //     this.loading = false;
-    //     this.chartData = res;
-    //   })
-    //   .catch((err) => {
-    //     this.loading = false;
-    //     // console.log(err);
-    //   });
+    // this.loading = false;
+    this.fetchChart(data)
+      .then((res) => {
+        this.loading = false;
+        this.chartData = res;
+      })
+      .catch((err) => {
+        this.loading = false;
+        // console.log(err);
+      });
   },
   methods: {
     ...mapActions("statistics", ["fetchChart"]),
