@@ -36,6 +36,18 @@ const reports = [
     ],
   },
   {
+    title: "employees.employee_age",
+    chart: "employee_age",
+    type: [
+      { text: "column", value: "bar" },
+      { text: "bar", value: "bar" },
+      { text: "line", value: "line" },
+      { text: "area", value: "line" },
+      { text: "pie", value: "pie" },
+      { text: "donut", value: "pie" },
+    ],
+  },
+  {
     title: "employees.employeesByHeadquarters",
     chart: "employee_location",
     type: [
@@ -86,18 +98,6 @@ const reports = [
   {
     title: "employees.employee_job",
     chart: "employee_job",
-    type: [
-      { text: "column", value: "bar" },
-      { text: "bar", value: "bar" },
-      { text: "line", value: "line" },
-      { text: "area", value: "line" },
-      { text: "pie", value: "pie" },
-      { text: "donut", value: "pie" },
-    ],
-  },
-  {
-    title: "employees.employee_age",
-    chart: "employee_age",
     type: [
       { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
