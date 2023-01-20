@@ -95,11 +95,16 @@ const reports = [
       { text: "donut", value: "pie" },
     ],
   },
-  // {
-  //   title: "employees.EmployeesAccordingAttendance",
-  //   chart: "employee_absence",
-  //   type: ["pie"],
-  // },
+  {
+    title: "employees.EmployeesAccordingAttendance",
+    chart: "employee_absence",
+    type: [  { text: "pie", value: "pie" },
+    { text: "donut", value: "pie" },
+    { text: "column", value: "bar" },
+    { text: "bar", value: "bar" },
+    { text: "line", value: "line" },
+    { text: "area", value: "line" },],
+  },
   {
     title: "employees.department_status",
     chart: "department_status",

@@ -70,9 +70,9 @@ return [
             'className' => 'EmployeeReport',
         ],
         'employee_absence' => [
-            'columns' => ['count'],
+            'columns' => ['attendance','late','no_late','early'],
             'unit' => 'number',
-            'groupBy' => 'qualification_desc',
+            'groupBy' => 'late_date',
             'className' => 'EmployeeReport',
         ],
         'department_status' => [

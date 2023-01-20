@@ -61,16 +61,32 @@ export default {
 
     if (this.chartType.text == "pie" || this.chartType.text == "donut") {
       // newOptions = { ...options, labels };
+      console.log(typeof this.chartData.result, this.chartData.result, "result");
+      if(!typeof this.chartData.result){
+        console.log(true,this.chartData.result)
+      }
+  //return false;
       result = [
-        {
-          name: "",
-          data: this.chartData.result.map((item, index) => {
-            return {
-              y: item,
-              name: this.chartData.labels[index],
-            };
-          }),
-        },
+      //  {
+        //  name: "1",
+         // data: this.chartData.result.map((item, index) => {
+          //  console.log(item,'pie')
+           // return {
+             // y: item,
+              //name: this.chartData.labels[index],
+           // };
+          //}),
+        //},
+          //{
+          //name: "2",
+          //data: this.chartData.result.map((item, index) => {
+            //console.log(item,'pie')
+            //return {
+              //y: item,
+              //name: this.chartData.labels[index],
+            //};
+          //}),
+        //},
       ];
       newOptions = { ...options, series: result };
     } else {
