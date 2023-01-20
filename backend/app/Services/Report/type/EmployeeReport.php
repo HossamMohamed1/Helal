@@ -135,12 +135,12 @@ class EmployeeReport extends BaseReport
     private function employeeNationalityQuery(): Collection
     {
         $labels = [
-            1=> 'سعودى',
-            27=> 'سعودى 2',
-            2=> 'سعودى 3',
-            126=> 'سعودى 4',
+            1 => 'سعودى',
+            27 => 'سعودى 2',
+            2 => 'سعودى 3',
+            126 => 'سعودى 4',
             // 5782=> 'سعودى',
-            
+
         ];
         return DB::connection('oracle')
             ->table($this->mainTable)
@@ -149,12 +149,12 @@ class EmployeeReport extends BaseReport
                 $this->filter['groupBy']
             )->groupBy($this->filter['groupBy'])
             ->get()
-            ->map(function ($item) use($labels) {
+            ->map(function ($item) use ($labels) {
                 // return $item;
                 // dd($item->{$this->filter['groupBy']});
                 $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $item->{$this->filter['groupBy']};
                 return $item;
-            } );
+            });
     }
 
     /**
@@ -263,15 +263,14 @@ class EmployeeReport extends BaseReport
                 DB::raw("COUNT(CASE WHEN genderid = '1'  THEN 1 END) as males"),
                 DB::raw("COUNT(CASE WHEN genderid = '2'  THEN 1 END) as females"),
             )
-            ->where('v_all_user_emp_info.end_date' ,'>',now())
+            ->where('v_all_user_emp_info.end_date', '>', now())
             ->first();
 
-
         $result->attendees = $result->emps - DB::connection('oracle')->table('absence')
-            ->join('v_all_user_emp_info','absence.employee_id','=','emp_no')
+            ->join('v_all_user_emp_info', 'absence.employee_id', '=', 'emp_no')
             ->select(DB::raw('COUNT(employee_id) as absence'), 'absence_date')
             ->where('absence_date', now()->format('Y/m/d'))
-            ->where('v_all_user_emp_info.end_date' ,'>',now())
+            ->where('v_all_user_emp_info.end_date', '>', now())
             ->groupBy('absence_date')
             ->first()->absence ?? 0;
 
@@ -280,16 +279,11 @@ class EmployeeReport extends BaseReport
 
     private function employeeRetirementQuery(): Collection
     {
-        $labels = [
-            1 => 'مكة المكرمة',
-            2 => 'المدينة المنورة',
-        ];
-
         return dd(Employee::select('birthdate')
-            ->get()
-            ->groupBy('age')
-            ->mapWithKeys(function ($item, $key) {
-                return [$key => ['count' => count($item), 'age' => $key]];
-            }));
+                ->get()
+                ->groupBy('age')
+                ->mapWithKeys(function ($item, $key) {
+                    return [$key => ['count' => count($item), 'age' => $key]];
+                }));
     }
 }
