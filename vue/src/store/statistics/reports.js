@@ -98,12 +98,14 @@ const reports = [
   {
     title: "employees.EmployeesAccordingAttendance",
     chart: "employee_absence",
-    type: [  { text: "pie", value: "pie" },
-    { text: "donut", value: "pie" },
-    { text: "column", value: "bar" },
-    { text: "bar", value: "bar" },
-    { text: "line", value: "line" },
-    { text: "area", value: "line" },],
+    type: [
+      { text: "area", value: "line" },
+      { text: "line", value: "line" },
+      { text: "column", value: "bar" },
+      { text: "bar", value: "bar" },
+      { text: "pie", value: "pie" },
+      { text: "donut", value: "pie" },
+    ],
   },
   {
     title: "employees.department_status",
@@ -133,8 +135,12 @@ const reports = [
     title: "employees.department_age",
     chart: "department_age",
     type: [
+      { text: "pie", value: "pie" },
+      { text: "donut", value: "pie" },
+      { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
+      { text: "area", value: "line" },
     ],
   },
 ];
