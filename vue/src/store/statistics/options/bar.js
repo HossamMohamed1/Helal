@@ -88,7 +88,7 @@ const bar = {
     },
   },
   tooltip: {
-    valueSuffix: " millions",
+    valueSuffix: " ",
   },
   plotOptions: {
     bar: {

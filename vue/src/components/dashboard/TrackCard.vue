@@ -2,6 +2,7 @@
   <v-card
     class="d-flex flex-column flex-grow-1"
     :style="{ 'min-height': '115px' }"
+    :loading="loading"
   >
     <div v-if="loading" class="d-flex flex-grow-1 align-center justify-center">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>

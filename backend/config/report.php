@@ -57,6 +57,18 @@ return [
             'groupBy' => 'age',
             'className' => 'EmployeeReport',
         ],
+        'employee_retirement' => [
+            'columns' => ['count'],
+            'unit' => 'number',
+            'groupBy' => 'age',
+            'className' => 'EmployeeReport',
+        ],
+        'employee_card' => [
+            'columns' => ['count'],
+            'unit' => 'number',
+            'groupBy' => 'age',
+            'className' => 'EmployeeReport',
+        ],
         'employee_qualification' => [
             'columns' => ['count'],
             'unit' => 'number',
@@ -64,9 +76,9 @@ return [
             'className' => 'EmployeeReport',
         ],
         'employee_absence' => [
-            'columns' => ['count'],
+            'columns' => ['attendance', 'late', 'no_late', 'early'],
             'unit' => 'number',
-            'groupBy' => 'qualification_desc',
+            'groupBy' => 'late_date',
             'className' => 'EmployeeReport',
         ],
         'department_status' => [
@@ -82,9 +94,9 @@ return [
             'className' => 'DepartmentReport',
         ],
         'department_age' => [
-            'columns' => ['count'],
+            'columns' => ['birthdate'],
             'unit' => 'number',
-            'groupBy' => 'age',
+            'groupBy' => 'dept_desc',
             'className' => 'DepartmentReport',
         ],
 

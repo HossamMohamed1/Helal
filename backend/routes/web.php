@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,9 +26,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
     return config('report.type');
-    $data = \App\Models\Employee::select(DB::raw('count(genderid) as total'))->first()->toArray();
+    // $data = \App\Models\Employee::select(DB::raw('count(genderid) as total'))->first()->toArray();
 
-    dd($data);
+    // dd($data);
 });
 
 Route::any('{path}', function () {

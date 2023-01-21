@@ -10,7 +10,7 @@ const state = {
       label: "employees.employees",
       color: "#8c9eff",
       loading: false,
-      value: 1200,
+      value: 0,
       ordersSeries: [
         {
           name: "Orders",
@@ -28,7 +28,7 @@ const state = {
       label: "employees.males",
       color: "#8c9eff",
       loading: false,
-      value: 1200,
+      value: 0,
       ordersSeries: [
         {
           name: "Orders",
@@ -46,7 +46,7 @@ const state = {
       label: "employees.females",
       color: "#8c9eff",
       loading: false,
-      value: 310,
+      value: 0,
       ordersSeries: [
         {
           name: "Orders",
@@ -64,7 +64,7 @@ const state = {
       label: "employees.attendees",
       color: "#8c9eff",
       loading: false,
-      value: 310,
+      value: 0,
       ordersSeries: [
         {
           name: "Orders",

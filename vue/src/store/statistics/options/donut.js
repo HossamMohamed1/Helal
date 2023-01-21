@@ -15,7 +15,7 @@ const donut = {
           show: true,
           name: "total",
           value: 50,
-          size: '300'
+          size: "300",
         },
       },
     },
@@ -31,7 +31,6 @@ const donut = {
       fontSize: "12px",
       colors: ["#fff"],
     },
-
   },
   responsive: [
     {

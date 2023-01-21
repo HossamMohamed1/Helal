@@ -41,8 +41,8 @@
             mandatory
             class="mb-2"
           >
-            <v-btn>In Active</v-btn>
-            <v-btn>Active</v-btn>
+            <v-btn :value="false">In Active</v-btn>
+            <v-btn :value="true">Active</v-btn>
           </v-btn-toggle>
         </v-col>
         <v-col class="col-6 pb-0">
@@ -61,20 +61,20 @@
 
       <div class="font-weight-bold mt-3 mb-1">Links</div>
       <v-row>
-<!--        <v-col class="col-12 pb-0">-->
-<!--          <legend>Type</legend>-->
-<!--          <v-btn-toggle-->
-<!--            v-model="config.edges.smooth.type"-->
-<!--            color="primary"-->
-<!--            mandatory-->
-<!--            class="mb-2"-->
-<!--          >-->
-<!--            <v-btn value="cubicBezier">One Direction</v-btn>-->
-<!--            &lt;!&ndash;cubicBezier&ndash;&gt;-->
-<!--            <v-btn value="dynamic">Tow Direction</v-btn>-->
-<!--            &lt;!&ndash;dynamic&ndash;&gt;-->
-<!--          </v-btn-toggle>-->
-<!--        </v-col>-->
+        <!--        <v-col class="col-12 pb-0">-->
+        <!--          <legend>Type</legend>-->
+        <!--          <v-btn-toggle-->
+        <!--            v-model="config.edges.smooth.type"-->
+        <!--            color="primary"-->
+        <!--            mandatory-->
+        <!--            class="mb-2"-->
+        <!--          >-->
+        <!--            <v-btn value="cubicBezier">One Direction</v-btn>-->
+        <!--            &lt;!&ndash;cubicBezier&ndash;&gt;-->
+        <!--            <v-btn value="dynamic">Tow Direction</v-btn>-->
+        <!--            &lt;!&ndash;dynamic&ndash;&gt;-->
+        <!--          </v-btn-toggle>-->
+        <!--        </v-col>-->
         <v-col class="col-12 pb-0">
           <legend>Links On Drag</legend>
           <v-btn-toggle
@@ -83,8 +83,8 @@
             mandatory
             class="mb-2"
           >
-            <v-btn>Show</v-btn>
-            <v-btn>Hide</v-btn>
+            <v-btn :value="false">Show</v-btn>
+            <v-btn :value="true">Hide</v-btn>
           </v-btn-toggle>
         </v-col>
       </v-row>
@@ -99,8 +99,8 @@
             mandatory
             class="mb-2"
           >
-            <v-btn>Show</v-btn>
-            <v-btn>Hide</v-btn>
+            <v-btn :value="true">Show</v-btn>
+            <v-btn :value="false">Hide</v-btn>
           </v-btn-toggle>
         </v-col>
       </v-row>

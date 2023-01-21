@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Alkoumi\LaravelHijriDate\Hijri;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
-use Alkoumi\LaravelHijriDate\Hijri;
 
 class Employee extends Model
 {
@@ -17,8 +17,8 @@ class Employee extends Model
 
     protected $appends = ['age'];
 
-    public function getAgeAttribute() 
+    public function getAgeAttribute()
     {
-        return  (int)round(Carbon::parse(Hijri::Date('Y-m-d'))->diffInMonths($this->birthdate) / 12);;
+        return (int) round(Carbon::parse(Hijri::Date('Y-m-d'))->diffInMonths($this->birthdate) / 12);
     }
 }

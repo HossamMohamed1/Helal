@@ -114,7 +114,7 @@ export default {
   methods: {
     ...mapActions("reports", ["loadAnalytics"]),
     loadChart() {
-      console.log(this.chart.config);
+      // console.log(this.chart.config);
       this.nodes = this.analytics?.nodes ?? [];
       this.edges = this.analytics?.edges ?? [];
       const { config } = this.chart;
@@ -128,20 +128,16 @@ export default {
       // Background Color
 
       this.backgroundStyle.backgroundColor = config?.style?.backgroundColor;
-      this.options.interaction.dragNodes =
-        config?.interaction?.dragNodes == "true" ||
-        config?.interaction?.dragNodes == true;
+      this.options.interaction.dragNodes = config?.interaction?.dragNodes;
 
       // Background Color
       // InterActions
       this.options.interaction.hideEdgesOnDrag =
-        config?.interaction?.hideEdgesOnDrag == "true" ||
-        config?.interaction?.hideEdgesOnDrag == true;
+        config?.interaction?.hideEdgesOnDrag;
       this.options.interaction.hideNodesOnDrag =
-        config?.interaction?.hideNodesOnDrag == "true" ||
-        config?.interaction?.hideNodesOnDrag == true;
+        config?.interaction?.hideNodesOnDrag;
       this.options.interaction.navigationButtons =
-        config?.interaction?.navigationButtons == 0;
+        config?.interaction?.navigationButtons;
 
       this.options.physics.repulsion.nodeDistance = parseInt(
         config?.physics?.repulsion?.nodeDistance

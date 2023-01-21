@@ -9,6 +9,8 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+
 
 class ReportController extends Controller
 {
@@ -60,15 +62,24 @@ class ReportController extends Controller
         }
     }
 
-    public function statistics()
+    public function statistics(Request $request)
     {
-        $result = DB::connection('oracle')
-            ->table('v_all_user_emp_info')
-            ->select(
-                DB::raw("count(*) as emps"),
-                DB::raw("COUNT(CASE WHEN genderid = '1'  THEN 1 END) as males"),
-                DB::raw("COUNT(CASE WHEN genderid = '2'  THEN 1 END) as females")
-            )->first();
+        $filter = $request->all();
+
+        if (!$options = ReportService::getReportOption($request->type)) {
+            if ($request->expectsJson()) {
+                return errorMessage('Not found any report for this type');
+            }
+            abort(400, 'Not found any report for this type');
+        }
+
+        $filter += $options;
+        if (!$result = ReportService::cards($filter)) {
+            if ($request->expectsJson()) {
+                return errorMessage('Error In Show Report');
+            }
+            abort(400, 'Error In Show Report');
+        }
 
         return successData($result);
     }

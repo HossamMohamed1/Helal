@@ -74,7 +74,8 @@ class ReportService
     public static function cards($filter = null)
     {
         try {
-            if (!$reportObject = self::prepareObject($filter['type'])) {
+
+            if (!$reportObject = self::prepareObject($filter)) {
                 return false;
             }
 

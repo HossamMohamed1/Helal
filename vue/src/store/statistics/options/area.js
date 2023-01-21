@@ -21,7 +21,7 @@ const area = {
   tooltip: {
     crosshairs: true,
     shared: true,
-    valueSuffix: "°C",
+    valueSuffix: "",
     xDateFormat: "%A, %b %e",
   },
   legend: {

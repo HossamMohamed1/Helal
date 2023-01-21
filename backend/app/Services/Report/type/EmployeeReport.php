@@ -3,18 +3,19 @@
 namespace App\Services\Report\type;
 
 use App\Exceptions\GeneralException;
+use App\Models\Employee;
 use App\Services\Report\BaseReport;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use JsonException;
-use App\Models\Employee;
 
 class EmployeeReport extends BaseReport
 {
     public $result = null;
-    public string $mainTable;
-    public array $filter;
+    public $mainTable;
+    public $filter;
 
     public function __construct($filter)
     {
@@ -59,15 +60,14 @@ class EmployeeReport extends BaseReport
             return [];
         }
 
-        if($this->filter['type'] == 'employee_age'){
+        if ($this->filter['type'] == 'employee_age') {
             return $this->result->toArray();
         }
 
-
         return json_decode($this->result
-            ->mapWithKeys(function ($item) {
-                return [$item->{$this->filter['groupBy']} => $item];
-            }), true, 512, JSON_THROW_ON_ERROR);
+                ->mapWithKeys(function ($item) {
+                    return [$item->{$this->filter['groupBy']} => $item];
+                }), true, 512, JSON_THROW_ON_ERROR);
     }
 
     /**
@@ -135,13 +135,27 @@ class EmployeeReport extends BaseReport
      */
     private function employeeNationalityQuery(): Collection
     {
-    return DB::connection('oracle')
+        $labels = [
+            1 => 'سعودى',
+            27 => 'سعودى 2',
+            2 => 'سعودى 3',
+            126 => 'سعودى 4',
+            // 5782=> 'سعودى',
+
+        ];
+        return DB::connection('oracle')
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
             )->groupBy($this->filter['groupBy'])
-            ->get();
+            ->get()
+            ->map(function ($item) use ($labels) {
+                // return $item;
+                // dd($item->{$this->filter['groupBy']});
+                $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $item->{$this->filter['groupBy']};
+                return $item;
+            });
     }
 
     /**
@@ -163,13 +177,19 @@ class EmployeeReport extends BaseReport
      */
     private function employeeMajorQuery(): Collection
     {
-        return DB::connection('oracle')
-            ->table("EMPLOYEE_QUALIFICATION")
-            ->select(
-                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
-                $this->filter['groupBy']
-            )->groupBy($this->filter['groupBy'])
-            ->get();
+        return (DB::connection('oracle')
+                ->table("EMPLOYEE_QUALIFICATION")
+                ->select(
+                    DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
+                    $this->filter['groupBy']
+                )->groupBy($this->filter['groupBy'])
+                ->get()
+                ->map(function ($item) {
+                    if (empty($item->major_desc)) {
+                        $item->major_desc = 'قبل الثانوية';
+                    }
+                    return $item;
+                }));
     }
 
     /**
@@ -192,12 +212,22 @@ class EmployeeReport extends BaseReport
     private function employeeAbsenceQuery(): Collection
     {
         return DB::connection('oracle')
-            ->table("EMPLOYEE_QUALIFICATION")
+            ->table("v_hadir_late")
             ->select(
-                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
-                $this->filter['groupBy']
-            )->groupBy($this->filter['groupBy'])
-            ->get();
+                DB::raw('count(employee_id) as attendance'),
+                DB::raw('count(case WHEN is_late = 1 then 1 end) as late'),
+                DB::raw('count(case WHEN is_late = 0 then 1 end) as no_late'),
+                DB::raw('count(case when is_early = 1 then 1 end) as early'),
+                'late_date'
+            )
+            ->whereDate('late_date', '>=', now()->format('Y-m-01'))
+            ->groupBy('late_date')
+            ->orderBy('late_date', 'ASC')
+            ->get()
+            ->map(function ($item) {
+                $item->late_date = (new Carbon($item->late_date))->toFormattedDateString();
+                return $item;
+            });
     }
 
     /**
@@ -206,10 +236,52 @@ class EmployeeReport extends BaseReport
     private function employeeAgeQuery(): Collection
     {
         return Employee::select('birthdate')
-        ->get()
-        ->groupBy('age')
-        ->mapWithKeys(function ($item, $key) {
-            return [$key => ['count' => count($item), 'age' => $key]];
-        });
+            ->get()
+            ->groupBy('age')
+            ->mapWithKeys(function ($item, $key) {
+                return [$key => ['count' => count($item), 'age' => $key]];
+            });
+    }
+
+    private function employeeRetirementQuery()
+    {
+        return (Employee::select('birthdate')
+                ->orderBy('birthdate', 'ASC')
+                ->get()
+                ->groupBy('age')
+                ->mapWithKeys(function ($item, $key) {
+                    return [$key => ['count' => count($item), 'age' => $key]];
+                })
+                ->filter(function ($item) {
+                    return $item['age'] >= 56 && $item['age'] < 60;
+                })
+                ->map(function ($item) {
+                    $item['age'] = 60 - $item['age'];
+                    $item['age'] = $item['age'] . ' سنه';
+                    return (object) $item;
+                }));
+    }
+
+    public function cards()
+    {
+        $result = DB::connection('oracle')
+            ->table('v_all_user_emp_info')
+            ->select(
+                DB::raw("count(*) as emps"),
+                DB::raw("COUNT(CASE WHEN genderid = '1'  THEN 1 END) as males"),
+                DB::raw("COUNT(CASE WHEN genderid = '2'  THEN 1 END) as females"),
+            )
+            ->where('v_all_user_emp_info.end_date', '>', now())
+            ->first();
+
+        $result->attendees = $result->emps - DB::connection('oracle')->table('absence')
+            ->join('v_all_user_emp_info', 'absence.employee_id', '=', 'emp_no')
+            ->select(DB::raw('COUNT(employee_id) as absence'), 'absence_date')
+            ->where('absence_date', now()->format('Y/m/d'))
+            ->where('v_all_user_emp_info.end_date', '>', now())
+            ->groupBy('absence_date')
+            ->first()->absence ?? 0;
+
+        return $result;
     }
 }
