@@ -295,8 +295,16 @@ class EmployeeReport extends BaseReport
                 return [$key => ['count' => count($item), 'age' => $key]];
             })
             ->map(function ($item) {
-                $item['age'] = 60 - $item['age'];
-                $item['age'] = $item['age'] . ' سنه';
+                if ($item['age'] < 30) {
+                    $item['age'] = 'اقل من 30';
+                } else if ($item['age'] >= 30 && $item['age'] < 40) {
+                    $item['age'] = '30 - 40';
+                } else if ($item['age'] >= 40 && $item['age'] <= 50) {
+                    $item['age'] = '40 - 50';
+                } else {
+                    $item['age'] = 'اكبر من';
+                }
+
                 return (object) $item;
             });
     }
