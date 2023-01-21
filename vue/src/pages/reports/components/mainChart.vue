@@ -73,6 +73,7 @@ export default {
           result.push({
             name: key,
             data: newItem,
+            ...options?.raduis,
           });
         });
       } else {
@@ -83,6 +84,7 @@ export default {
               return {
                 y: item,
                 name: this.chartData.labels[index],
+                ...options?.raduis,
               };
             }),
           },

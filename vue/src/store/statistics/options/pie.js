@@ -92,7 +92,7 @@ const pie = {
         },
         connectorColor: "silver",
       },
-      showInLegend: false,
+      showInLegend: true,
       borderColor: "#fffs",
       borderWidth: 1,
     },
@@ -104,7 +104,12 @@ const pie = {
       zMin: 0,
     },
   ],
-  colors: ["#1e8e49", "#c3b086"],
+  raduis: {
+    minPointSize: 10,
+    innerSize: "30%",
+    zMin: 0,
+  },
+  colors: ["#1e8e49", "#c3b086", "#a7a7a7", "#fd9162", "#41b27b", "#c9de77"],
 };
 
 export default pie;
