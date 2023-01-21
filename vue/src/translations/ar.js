@@ -469,6 +469,7 @@ export default {
     EmployeesAccordingAttendance:
       "الموظفين حسب حالات الحضور والغياب والأجازات والمهام ولاإستئذان",
     employee_retirement: "الموظفين المتوقع تقاعدهم خلال 4 سنين",
+    age_distribution_for_employees: "توزيع الاعمار بالنسبه للموظفين",
     department_status: "عدد الأقسام/ الإدارات حسب الحالة",
     department_location: "الاقسام حسب المقر",
     absence: "الغياب",

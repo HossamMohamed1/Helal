@@ -48,6 +48,18 @@ const reports = [
     ],
   },
   {
+    title: "employees.age_distribution_for_employees",
+    chart: "age_distribution_for_employees",
+    type: [
+      { text: "pie", value: "pie" },
+      { text: "donut", value: "pie" },
+      { text: "column", value: "bar" },
+      { text: "bar", value: "bar" },
+      { text: "line", value: "line" },
+      { text: "area", value: "line" },
+    ],
+  },
+  {
     title: "employees.employeesByHeadquarters",
     chart: "employee_location",
     type: [
