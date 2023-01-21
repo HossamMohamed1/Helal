@@ -63,6 +63,12 @@ return [
             'groupBy' => 'age',
             'className' => 'EmployeeReport',
         ],
+        'age_distribution_for_employees' => [
+            'columns' => ['count'],
+            'unit' => 'number',
+            'groupBy' => 'age',
+            'className' => 'EmployeeReport',
+        ],
         'employee_card' => [
             'columns' => ['count'],
             'unit' => 'number',
