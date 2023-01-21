@@ -78,25 +78,31 @@ const pie = {
       dataLabels: {
         enabled: true,
         // format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-        formatter: function() {
+        formatter: function () {
           const point = this.point;
-          return '<span style="color: ' + point.color + '">' +
-            point.name + ': ' + Math.round(point.percentage) + '%</span>';
+          return (
+            '<span style="color: ' +
+            point.color +
+            '">' +
+            point.name +
+            ": " +
+            Math.round(point.percentage) +
+            "%</span>"
+          );
         },
         connectorColor: "silver",
-
       },
       showInLegend: false,
-      borderColor: '#fffs',
+      borderColor: "#fffs",
       borderWidth: 1,
     },
   },
   series: [
     {
       minPointSize: 10,
-      innerSize: '20%',
+      innerSize: "20%",
       zMin: 0,
-    }
+    },
   ],
   colors: ["#1e8e49", "#c3b086"],
 };
