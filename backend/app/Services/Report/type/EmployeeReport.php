@@ -288,7 +288,7 @@ class EmployeeReport extends BaseReport
     public function ageDistributionForEmployeesQuery()
     {
         return Employee::select('birthdate')
-            ->orderBy('birthdate', 'ASC')
+            ->orderBy('birthdate', 'DESC')
             ->get()
             ->groupBy('age')
             ->mapWithKeys(function ($item, $key) {
