@@ -75,9 +75,11 @@
 // export default line;
 
 const line = {
+  type: "line",
   chart: {
-    type: "line",
+    type: "line", // line || spline
     zoomType: "x",
+    inverted: false // true || false
   },
   title: {
     text: "",
@@ -89,12 +91,22 @@ const line = {
   //     'target="_blank">Wikipedia.com</a>',
   // },
   xAxis: {
+    reversed: true, // true || false
     categories: [],
+    labels: {
+      rotation: 0, // -45
+    }
   },
   yAxis: {
     title: {
       text: "",
     },
+    labels: {
+      rotation: 0, // -45
+    }
+  },
+  legend: {
+    enabled: true // true || false
   },
   plotOptions: {
     line: {
@@ -102,7 +114,40 @@ const line = {
         enabled: true,
       },
       enableMouseTracking: false,
+      marker: {
+        radius: 4,
+        fillColor: '#ff0',
+        lineColor: '#1e8e49',
+        lineWidth: 1,
+        symbol: 'diamond' // circle, diamond, square, triangle, triangle-down
+      }
     },
+    area: {
+      dataLabels: {
+        enabled: true,
+      },
+      enableMouseTracking: false,
+      marker: {
+        radius: 4,
+        fillColor: '#ff0',
+        lineColor: '#1e8e49',
+        lineWidth: 1,
+        symbol: 'diamond' // circle, diamond, square, triangle, triangle-down
+      }
+    },
+    spline: {
+      marker: {
+        radius: 4,
+        fillColor: '#1e8e49',
+        lineColor: '#1e8e49',
+        lineWidth: 1,
+        symbol: 'diamond' // circle, diamond, square, triangle, triangle-down
+      }
+    },
+
+    series: {
+      // step: 'right'
+    }
   },
   series: [],
   colors: ["#1e8e49", "#fd9162", "#a7a7a7", "#41b27b", "#c9de77"],

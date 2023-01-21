@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <div class="d-flex align-center align-content-space-between">
+    <div class="d-flex align-center align-content-space-between">
       <v-spacer></v-spacer>
       <div style="height: 30px">
         <div class="actions mx-1" @click.stop="dialog = true">
@@ -9,15 +9,15 @@
           </v-btn>
         </div>
       </div>
-    </div> -->
-    <!-- <ChartConfigs
+    </div>
+    <ChartConfigs
       :dialog="dialog"
       @close-modal="(val) => (dialog = val)"
       @applyConfig="applyConfig"
       :type="chartType"
       :chartOptions="chartOptions"
       :title="title"
-    /> -->
+    />
 
     <highcharts :options="chartOptions"></highcharts>
 

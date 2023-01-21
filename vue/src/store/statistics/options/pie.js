@@ -50,6 +50,7 @@
 // export default pie;
 
 const pie = {
+  type: "pie",
   chart: {
     type: "pie",
     plotBackgroundColor: null,
@@ -63,7 +64,7 @@ const pie = {
     text: "",
   },
   tooltip: {
-    pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
+    pointFormat: "{series.name}: <b>{point.y}</b>",
   },
   accessibility: {
     point: {
@@ -76,12 +77,27 @@ const pie = {
       cursor: "pointer",
       dataLabels: {
         enabled: true,
-        format: "<b>{point.name}</b>: {point.percentage:.1f} %",
+        // format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+        formatter: function() {
+          const point = this.point;
+          return '<span style="color: ' + point.color + '">' +
+            point.name + ': ' + Math.round(point.percentage) + '%</span>';
+        },
         connectorColor: "silver",
+
       },
+      showInLegend: false,
+      borderColor: '#fffs',
+      borderWidth: 1,
     },
   },
-  series: [],
+  series: [
+    {
+      minPointSize: 10,
+      innerSize: '20%',
+      zMin: 0,
+    }
+  ],
   colors: ["#1e8e49", "#c3b086"],
 };
 

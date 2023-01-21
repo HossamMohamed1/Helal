@@ -3,12 +3,12 @@ const reports = [
     title: "employees.employeesByDepartment",
     chart: "employee_department",
     type: [
-      { text: "column", value: "bar" },
+      // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
-      { text: "area", value: "line" },
+      // { text: "area", value: "line" },
       { text: "pie", value: "pie" },
-      { text: "donut", value: "pie" },
+      // { text: "donut", value: "pie" },
     ],
   },
   {

@@ -166,35 +166,35 @@ export default {
     //   },
     // };
 
-    // this.loading = false;
-    // this.chartData = {
-    //   bar: {
-    //     labels: ["\u0630\u0643\u0631", "\u0623\u0646\u062b\u0649"],
-    //     result: [
-    //       { name: "\u0627\u0644\u0639\u062f\u062f", data: ["4849", "937"] },
-    //     ],
-    //   },
-    //   line: {
-    //     labels: ["\u0630\u0643\u0631", "\u0623\u0646\u062b\u0649"],
-    //     result: [
-    //       { name: "\u0627\u0644\u0639\u062f\u062f", data: ["4849", "937"] },
-    //     ],
-    //   },
-    //   pie: {
-    //     labels: ["\u0630\u0643\u0631", "\u0623\u0646\u062b\u0649"],
-    //     result: [4849, 937],
-    //   },
-    // };
+    this.loading = false;
+    this.chartData = {
+      bar: {
+        labels: ["\u0630\u0643\u0631", "\u0623\u0646\u062b\u0649"],
+        result: [
+          { name: "\u0627\u0644\u0639\u062f\u062f", data: ["4849", "937"] },
+        ],
+      },
+      line: {
+        labels: ["\u0630\u0643\u0631", "\u0623\u0646\u062b\u0649", "a", "b"],
+        result: [
+          { name: "\u0627\u0644\u0639\u062f\u062f", data: ["4849", "937", "600", "700"] },
+        ],
+      },
+      pie: {
+        labels: ["\u0630\u0643\u0631", "\u0623\u0646\u062b\u0649"],
+        result: [4849, 937],
+      },
+    };
 
-    this.fetchChart(data)
-      .then((res) => {
-        this.loading = false;
-        this.chartData = res;
-      })
-      .catch((err) => {
-        this.loading = false;
-        // console.log(err);
-      });
+    // this.fetchChart(data)
+    //   .then((res) => {
+    //     this.loading = false;
+    //     this.chartData = res;
+    //   })
+    //   .catch((err) => {
+    //     this.loading = false;
+    //     // console.log(err);
+    //   });
   },
   methods: {
     ...mapActions("statistics", ["fetchChart"]),

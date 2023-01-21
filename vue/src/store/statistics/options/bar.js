@@ -43,9 +43,11 @@
 // export default bar;
 
 const bar = {
+  type: "bar",
   chart: {
-    type: "bar",
+    type: "column",
     zoomType: "x",
+    // inverted: true
   },
   title: {
     text: "",
@@ -63,6 +65,13 @@ const bar = {
     title: {
       text: null,
     },
+    reversed: false,  // true || false
+    labels: {
+      rotation: 0, // -45
+      // style: {
+      //   fontSize: '12px',
+      // }
+    }
   },
   yAxis: {
     min: 0,
@@ -72,6 +81,10 @@ const bar = {
     },
     labels: {
       overflow: "justify",
+      rotation: 0, // -45
+      // style: {
+      //   fontSize: '12px',
+      // }
     },
   },
   tooltip: {
@@ -83,6 +96,12 @@ const bar = {
         enabled: true,
       },
     },
+    series: {
+      pointWidth: 40,
+      // borderRadius: 10,
+      // borderRadiusTopLeft: 8,
+      // borderRadiusTopRight: 8
+    }
   },
   legend: {
     // layout: "vertical",
@@ -98,7 +117,22 @@ const bar = {
   credits: {
     enabled: false,
   },
-  series: [],
+  series: [
+    {
+      dataLabels: {
+        enabled: true,
+        rotation: -90,
+        color: '#FFFFFF',
+        align: 'right',
+        format: '{point.y:.1f}', // one decimal
+        y: 10, // 10 pixels down from the top
+        style: {
+          fontSize: '13px',
+          fontFamily: 'Verdana, sans-serif'
+        }
+      }
+    }
+  ],
   colors: ["#1e8e49", "#fd9162", "#a7a7a7", "#41b27b", "#c9de77"],
 };
 
