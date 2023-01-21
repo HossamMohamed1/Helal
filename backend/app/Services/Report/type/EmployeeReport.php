@@ -302,7 +302,7 @@ class EmployeeReport extends BaseReport
                 } else if ($item['age'] >= 40 && $item['age'] <= 50) {
                     $item['age'] = '40 - 50';
                 } else {
-                    $item['age'] = 'اكبر من';
+                    $item['age'] = 'اكبر من 50';
                 }
 
                 return (object) $item;
