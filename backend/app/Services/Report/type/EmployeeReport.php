@@ -314,9 +314,13 @@ class EmployeeReport extends BaseReport
 
     public function employeePublicDepartmentQuery()
     {
-        return DB::connection('orcale')->table('dept')
-            ->select('dept.*', 'count(v_all_user_emp_info.*) as count')
-            ->join('v_all_user_emp_info', 'v_all_user_emp_info.dept.no', '=', 'v_all_user_emp_info.dept_no')
+        return  DB::connection('oracle')->table('dept')
+            ->select('dept.dept_desc',DB::raw( 'count(v_all_user_emp_info.emp_no) as count'))
+            ->join('V_ALL_USER_EMP_INFO', 'V_ALL_USER_EMP_INFO.departmentid', '=', 'dept.dept_no')
+            ->where('dept_parent','1')
+            ->where('dept_status','1')
+            ->orderBy('dept_parent','asc')
+            ->groupBy('dept.dept_desc')
             ->get();
     }
 }
