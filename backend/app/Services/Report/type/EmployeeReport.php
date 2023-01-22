@@ -317,7 +317,6 @@ class EmployeeReport extends BaseReport
             ->select('dept.dept_desc', DB::raw('count(v_all_user_emp_info.emp_no) as count'))
             ->join('V_ALL_USER_EMP_INFO', 'V_ALL_USER_EMP_INFO.departmentid', '=', 'dept.dept_no')
             ->where('dept_parent', '1')
-            ->where('dept_status', '1')
             ->groupBy('dept.dept_desc')
             ->get();
     }
