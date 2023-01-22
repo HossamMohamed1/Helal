@@ -462,6 +462,7 @@ export default {
     employeesByHeadquarters: "الموظفين حسب المقر",
     employeesAccordingToTheirQualifications:
       "الموظفين حسب مؤهلاتهم وتوزيهم في الادارات",
+
     employeesAccordingToTheirQualificationsIn:
       "الموظفين حسب مؤهلاتهم وتوزيهم في",
     employeesAccordingToTheirRanks: "الموظفين حسب مراتبهم وتوزيهم في الادارات",

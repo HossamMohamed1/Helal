@@ -13,6 +13,19 @@ const reports = [
     ],
   },
   {
+    title: "employees.employeesInPublicAgenciesAndAdministrations",
+    chart: "employee_public_department",
+    type: [
+      // // { text: "column", value: "bar" },
+      { text: "bar", value: "bar" },
+      { text: "line", value: "line" },
+      { text: "spline", value: "line" },
+      { text: "area", value: "line" },
+      { text: "pie", value: "pie" },
+      // // { text: "donut", value: "pie" },
+    ],
+  },
+  {
     title: "employees.employeesByGender",
     chart: "employee_gender",
     type: [
