@@ -221,6 +221,7 @@ class EmployeeReport extends BaseReport
                 'late_date'
             )
             ->whereDate('late_date', '>=', now()->format('Y-m-01'))
+        // to_char(sysdate,'DD/MM/YYYY')
             ->groupBy('late_date')
             ->orderBy('late_date', 'ASC')
             ->get()
@@ -228,6 +229,7 @@ class EmployeeReport extends BaseReport
                 $item->late_date = (new Carbon($item->late_date))->toFormattedDateString();
                 return $item;
             });
+
     }
 
     /**
@@ -311,10 +313,13 @@ class EmployeeReport extends BaseReport
 
     public function employeePublicDepartmentQuery()
     {
-        return dd(DB::connection('orcale')->table('dept')
-                ->select('dept.*', 'count(v_all_user_emp_info.*) as count')
-                ->join('v_all_user_emp_info', 'v_all_user_emp_info.dept.no', '=', 'v_all_user_emp_info.dept_no')
-                ->where('')
-                ->get());
+        return DB::connection('oracle')->table('dept')
+            ->select('dept.dept_desc', DB::raw('count(v_all_user_emp_info.emp_no) as count'))
+            ->join('V_ALL_USER_EMP_INFO', 'V_ALL_USER_EMP_INFO.departmentid', '=', 'dept.dept_no')
+            ->where('dept_parent', '1')
+            ->where('dept_status', '1')
+            ->orderBy('dept_parent', 'asc')
+            ->groupBy('dept.dept_desc')
+            ->get();
     }
 }
