@@ -58,7 +58,7 @@ const pie = {
     plotShadow: false,
   },
   legend: {
-    enabled: true,
+    enabled: false,
   },
   title: {
     text: "",
