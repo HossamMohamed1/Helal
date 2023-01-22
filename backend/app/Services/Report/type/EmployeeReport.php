@@ -211,7 +211,7 @@ class EmployeeReport extends BaseReport
      */
     private function employeeAbsenceQuery(): Collection
     {
-        return DB::connection('oracle')
+        return  DB::connection('oracle')
             ->table("v_hadir_late")
             ->select(
                 DB::raw('count(employee_id) as attendance'),
@@ -221,6 +221,7 @@ class EmployeeReport extends BaseReport
                 'late_date'
             )
             ->whereDate('late_date', '>=', now()->format('Y-m-01'))
+            // to_char(sysdate,'DD/MM/YYYY')
             ->groupBy('late_date')
             ->orderBy('late_date', 'ASC')
             ->get()
@@ -228,6 +229,8 @@ class EmployeeReport extends BaseReport
                 $item->late_date = (new Carbon($item->late_date))->toFormattedDateString();
                 return $item;
             });
+
+
     }
 
     /**
