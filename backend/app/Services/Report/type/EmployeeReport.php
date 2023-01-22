@@ -177,19 +177,19 @@ class EmployeeReport extends BaseReport
      */
     private function employeeMajorQuery(): Collection
     {
-        return (DB::connection('oracle')
-                ->table("EMPLOYEE_QUALIFICATION")
-                ->select(
-                    DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
-                    $this->filter['groupBy']
-                )->groupBy($this->filter['groupBy'])
-                ->get()
-                ->map(function ($item) {
-                    if (empty($item->major_desc)) {
-                        $item->major_desc = 'قبل الثانوية';
-                    }
-                    return $item;
-                }));
+        return DB::connection('oracle')
+            ->table("EMPLOYEE_QUALIFICATION")
+            ->select(
+                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
+            )->groupBy($this->filter['groupBy'])
+            ->get()
+            ->map(function ($item) {
+                if (empty($item->major_desc)) {
+                    $item->major_desc = 'قبل الثانوية';
+                }
+                return $item;
+            });
     }
 
     /**
@@ -245,21 +245,21 @@ class EmployeeReport extends BaseReport
 
     private function employeeRetirementQuery()
     {
-        return (Employee::select('birthdate')
-                ->orderBy('birthdate', 'ASC')
-                ->get()
-                ->groupBy('age')
-                ->mapWithKeys(function ($item, $key) {
-                    return [$key => ['count' => count($item), 'age' => $key]];
-                })
-                ->filter(function ($item) {
-                    return $item['age'] >= 56 && $item['age'] < 60;
-                })
-                ->map(function ($item) {
-                    $item['age'] = 60 - $item['age'];
-                    $item['age'] = $item['age'] . ' سنه';
-                    return (object) $item;
-                }));
+        return Employee::select('birthdate')
+            ->orderBy('birthdate', 'ASC')
+            ->get()
+            ->groupBy('age')
+            ->mapWithKeys(function ($item, $key) {
+                return [$key => ['count' => count($item), 'age' => $key]];
+            })
+            ->filter(function ($item) {
+                return $item['age'] >= 56 && $item['age'] < 60;
+            })
+            ->map(function ($item) {
+                $item['age'] = 60 - $item['age'];
+                $item['age'] = $item['age'] . ' سنه';
+                return (object) $item;
+            });
     }
 
     public function cards()
@@ -283,5 +283,29 @@ class EmployeeReport extends BaseReport
             ->first()->absence ?? 0;
 
         return $result;
+    }
+
+    public function ageDistributionForEmployeesQuery()
+    {
+        return Employee::select('birthdate')
+            ->orderBy('birthdate', 'DESC')
+            ->get()
+            ->groupBy('age')
+            ->mapWithKeys(function ($item, $key) {
+                return [$key => ['count' => count($item), 'age' => $key]];
+            })
+            ->map(function ($item) {
+                if ($item['age'] < 30) {
+                    $item['age'] = 'اقل من 30';
+                } else if ($item['age'] >= 30 && $item['age'] < 40) {
+                    $item['age'] = '30 - 40';
+                } else if ($item['age'] >= 40 && $item['age'] <= 50) {
+                    $item['age'] = '40 - 50';
+                } else {
+                    $item['age'] = 'اكبر من 50';
+                }
+
+                return (object) $item;
+            });
     }
 }

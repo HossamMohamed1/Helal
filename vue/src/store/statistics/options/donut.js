@@ -12,7 +12,7 @@ const donut = {
     pie: {
       donut: {
         labels: {
-          show: true,
+          show: false,
           name: "total",
           value: 50,
           size: "300",
@@ -22,6 +22,7 @@ const donut = {
   },
   colors: ["#1e8e49", "#c3b086", "#a7a7a7", "#fd9162", "#41b27b", "#c9de77"],
   legend: {
+    enabled: true,
     position: "bottom",
     horizontalAlign: "center",
   },

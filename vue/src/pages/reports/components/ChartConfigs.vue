@@ -48,14 +48,14 @@
             </div>
             <div class="col-lg-4 py-0 mb-3">
               <div class="font-weight-bold mb-1">Chart inverted</div>
-              <v-btn-toggle
-                v-model="config.chart.inverted"
-                color="primary"
-                mandatory
-              >
-                <v-btn :value="true">Invert</v-btn>
-                <v-btn :value="false">Non Invert</v-btn>
-              </v-btn-toggle>
+                <v-btn-toggle
+                  v-model="config.chart.inverted"
+                  color="primary"
+                  mandatory
+                >
+                  <v-btn :value="true">Invert</v-btn>
+                  <v-btn :value="false">Non Invert</v-btn>
+                </v-btn-toggle>
             </div>
             <div class="col-lg-4 py-0">
               <div class="font-weight-bold mb-1">xAxis inverted</div>
@@ -107,7 +107,6 @@
                 v-model="config.plotOptions.line.marker.lineColors"
               />
             </div>
-
           </div>
           <div class="row pt-2">
             <div class="col-lg-8 py-0 d-flex align-center">
@@ -131,7 +130,6 @@
               ></v-slider>
             </div>
           </div>
-
         </div>
 
         <!--for spline -->
@@ -483,15 +481,18 @@
             </div>
             <div class="col-lg-4 py-0">
               <div class="font-weight-bold mb-1">Inner Radius</div>
-              <v-text-field
-                solo
-                type="text"
-                v-model="config.series.innerSize"
-              ></v-text-field>
+                <v-text-field
+                  solo
+                  type="text"
+                  v-model="config.series.innerSize"
+                ></v-text-field>
             </div>
           </div>
           <div class="row pt-2">
-            <div class="col-lg-4 py-0">
+            <div
+              class="col-lg-4 py-0"
+              v-if="config.plotOptions && config.plotOptions.pie"
+            >
               <div class="font-weight-bold mb-1">Legend</div>
               <v-btn-toggle
                 v-model="config.plotOptions.pie.showInLegend"
@@ -502,7 +503,10 @@
                 <v-btn :value="false">Hide</v-btn>
               </v-btn-toggle>
             </div>
-            <div class="col-lg-4 py-0">
+            <div
+              v-if="config.plotOptions && config.plotOptions.pie"
+              class="col-lg-4 py-0"
+            >
               <div class="font-weight-bold mb-1">Labels</div>
               <v-btn-toggle
                 v-model="config.plotOptions.pie.dataLabels.enabled"
@@ -515,7 +519,10 @@
             </div>
           </div>
           <div class="row pt-5">
-            <div class="col-lg-4 py-0">
+            <div
+              v-if="config.plotOptions && config.plotOptions.pie"
+              class="col-lg-4 py-0"
+            >
               <div class="font-weight-bold mb-1">Stroke Size</div>
               <v-text-field
                 solo
@@ -525,7 +532,11 @@
             </div>
             <div class="col-lg-4 py-0">
               <div class="font-weight-bold mb-1">Stroke Color</div>
-              <input solo type="color" v-model="config.plotOptions.pie.borderColor" />
+              <input
+                solo
+                type="color"
+                v-model="config.plotOptions.pie.borderColor"
+              />
             </div>
           </div>
         </div>
@@ -561,10 +572,16 @@ export default {
   data() {
     return {
       lineType: ["line", "spline", "area"],
-      lineMarkersShape: ["circle", "square", "triangle", "triangle-down", "diamond"],
+      lineMarkersShape: [
+        "circle",
+        "square",
+        "triangle",
+        "triangle-down",
+        "diamond",
+      ],
       barType: ["bar", "column"],
       barDataLabels: ["top", "center", "bottom"],
-      pieType: ["pie", "variablepie"]
+      pieType: ["pie", "variablepie"],
     };
   },
   mounted() {},
@@ -586,7 +603,6 @@ export default {
   methods: {
     applyConfig() {
       this.$emit("applyConfig", this.config);
-      console.log(this.config);
       // this.dialog = false
     },
   },
