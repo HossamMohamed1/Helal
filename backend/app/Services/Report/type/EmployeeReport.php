@@ -308,4 +308,12 @@ class EmployeeReport extends BaseReport
                 return (object) $item;
             });
     }
+
+    public function employeePublicDepartmentQuery()
+    {
+        return DB::connection('orcale')->table('dept')
+            ->select('dept.*')
+            ->join('v_all_user_emp_info', 'v_all_user_emp_info.dept.no', '=', 'v_all_user_emp_info.dept_no')
+            ->get();
+    }
 }

@@ -21,6 +21,12 @@ return [
             'groupBy' => 'genderid',
             'className' => 'EmployeeReport',
         ],
+        'employee_public_department' => [
+            'columns' => ['count'],
+            'unit' => 'number',
+            'groupBy' => 'dept_desc',
+            'className' => 'EmployeeReport',
+        ],
         'employee_department' => [
             'columns' => ['count'],
             'unit' => 'number',
