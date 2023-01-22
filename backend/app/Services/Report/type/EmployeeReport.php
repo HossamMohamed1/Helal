@@ -211,7 +211,7 @@ class EmployeeReport extends BaseReport
      */
     private function employeeAbsenceQuery(): Collection
     {
-        return  DB::connection('oracle')
+        return DB::connection('oracle')
             ->table("v_hadir_late")
             ->select(
                 DB::raw('count(employee_id) as attendance'),
@@ -221,7 +221,7 @@ class EmployeeReport extends BaseReport
                 'late_date'
             )
             ->whereDate('late_date', '>=', now()->format('Y-m-01'))
-            // to_char(sysdate,'DD/MM/YYYY')
+        // to_char(sysdate,'DD/MM/YYYY')
             ->groupBy('late_date')
             ->orderBy('late_date', 'ASC')
             ->get()
@@ -229,7 +229,6 @@ class EmployeeReport extends BaseReport
                 $item->late_date = (new Carbon($item->late_date))->toFormattedDateString();
                 return $item;
             });
-
 
     }
 
@@ -314,12 +313,12 @@ class EmployeeReport extends BaseReport
 
     public function employeePublicDepartmentQuery()
     {
-        return  DB::connection('oracle')->table('dept')
-            ->select('dept.dept_desc',DB::raw( 'count(v_all_user_emp_info.emp_no) as count'))
+        return DB::connection('oracle')->table('dept')
+            ->select('dept.dept_desc', DB::raw('count(v_all_user_emp_info.emp_no) as count'))
             ->join('V_ALL_USER_EMP_INFO', 'V_ALL_USER_EMP_INFO.departmentid', '=', 'dept.dept_no')
-            ->where('dept_parent','1')
-            ->where('dept_status','1')
-            ->orderBy('dept_parent','asc')
+            ->where('dept_parent', '1')
+            ->where('dept_status', '1')
+            ->orderBy('dept_parent', 'asc')
             ->groupBy('dept.dept_desc')
             ->get();
     }
