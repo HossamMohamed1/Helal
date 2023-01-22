@@ -4,6 +4,7 @@ const state = {
   usersPerGender: [],
   usersPerDepartment: [],
   reports,
+  chartOptions,
   cards: [
     {
       backend: "emps",
@@ -78,7 +79,6 @@ const state = {
       ],
     },
   ],
-  chartOptions,
 };
 
 export default state;

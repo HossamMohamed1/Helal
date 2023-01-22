@@ -2,7 +2,7 @@
   <div>
     <div class="d-flex align-center align-content-space-between">
       <v-spacer></v-spacer>
-      <div >
+      <div>
         <div class="actions mx-1" @click.stop="dialog = true">
           <v-btn ref="button" class="drawer-button" color="#1e8e49" small dark>
             <v-icon>mdi-cog-outline</v-icon>
@@ -32,7 +32,6 @@
   </div>
 </template>
 <script>
-import variablePie from "highcharts/modules/variable-pie"
 import ChartConfigs from "./ChartConfigs.vue";
 export default {
   components: {
@@ -110,8 +109,7 @@ export default {
       hideChart: false,
     };
   },
-  computed: {},
-  mounted() {},
+
   methods: {
     applyConfig(val) {
       this.chartOptions = val;

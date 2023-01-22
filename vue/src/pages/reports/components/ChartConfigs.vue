@@ -8,7 +8,7 @@
       {{ $t("general.setting") }} {{ $t(title) }} ({{ type.text }})
     </v-toolbar>
     <v-card flat style="border-radius: 0">
-      <div class=" container">
+      <div class="container">
         <!--        <div class="font-weight-bold mb-1">Color Palette</div>-->
         <!--        <div class="color-palette d-flex mb-2">-->
         <!--          <input-->
@@ -48,14 +48,14 @@
             </div>
             <div class="col-lg-4 py-0 mb-3">
               <div class="font-weight-bold mb-1">Chart inverted</div>
-                <v-btn-toggle
-                  v-model="config.chart.inverted"
-                  color="primary"
-                  mandatory
-                >
-                  <v-btn :value="true">Invert</v-btn>
-                  <v-btn :value="false">Non Invert</v-btn>
-                </v-btn-toggle>
+              <v-btn-toggle
+                v-model="config.chart.inverted"
+                color="primary"
+                mandatory
+              >
+                <v-btn :value="true">Invert</v-btn>
+                <v-btn :value="false">Non Invert</v-btn>
+              </v-btn-toggle>
             </div>
             <div class="col-lg-4 py-0">
               <div class="font-weight-bold mb-1">xAxis inverted</div>
@@ -209,7 +209,6 @@
                 v-model="config.plotOptions.spline.marker.lineColor"
               />
             </div>
-
           </div>
           <div class="row pt-2">
             <div class="col-lg-8 py-0 d-flex align-center">
@@ -233,7 +232,6 @@
               ></v-slider>
             </div>
           </div>
-
         </div>
 
         <!--for spline -->
@@ -313,7 +311,6 @@
                 v-model="config.plotOptions.area.marker.lineColor"
               />
             </div>
-
           </div>
           <div class="row pt-2">
             <div class="col-lg-8 py-0 d-flex align-center">
@@ -337,7 +334,6 @@
               ></v-slider>
             </div>
           </div>
-
         </div>
 
         <!--for Bar -->
@@ -481,11 +477,11 @@
             </div>
             <div class="col-lg-4 py-0">
               <div class="font-weight-bold mb-1">Inner Radius</div>
-                <v-text-field
-                  solo
-                  type="text"
-                  v-model="config.series.innerSize"
-                ></v-text-field>
+              <v-text-field
+                solo
+                type="text"
+                v-model="config.series.innerSize"
+              ></v-text-field>
             </div>
           </div>
           <div class="row pt-2">
@@ -603,6 +599,7 @@ export default {
   methods: {
     applyConfig() {
       this.$emit("applyConfig", this.config);
+      this.open = false;
       // this.dialog = false
     },
   },
