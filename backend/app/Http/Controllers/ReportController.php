@@ -8,9 +8,7 @@ use App\Services\Report\ReportService;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
 
 class ReportController extends Controller
 {
@@ -44,7 +42,7 @@ class ReportController extends Controller
             }
 
             return successData($result);
-        } catch (\Exception $e) {
+        } catch (\Exception$e) {
             return errorMessage($e->getMessage());
         }
     }
@@ -57,7 +55,7 @@ class ReportController extends Controller
             return response()->json([
                 'emp' => $employe,
             ]);
-        } catch (\Throwable $th) {
+        } catch (\Throwable$th) {
             abort(400, 'Error In Show Report');
         }
     }

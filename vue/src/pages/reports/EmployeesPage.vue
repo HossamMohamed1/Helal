@@ -64,8 +64,10 @@
         </div>
       </v-col>
     </v-row>
-    <v-row class="flex-grow-0 mb-1" dense>
+    <v-row class="flex-grow-0 mb-1" dense v-if="showChart">
       <ChartComponent
+        @filter="filter"
+        :filters="filters"
         :report="report"
         v-for="(report, index) in reports"
         :key="index + cards.length"
@@ -77,6 +79,7 @@
 <script>
 // import DateRangePicker from "vue2-daterange-picker";
 import CreateReportDialog from "@/components/reports/employees/CreateReportDialog";
+import { sleep } from "@/helpers";
 const DateRangePicker = () =>
   import(/* webpackChunkName: "DateRangePicker" */ "vue2-daterange-picker");
 import "vue2-daterange-picker/dist/vue2-daterange-picker.css";
@@ -100,6 +103,7 @@ export default {
   },
   data() {
     return {
+      showChart: true,
       breadcrumbs: [
         {
           text: this.$t("menu.reports"),
@@ -138,12 +142,13 @@ export default {
         startDate: "2022-11-1",
         endDate: "2022-12-1",
       },
+      filters: {},
     };
   },
   computed: {
     ...mapState("statistics", ["cards", "reports"]),
   },
-  mounted() {
+  async mounted() {
     this.fetchCards();
   },
   methods: {
@@ -151,6 +156,12 @@ export default {
       this.dialog = false;
     },
     ...mapActions("statistics", ["fetchCards"]),
+    async filter(data) {
+      this.filters = data;
+      this.showChart = false;
+      await sleep(2);
+      this.showChart = true;
+    },
   },
 };
 </script>

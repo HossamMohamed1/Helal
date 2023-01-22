@@ -20,15 +20,6 @@
     />
 
     <highcharts :options="chartOptions"></highcharts>
-
-    <!-- <apexchart
-      width="100%"
-      v-if="!hideChart"
-      height="400"
-      :options="chartOptions"
-      :type="chartType.text"
-      :series="series"
-    ></apexchart> -->
   </div>
 </template>
 <script>
@@ -50,6 +41,7 @@ export default {
       type: String,
       default: "",
     },
+    report: { type: Object, default: {} },
   },
   data() {
     // create instance for each component
@@ -80,11 +72,11 @@ export default {
         result = [
           {
             name: "",
+            ...options?.raduis,
             data: this.chartData.result.map((item, index) => {
               return {
                 y: item,
                 name: this.chartData.labels[index],
-                ...options?.raduis,
               };
             }),
           },
@@ -103,9 +95,19 @@ export default {
     }
 
     // end get new instance for chart option for each component
+
     return {
       dialog: false,
-      chartOptions: newOptions,
+      chartOptions: {
+        ...newOptions,
+        plotOptions: {
+          ...newOptions?.plotOptions,
+          series: {
+            ...newOptions?.plotOptions?.series,
+            events: { click: this.handleClick },
+          },
+        },
+      },
       hideChart: false,
     };
   },
@@ -113,6 +115,13 @@ export default {
   methods: {
     applyConfig(val) {
       this.chartOptions = val;
+    },
+    handleClick(e) {
+      let category = e.point.category ?? e.point.name;
+      const { filter_able } = this.report;
+      if (filter_able) {
+        this.$emit("filter", { category });
+      }
     },
   },
 };

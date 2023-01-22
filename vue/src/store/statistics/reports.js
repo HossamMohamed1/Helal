@@ -2,6 +2,7 @@ const reports = [
   {
     title: "employees.employeesByDepartment",
     chart: "employee_department",
+    filter_able: false,
     type: [
       // // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
@@ -15,6 +16,7 @@ const reports = [
   {
     title: "employees.employeesInPublicAgenciesAndAdministrations",
     chart: "employee_public_department",
+    filter_able: true,
     type: [
       // // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
@@ -28,6 +30,7 @@ const reports = [
   {
     title: "employees.employeesByGender",
     chart: "employee_gender",
+    filter_able: false,
     type: [
       { text: "pie", value: "pie" },
       // { text: "donut", value: "pie" },
@@ -41,6 +44,7 @@ const reports = [
   {
     title: "employees.employee_retirement",
     chart: "employee_retirement",
+    filter_able: false,
     type: [
       { text: "pie", value: "pie" },
       // { text: "donut", value: "pie" },
@@ -54,6 +58,7 @@ const reports = [
   {
     title: "employees.employee_age",
     chart: "employee_age",
+    filter_able: false,
     type: [
       // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
@@ -67,6 +72,7 @@ const reports = [
   {
     title: "employees.age_distribution_for_employees",
     chart: "age_distribution_for_employees",
+    filter_able: false,
     type: [
       { text: "pie", value: "pie" },
       { text: "donut", value: "pie" },
@@ -79,6 +85,7 @@ const reports = [
   {
     title: "employees.employeesByHeadquarters",
     chart: "employee_location",
+    filter_able: false,
     type: [
       // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
@@ -92,6 +99,7 @@ const reports = [
   {
     title: "employees.employee_nationality",
     chart: "employee_nationality",
+    filter_able: false,
     type: [
       { text: "pie", value: "pie" },
       // { text: "donut", value: "pie" },
@@ -105,6 +113,7 @@ const reports = [
   {
     title: "employees.employeesAccordingToTheirQualifications",
     chart: "employee_qualification",
+    filter_able: false,
     type: [
       // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
@@ -118,6 +127,7 @@ const reports = [
   {
     title: "employees.employeesAccordingToTheirRanks",
     chart: "employee_major",
+    filter_able: false,
     type: [
       // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
@@ -131,6 +141,7 @@ const reports = [
   {
     title: "employees.employee_job",
     chart: "employee_job",
+    filter_able: false,
     type: [
       // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
@@ -144,6 +155,7 @@ const reports = [
   {
     title: "employees.EmployeesAccordingAttendance",
     chart: "employee_absence",
+    filter_able: false,
     type: [
       { text: "area", value: "line" },
       { text: "spline", value: "line" },
@@ -157,6 +169,7 @@ const reports = [
   {
     title: "employees.department_status",
     chart: "department_status",
+    filter_able: false,
     type: [
       { text: "pie", value: "pie" },
       // { text: "donut", value: "pie" },
@@ -170,6 +183,7 @@ const reports = [
   {
     title: "employees.department_location",
     chart: "department_location",
+    filter_able: false,
     type: [
       { text: "pie", value: "pie" },
       // { text: "donut", value: "pie" },
@@ -183,6 +197,7 @@ const reports = [
   {
     title: "employees.department_age",
     chart: "department_age",
+    filter_able: false,
     type: [
       { text: "pie", value: "pie" },
       // { text: "donut", value: "pie" },

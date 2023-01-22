@@ -98,13 +98,17 @@ class EmployeeReport extends BaseReport
      */
     private function employeeDepartmentQuery(): Collection
     {
-        return DB::connection('oracle')
+        $query = DB::connection('oracle')
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
-            )->groupBy($this->filter['groupBy'])
-            ->get();
+            )->groupBy($this->filter['groupBy']);
+
+        if (!empty($this->filter['category'])) {
+            $query->where('dept_desc', $this->filter['category']);
+        }
+        return $query->get();
     }
 
     /**
