@@ -318,7 +318,6 @@ class EmployeeReport extends BaseReport
             ->join('V_ALL_USER_EMP_INFO', 'V_ALL_USER_EMP_INFO.departmentid', '=', 'dept.dept_no')
             ->where('dept_parent', '1')
             ->where('dept_status', '1')
-            ->orderBy('dept_parent', 'asc')
             ->groupBy('dept.dept_desc')
             ->get();
     }
