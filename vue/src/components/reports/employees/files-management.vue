@@ -235,4 +235,7 @@ export default {
 .v-list-item:hover {
   background: #f2f2f2;
 }
+.v-stepper{
+  box-shadow: none !important;
+}
 </style>

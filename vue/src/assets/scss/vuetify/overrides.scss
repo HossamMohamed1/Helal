@@ -383,3 +383,6 @@ table.excel {
 .v-card--loading {
   cursor: wait;
 }
+.v-stepper, .v-stepper__header {
+  box-shadow: none !important;
+}

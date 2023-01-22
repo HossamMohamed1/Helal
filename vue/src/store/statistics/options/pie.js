@@ -96,9 +96,10 @@ const pie = {
       minPointSize: 10,
       innerSize: '20%',
       zMin: 0,
+      data:{}
     }
   ],
-  colors: ["#1e8e49", "#c3b086"],
+  colors: ["#1e8e49", "#a7a7a7", "#41b27b", "#c9de77", "#fd9162" ],
 };
 
 export default pie;
