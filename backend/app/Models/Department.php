@@ -12,4 +12,9 @@ class Department extends Model
     protected $table = 'dept';
 
     protected $connection = 'oracle';
+
+    // public function parentDepartment()
+    // {
+    //     return $this->belongsTo(Department::class, 'departmentid', 'dept_no');
+    // }
 }

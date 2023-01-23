@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Employee;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +27,12 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/test', function () {
-    return config('report.type');
+    // return config('report.type');
+    return Employee::select(
+        DB::raw("COUNT(emp_no) as count"),
+        'location_no',
+    )->with('department')
+        ->get();
     // $data = \App\Models\Employee::select(DB::raw('count(genderid) as total'))->first()->toArray();
 
     // dd($data);

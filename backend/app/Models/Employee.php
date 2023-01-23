@@ -21,4 +21,9 @@ class Employee extends Model
     {
         return (int) round(Carbon::parse(Hijri::Date('Y-m-d'))->diffInMonths($this->birthdate) / 12);
     }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'departmentid', 'dept_no');
+    }
 }
