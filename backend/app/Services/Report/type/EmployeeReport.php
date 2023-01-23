@@ -263,8 +263,15 @@ class EmployeeReport extends BaseReport
 
     private function employeeRetirementQuery()
     {
-        return Employee::select('birthdate')
-            ->orderBy('birthdate', 'ASC')
+        $query = Employee::select('birthdate')
+            ->join('dept', 'departmentid', '=', 'dept.dept_no');
+
+        if (!empty($this->filter['category'])) {
+            $query->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
+                ->where('parent.dept_desc', $this->filter['category'])
+                ->orWhere('dept.dept_desc', $this->filter['category']);
+        }
+        return $query->orderBy('birthdate', 'ASC')
             ->get()
             ->groupBy('age')
             ->mapWithKeys(function ($item, $key) {
