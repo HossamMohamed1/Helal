@@ -151,11 +151,11 @@ class EmployeeReport extends BaseReport
             $query = $query->groupBy('location_no');
         }
 
-        return dd($query->get()
-                ->map(function ($item) use ($labels) {
-                    $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $$item->{$this->filter['groupBy']};
-                    return $item;
-                }));
+        return $query->get()
+            ->map(function ($item) use ($labels) {
+                $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $$item->{$this->filter['groupBy']};
+                return $item;
+            });
         // $query = DB::connection('oracle')
         //     ->table($this->mainTable)
         //     ->select(
