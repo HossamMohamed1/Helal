@@ -139,7 +139,7 @@ class EmployeeReport extends BaseReport
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
             )
-            ->join('dept', $this->mainTable . '.departmentid', '=', 'dept.dept_no');
+            ->join('dept', 'departmentid', '=', 'dept.dept_no');
 
         if (!empty($this->filter['category'])) {
             $query->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
