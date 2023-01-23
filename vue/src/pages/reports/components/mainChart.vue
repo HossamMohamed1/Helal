@@ -3,10 +3,25 @@
     <div class="d-flex align-center align-content-space-between">
       <v-spacer></v-spacer>
       <div>
-        <div class="actions mx-1" @click.stop="dialog = true">
-          <v-btn ref="button" class="drawer-button" color="#1e8e49" small dark>
+        <div class="actions d-flex align-item-center mx-1">
+          <v-btn
+            ref="button"
+            class="drawer-button"
+            @click.stop="dialog = true"
+            color="#1e8e49"
+            small
+            dark
+          >
             <v-icon>mdi-cog-outline</v-icon>
           </v-btn>
+          <v-chip
+            v-if="category"
+            class="d-flex mr-1"
+            close
+            @click:close="handleResetFilter"
+          >
+            {{ category }}
+          </v-chip>
         </div>
       </div>
     </div>
@@ -109,6 +124,7 @@ export default {
         },
       },
       hideChart: false,
+      category: null,
     };
   },
 
@@ -120,8 +136,13 @@ export default {
       let category = e.point.category ?? e.point.name;
       const { filter_able } = this.report;
       if (filter_able) {
+        this.category = category;
         this.$emit("filter", { category });
       }
+    },
+    handleResetFilter() {
+      this.category = null;
+      this.$emit("filter", { category: this.category });
     },
   },
 };
