@@ -98,17 +98,21 @@ class EmployeeReport extends BaseReport
      */
     private function employeeDepartmentQuery(): Collection
     {
-        $query = DB::connection('oracle')
+        $query =  DB::connection('oracle')
             ->table($this->mainTable)
             ->select(
-                DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                $this->filter['groupBy']
-            )->groupBy($this->filter['groupBy']);
+                DB::raw("COUNT(emp_no) as {$this->filter['columns'][0]}"),
+                'dept.'.   $this->filter['groupBy'],
+             
+            )
+            ->join('dept', 'departmentid', '=', 'dept.dept_no');
 
         if (!empty($this->filter['category'])) {
-            $query->where('dept_desc', $this->filter['category']);
+            $query->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
+            ->where('parent.dept_desc', $this->filter['category'])
+                ->orWhere('dept.dept_desc', $this->filter['category']);
         }
-        return $query->get();
+        return  $query->groupBy('dept.'. $this->filter['groupBy'])->get();
     }
 
     /**
@@ -283,7 +287,7 @@ class EmployeeReport extends BaseReport
         $result->attendees = $result->emps - DB::connection('oracle')->table('absence')
             ->join('v_all_user_emp_info', 'absence.employee_id', '=', 'emp_no')
             ->select(DB::raw('COUNT(employee_id) as absence'), 'absence_date')
-            ->where('absence_date', now()->format('Y/m/d'))
+            ->where('absence_date', now()->format('Y/m/d '))
             ->where('v_all_user_emp_info.end_date', '>', now())
             ->groupBy('absence_date')
             ->first()->absence ?? 0;
