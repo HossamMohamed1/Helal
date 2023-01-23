@@ -136,11 +136,13 @@ class EmployeeReport extends BaseReport
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT(emp_no) as {$this->filter['columns'][0]}"),
+                'departmentid',
                 $this->filter['groupBy'],
-            )
-            ->join('dept', 'departmentid', '=', 'dept.dept_no');
+            );
+        // ->join('dept', 'departmentid', '=', 'dept.dept_no');
 
-        return $query->get()
+        return $query->groupBy('departmentid', $this->filter['groupBy'])
+            ->get()
             ->map(function ($item) use ($labels) {
                 $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $$item->{$this->filter['groupBy']};
                 return $item;
