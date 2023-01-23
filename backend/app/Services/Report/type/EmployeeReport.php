@@ -146,6 +146,9 @@ class EmployeeReport extends BaseReport
                         return $q->where('dept_desc', $category);
                     });
                 })
+                ->orWhereHas('department', function ($q) use ($category) {
+                    return $q->where('dept_desc', $category);
+                })
                 ->groupBy('location_no', 'departmentId');
         } else {
             $query = $query->groupBy('location_no');
