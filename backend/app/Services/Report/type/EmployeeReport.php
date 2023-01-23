@@ -80,12 +80,21 @@ class EmployeeReport extends BaseReport
             2 => 'أنثى',
         ];
 
-        return DB::connection('oracle')
+        $query = DB::connection('oracle')
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
-            )->groupBy($this->filter['groupBy'])
+            )
+            ->join('dept', 'departmentid', '=', 'dept.dept_no');
+
+        if (!empty($this->filter['category'])) {
+            $query->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
+                ->where('parent.dept_desc', $this->filter['category'])
+                ->orWhere('dept.dept_desc', $this->filter['category']);
+        }
+
+        return $query->groupBy($this->filter['groupBy'])
             ->get()
             ->map(function ($item) use ($labels) {
                 $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $$item->{$this->filter['groupBy']};
@@ -98,21 +107,20 @@ class EmployeeReport extends BaseReport
      */
     private function employeeDepartmentQuery(): Collection
     {
-        $query =  DB::connection('oracle')
+        $query = DB::connection('oracle')
             ->table($this->mainTable)
             ->select(
                 DB::raw("COUNT(emp_no) as {$this->filter['columns'][0]}"),
-                'dept.'.   $this->filter['groupBy'],
-             
+                'dept.' . $this->filter['groupBy'],
             )
             ->join('dept', 'departmentid', '=', 'dept.dept_no');
 
         if (!empty($this->filter['category'])) {
             $query->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
-            ->where('parent.dept_desc', $this->filter['category'])
+                ->where('parent.dept_desc', $this->filter['category'])
                 ->orWhere('dept.dept_desc', $this->filter['category']);
         }
-        return  $query->groupBy('dept.'. $this->filter['groupBy'])->get();
+        return $query->groupBy('dept.' . $this->filter['groupBy'])->get();
     }
 
     /**

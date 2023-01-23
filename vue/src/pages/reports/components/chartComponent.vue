@@ -86,6 +86,28 @@ export default {
     },
   },
 
+  watch: {
+    filters() {
+      let data = {
+        charts: this.report.type.map((item) => item.value),
+        type: this.report.chart,
+        ...this.filters,
+      };
+      const { filter_able } = this.report;
+      if (!filter_able) {
+        this.loading = true;
+        this.fetchChart(data)
+          .then((res) => {
+            this.loading = false;
+            this.chartData = res;
+          })
+          .catch((err) => {
+            this.loading = false;
+          });
+      }
+    },
+  },
+
   mounted() {
     let data = {
       charts: this.report.type.map((item) => item.value),

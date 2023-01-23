@@ -64,7 +64,7 @@
         </div>
       </v-col>
     </v-row>
-    <v-row class="flex-grow-0 mb-1" dense v-if="showChart">
+    <v-row class="flex-grow-0 mb-1" dense>
       <ChartComponent
         @filter="filter"
         :filters="filters"
@@ -158,9 +158,6 @@ export default {
     ...mapActions("statistics", ["fetchCards"]),
     async filter(data) {
       this.filters = data;
-      this.showChart = false;
-      await sleep(2);
-      this.showChart = true;
     },
   },
 };
