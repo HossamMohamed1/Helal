@@ -141,12 +141,12 @@ class EmployeeReport extends BaseReport
             );
         // ->join('dept', 'departmentid', '=', 'dept.dept_no');
 
-        return $query->groupBy('departmentid', $this->filter['groupBy'])
-            ->get()
-            ->map(function ($item) use ($labels) {
-                $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $$item->{$this->filter['groupBy']};
-                return $item;
-            });
+        return dd($query->groupBy('departmentid', $this->filter['groupBy'])
+                ->get()
+                ->map(function ($item) use ($labels) {
+                    $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $$item->{$this->filter['groupBy']};
+                    return $item;
+                }));
 
         // $query = DB::connection('oracle')
         //     ->table($this->mainTable)
