@@ -132,20 +132,33 @@ class EmployeeReport extends BaseReport
             1 => 'مكة المكرمة',
             2 => 'المدينة المنورة',
         ];
-
         $query = DB::connection('oracle')
             ->table($this->mainTable)
             ->select(
-                DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                $this->filter['groupBy']
+                DB::raw("COUNT(emp_no) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy'],
             )
-            ->join('dept',$this->mainTable. '.departmentid', '=', 'dept.dept_no');
-        return $query->groupBy($this->filter['groupBy'])
-            ->get()
+            ->join('dept', 'departmentid', '=', 'dept.dept_no');
+
+        return $query->get()
             ->map(function ($item) use ($labels) {
                 $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $$item->{$this->filter['groupBy']};
                 return $item;
             });
+
+        // $query = DB::connection('oracle')
+        //     ->table($this->mainTable)
+        //     ->select(
+        //         DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
+        //         $this->filter['groupBy']
+        //     )
+        //     ->join('dept',$this->mainTable. '.departmentid', '=', 'dept.dept_no');
+        // return $query->groupBy($this->filter['groupBy'])
+        //     ->get()
+        //     ->map(function ($item) use ($labels) {
+        //         $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $$item->{$this->filter['groupBy']};
+        //         return $item;
+        //     });
     }
 
     /**
@@ -158,8 +171,6 @@ class EmployeeReport extends BaseReport
             27 => 'سعودى 2',
             2 => 'سعودى 3',
             126 => 'سعودى 4',
-            // 5782=> 'سعودى',
-
         ];
         return DB::connection('oracle')
             ->table($this->mainTable)
