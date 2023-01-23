@@ -320,8 +320,16 @@ class EmployeeReport extends BaseReport
 
     public function ageDistributionForEmployeesQuery()
     {
-        return Employee::select('birthdate')
-            ->orderBy('birthdate', 'DESC')
+        $query = Employee::select('birthdate')
+            ->join('dept', 'departmentid', '=', 'dept.dept_no');
+
+        if (!empty($this->filter['category'])) {
+            $query->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
+                ->where('parent.dept_desc', $this->filter['category'])
+                ->orWhere('dept.dept_desc', $this->filter['category']);
+        }
+
+        return $query->orderBy('birthdate', 'DESC')
             ->get()
             ->groupBy('age')
             ->mapWithKeys(function ($item, $key) {
