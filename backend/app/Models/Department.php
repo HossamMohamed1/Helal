@@ -13,8 +13,8 @@ class Department extends Model
 
     protected $connection = 'oracle';
 
-    // public function parentDepartment()
-    // {
-    //     return $this->belongsTo(Department::class, 'departmentid', 'dept_no');
-    // }
+    public function parentDepartment()
+    {
+        return $this->belongsTo(Department::class, 'dept_parent', 'dept_no');
+    }
 }
