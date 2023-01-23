@@ -135,11 +135,27 @@ class EmployeeReport extends BaseReport
 
         $query = Employee::select(
             DB::raw("COUNT(emp_no) as count"),
-            'departmentId',
             'location_no',
         );
 
-        return $query->get();
+        if (!empty($this->filter['category'])) {
+            $category = $this->filter['category'];
+            $query = $query->addSelect('departmentId')
+                ->whereHas('department', function ($q) use ($category) {
+                    return $q->whereHas('parentDepartment', function ($q) use ($category) {
+                        return $q->where('dept_desc', $category);
+                    });
+                })
+                ->groupBy('location_no', 'departmentId');
+        } else {
+            $query = $query->groupBy('location_no');
+        }
+
+        return dd($query->get()
+                ->map(function ($item) use ($labels) {
+                    $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $$item->{$this->filter['groupBy']};
+                    return $item;
+                }));
         // $query = DB::connection('oracle')
         //     ->table($this->mainTable)
         //     ->select(
