@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Employee;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,13 +27,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
     // return config('report.type');
-    return Employee::select(
-        DB::raw("COUNT(emp_no) as count"),
-        'departmentId',
-        'location_no',
-    )->with('department')
-        ->groupBy('location_no','departmentId')
-        ->get('count','location_no');
+    return Employee::get('age');
+    // return Employee::select(
+    //     DB::raw("COUNT(emp_no) as count"),
+    //     'departmentId',
+    //     'location_no',
+    // )->with('department')
+    //     ->groupBy('location_no','departmentId')
+    //     ->get('count','location_no');
     // $data = \App\Models\Employee::select(DB::raw('count(genderid) as total'))->first()->toArray();
 
     // dd($data);
