@@ -370,7 +370,7 @@ class EmployeeReport extends BaseReport
                 ->orWhere('dept.dept_desc', $this->filter['category']);
         }
 
-        return $query->orderBy('birthdate', 'DESC')
+        return ( $query->orderBy('birthdate', 'DESC')
             ->get()
             ->groupBy('age')
             ->mapWithKeys(function ($item, $key) {
@@ -388,7 +388,13 @@ class EmployeeReport extends BaseReport
                 }
 
                 return (object) $item;
-            });
+            })
+            ->groupBy('age')
+            ->mapWithKeys(function ($item, $key) {
+                // dd($item[0]);
+                // dd(ARR)
+                return  [$key => ['count' => count($item), 'age' => $key]];
+            }));
     }
 
     public function employeePublicDepartmentQuery()
