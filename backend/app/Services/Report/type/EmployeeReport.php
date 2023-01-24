@@ -214,7 +214,7 @@ class EmployeeReport extends BaseReport
                     // dd($item->{$this->filter['groupBy']});
                     $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $item->{$this->filter['groupBy']};
                     return $item;
-                }));
+                })->groupBy($this->filter['groupBy']));
     }
 
     /**
