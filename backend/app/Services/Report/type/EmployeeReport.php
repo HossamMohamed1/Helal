@@ -197,7 +197,8 @@ class EmployeeReport extends BaseReport
         $labels = [
             1 => 'سعودى',
             27 => 'غير سعودى',
-
+            2 => 'غير سعودى',
+            126 => 'غير سعودى',
         ];
         return DB::connection('oracle')
             ->table($this->mainTable)
@@ -311,11 +312,11 @@ class EmployeeReport extends BaseReport
 
     private function employeeRetirementQuery()
     {
-        $query = Employee::select('birthdate');
+        $query = Employee::select('birthdate')
+            ->join('dept', 'departmentid', '=', 'dept.dept_no');
 
         if (!empty($this->filter['category'])) {
             $query->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
-                ->join('dept', 'departmentid', '=', 'dept.dept_no')
                 ->where('parent.dept_desc', $this->filter['category'])
                 ->orWhere('dept.dept_desc', $this->filter['category']);
         }
