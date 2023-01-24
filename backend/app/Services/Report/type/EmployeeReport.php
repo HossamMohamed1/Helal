@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Services\Report\BaseReport;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use JsonException;
@@ -370,31 +371,32 @@ class EmployeeReport extends BaseReport
                 ->orWhere('dept.dept_desc', $this->filter['category']);
         }
 
-        return ( $query->orderBy('birthdate', 'DESC')
-            ->get()
-            ->groupBy('age')
-            ->mapWithKeys(function ($item, $key) {
-                return [$key => ['count' => count($item), 'age' => $key]];
-            })
-            ->map(function ($item) {
-                if ($item['age'] < 30) {
-                    $item['age'] = 'اقل من 30';
-                } else if ($item['age'] >= 30 && $item['age'] < 40) {
-                    $item['age'] = '30 - 40';
-                } else if ($item['age'] >= 40 && $item['age'] <= 50) {
-                    $item['age'] = '40 - 50';
-                } else {
-                    $item['age'] = 'اكبر من 50';
-                }
+        return ($query->orderBy('birthdate', 'DESC')
+                ->get()
+                ->groupBy('age')
+                ->mapWithKeys(function ($item, $key) {
+                    return [$key => ['count' => count($item), 'age' => $key]];
+                })
+                ->map(function ($item) {
+                    if ($item['age'] < 30) {
+                        $item['age'] = 'اقل من 30';
+                    } else if ($item['age'] >= 30 && $item['age'] < 40) {
+                        $item['age'] = '30 - 40';
+                    } else if ($item['age'] >= 40 && $item['age'] <= 50) {
+                        $item['age'] = '40 - 50';
+                    } else {
+                        $item['age'] = 'اكبر من 50';
+                    }
 
-                return (object) $item;
-            })
-            ->groupBy('age')
-            ->mapWithKeys(function ($item, $key) {
-                // dd($item[0]);
-                // dd(ARR)
-                return  [$key => ['count' => count($item), 'age' => $key]];
-            }));
+                    return (object) $item;
+                })
+                ->groupBy('age')
+                ->mapWithKeys(function ($item, $key) {
+                    // dd($item[0]);
+                    // dd(ARR)
+                    dd(array_sum($item), 'count');
+                    return [$key => ['count' => count($item), 'age' => $key]];
+                }));
     }
 
     public function employeePublicDepartmentQuery()
