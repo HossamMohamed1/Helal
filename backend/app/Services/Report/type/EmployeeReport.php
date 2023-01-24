@@ -201,19 +201,20 @@ class EmployeeReport extends BaseReport
             2 => 'غير سعودى',
             126 => 'غير سعودى',
         ];
-        return DB::connection('oracle')
-            ->table($this->mainTable)
-            ->select(
-                DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                $this->filter['groupBy']
-            )->groupBy($this->filter['groupBy'])
-            ->get()
-            ->map(function ($item) use ($labels) {
-                // return $item;
-                // dd($item->{$this->filter['groupBy']});
-                $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $item->{$this->filter['groupBy']};
-                return $item;
-            });
+        return dd(DB::connection('oracle')
+                ->table($this->mainTable)
+                ->select(
+                    DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
+                    $this->filter['groupBy']
+                )->groupBy($this->filter['groupBy'])
+                ->get()
+                ->map(function ($item) use ($labels) {
+                    // dd($item);
+                    // return $item;
+                    // dd($item->{$this->filter['groupBy']});
+                    $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $item->{$this->filter['groupBy']};
+                    return $item;
+                }));
     }
 
     /**
@@ -371,29 +372,29 @@ class EmployeeReport extends BaseReport
                 ->orWhere('dept.dept_desc', $this->filter['category']);
         }
 
-        return ($query->orderBy('birthdate', 'DESC')
-                ->get()
-                ->groupBy('age')
-                ->mapWithKeys(function ($item, $key) {
-                    return [$key => ['count' => count($item), 'age' => $key]];
-                })
-                ->map(function ($item) {
-                    if ($item['age'] < 30) {
-                        $item['age'] = 'اقل من 30';
-                    } else if ($item['age'] >= 30 && $item['age'] < 40) {
-                        $item['age'] = '30 - 40';
-                    } else if ($item['age'] >= 40 && $item['age'] <= 50) {
-                        $item['age'] = '40 - 50';
-                    } else {
-                        $item['age'] = 'اكبر من 50';
-                    }
+        return $query->orderBy('birthdate', 'DESC')
+            ->get()
+            ->groupBy('age')
+            ->mapWithKeys(function ($item, $key) {
+                return [$key => ['count' => count($item), 'age' => $key]];
+            })
+            ->map(function ($item) {
+                if ($item['age'] < 30) {
+                    $item['age'] = 'اقل من 30';
+                } else if ($item['age'] >= 30 && $item['age'] < 40) {
+                    $item['age'] = '30 - 40';
+                } else if ($item['age'] >= 40 && $item['age'] <= 50) {
+                    $item['age'] = '40 - 50';
+                } else {
+                    $item['age'] = 'اكبر من 50';
+                }
 
-                    return (object) $item;
-                })
-                ->groupBy('age')
-                ->mapWithKeys(function ($item, $key) {
-                    return [$key => (object) ['count' => $item->sum('count'), 'age' => $key]];
-                })->values());
+                return (object) $item;
+            })
+            ->groupBy('age')
+            ->mapWithKeys(function ($item, $key) {
+                return [$key => (object) ['count' => $item->sum('count'), 'age' => $key]];
+            })->values();
     }
 
     public function employeePublicDepartmentQuery()
