@@ -196,7 +196,7 @@ class EmployeeReport extends BaseReport
     {
         $labels = [
             1 => 'سعودى',
-            27 => 'سعودى 2',
+            27 => 'غير سعودى',
 
         ];
         return DB::connection('oracle')
