@@ -392,11 +392,8 @@ class EmployeeReport extends BaseReport
                 })
                 ->groupBy('age')
                 ->mapWithKeys(function ($item, $key) {
-                    // dd($item[0]);
-                    // dd(ARR)
-                    dd(array_sum($item), 'count');
-                    return [$key => ['count' => count($item), 'age' => $key]];
-                }));
+                    return [$key => (object) ['count' => $item->sum('count'), 'age' => $key]];
+                })->values());
     }
 
     public function employeePublicDepartmentQuery()
