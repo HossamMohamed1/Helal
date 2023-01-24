@@ -85,11 +85,11 @@ class EmployeeReport extends BaseReport
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
-            )
-            ->join('dept', 'departmentid', '=', 'dept.dept_no');
+            );
 
         if (!empty($this->filter['category'])) {
-            $query->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
+            $query->join('dept', 'departmentid', '=', 'dept.dept_no')
+                ->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
                 ->where('parent.dept_desc', $this->filter['category'])
                 ->orWhere('dept.dept_desc', $this->filter['category']);
         }
@@ -294,11 +294,11 @@ class EmployeeReport extends BaseReport
      */
     private function employeeAgeQuery(): Collection
     {
-        $query = Employee::select('birthdate')
-            ->join('dept', 'departmentid', '=', 'dept.dept_no');
+        $query = Employee::select('birthdate');
 
         if (!empty($this->filter['category'])) {
-            $query->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
+            $query->join('dept', 'departmentid', '=', 'dept.dept_no')
+                ->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
                 ->where('parent.dept_desc', $this->filter['category'])
                 ->orWhere('dept.dept_desc', $this->filter['category']);
         }
@@ -312,11 +312,11 @@ class EmployeeReport extends BaseReport
 
     private function employeeRetirementQuery()
     {
-        $query = Employee::select('birthdate')
-            ->join('dept', 'departmentid', '=', 'dept.dept_no');
+        $query = Employee::select('birthdate');
 
         if (!empty($this->filter['category'])) {
-            $query->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
+            $query->join('dept', 'departmentid', '=', 'dept.dept_no')
+                ->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
                 ->where('parent.dept_desc', $this->filter['category'])
                 ->orWhere('dept.dept_desc', $this->filter['category']);
         }
@@ -361,11 +361,11 @@ class EmployeeReport extends BaseReport
 
     public function ageDistributionForEmployeesQuery()
     {
-        $query = Employee::select('birthdate')
-            ->join('dept', 'departmentid', '=', 'dept.dept_no');
+        $query = Employee::select('birthdate');
 
         if (!empty($this->filter['category'])) {
-            $query->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
+            $query->join('dept', 'departmentid', '=', 'dept.dept_no')
+                ->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
                 ->where('parent.dept_desc', $this->filter['category'])
                 ->orWhere('dept.dept_desc', $this->filter['category']);
         }
