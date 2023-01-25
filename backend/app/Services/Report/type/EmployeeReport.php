@@ -298,13 +298,17 @@ class EmployeeReport extends BaseReport
     {
         $query = Employee::select('birthdate');
 
-        $ages = Employee::orderBy('birthdate', 'desc')
-            ->get()
+        $ages = Employee::get()
             ->pluck('age')
-            ->unique()->chunk(5)->map(function ($item) {
+            ->unique()
+            ->sort()
+            ->chunk(5)
+            ->map(function ($item) {
+                // return $item;
             return (object) ['max' => max($item->toArray()), 'min' => min($item->toArray())];
-        });
+        })->values();
 
+   
         if (!empty($this->filter['category'])) {
             $query->join('dept', 'departmentid', '=', 'dept.dept_no')
                 ->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
@@ -312,13 +316,16 @@ class EmployeeReport extends BaseReport
                 ->orWhere('dept.dept_desc', $this->filter['category']);
         }
 
-        return $query->get()
+        return  $query->get()
             ->groupBy('age')
-            ->mapWithKeys(function ($item, $key) use ($ages) {
+            ->mapWithKeys(function ($item, $key) use($ages) {
                 $minMax = find_in_array_with_min_max($ages, $key);
-                dd($minMax);
-                return [$key => ['count' => count($item), 'age' => $key]];
-            });
+                // dd($minMax);    
+                return [$key => ['count' => count($item), 'age' => "{$minMax->min} - {$minMax->max}"]];
+            })->groupBy('age')
+            ->mapWithKeys(function ($item,$key) {
+                return [$key => ['count' => $item->sum('count'), 'age' => $key]];
+            })->sortBy('age');
     }
 
     private function employeeRetirementQuery()

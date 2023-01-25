@@ -76,13 +76,15 @@ function camelCase($string, $capitalizeFirstCharacter = false)
 if (!function_exists('find_in_array_with_min_max')) {
     function find_in_array_with_min_max($arr, $single)
     {
+        // dd($arr,$single);
         foreach ($arr as $item) {
+           
             // dd($item,$single);
-            if ($item->min >= $single && $item->max <= $single) {
-                dd($item);
-            } else {
-                dd('else');
-            }
+            if ($single >= $item->min && $single <= $item->max) {
+
+
+                return $item;
+            } 
 
         }
 
