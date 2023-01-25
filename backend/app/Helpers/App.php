@@ -72,3 +72,22 @@ function camelCase($string, $capitalizeFirstCharacter = false)
 
     return $str;
 }
+
+
+if(!function_exists('find_in_array_with_min_max'))
+{
+function    find_in_array_with_min_max($arr , $single) {
+foreach ($arr as $item) {
+    // dd($item,$single);
+    if($item->min >= $single && $item->max <= $single) {
+        dd($item);
+    }
+    // if($item->min >= $single && $item->max <= $single) {
+    //     dd($item);
+    //     return $item;
+    // }}
+}
+
+
+}
+}
