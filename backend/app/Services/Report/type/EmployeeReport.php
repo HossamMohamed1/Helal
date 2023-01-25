@@ -325,7 +325,8 @@ class EmployeeReport extends BaseReport
             })->groupBy('age')
             ->mapWithKeys(function ($item,$key) {
                 return [$key => ['count' => $item->sum('count'), 'age' => $key]];
-            })->sortBy('age');
+            })
+            ->sortBy('age');
     }
 
     private function employeeRetirementQuery()
