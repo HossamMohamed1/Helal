@@ -297,15 +297,14 @@ class EmployeeReport extends BaseReport
     private function employeeAgeQuery(): Collection
     {
         $query = Employee::select('birthdate');
-      
-        $ages = Employee::orderBy('birthdate','desc')
-        ->get()
-        ->pluck('age')
-        ->unique()->chunk(5)->map(function ($item) {
-            return (object) ['max'=> max(  $item->toArray()) ,'min'=> min(  $item->toArray())];
+
+        $ages = Employee::orderBy('birthdate', 'desc')
+            ->get()
+            ->pluck('age')
+            ->unique()->chunk(5)->map(function ($item) {
+            return (object) ['max' => max($item->toArray()), 'min' => min($item->toArray())];
         });
-    
-       
+
         if (!empty($this->filter['category'])) {
             $query->join('dept', 'departmentid', '=', 'dept.dept_no')
                 ->join('dept parent', 'parent.dept_no', '=', 'dept.dept_parent')
@@ -315,9 +314,9 @@ class EmployeeReport extends BaseReport
 
         return $query->get()
             ->groupBy('age')
-            ->mapWithKeys(function ($item, $key) use($ages) {
-                $minMax = find_in_array_with_min_max($ages,$key);
-             dd( $minMax);
+            ->mapWithKeys(function ($item, $key) use ($ages) {
+                $minMax = find_in_array_with_min_max($ages, $key);
+                dd($minMax);
                 return [$key => ['count' => count($item), 'age' => $key]];
             });
     }
