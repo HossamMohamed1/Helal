@@ -201,7 +201,7 @@ class EmployeeReport extends BaseReport
             2 => 'غير سعودى',
             126 => 'غير سعودى',
         ];
-        return dd(DB::connection('oracle')
+        return DB::connection('oracle')
                 ->table($this->mainTable)
                 ->select(
                     DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
@@ -211,7 +211,11 @@ class EmployeeReport extends BaseReport
                 ->map(function ($item) use ($labels) {
                     $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $item->{$this->filter['groupBy']};
                     return $item;
-                })->groupBy($this->filter['groupBy']));
+                })->groupBy($this->filter['groupBy'])
+                ->mapWithKeys(function ($item,$key) {
+                    return [$key => (object) ['nationalityid'=> $key,'count'=>$item->sum('count')]];
+                })
+            ;
     }
 
     /**
