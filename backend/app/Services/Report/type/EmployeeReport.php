@@ -214,8 +214,7 @@ class EmployeeReport extends BaseReport
                 })->groupBy($this->filter['groupBy'])
                 ->mapWithKeys(function ($item,$key) {
                     return [$key => (object) ['nationalityid'=> $key,'count'=>$item->sum('count')]];
-                })
-            ;
+                });
     }
 
     /**
