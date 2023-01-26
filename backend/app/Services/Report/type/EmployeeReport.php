@@ -427,7 +427,12 @@ class EmployeeReport extends BaseReport
             })
             ->groupBy($this->filter['groupBy'])
             ->mapWithKeys(function ($item, $key) {
-                dd($key, $item);
+                return [
+                    $key => (object) [
+                        'experience' => $key,
+                        'count' => $item->sum('count'),
+                    ],
+                ];
             });
 
     }
