@@ -143,7 +143,7 @@ class DepartmentReport extends BaseReport
 
     private function departmentLessFiveEmployeeQuery()
     {
-      
+
         $query = DB::connection('oracle')
             ->table('V_ALL_USER_EMP_INFO')
             ->select(
@@ -153,7 +153,7 @@ class DepartmentReport extends BaseReport
             ->groupBy($this->filter['groupBy'])
             ->get()
             ->filter(function ($item) {
-                return $item->count <=5;
+                return $item->count <= 5;
             });
         return $query;
     }
