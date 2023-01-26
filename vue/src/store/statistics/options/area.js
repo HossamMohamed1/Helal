@@ -33,6 +33,9 @@ const area = {
     area: {
       dataLabels: {
         enabled: true,
+        formatter: function () {
+          return this.y;
+        },
       },
       enableMouseTracking: false,
       marker: {

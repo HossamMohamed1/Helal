@@ -31,10 +31,10 @@
       @applyConfig="applyConfig"
       :type="chartType"
       :chartOptions="chartOptions"
+      v-if="chartOptions.type"
       :title="title"
     />
-
-    <highcharts :options="chartOptions"></highcharts>
+    <highcharts v-if="chartOptions.type" :options="chartOptions"></highcharts>
   </div>
 </template>
 <script>
@@ -59,75 +59,17 @@ export default {
     report: { type: Object, default: {} },
   },
   data() {
-    // create instance for each component
-    const labels = this.chartData?.labels;
-    const options =
-      this.$store.state.statistics.chartOptions[this.chartType.text];
-    let newOptions = options ?? {};
-    let result = this.chartData?.result;
-
-    if (this.chartType.text == "pie" || this.chartType.text == "donut") {
-      if (typeof this.chartData.result == "undefined") {
-        let keys = Object.keys(this.chartData);
-        result = [];
-        keys.forEach((key) => {
-          const newItem = this.chartData[key].result.map((item, index) => {
-            return {
-              y: item,
-              name: this.chartData[key].labels[index],
-            };
-          });
-          result.push({
-            name: key,
-            data: newItem,
-            ...options?.raduis,
-          });
-        });
-      } else {
-        result = [
-          {
-            name: "",
-            ...options?.raduis,
-            data: this.chartData.result.map((item, index) => {
-              return {
-                y: item,
-                name: this.chartData.labels[index],
-              };
-            }),
-          },
-        ];
-      }
-      newOptions = { ...options, series: result };
-    } else {
-      newOptions = {
-        ...options,
-        xAxis: { ...(options?.xAxis ?? {}), categories: labels },
-        series: result.map((item) => ({
-          ...item,
-          data: item.data.map((item) => parseFloat(item)),
-        })),
-      };
-    }
-
-    // end get new instance for chart option for each component
-
     return {
       dialog: false,
-      chartOptions: {
-        ...newOptions,
-        plotOptions: {
-          ...newOptions?.plotOptions,
-          series: {
-            ...newOptions?.plotOptions?.series,
-            events: { click: this.handleClick },
-          },
-        },
-      },
+      chartOptions: {},
       hideChart: false,
       category: null,
     };
   },
 
+  mounted() {
+    this.initChart();
+  },
   methods: {
     applyConfig(val) {
       this.chartOptions = val;
@@ -143,6 +85,50 @@ export default {
     handleResetFilter() {
       this.category = null;
       this.$emit("filter", { category: this.category });
+    },
+    initChart() {
+      const labels = this.chartData?.labels;
+      let result = this.chartData?.result;
+      const options =
+        this.$store.state.statistics.chartOptions[this.chartType.text];
+      if (this.chartType.text == "pie" || this.chartType.text == "donut") {
+        if (typeof this.chartData.result == "undefined") {
+          let keys = Object.keys(this.chartData);
+          result = [];
+          keys.forEach((key) => {
+            const newItem = this.chartData[key].result.map((item, index) => {
+              return {
+                y: item,
+                name: this.chartData[key].labels[index],
+              };
+            });
+            result.push({
+              name: key,
+              data: newItem,
+            });
+          });
+        } else {
+          result = [
+            {
+              name: "",
+              data: this.chartData.result.map((item, index) => {
+                return {
+                  y: item,
+                  name: this.chartData.labels[index],
+                };
+              }),
+            },
+          ];
+        }
+      } else {
+        options.xAxis.categories = labels;
+      }
+      const dataLabels = options?.series[0]?.dataLabels ?? {};
+      options.series = result.map((item) => {
+        return { ...item, dataLabels, ...options?.raduis };
+      });
+      // console.log({ ...result[0] }, dataLabels);
+      this.chartOptions = options;
     },
   },
 };

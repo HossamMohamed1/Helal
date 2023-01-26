@@ -20,6 +20,11 @@ const donut = {
       },
     },
   },
+  tooltip: {
+    formatter: function () {
+      return `${this.series.name} : <b>${this.y}</b>`;
+    },
+  },
   colors: ["#1e8e49", "#c3b086", "#a7a7a7", "#fd9162", "#41b27b", "#c9de77"],
   legend: {
     enabled: true,

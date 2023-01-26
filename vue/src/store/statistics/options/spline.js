@@ -79,10 +79,15 @@ const spline = {
   chart: {
     type: "spline", // line || spline
     zoomType: "x",
-    inverted: false // true || false
+    inverted: false, // true || false
   },
   title: {
     text: "",
+  },
+  tooltip: {
+    formatter: function () {
+      return `${this.series.name} : <b>${this.y}</b>`;
+    },
   },
   // subtitle: {
   //   text:
@@ -95,7 +100,7 @@ const spline = {
     categories: [],
     labels: {
       rotation: 0, // -45
-    }
+    },
   },
   yAxis: {
     title: {
@@ -103,25 +108,31 @@ const spline = {
     },
     labels: {
       rotation: 0, // -45
-    }
+    },
   },
   legend: {
-    enabled: true // true || false
+    enabled: true, // true || false
   },
   plotOptions: {
     spline: {
+      dataLabels: {
+        enabled: true,
+        formatter: function () {
+          return this.y;
+        },
+      },
       marker: {
         radius: 4,
-        fillColor: '#1e8e49',
-        lineColor: '#1e8e49',
+        fillColor: "#1e8e49",
+        lineColor: "#1e8e49",
         lineWidth: 1,
-        symbol: 'diamond' // circle, diamond, square, triangle, triangle-down
-      }
+        symbol: "diamond", // circle, diamond, square, triangle, triangle-down
+      },
     },
 
     series: {
       // step: 'right'
-    }
+    },
   },
   series: [],
   colors: ["#1e8e49", "#fd9162", "#a7a7a7", "#41b27b", "#c9de77"],

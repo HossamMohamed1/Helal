@@ -64,7 +64,12 @@ const pie = {
     text: "",
   },
   tooltip: {
-    pointFormat: "{series.name}: <b>{point.y}</b>",
+    formatter: function () {
+      // console.log(this);
+      return `<b>${this.y}</b>`;
+    },
+    // },
+    // pointFormat: "{series.name}: <b>{point.y}</b>",
   },
   accessibility: {
     point: {

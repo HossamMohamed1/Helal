@@ -32,10 +32,18 @@ const line = {
   legend: {
     enabled: true, // true || false
   },
+  tooltip: {
+    formatter: function () {
+      return `${this.series.name} : <b>${this.y}</b>`;
+    },
+  },
   plotOptions: {
     line: {
       dataLabels: {
         enabled: true,
+        formatter: function () {
+          return this.y;
+        },
       },
       enableMouseTracking: false,
       marker: {

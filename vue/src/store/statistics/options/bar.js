@@ -38,12 +38,18 @@ const bar = {
     },
   },
   tooltip: {
-    valueSuffix: " ",
+    // valueSuffix: "",
+    formatter: function () {
+      return `${this.series.name} : <b>${this.y}</b>`;
+    },
   },
   plotOptions: {
     bar: {
       dataLabels: {
         enabled: true,
+        formatter: function () {
+          return this.y;
+        },
       },
     },
     series: {
@@ -74,7 +80,7 @@ const bar = {
         rotation: -90,
         color: "#FFFFFF",
         align: "right",
-        format: "{point.y:.1f}", // one decimal
+        format: "{point.y:1f}", // one decimal
         y: 10, // 10 pixels down from the top
         style: {
           fontSize: "13px",

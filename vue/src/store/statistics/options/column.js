@@ -15,10 +15,10 @@ const column = {
     labels: {
       rotation: -45,
       style: {
-        fontSize: '13px',
-        fontFamily: 'Verdana, sans-serif'
-      }
-    }
+        fontSize: "13px",
+        fontFamily: "Verdana, sans-serif",
+      },
+    },
   },
   yAxis: {
     min: 0,
@@ -34,6 +34,9 @@ const column = {
     footerFormat: "</table>",
     shared: true,
     useHTML: true,
+    formatter: function () {
+      return `${this.series.name} : <b>${this.y}</b>`;
+    },
   },
   plotOptions: {
     column: {
@@ -46,16 +49,16 @@ const column = {
       dataLabels: {
         enabled: true,
         rotation: -90,
-        color: '#FFFFFF',
-        align: 'right',
-        format: '{point.y:.1f}', // one decimal
+        color: "#FFFFFF",
+        align: "right",
+        format: "{point.y:.1f}", // one decimal
         y: 10, // 10 pixels down from the top
         style: {
-          fontSize: '13px',
-          fontFamily: 'Verdana, sans-serif'
-        }
-    }
-    }
+          fontSize: "13px",
+          fontFamily: "Verdana, sans-serif",
+        },
+      },
+    },
   ],
   colors: ["#1e8e49", "#fd9162", "#a7a7a7", "#41b27b", "#c9de77"],
 };
