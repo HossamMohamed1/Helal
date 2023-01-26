@@ -45,6 +45,12 @@ return [
             'groupBy' => 'nationalityid',
             'className' => 'EmployeeReport',
         ],
+        'employee_experience' => [
+            'columns' => ['count'],
+            'unit' => 'number',
+            'groupBy' => 'experience',
+            'className' => 'EmployeeReport',
+        ],
         'employee_major' => [
             'columns' => ['count'],
             'unit' => 'number',
