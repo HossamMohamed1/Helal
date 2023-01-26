@@ -213,14 +213,10 @@ class EmployeeReport extends BaseReport
             ->select(
                 DB::raw("COUNT(emp_qulification_work.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
-            )->groupBy($this->filter['groupBy'])
-            ->get()
-            ->map(function ($item) {
-                // if (empty($item->major_desc)) {
-                //     $item->major_desc = 'قبل الثانوية';
-                // }
-                return $item;
-            });
+            )
+            ->orderBy($this->filter['groupBy'], 'asc')
+            ->groupBy($this->filter['groupBy'])
+            ->get();
     }
 
     /**
