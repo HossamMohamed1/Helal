@@ -404,10 +404,11 @@ class EmployeeReport extends BaseReport
                 'emp_no'
             )
             ->get()
+            ->sortBy('experience')
             ->groupBy('experience')
             ->mapWithKeys(function ($item, $key) {
                 return [
-                    $key => [
+                    $key => (object) [
                         'experience' => $key,
                         'count' => count($item),
                     ],
