@@ -131,6 +131,18 @@ const reports = [
       { text: "pie", value: "pie" },
     ],
   },
+  {
+    title: "employees.employee_experience",
+    chart: "employee_experience",
+    filter_able: false,
+    type: [
+      { text: "bar", value: "bar" },
+      { text: "line", value: "line" },
+      { text: "spline", value: "line" },
+      { text: "area", value: "line" },
+      { text: "pie", value: "pie" },
+    ],
+  },
   // {
   //   title: "employees.EmployeesAccordingAttendance",
   //   chart: "employee_absence",

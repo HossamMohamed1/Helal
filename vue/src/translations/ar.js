@@ -453,6 +453,7 @@ export default {
     males: "الذكور",
     females: "الإناث",
     attendees: "الحضور",
+    employee_experience: "عدد الموظفين حسب عدد سنين الخبره",
     employeesInPublicAgenciesAndAdministrations:
       "الموظفين في الوكالات الإدارات العامة",
     employeesByGender: "الموظفين حسب الجنس",
