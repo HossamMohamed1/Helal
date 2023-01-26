@@ -4,13 +4,11 @@ const reports = [
     chart: "employee_department",
     filter_able: false,
     type: [
-      // // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
       { text: "spline", value: "line" },
       { text: "area", value: "line" },
       { text: "pie", value: "pie" },
-      // // { text: "donut", value: "pie" },
     ],
   },
   {
@@ -18,13 +16,11 @@ const reports = [
     chart: "employee_public_department",
     filter_able: true,
     type: [
-      // // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
       { text: "spline", value: "line" },
       { text: "area", value: "line" },
       { text: "pie", value: "pie" },
-      // // { text: "donut", value: "pie" },
     ],
   },
   {
@@ -33,8 +29,6 @@ const reports = [
     filter_able: false,
     type: [
       { text: "pie", value: "pie" },
-      // { text: "donut", value: "pie" },
-      // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
       { text: "spline", value: "line" },
@@ -46,10 +40,8 @@ const reports = [
     chart: "employee_retirement",
     filter_able: false,
     type: [
-      { text: "pie", value: "pie" },
-      // { text: "donut", value: "pie" },
-      // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
+      { text: "pie", value: "pie" },
       { text: "line", value: "line" },
       { text: "spline", value: "line" },
       { text: "area", value: "line" },
@@ -60,13 +52,11 @@ const reports = [
     chart: "employee_age",
     filter_able: false,
     type: [
-      // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
+      { text: "pie", value: "pie" },
       { text: "line", value: "line" },
       { text: "spline", value: "line" },
       { text: "area", value: "line" },
-      { text: "pie", value: "pie" },
-      // { text: "donut", value: "pie" },
     ],
   },
   {
@@ -76,7 +66,6 @@ const reports = [
     type: [
       { text: "pie", value: "pie" },
       { text: "donut", value: "pie" },
-      { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
       { text: "area", value: "line" },
@@ -87,13 +76,11 @@ const reports = [
     chart: "employee_location",
     filter_able: false,
     type: [
-      // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
+      { text: "pie", value: "pie" },
       { text: "line", value: "line" },
       { text: "spline", value: "line" },
       { text: "area", value: "line" },
-      { text: "pie", value: "pie" },
-      // { text: "donut", value: "pie" },
     ],
   },
   {
@@ -102,8 +89,6 @@ const reports = [
     filter_able: false,
     type: [
       { text: "pie", value: "pie" },
-      // { text: "donut", value: "pie" },
-      // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
       { text: "spline", value: "line" },
@@ -115,13 +100,11 @@ const reports = [
     chart: "employee_qualification",
     filter_able: false,
     type: [
-      // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
       { text: "spline", value: "line" },
       { text: "area", value: "line" },
       { text: "pie", value: "pie" },
-      // { text: "donut", value: "pie" },
     ],
   },
   {
@@ -129,13 +112,11 @@ const reports = [
     chart: "employee_major",
     filter_able: false,
     type: [
-      // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
       { text: "spline", value: "line" },
       { text: "area", value: "line" },
       { text: "pie", value: "pie" },
-      // { text: "donut", value: "pie" },
     ],
   },
   {
@@ -143,13 +124,11 @@ const reports = [
     chart: "employee_job",
     filter_able: false,
     type: [
-      // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
       { text: "spline", value: "line" },
       { text: "area", value: "line" },
       { text: "pie", value: "pie" },
-      // { text: "donut", value: "pie" },
     ],
   },
   // {
@@ -160,10 +139,10 @@ const reports = [
   //     { text: "area", value: "line" },
   //     { text: "spline", value: "line" },
   //     { text: "line", value: "line" },
-  //     // { text: "column", value: "bar" },
+  //
   //     { text: "bar", value: "bar" },
   //     { text: "pie", value: "pie" },
-  //     // { text: "donut", value: "pie" },
+  //
   //   ],
   // },
   {
@@ -172,8 +151,6 @@ const reports = [
     filter_able: false,
     type: [
       { text: "pie", value: "pie" },
-      // { text: "donut", value: "pie" },
-      // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
       { text: "spline", value: "line" },
@@ -186,8 +163,6 @@ const reports = [
     filter_able: false,
     type: [
       { text: "pie", value: "pie" },
-      // { text: "donut", value: "pie" },
-      // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
       { text: "spline", value: "line" },
@@ -199,10 +174,8 @@ const reports = [
     chart: "department_age",
     filter_able: false,
     type: [
-      { text: "pie", value: "pie" },
-      // { text: "donut", value: "pie" },
-      // { text: "column", value: "bar" },
       { text: "bar", value: "bar" },
+      { text: "pie", value: "pie" },
       { text: "line", value: "line" },
       { text: "spline", value: "line" },
       { text: "area", value: "line" },
