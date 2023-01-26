@@ -160,34 +160,6 @@ class EmployeeReport extends BaseReport
                 $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $$item->{$this->filter['groupBy']};
                 return $item;
             });
-        // $query = DB::connection('oracle')
-        //     ->table($this->mainTable)
-        //     ->select(
-        //         DB::raw("COUNT(emp_no) as {$this->filter['columns'][0]}"),
-        //         $this->filter['groupBy'],
-        //     );
-        // // ->join('dept', 'departmentid', '=', 'dept.dept_no');
-
-        // return $query->groupBy($this->filter['groupBy'])
-        //         ->get()
-        //         ->map(function ($item) use ($labels) {
-        //             $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $$item->{$this->filter['groupBy']};
-        //             return $item;
-        //         });
-
-        // $query = DB::connection('oracle')
-        //     ->table($this->mainTable)
-        //     ->select(
-        //         DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-        //         $this->filter['groupBy']
-        //     )
-        //     ->join('dept',$this->mainTable. '.departmentid', '=', 'dept.dept_no');
-        // return $query->groupBy($this->filter['groupBy'])
-        //     ->get()
-        //     ->map(function ($item) use ($labels) {
-        //         $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $$item->{$this->filter['groupBy']};
-        //         return $item;
-        //     });
     }
 
     /**
@@ -202,19 +174,19 @@ class EmployeeReport extends BaseReport
             126 => 'غير سعودى',
         ];
         return DB::connection('oracle')
-                ->table($this->mainTable)
-                ->select(
-                    DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
-                    $this->filter['groupBy']
-                )->groupBy($this->filter['groupBy'])
-                ->get()
-                ->map(function ($item) use ($labels) {
-                    $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $item->{$this->filter['groupBy']};
-                    return $item;
-                })->groupBy($this->filter['groupBy'])
-                ->mapWithKeys(function ($item,$key) {
-                    return [$key => (object) ['nationalityid'=> $key,'count'=>$item->sum('count')]];
-                });
+            ->table($this->mainTable)
+            ->select(
+                DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
+            )->groupBy($this->filter['groupBy'])
+            ->get()
+            ->map(function ($item) use ($labels) {
+                $item->{$this->filter['groupBy']} = $labels[$item->{$this->filter['groupBy']}] ?? $item->{$this->filter['groupBy']};
+                return $item;
+            })->groupBy($this->filter['groupBy'])
+            ->mapWithKeys(function ($item, $key) {
+                return [$key => (object) ['nationalityid' => $key, 'count' => $item->sum('count')]];
+            });
     }
 
     /**
@@ -236,19 +208,19 @@ class EmployeeReport extends BaseReport
      */
     private function employeeMajorQuery(): Collection
     {
-        return DB::connection('oracle')
-            ->table("EMPLOYEE_QUALIFICATION")
-            ->select(
-                DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
-                $this->filter['groupBy']
-            )->groupBy($this->filter['groupBy'])
-            ->get()
-            ->map(function ($item) {
-                if (empty($item->major_desc)) {
-                    $item->major_desc = 'قبل الثانوية';
-                }
-                return $item;
-            });
+        return dd(DB::connection('oracle')
+                ->table("emp_qulification_work")
+                ->select(
+                    DB::raw("COUNT(emp_qulification_work.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
+                    $this->filter['groupBy']
+                )->groupBy($this->filter['groupBy'])
+                ->get()
+                ->map(function ($item) {
+                    // if (empty($item->major_desc)) {
+                    //     $item->major_desc = 'قبل الثانوية';
+                    // }
+                    return $item;
+                }));
     }
 
     /**
@@ -320,9 +292,9 @@ class EmployeeReport extends BaseReport
                 // dd($minMax);
                 $min = $minMax->min;
                 $max = $minMax->max;
-                if($minMax->min >= 60) {
-                    $min= 60;
-                    $max= 'فيما اكبر';
+                if ($minMax->min >= 60) {
+                    $min = 60;
+                    $max = 'فيما اكبر';
                 }
                 return [$key => ['count' => count($item), 'age' => "{$min} - {$max}"]];
             })->groupBy('age')
