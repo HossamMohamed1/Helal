@@ -413,7 +413,7 @@ class EmployeeReport extends BaseReport
                 return (object) ['max' => max($item->toArray()), 'min' => min($item->toArray())];
             });
 
-        return dd($query->groupBy($this->filter['groupBy'])
+        return ($query->groupBy($this->filter['groupBy'])
                 ->mapWithKeys(function ($item, $key) use ($experiences) {
                     $minMax = find_in_array_with_min_max($experiences, $key);
                     $min = $minMax->min;
@@ -433,7 +433,7 @@ class EmployeeReport extends BaseReport
                             'count' => $item->sum('count'),
                         ],
                     ];
-                }));
+                })->values());
 
     }
 }
