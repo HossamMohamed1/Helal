@@ -143,15 +143,25 @@ class DepartmentReport extends BaseReport
 
     private function departmentLessFiveEmployeeQuery()
     {
+        // return dd(DB::connection('oracle')
+        //         ->table($this->mainTable)
+        //         ->join("V_ALL_USER_EMP_INFO as employees", "{$this->mainTable}.DEPT_NO", "=", "employees.DEPARTMENTID")
+        //         ->select(
+        //             DB::raw("count(V_ALL_USER_EMP_INFO.emp_no) as {$this->filter['columns'][0]}"),
+        //             $this->filter['groupBy']
+        //         )
+        //         ->groupBy($this->filter['groupBy'])
+        //         ->get());
 
-        return dd(DB::connection('oracle')
-                ->table($this->mainTable)
-                ->join("V_ALL_USER_EMP_INFO as employees", "{$this->mainTable}.DEPT_NO", "=", "employees.DEPARTMENTID")
-                ->select(
-                    DB::raw("count(V_ALL_USER_EMP_INFO.emp_no) as {$this->filter['columns'][0]}"),
-                    $this->filter['groupBy']
-                )
-                ->groupBy($this->filter['groupBy'])
-                ->get());
+        $query = DB::connection('oracle')
+            ->table('V_ALL_USER_EMP_INFO')
+            ->select(
+                DB::raw("count(V_ALL_USER_EMP_INFO.emp_no) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
+            )
+            ->groupBy($this->filter['groupBy'])
+            ->get();
+
+        return $query;
     }
 }
