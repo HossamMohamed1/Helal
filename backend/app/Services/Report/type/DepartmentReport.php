@@ -159,9 +159,10 @@ class DepartmentReport extends BaseReport
                 DB::raw("count(V_ALL_USER_EMP_INFO.emp_no) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
             )
+            ->where('count(V_ALL_USER_EMP_INFO.emp_no)', '<', 5)
             ->groupBy($this->filter['groupBy'])
             ->get();
-
+        dd($query);
         return $query;
     }
 }
