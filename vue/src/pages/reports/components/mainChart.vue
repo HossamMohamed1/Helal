@@ -27,11 +27,11 @@
     </div>
     <ChartConfigs
       :dialog="dialog"
-      v-if="chartOptions.type"
       @close-modal="(val) => (dialog = val)"
       @applyConfig="applyConfig"
       :type="chartType"
       :chartOptions="chartOptions"
+      v-if="chartOptions.type"
       :title="title"
     />
     <highcharts v-if="chartOptions.type" :options="chartOptions"></highcharts>
@@ -96,14 +96,19 @@ export default {
           },
         ];
       }
-      // newOptions = { ...options, series: result };
+      newOptions = { ...options, series: result };
     } else {
-      newOptions.xAxis.categories = labels;
+      const dataLabels = options?.series[0]?.dataLabels ?? {};
+      newOptions = {
+        ...options,
+        xAxis: { ...(options?.xAxis ?? {}), categories: labels },
+        series: result.map((item) => ({
+          ...item,
+          data: item.data.map((item) => parseFloat(item)),
+          dataLabels,
+        })),
+      };
     }
-    const dataLabels = options?.series[0]?.dataLabels ?? {};
-    options.series = result.map((item) => {
-      return { ...item, dataLabels, ...options?.raduis };
-    });
     // end get new instance for chart option for each component
     return {
       dialog: false,
