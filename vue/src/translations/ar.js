@@ -454,18 +454,17 @@ export default {
     females: "الإناث",
     attendees: "الحضور",
     employeesInPublicAgenciesAndAdministrations:
-      "الموظفين في الوكالات والادارات العامة",
+      "الموظفين في الوكالات الإدارات العامة",
     employeesByGender: "الموظفين حسب الجنس",
     employee_nationality: "عدد الموظفين حسب الجنسية",
     employee_job: "عدد الموظفين بالنسبه للوظائف",
     employeesByDepartment: "الموظفين حسب القسم",
     employeesByHeadquarters: "الموظفين حسب المقر",
     employeesAccordingToTheirQualifications:
-      "الموظفين حسب مؤهلاتهم وتوزيهم في الادارات",
-
+      "الموظفين حسب مؤهلاتهم وتوزيهم في الإدارات",
     employeesAccordingToTheirQualificationsIn:
       "الموظفين حسب مؤهلاتهم وتوزيهم في",
-    employeesAccordingToTheirRanks: "الموظفين حسب مراتبهم وتوزيهم في الادارات",
+    employeesAccordingToTheirRanks: "الموظفين حسب مراتبهم وتوزيهم في الإدارات",
     employeesAccordingToTheirRanksIn: "الموظفين حسب مراتبهم وتوزيهم في ",
     EmployeesAccordingAttendance:
       "الموظفين حسب حالات الحضور والغياب والأجازات والمهام ولاإستئذان",
