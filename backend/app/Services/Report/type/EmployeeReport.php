@@ -349,7 +349,7 @@ class EmployeeReport extends BaseReport
         return $result;
     }
 
-    public function ageDistributionForEmployeesQuery()
+    private function ageDistributionForEmployeesQuery()
     {
         $query = Employee::select('birthdate');
 
@@ -385,7 +385,7 @@ class EmployeeReport extends BaseReport
             })->values();
     }
 
-    public function employeePublicDepartmentQuery()
+    private function employeePublicDepartmentQuery()
     {
         return DB::connection('oracle')->table('dept')
             ->select('dept.dept_desc', DB::raw('count(v_all_user_emp_info.emp_no) as count'))
@@ -395,7 +395,7 @@ class EmployeeReport extends BaseReport
             ->get();
     }
 
-    public function employeeExperienceQuery()
+    private function employeeExperienceQuery()
     {
         $query = DB::connection('oracle')->table($this->mainTable)
             ->select(
