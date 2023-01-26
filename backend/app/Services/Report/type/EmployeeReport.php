@@ -413,27 +413,27 @@ class EmployeeReport extends BaseReport
                 return (object) ['max' => max($item->toArray()), 'min' => min($item->toArray())];
             });
 
-        return $query->groupBy($this->filter['groupBy'])
-            ->mapWithKeys(function ($item, $key) use ($experiences) {
-                $minMax = find_in_array_with_min_max($experiences, $key);
-                $min = $minMax->min;
-                $max = $minMax->max;
-                return [
-                    $key => (object) [
-                        'experience' => "{$min} - {$max}",
-                        'count' => count($item),
-                    ],
-                ];
-            })
-            ->groupBy($this->filter['groupBy'])
-            ->mapWithKeys(function ($item, $key) {
-                return [
-                    $key => (object) [
-                        'experience' => $key,
-                        'count' => $item->sum('count'),
-                    ],
-                ];
-            });
+        return dd($query->groupBy($this->filter['groupBy'])
+                ->mapWithKeys(function ($item, $key) use ($experiences) {
+                    $minMax = find_in_array_with_min_max($experiences, $key);
+                    $min = $minMax->min;
+                    $max = $minMax->max;
+                    return [
+                        $key => (object) [
+                            'experience' => "{$min} - {$max}",
+                            'count' => count($item),
+                        ],
+                    ];
+                })
+                ->groupBy($this->filter['groupBy'])
+                ->mapWithKeys(function ($item, $key) {
+                    return [
+                        $key => (object) [
+                            'experience' => $key,
+                            'count' => $item->sum('count'),
+                        ],
+                    ];
+                }));
 
     }
 }
