@@ -117,6 +117,11 @@ return [
             'groupBy' => 'dept_desc',
             'className' => 'DepartmentReport',
         ],
-
+        'department_less_five_employee' => [
+            'columns' => ['count'],
+            'unit' => 'number',
+            'groupBy' => 'dept_desc',
+            'className' => 'DepartmentReport',
+        ],
     ],
 ];

@@ -2,20 +2,20 @@
 
 namespace App\Services\Report\type;
 
+use Alkoumi\LaravelHijriDate\Hijri;
 use App\Exceptions\GeneralException;
 use App\Services\Report\BaseReport;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use JsonException;
-use Alkoumi\LaravelHijriDate\Hijri;
-use Carbon\Carbon;
 
 class DepartmentReport extends BaseReport
 {
     public $result = null;
-    public string $mainTable;
-    public array $filter;
+    public $mainTable;
+    public $filter;
 
     /**
      * @param $filter
@@ -63,14 +63,14 @@ class DepartmentReport extends BaseReport
             return [];
         }
 
-        if($this->filter['type'] == 'department_age'){
+        if ($this->filter['type'] == 'department_age') {
             return json_decode($this->result, true, 512, JSON_THROW_ON_ERROR);
         }
 
         return json_decode($this->result
-            ->mapWithKeys(function ($item) {
-                return [$item->{$this->filter['groupBy']} => $item];
-            }), true, 512, JSON_THROW_ON_ERROR);
+                ->mapWithKeys(function ($item) {
+                    return [$item->{$this->filter['groupBy']} => $item];
+                }), true, 512, JSON_THROW_ON_ERROR);
     }
 
     /**
@@ -119,35 +119,39 @@ class DepartmentReport extends BaseReport
             });
     }
 
-
     /**
      * @return Collection
      */
     private function departmentAgeQuery(): Collection
     {
-        // return dd(DB::connection('oracle')
-        //     ->table($this->mainTable)
-        //     ->select(
-        //         DB::raw("COUNT($this->mainTable.DEPT_NO) as {$this->filter['columns'][0]}"),
-        //         "employees.$this->filter['groupBy']"
-        //     )->join("V_ALL_USER_EMP_INFO as employees", "$this->mainTable.DEPT_NO", "=", "employees.DEPARTMENTID")
-        //     ->get());
-
-            return  DB::connection('oracle')
+        return DB::connection('oracle')
             ->table($this->mainTable)
             ->join("V_ALL_USER_EMP_INFO as employees", "{$this->mainTable}.DEPT_NO", "=", "employees.DEPARTMENTID")
-            // ->select("employees.birthdate","{$this->mainTable}.{$this->filter['groupBy']}")
-            ->select("employees.birthdate","{$this->mainTable}.dept_desc")
+            ->select("employees.birthdate", "{$this->mainTable}.dept_desc")
             ->get()
             ->map(function ($item) {
                 $item->birthdate = (int) round(Carbon::parse(Hijri::Date('Y-m-d'))->diffInMonths($item->birthdate) / 12);
                 return $item;
             })->groupBy('dept_desc')
-            ->map(function($item,$key){
-               return [
-                'birthdate' => (int)round($item->avg('birthdate')),
-                'dept_desc'=> $key
-               ];
+            ->map(function ($item, $key) {
+                return [
+                    'birthdate' => (int) round($item->avg('birthdate')),
+                    'dept_desc' => $key,
+                ];
             });
+    }
+
+    private function departmentLessFiveEmployeeQuery()
+    {
+
+        return dd(DB::connection('oracle')
+                ->table($this->mainTable)
+                ->join("V_ALL_USER_EMP_INFO as employees", "{$this->mainTable}.DEPT_NO", "=", "employees.DEPARTMENTID")
+                ->select(
+                    DB::raw("count(V_ALL_USER_EMP_INFO.emp_no) as {$this->filter['columns'][0]}"),
+                    $this->filter['groupBy']
+                )
+                ->groupBy($this->filter['groupBy'])
+                ->get());
     }
 }
