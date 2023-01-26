@@ -45,7 +45,9 @@ class ChartService
             $value = array_values(Arr::pluck($data, $column));
             $result['result'][] = [
                 'name' => handleTrans($column),
-                'data' => (int) $value,
+                'data' => collect($value)->map(function ($item) {
+                    return (int) $item;
+                }),
             ];
         }
 
