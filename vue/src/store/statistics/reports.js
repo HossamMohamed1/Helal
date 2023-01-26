@@ -193,6 +193,18 @@ const reports = [
       { text: "area", value: "line" },
     ],
   },
+  {
+    title: "employees.department_less_five_employee",
+    chart: "department_less_five_employee",
+    filter_able: false,
+    type: [
+      { text: "bar", value: "bar" },
+      { text: "pie", value: "pie" },
+      { text: "line", value: "line" },
+      { text: "spline", value: "line" },
+      { text: "area", value: "line" },
+    ],
+  },
 ];
 
 export default reports;

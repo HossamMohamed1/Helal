@@ -456,6 +456,8 @@ export default {
     employee_experience: "عدد الموظفين حسب عدد سنين الخبره",
     employeesInPublicAgenciesAndAdministrations:
       "الموظفين في الوكالات الإدارات العامة",
+    department_less_five_employee:
+      "الإدارات التي يوجد بها موظفين عددهم اقل من 5 موظفين",
     employeesByGender: "الموظفين حسب الجنس",
     employee_nationality: "عدد الموظفين حسب الجنسية",
     employee_job: "عدد الموظفين بالنسبه للوظائف",

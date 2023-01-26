@@ -455,6 +455,7 @@ export default {
     attendees: "Attendees",
     employeesInPublicAgenciesAndAdministrations:
       "Employees In Public Agencies And Administrations",
+    department_less_five_employee: "departments that has less five employee",
     employee_experience: "Employee per work experience in years",
     employee_retirement: "Employ will retirement within 4 years",
     age_distribution_for_employees: "age distribution for employees",
