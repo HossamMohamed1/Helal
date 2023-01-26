@@ -405,21 +405,26 @@ class EmployeeReport extends BaseReport
             ->get()
             ->sortBy('experience');
 
-        $experiences = $query->pluck('experience')->unique()->sort()->chunk(5)->map(function ($item) {
-            return (object) ['max' => max($item->toArray()), 'min' => min($item->toArray())];
-        });
-
-        dd($experiences);
-
-        return $query->groupBy($this->filter['groupBy'])
-            ->mapWithKeys(function ($item, $key) use ($experiences) {
-                return [
-                    $key => (object) [
-                        'experience' => $key,
-                        'count' => count($item),
-                    ],
-                ];
+        $experiences = $query->pluck('experience')
+            ->unique()
+            ->sort()
+            ->chunk(5)
+            ->map(function ($item) {
+                return (object) ['max' => max($item->toArray()), 'min' => min($item->toArray())];
             });
+
+        return dd($query->groupBy($this->filter['groupBy'])
+                ->mapWithKeys(function ($item, $key) use ($experiences) {
+                    $minMax = find_in_array_with_min_max($experiences, $key);
+                    $min = $minMax->min;
+                    $max = $minMax->max;
+                    return [
+                        $key => (object) [
+                            'experience' => "{$min} - {$max}",
+                            'count' => count($item),
+                        ],
+                    ];
+                }));
 
     }
 }
