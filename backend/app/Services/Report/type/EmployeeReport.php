@@ -405,7 +405,7 @@ class EmployeeReport extends BaseReport
             ->get()
             ->sortBy('experience');
 
-        $experiences = $query->pluck('experience')->chunk(5)->map(function ($item) {
+        $experiences = $query->pluck('experience')->unique()->sort()->chunk(5)->map(function ($item) {
             return (object) ['max' => max($item->toArray()), 'min' => min($item->toArray())];
         });
 
