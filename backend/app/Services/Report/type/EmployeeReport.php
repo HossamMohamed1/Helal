@@ -398,14 +398,20 @@ class EmployeeReport extends BaseReport
     public function employeeExperienceQuery()
     {
         // select trunc(months_between(to_char(end_date), to_char(start_date)) /12) as experience  , count(emp_no) as count from v_all_user_emp_info group by trunc(months_between(to_char(end_date), to_char(start_date)) /12);
-        return (DB::connection('oracle')->table($this->mainTable)
-                ->select(
-                    DB::raw("trunc(months_between(to_char(end_date), to_char(start_date)) /12) as experience"),
-                    // DB::raw("count(emp_no) as {$this->filter['columns'][0]}"),
-                    'emp_no'
-                )
-                // ->groupBy('experience')
-                ->get()
-            ->groupBy('experience'));
+        return DB::connection('oracle')->table($this->mainTable)
+            ->select(
+                DB::raw("trunc(months_between(to_char(end_date), to_char(start_date)) /12) as experience"),
+                'emp_no'
+            )
+            ->get()
+            ->groupBy('experience')
+            ->mapWithKeys(function ($item, $key) {
+                return [
+                    $key => [
+                        'experience' => $key,
+                        'count' => count($item),
+                    ],
+                ];
+            });
     }
 }
