@@ -59,16 +59,56 @@ export default {
     report: { type: Object, default: {} },
   },
   data() {
+    const labels = this.chartData?.labels;
+    let result = this.chartData?.result;
+    const options =
+      this.$store.state.statistics.chartOptions[this.chartType.text];
+    if (this.chartType.text == "pie" || this.chartType.text == "donut") {
+      if (typeof this.chartData.result == "undefined") {
+        let keys = Object.keys(this.chartData);
+        result = [];
+        keys.forEach((key) => {
+          const newItem = this.chartData[key].result.map((item, index) => {
+            return {
+              y: item,
+              name: this.chartData[key].labels[index],
+            };
+          });
+          result.push({
+            name: key,
+            data: newItem,
+          });
+        });
+      } else {
+        result = [
+          {
+            name: "",
+            data: this.chartData.result.map((item, index) => {
+              return {
+                y: item,
+                name: this.chartData.labels[index],
+              };
+            }),
+          },
+        ];
+      }
+    } else {
+      options.xAxis.categories = labels;
+    }
+    const dataLabels = options?.series[0]?.dataLabels ?? {};
+    options.series = result.map((item) => {
+      return { ...item, dataLabels, ...options?.raduis };
+    });
     return {
       dialog: false,
-      chartOptions: {},
+      chartOptions: options,
       hideChart: false,
       category: null,
     };
   },
 
   mounted() {
-    this.initChart();
+    // this.initChart();
   },
   methods: {
     applyConfig(val) {
