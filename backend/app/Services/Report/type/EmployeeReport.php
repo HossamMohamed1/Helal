@@ -317,7 +317,14 @@ class EmployeeReport extends BaseReport
             ->groupBy('age')
             ->mapWithKeys(function ($item, $key) use ($ages) {
                 $minMax = find_in_array_with_min_max($ages, $key);
-                return [$key => ['count' => count($item), 'age' => "{$minMax->min} - {$minMax->max}"]];
+                // dd($minMax);
+                $min = $minMax->min;
+                $max = $minMax->max;
+                if($minMax->min >= 60) {
+                    $min= 60;
+                    $max= 'فيما اكبر';
+                }
+                return [$key => ['count' => count($item), 'age' => "{$min} - {$max}"]];
             })->groupBy('age')
             ->mapWithKeys(function ($item, $key) {
                 return [$key => ['count' => $item->sum('count'), 'age' => $key]];
