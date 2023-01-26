@@ -208,19 +208,19 @@ class EmployeeReport extends BaseReport
      */
     private function employeeMajorQuery(): Collection
     {
-        return dd(DB::connection('oracle')
-                ->table("emp_qulification_work")
-                ->select(
-                    DB::raw("COUNT(emp_qulification_work.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
-                    $this->filter['groupBy']
-                )->groupBy($this->filter['groupBy'])
-                ->get()
-                ->map(function ($item) {
-                    // if (empty($item->major_desc)) {
-                    //     $item->major_desc = 'قبل الثانوية';
-                    // }
-                    return $item;
-                }));
+        return DB::connection('oracle')
+            ->table("emp_qulification_work")
+            ->select(
+                DB::raw("COUNT(emp_qulification_work.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
+                $this->filter['groupBy']
+            )->groupBy($this->filter['groupBy'])
+            ->get()
+            ->map(function ($item) {
+                // if (empty($item->major_desc)) {
+                //     $item->major_desc = 'قبل الثانوية';
+                // }
+                return $item;
+            });
     }
 
     /**
