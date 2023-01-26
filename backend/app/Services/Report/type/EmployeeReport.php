@@ -397,16 +397,22 @@ class EmployeeReport extends BaseReport
 
     public function employeeExperienceQuery()
     {
-        // select trunc(months_between(to_char(end_date), to_char(start_date)) /12) as experience  , count(emp_no) as count from v_all_user_emp_info group by trunc(months_between(to_char(end_date), to_char(start_date)) /12);
-        return DB::connection('oracle')->table($this->mainTable)
+        $query = DB::connection('oracle')->table($this->mainTable)
             ->select(
-                DB::raw("trunc(months_between(to_char(end_date), to_char(start_date)) /12) as experience"),
+                DB::raw("trunc(months_between(to_char(end_date), to_char(start_date)) /12) as {$this->filter['groupBy']}"),
                 'emp_no'
             )
             ->get()
-            ->sortBy('experience')
-            ->groupBy('experience')
-            ->mapWithKeys(function ($item, $key) {
+            ->sortBy('experience');
+
+        $experiences = $query->pluck('experience')->chunk(5)->map(function ($item) {
+            return (object) ['max' => max($item->toArray()), 'min' => min($item->toArray())];
+        });
+
+        dd($experiences);
+
+        return $query->groupBy($this->filter['groupBy'])
+            ->mapWithKeys(function ($item, $key) use ($experiences) {
                 return [
                     $key => (object) [
                         'experience' => $key,
@@ -414,5 +420,6 @@ class EmployeeReport extends BaseReport
                     ],
                 ];
             });
+
     }
 }
