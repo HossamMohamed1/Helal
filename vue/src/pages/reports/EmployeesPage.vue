@@ -72,6 +72,7 @@
         v-for="(report, index) in reports"
         :key="index + cards.length"
       />
+      <ReportSettinDialog />
     </v-row>
     <create-report-dialog v-model="dialog" />
   </div>
@@ -79,7 +80,7 @@
 <script>
 // import DateRangePicker from "vue2-daterange-picker";
 import CreateReportDialog from "@/components/reports/employees/CreateReportDialog";
-import { sleep } from "@/helpers";
+import ReportSettinDialog from "@/components/reports/employees/ReportSetting";
 const DateRangePicker = () =>
   import(/* webpackChunkName: "DateRangePicker" */ "vue2-daterange-picker");
 import "vue2-daterange-picker/dist/vue2-daterange-picker.css";
@@ -100,10 +101,12 @@ export default {
     DateRangePicker,
     TrackCard,
     ChartComponent,
+    ReportSettinDialog,
   },
   data() {
     return {
       showChart: true,
+      setting: true,
       breadcrumbs: [
         {
           text: this.$t("menu.reports"),

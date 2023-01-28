@@ -58,12 +58,13 @@ const pie = {
     plotShadow: false,
   },
   legend: {
-    enabled: false,
+    enabled: true,
   },
   title: {
     text: "",
   },
   tooltip: {
+    enabled: true,
     formatter: function () {
       // console.log(this);
       return `<b>${this.y}</b>`;

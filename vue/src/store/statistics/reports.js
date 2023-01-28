@@ -136,11 +136,11 @@ const reports = [
     chart: "employee_experience",
     filter_able: false,
     type: [
+      { text: "pie", value: "pie" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
       { text: "spline", value: "line" },
       { text: "area", value: "line" },
-      { text: "pie", value: "pie" },
     ],
   },
   // {

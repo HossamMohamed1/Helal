@@ -3,8 +3,7 @@
     <v-dialog v-model="dialog" persistent max-width="700px">
       <v-card>
         <v-card-title>
-          <span class="text-h5">{{ $t("reports.createReport") }}
-          </span>
+          <span class="text-h5">{{ $t("reports.createReport") }} </span>
           <v-spacer></v-spacer>
           <v-btn color="dark" icon @click="dialog = false">
             <v-icon>mdi-close</v-icon>
@@ -14,30 +13,23 @@
           <template>
             <v-stepper v-model="e1">
               <v-stepper-header>
-                <v-stepper-step
-                  :complete="e1 > 1"
-                  step="1"
-                >
+                <v-stepper-step :complete="e1 > 1" step="1">
                   تحميل ملف
                 </v-stepper-step>
 
                 <v-divider></v-divider>
 
-                <v-stepper-step
-                  :complete="e1 > 2"
-                  step="2"
-                >
+                <v-stepper-step :complete="e1 > 2" step="2">
                   عرض الملف
                 </v-stepper-step>
 
                 <v-divider></v-divider>
 
-                <v-stepper-step step="3">التفاصيل
-                </v-stepper-step>
+                <v-stepper-step step="3">التفاصيل </v-stepper-step>
               </v-stepper-header>
 
               <v-stepper-items>
-                <v-stepper-content step="1" >
+                <v-stepper-content step="1">
                   <div class="stepper-cont pt-2" style="overflow-x: hidden">
                     <v-row>
                       <v-col
@@ -74,16 +66,10 @@
                     </v-row>
                   </div>
                   <div class="d-flex justify-end">
-                    <v-btn
-                      color="primary"
-                      outlined
-                      @click="e1 = 2"
-
-                    >
+                    <v-btn color="primary" outlined @click="e1 = 2">
                       إستمرار
                     </v-btn>
                   </div>
-
                 </v-stepper-content>
 
                 <v-stepper-content step="2">
@@ -91,44 +77,27 @@
                     <v-simple-table>
                       <template v-slot:default>
                         <thead>
-                        <tr>
-                          <th class="text-right">
-                            Name
-                          </th>
-                          <th class="text-right">
-                            Calories
-                          </th>
-                        </tr>
+                          <tr>
+                            <th class="text-right">Name</th>
+                            <th class="text-right">Calories</th>
+                          </tr>
                         </thead>
                         <tbody>
-                        <tr
-                          v-for="item in desserts"
-                          :key="item.name"
-                        >
-                          <td>{{ item.name }}</td>
-                          <td>{{ item.calories }}</td>
-                        </tr>
+                          <tr v-for="item in desserts" :key="item.name">
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.calories }}</td>
+                          </tr>
                         </tbody>
                       </template>
                     </v-simple-table>
                   </div>
                   <div class="d-flex align-center justify-space-between">
-                    <v-btn
-                      color="primary"
-                      outlined
-                      @click="e1 = 1"
-                    >
-
+                    <v-btn color="primary" outlined @click="e1 = 1">
                       رجوع
                     </v-btn>
-                    <v-btn
-                      color="primary"
-                      outlined
-                      @click="e1 = 3"
-                    >
+                    <v-btn color="primary" outlined @click="e1 = 3">
                       إستمرار
                     </v-btn>
-
                   </div>
                 </v-stepper-content>
 
@@ -167,7 +136,6 @@
                       :items="columns"
                       :label="$t('reports.columns')"
                       v-model="report.columns"
-
                       multiple
                       chips
                       small-chips
@@ -193,19 +161,10 @@
                     </v-autocomplete>
                   </div>
                   <div class="d-flex align-center justify-space-between">
-                    <v-btn
-                      color="primary"
-                      outlined
-                      @click="e1 = 2">
+                    <v-btn color="primary" outlined @click="e1 = 2">
                       رجوع
                     </v-btn>
-                    <v-btn
-                      color="primary"
-
-                      @click="e1 = 3"
-                    >
-                      حفظ
-                    </v-btn>
+                    <v-btn color="primary" @click="e1 = 3"> حفظ </v-btn>
                   </div>
                 </v-stepper-content>
               </v-stepper-items>
@@ -220,10 +179,10 @@
 <script>
 export default {
   props: {
-    value: Boolean
+    value: Boolean,
   },
-  data(){
-    return{
+  data() {
+    return {
       validationError: [],
       dialogTable: false,
       dialogExcel: false,
@@ -268,19 +227,19 @@ export default {
       uploadType: ["تحميل من الكمبيوتر", "تحميل من الملفات"],
       desserts: [
         {
-          name: 'Frozen Yogurt',
+          name: "Frozen Yogurt",
           calories: 159,
         },
         {
-          name: 'Ice cream sandwich',
+          name: "Ice cream sandwich",
           calories: 237,
         },
         {
-          name: 'Eclair',
+          name: "Eclair",
           calories: 262,
         },
         {
-          name: 'KitKat',
+          name: "KitKat",
           calories: 518,
         },
       ],
@@ -300,31 +259,29 @@ export default {
         {
           id: 4,
           name: "عدد الموظفين حسب الجنسية",
-        }
-      ]
-    }
+        },
+      ],
+    };
   },
   computed: {
     dialog: {
-      get () {
-        return this.value
+      get() {
+        return this.value;
       },
-      set (value) {
-        this.$emit('input', value)
-      }
-    }
+      set(value) {
+        this.$emit("input", value);
+      },
+    },
   },
   methods: {
     submitFile() {
-      console.log("object", this.report);
       this.dialog = false;
     },
-    uploadFile(){
-      this.fileUploaded = true
-
-    }
-  }
-}
+    uploadFile() {
+      this.fileUploaded = true;
+    },
+  },
+};
 </script>
 <style scoped>
 .v-list-item {
@@ -333,12 +290,10 @@ export default {
 .v-list-item:hover {
   background: #f2f2f2;
 }
-.stepper-cont{
+.stepper-cont {
   min-height: 400px;
   max-height: 600px;
   overflow-y: auto;
   padding-left: 8px;
 }
-
 </style>
-

@@ -38,7 +38,7 @@ const bar = {
     },
   },
   tooltip: {
-    // valueSuffix: "",
+    enabled: true,
     formatter: function () {
       return `${this.series.name} : <b>${this.y}</b>`;
     },

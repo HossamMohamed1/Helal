@@ -11,6 +11,12 @@ const area = {
   title: {
     text: "",
   },
+  tooltip: {
+    enabled: true,
+    formatter: function () {
+      return `${this.series.name} : <b>${this.y}</b>`;
+    },
+  },
   xAxis: {
     reversed: true, // true || false
     categories: [],

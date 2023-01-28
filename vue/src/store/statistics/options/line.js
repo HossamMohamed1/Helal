@@ -33,6 +33,7 @@ const line = {
     enabled: true, // true || false
   },
   tooltip: {
+    enabled: true,
     formatter: function () {
       return `${this.series.name} : <b>${this.y}</b>`;
     },

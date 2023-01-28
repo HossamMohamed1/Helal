@@ -34,6 +34,7 @@ const column = {
     footerFormat: "</table>",
     shared: true,
     useHTML: true,
+    enabled: true,
     formatter: function () {
       return `${this.series.name} : <b>${this.y}</b>`;
     },

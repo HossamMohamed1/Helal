@@ -5,7 +5,7 @@
         <div>{{ $t(report.title) }}</div>
       </v-card-title>
 
-      <v-tabs v-model="tab" centered slider-color="yellow">
+      <v-tabs v-model="tab" centered>
         <v-tab v-for="(type, i) in chartTypes" :key="i" :href="`#tab-${i}`">
           {{ type.text }}
         </v-tab>

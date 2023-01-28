@@ -148,8 +148,20 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .highcharts-credits {
   display: none !important;
 }
+// .drawer-button {
+// margin: 5px;
+// position: fixed;
+// top: 340px;
+// left: 20px;
+// z-index: 1;
+
+// .v-icon {
+//   margin-left: -18px;
+//   font-size: 1.3rem;
+// }
+// }
 </style>
