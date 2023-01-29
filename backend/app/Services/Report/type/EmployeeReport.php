@@ -235,7 +235,14 @@ class EmployeeReport extends BaseReport
                 DB::raw("COUNT(EMPLOYEE_QUALIFICATION.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
             )->groupBy($this->filter['groupBy'])
-            ->get();
+            ->get()
+            ->map(function ($item) {
+                if(empty($item->{$this->filter['groupBy']})) {
+                    $item->{$this->filter['groupBy']} = 'ما دون الجامعه';
+                }
+                return $item;
+            })
+            ->sortBy($this->filter['groupBy']);
     }
 
     /**
