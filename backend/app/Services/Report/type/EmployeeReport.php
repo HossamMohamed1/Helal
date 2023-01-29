@@ -439,4 +439,20 @@ class EmployeeReport extends BaseReport
             })->values();
 
     }
+
+    private function employee_major_for_years()
+    {
+        // select count(employee_id) ,   trunc(months_between(end_date,sysdate)/12) as major from emp_qulification_work  where trunc(months_between(end_date,sysdate)/12) > 0 and trunc(months_between(end_date,sysdate)/12) <= 4  group by trunc(months_between(end_date,sysdate)/12);
+        $query = DB::connection('oracle')->table('emp_qulification_work')
+            ->select(
+                DB::raw('count(employee_id) as count'),
+                DB::raw('trunc(months_between(end_date,sysdate)/12) as major')
+            )
+            ->where(DB::raw('trunc(months_between(end_date,sysdate)/12)'), '>=', 0)
+            ->where(DB::raw('trunc(months_between(end_date,sysdate)/12)'), '<=', 4)
+            ->groupBy(DB::raw('trunc(months_between(end_date ,sysdate) / 12)'))
+            ->get();
+        dd($query);
+        return $query;
+    }
 }
