@@ -29,7 +29,7 @@
         <v-tabs-items v-model="tab">
           <v-tab-item v-for="(item, index) in chartOptions" :value="`${index}`">
             <v-card flat>
-              <v-card-text>{{ JSON.stringify(chartOptions[tab]) }}</v-card-text>
+              <v-card-text>{{ tab }} </v-card-text>
             </v-card>
           </v-tab-item>
         </v-tabs-items>
@@ -57,11 +57,12 @@ export default {
 <style lang="scss" scoped>
 .drawer-button {
   position: fixed;
-  top: 340px;
+  top: 50vh;
   z-index: 1;
   margin: 5px;
+  justify-content: center;
   .v-icon {
-    margin-left: -18px;
+    display: flex;
     font-size: 1.3rem;
   }
 }

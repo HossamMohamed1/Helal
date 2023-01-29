@@ -5,7 +5,6 @@
       <div>
         <div class="actions d-flex align-item-center mx-1">
           <v-btn
-            ref="button"
             class="drawer-button"
             @click.stop="dialog = true"
             color="#1e8e49"
@@ -96,7 +95,10 @@ export default {
           },
         ];
       }
-      newOptions = { ...options, series: result };
+      newOptions = {
+        ...options,
+        series: result,
+      };
     } else {
       const dataLabels = options?.series[0]?.dataLabels ?? {};
       newOptions = {
@@ -122,7 +124,6 @@ export default {
           },
         },
       },
-      hideChart: false,
       category: null,
     };
   },

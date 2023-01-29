@@ -1,6 +1,57 @@
 import axios from "@/plugins/axios";
 const actions = {
   async fetchChart({}, data) {
+    // return {
+    //   bar: {
+    //     labels: [
+    //       "25 - 29",
+    //       "30 - 34",
+    //       "35 - 39",
+    //       "40 - 44",
+    //       "45 - 49",
+    //       "50 - 54",
+    //       "55 - 59",
+    //       "60 - فيما اكبر",
+    //     ],
+    //     result: [
+    //       {
+    //         name: "العدد",
+    //         data: [136, 1130, 1220, 1251, 870, 433, 384, 362],
+    //       },
+    //     ],
+    //   },
+    //   line: {
+    //     labels: [
+    //       "25 - 29",
+    //       "30 - 34",
+    //       "35 - 39",
+    //       "40 - 44",
+    //       "45 - 49",
+    //       "50 - 54",
+    //       "55 - 59",
+    //       "60 - فيما اكبر",
+    //     ],
+    //     result: [
+    //       {
+    //         name: "العدد",
+    //         data: [136, 1130, 1220, 1251, 870, 433, 384, 362],
+    //       },
+    //     ],
+    //   },
+    //   pie: {
+    //     labels: [
+    //       "25 - 29",
+    //       "30 - 34",
+    //       "35 - 39",
+    //       "40 - 44",
+    //       "45 - 49",
+    //       "50 - 54",
+    //       "55 - 59",
+    //       "60 - فيما اكبر",
+    //     ],
+    //     result: [136, 1130, 1220, 1251, 870, 433, 384, 362],
+    //   },
+    // };
     const response = await axios.get("report/charts", { params: data });
     return response?.data?.data ?? {};
   },
@@ -18,7 +69,6 @@ const actions = {
         params: { type: "employee_card" },
       });
       let data = response?.data?.data ?? {};
-      console.log(data);
       cards = state.cards.map((item) => ({
         ...item,
         loading: false,

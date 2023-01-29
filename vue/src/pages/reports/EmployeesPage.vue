@@ -59,7 +59,6 @@
             :color="card.color"
             :value="card.value"
             :loading="card.loading"
-            :series="card.ordersSeries"
           ></track-card>
         </div>
       </v-col>
