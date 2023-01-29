@@ -46,14 +46,14 @@ const bar = {
   plotOptions: {
     bar: {
       dataLabels: {
-        enabled: true,
+        enabled: false,
         formatter: function () {
           return this.y;
         },
       },
     },
     series: {
-      pointWidth: 40,
+      // pointWidth: 40,
       borderRadius: 10,
       borderRadiusTopLeft: 8,
       borderRadiusTopRight: 8,

@@ -214,6 +214,7 @@ class EmployeeReport extends BaseReport
                 DB::raw("COUNT(emp_qulification_work.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
             )
+            ->whereNotNull(   $this->filter['groupBy'])
             ->orderBy($this->filter['groupBy'], 'asc')
             ->groupBy($this->filter['groupBy'])
             ->get()
@@ -339,16 +340,21 @@ class EmployeeReport extends BaseReport
                 DB::raw("COUNT(CASE WHEN genderid = '1'  THEN 1 END) as males"),
                 DB::raw("COUNT(CASE WHEN genderid = '2'  THEN 1 END) as females"),
             )
-            ->where('v_all_user_emp_info.end_date', '>', now())
+            ->whereDate('v_all_user_emp_info.end_date', '>', now())
             ->first();
-
-        $result->attendees = $result->emps - DB::connection('oracle')->table('absence')
-            ->join('v_all_user_emp_info', 'absence.employee_id', '=', 'emp_no')
-            ->select(DB::raw('COUNT(employee_id) as absence'), 'absence_date')
-            ->where('absence_date', now()->format('Y/m/d '))
-            ->where('v_all_user_emp_info.end_date', '>', now())
-            ->groupBy('absence_date')
-            ->first()->absence ?? 0;
+            $result->attendees = DB::connection('oracle')->table('v_hadir_late')
+            ->select(DB::raw('count(employee_id) as attendees') ,'late_date')
+            ->whereMonth('late_date', now()->month)
+            ->groupBy('late_date')
+            ->first()
+            ->attendees ?? 0 ;
+        // $result->attendees = $result->emps - DB::connection('oracle')->table('absence')
+        //     ->join('v_all_user_emp_info', 'absence.employee_id', '=', 'emp_no')
+        //     ->select(DB::raw('COUNT(employee_id) as absence'), 'absence_date')
+        //     ->where('absence_date', now()->format('Y/m/d'))
+        //     ->where('v_all_user_emp_info.end_date', '>', now())
+        //     ->groupBy('absence_date')
+        //     ->first()->absence ?? 0;
 
         return $result;
     }
