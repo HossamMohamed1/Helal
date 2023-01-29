@@ -57,6 +57,12 @@ return [
             'groupBy' => 'grade_desc',
             'className' => 'EmployeeReport',
         ],
+        'employee_major_for_years' => [
+            'columns' => ['count'],
+            'unit' => 'number',
+            'groupBy' => 'major',
+            'className' => 'EmployeeReport',
+        ],
         'employee_job' => [
             'columns' => ['count'],
             'unit' => 'number',
