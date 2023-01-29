@@ -65,7 +65,6 @@ const reports = [
     filter_able: false,
     type: [
       { text: "pie", value: "pie" },
-      { text: "donut", value: "pie" },
       { text: "bar", value: "bar" },
       { text: "line", value: "line" },
       { text: "area", value: "line" },
