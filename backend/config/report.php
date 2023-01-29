@@ -126,7 +126,7 @@ return [
         'department_less_five_employee' => [
             'columns' => ['count'],
             'unit' => 'number',
-            'groupBy' => 'dept_desc',
+            'groupBy' => 'dept_count',
             'className' => 'DepartmentReport',
         ],
     ],

@@ -144,20 +144,39 @@ class DepartmentReport extends BaseReport
 
     private function departmentLessFiveEmployeeQuery()
     {
+        // select count(v_all_user_emp_info.emp_no) as count , count(dept.dept_no) as dept_count from dept
+        // join v_all_user_emp_info on dept.dept_no = v_all_user_emp_info.departmentid
+        // group by dept.dept_no ;
+
         $query = DB::connection('oracle')
             ->table('dept')
             ->join("V_ALL_USER_EMP_INFO as employees", "{$this->mainTable}.DEPT_NO", "=", "employees.DEPARTMENTID")
             ->select(
-                DB::raw("count(emp_no) as {$this->filter['columns'][0]}"),
-                "{$this->mainTable}.{$this->filter['groupBy']}"
+                DB::raw("count(v_all_user_emp_info.emp_no) as {$this->filter['columns'][0]}"),
+                DB::raw("count(dept.dept_no) as dept_count")
             )
-            ->where("{$this->mainTable}.dept_status", '=', '1')
-            ->groupBy("{$this->mainTable}.{$this->filter['groupBy']}")
-            ->get()
-            ->sortBy($this->filter['groupBy'])
-            ->filter(function ($item) {
-                return $item->count <= 5;
-            });
+            ->groupBy(
+                DB::raw("count(v_all_user_emp_info.emp_no)"),
+                DB::raw("count(dept.dept_no) as dept_count")
+            )
+            ->get();
+
+        dd($query);
+
+        // $query = DB::connection('oracle')
+        //     ->table('dept')
+        //     ->join("V_ALL_USER_EMP_INFO as employees", "{$this->mainTable}.DEPT_NO", "=", "employees.DEPARTMENTID")
+        //     ->select(
+        //         DB::raw("count(v_all_user_emp_info.emp_no) as {$this->filter['columns'][0]}"),
+        //         DB::raw("{$this->mainTable}.{$this->filter['groupBy']}")
+        //     )
+        //     ->where("{$this->mainTable}.dept_status", '=', '1')
+        //     ->groupBy("{$this->mainTable}.{$this->filter['groupBy']}")
+        //     ->get()
+        //     ->sortBy($this->filter['groupBy'])
+        //     ->filter(function ($item) {
+        //         return $item->count <= 5;
+        //     });
 
         return $query;
     }
