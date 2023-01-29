@@ -144,17 +144,33 @@ class DepartmentReport extends BaseReport
     private function departmentLessFiveEmployeeQuery()
     {
 
-        $query = DB::connection('oracle')
-            ->table('V_ALL_USER_EMP_INFO')
-            ->select(
-                DB::raw("count(V_ALL_USER_EMP_INFO.emp_no) as {$this->filter['columns'][0]}"),
-                $this->filter['groupBy']
+        // $query = DB::connection('oracle')
+        //     ->table('V_ALL_USER_EMP_INFO')
+        //     ->select(
+        //         DB::raw("count(V_ALL_USER_EMP_INFO.emp_no) as {$this->filter['columns'][0]}"),
+        //         $this->filter['groupBy']
+        //     )
+        //     ->groupBy($this->filter['groupBy'])
+        //     ->get()
+        //     ->filter(function ($item) {
+        //         return $item->count <= 5;
+        //     });
+        $query  = DB::connection('oracle')
+            ->table('dept')
+            ->join("V_ALL_USER_EMP_INFO as employees", "{$this->mainTable}.DEPT_NO", "=", "employees.DEPARTMENTID")
+            ->select( 
+                DB::raw("count(emp_no) as {$this->filter['columns'][0]}") ,
+                "{$this->mainTable}.{$this->filter['groupBy']}"
             )
-            ->groupBy($this->filter['groupBy'])
+            ->where("{$this->mainTable}.dept_status", '=','1')
+            ->groupBy(  "{$this->mainTable}.{$this->filter['groupBy']}")
             ->get()
-            ->filter(function ($item) {
+            ->sortBy($this->filter['groupBy'])
+                     ->filter(function ($item) {
                 return $item->count <= 5;
-            });
+            });;
+
+            // dd($query);
         return $query;
     }
 }
