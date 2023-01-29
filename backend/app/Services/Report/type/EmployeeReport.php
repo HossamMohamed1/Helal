@@ -216,7 +216,11 @@ class EmployeeReport extends BaseReport
             )
             ->orderBy($this->filter['groupBy'], 'asc')
             ->groupBy($this->filter['groupBy'])
-            ->get();
+            ->get()
+            ->map(function ($item) {
+                $item->{$this->filter['groupBy']} = $item->{$this->filter['groupBy']} . " مرتبه";
+                return $item;
+            });
     }
 
     /**
