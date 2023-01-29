@@ -431,6 +431,9 @@ class EmployeeReport extends BaseReport
                 $minMax = find_in_array_with_min_max($experiences, $key);
                 $min = $minMax->min;
                 $max = $minMax->max;
+                if($max >= 30) {
+                    $max = 'اكثر من 30 عام'
+                }
                 return [
                     $key => (object) [
                         'experience' => "{$min} - {$max}",
