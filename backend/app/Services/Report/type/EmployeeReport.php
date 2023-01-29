@@ -214,7 +214,7 @@ class EmployeeReport extends BaseReport
                 DB::raw("COUNT(emp_qulification_work.EMPLOYEE_ID) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
             )
-            ->whereNotNull(   $this->filter['groupBy'])
+            ->whereNotNull($this->filter['groupBy'])
             ->orderBy($this->filter['groupBy'], 'asc')
             ->groupBy($this->filter['groupBy'])
             ->get()
@@ -342,12 +342,12 @@ class EmployeeReport extends BaseReport
             )
             ->whereDate('v_all_user_emp_info.end_date', '>', now())
             ->first();
-            $result->attendees = DB::connection('oracle')->table('v_hadir_late')
-            ->select(DB::raw('count(employee_id) as attendees') ,'late_date')
+        $result->attendees = DB::connection('oracle')->table('v_hadir_late')
+            ->select(DB::raw('count(employee_id) as attendees'), 'late_date')
             ->whereMonth('late_date', now()->month)
             ->groupBy('late_date')
             ->first()
-            ->attendees ?? 0 ;
+            ->attendees ?? 0;
         // $result->attendees = $result->emps - DB::connection('oracle')->table('absence')
         //     ->join('v_all_user_emp_info', 'absence.employee_id', '=', 'emp_no')
         //     ->select(DB::raw('COUNT(employee_id) as absence'), 'absence_date')
@@ -431,8 +431,8 @@ class EmployeeReport extends BaseReport
                 $minMax = find_in_array_with_min_max($experiences, $key);
                 $min = $minMax->min;
                 $max = $minMax->max;
-                if($max >= 30) {
-                    $max = 'اكثر من 30 عام'
+                if ($max >= 30) {
+                    $max = 'اكثر من 30 عام';
                 }
                 return [
                     $key => (object) [
