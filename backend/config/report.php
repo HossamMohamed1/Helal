@@ -54,7 +54,7 @@ return [
         'employee_major' => [
             'columns' => ['count'],
             'unit' => 'number',
-            'groupBy' => 'grade_desc',
+            'groupBy' => 'stage_no',
             'className' => 'EmployeeReport',
         ],
         'employee_job' => [
