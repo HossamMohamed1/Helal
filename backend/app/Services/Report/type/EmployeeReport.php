@@ -199,8 +199,12 @@ class EmployeeReport extends BaseReport
             ->select(
                 DB::raw("COUNT($this->mainTable.EMP_NO) as {$this->filter['columns'][0]}"),
                 $this->filter['groupBy']
-            )->groupBy($this->filter['groupBy'])
-            ->get();
+            )
+            ->where('end_date', '>=', date("Y-m-d"))
+            ->whereNotNull(  $this->filter['groupBy'])
+            ->groupBy($this->filter['groupBy'])
+            ->get()
+            ->sortBy(  $this->filter['groupBy']);
     }
 
     /**
