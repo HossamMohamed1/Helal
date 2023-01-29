@@ -152,16 +152,22 @@ class DepartmentReport extends BaseReport
             ->table('dept')
             ->join("V_ALL_USER_EMP_INFO as employees", "{$this->mainTable}.DEPT_NO", "=", "employees.DEPARTMENTID")
             ->select(
-                DB::raw("count(v_all_user_emp_info.emp_no) as {$this->filter['columns'][0]}"),
+                DB::raw("count(emp_no) as {$this->filter['columns'][0]}"),
                 DB::raw("count(dept.dept_no) as dept_count")
             )
             ->groupBy(
-                DB::raw("count(v_all_user_emp_info.emp_no)"),
-                DB::raw("count(dept.dept_no) as dept_count")
+                DB::raw("dept.dept_no")
             )
-            ->get();
+            ->get()
+            ->filter(function ($item) {
+                        return $item->count <= 5;
+                    })
+            ->groupBy('dept_count')
+            ->mapWithKeys(function ($item,$key) {
+                return [$key => (object) ['dept_count'=>$key, 'count'=>$item->sum('count')]];
+            })->sortBy('dept_count');
 
-        dd($query);
+    //   dd($query);
 
         // $query = DB::connection('oracle')
         //     ->table('dept')
