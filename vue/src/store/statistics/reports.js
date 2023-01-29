@@ -143,6 +143,20 @@ const reports = [
       { text: "area", value: "line" },
     ],
   },
+  {
+    title: "employees.employee_major_for_years",
+    chart: "employee_major_for_years",
+    filter_able: false,
+    type: [
+      { text: "pie", value: "pie" },
+      { text: "bar", value: "bar" },
+      { text: "line", value: "line" },
+      { text: "spline", value: "line" },
+      { text: "area", value: "line" },
+    ],
+  },
+  // employee_major_for_years
+
   // {
   //   title: "employees.EmployeesAccordingAttendance",
   //   chart: "employee_absence",

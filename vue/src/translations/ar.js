@@ -467,6 +467,7 @@ export default {
       "الموظفين حسب مؤهلاتهم وتوزيهم في الإدارات",
     employeesAccordingToTheirQualificationsIn:
       "الموظفين حسب مؤهلاتهم وتوزيهم في",
+    employee_major_for_years: "عدد الموظفين المتوقع ترقيتهم فى خلال 4 سنين",
     employeesAccordingToTheirRanks: "الموظفين حسب مراتبهم وتوزيهم في الإدارات",
     employeesAccordingToTheirRanksIn: "الموظفين حسب مراتبهم وتوزيهم في ",
     EmployeesAccordingAttendance:
