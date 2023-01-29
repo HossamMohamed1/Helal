@@ -201,10 +201,10 @@ class EmployeeReport extends BaseReport
                 $this->filter['groupBy']
             )
             ->where('end_date', '>=', date("Y-m-d"))
-            ->whereNotNull(  $this->filter['groupBy'])
+            ->whereNotNull($this->filter['groupBy'])
             ->groupBy($this->filter['groupBy'])
             ->get()
-            ->sortBy(  $this->filter['groupBy']);
+            ->sortBy($this->filter['groupBy']);
     }
 
     /**
@@ -241,7 +241,7 @@ class EmployeeReport extends BaseReport
             )->groupBy($this->filter['groupBy'])
             ->get()
             ->map(function ($item) {
-                if(empty($item->{$this->filter['groupBy']})) {
+                if (empty($item->{$this->filter['groupBy']})) {
                     $item->{$this->filter['groupBy']} = 'ما دون الجامعه';
                 }
                 return $item;
@@ -466,17 +466,18 @@ class EmployeeReport extends BaseReport
     }
 
     private function employeeMajorForYearsQuery()
-    {   $query = DB::connection('oracle')->table('emp_qulification_work')
+    {
+        $query = DB::connection('oracle')->table('emp_qulification_work')
             ->select(
                 DB::raw('count(employee_id) as count'),
                 DB::raw("to_char(end_date, 'yyyy') as major")
             )
             ->where(DB::raw("to_char(end_date, 'yyyy')"), '>=', date('Y'))
-            ->where(DB::raw("to_char(end_date, 'yyyy')"), '<=', now()->add('years',3)->format('Y'))
+            ->where(DB::raw("to_char(end_date, 'yyyy')"), '<=', now()->add('years', 3)->format('Y'))
             ->groupBy(DB::raw("to_char(end_date, 'yyyy')"))
             ->get()
             ->sortBy('major');
-            
+
         return $query;
     }
 }
