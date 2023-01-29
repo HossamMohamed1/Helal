@@ -432,6 +432,7 @@ class EmployeeReport extends BaseReport
                 $min = $minMax->min;
                 $max = $minMax->max;
                 if ($max >= 30) {
+                    $min = 30;
                     $max = 'اكثر من 30 عام';
                 }
                 return [
