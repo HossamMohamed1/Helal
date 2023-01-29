@@ -128,6 +128,7 @@ class DepartmentReport extends BaseReport
             ->table($this->mainTable)
             ->join("V_ALL_USER_EMP_INFO as employees", "{$this->mainTable}.DEPT_NO", "=", "employees.DEPARTMENTID")
             ->select("employees.birthdate", "{$this->mainTable}.dept_desc")
+            ->where("{$this->mainTable}.dept_status", '=', '1')
             ->get()
             ->map(function ($item) {
                 $item->birthdate = (int) round(Carbon::parse(Hijri::Date('Y-m-d'))->diffInMonths($item->birthdate) / 12);
