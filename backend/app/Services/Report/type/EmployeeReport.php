@@ -408,7 +408,7 @@ class EmployeeReport extends BaseReport
         $experiences = $query->pluck('experience')
             ->unique()
             ->sort()
-            ->chunk(10)
+            ->chunk(5)
             ->map(function ($item) {
                 return (object) [
                     'min' => min($item->toArray()),
