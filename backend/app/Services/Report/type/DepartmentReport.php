@@ -144,6 +144,7 @@ class DepartmentReport extends BaseReport
 
     private function departmentLessFiveEmployeeQuery()
     {
+        // main query
         // select count(v_all_user_emp_info.emp_no) as count , count(dept.dept_no) as dept_count from dept
         // join v_all_user_emp_info on dept.dept_no = v_all_user_emp_info.departmentid
         // group by dept.dept_no ;
@@ -160,14 +161,12 @@ class DepartmentReport extends BaseReport
             )
             ->get()
             ->filter(function ($item) {
-                        return $item->count <= 5;
-                    })
+                return $item->count <= 5;
+            })
             ->groupBy('dept_count')
-            ->mapWithKeys(function ($item,$key) {
-                return [$key => (object) ['dept_count'=>$key, 'count'=>$item->sum('count')]];
+            ->mapWithKeys(function ($item, $key) {
+                return [$key => (object) ['dept_count' => $key, 'count' => $item->sum('count')]];
             })->sortBy('dept_count');
-
-    //   dd($query);
 
         // $query = DB::connection('oracle')
         //     ->table('dept')
