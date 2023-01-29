@@ -452,8 +452,14 @@ class EmployeeReport extends BaseReport
             ->where(DB::raw('trunc(months_between(end_date,sysdate)/12)'), '<=', 4)
             ->groupBy(DB::raw('trunc(months_between(end_date ,sysdate) / 12)'))
             ->get()
-            ->sortBy('major');
-      
+            ->sortBy('major')
+            ->map(function ($item) {
+                if ($item->major == 0) {
+                    $item->major = 'هذا العام';
+                }
+                return $item;
+            });
+
         return $query;
     }
 }
