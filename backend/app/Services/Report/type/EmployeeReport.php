@@ -433,7 +433,7 @@ class EmployeeReport extends BaseReport
                 $max = $minMax->max;
                 if ($max >= 30) {
                     $min = 30;
-                    $max = 'اكثر من 30 عام';
+                    $max = 'فيما اكثر';
                 }
                 return [
                     $key => (object) [
