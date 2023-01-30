@@ -67,21 +67,21 @@ export default {
         {
           text: this.$t("menu.reportBuilder"),
           to: "/reports/report-builder",
-          exact: true
+          exact: true,
         },
         {
           text: this.$t("reports.showReport"),
           disabled: true,
-          href: "#"
-        }
+          href: "#",
+        },
       ],
       tab: null,
       chartData: [],
-      chartAnalysis: {}
+      chartAnalysis: {},
     };
   },
   mounted() {},
-  methods: {}
+  methods: {},
 };
 </script>
 <style scoped>

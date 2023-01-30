@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col style="overflow: scroll;" cols="12" lg="12" md="12">
+    <v-col style="overflow: scroll" cols="12" lg="12" md="12">
       <table class="excel" :loading="true">
         <thead>
           <tr>
@@ -37,18 +37,25 @@
                 />
               </svg>
             </th>
-            <th scope="col" v-for="(item, index) in alpha" :key="index">
+            <th
+              scope="col"
+              v-for="(item, index) in columnLength + 1"
+              :key="index"
+            >
               <span
                 class="excel-btn"
                 color="error"
                 v-if="columnLength > index && index > 0"
                 @click.prevent="deleteColumn(index, 'column')"
               >
-                <v-icon small>
-                  mdi-delete
-                </v-icon>
+                <v-icon small> mdi-delete </v-icon>
               </span>
-              {{ item }}
+              <span v-if="alpha[item - 1]">
+                {{ alpha[item - 1] }}
+              </span>
+              <span v-else>
+                {{ item }}
+              </span>
             </th>
           </tr>
         </thead>
@@ -64,9 +71,7 @@
                 v-if="index + 1 + perPage * (page - 1) > 1"
                 @click.prevent="deleteColumn(index, 'row')"
               >
-                <v-icon small>
-                  mdi-delete
-                </v-icon>
+                <v-icon small> mdi-delete </v-icon>
               </span>
             </td>
             <td v-for="(item, itemIndex) in row">
@@ -132,19 +137,20 @@ export default {
         "W",
         "X",
         "Y",
-        "Z"
+        "Z",
       ],
-      newItem: ""
+      newItem: "",
     };
   },
   props: {
     page: { type: Number, default: 1 },
-    perPage: { type: Number, default: 10 }
+    perPage: { type: Number, default: 10 },
   },
   computed: {
     file() {
       return this.$store.state.reports.fileData;
     },
+
     fileObject() {
       return this.$store.state.reports.file;
     },
@@ -154,7 +160,7 @@ export default {
       } catch (error) {
         return 0;
       }
-    }
+    },
   },
   methods: {
     saveColumn(itemIndex, index, item) {
@@ -168,7 +174,7 @@ export default {
         column_index: itemIndex,
         page_num: this.page,
         page_limit: this.perPage,
-        value
+        value,
       };
 
       this.$emit("updateExcelData", data);
@@ -180,7 +186,7 @@ export default {
         column_index: index,
         type,
         page_num: this.page,
-        page_limit: this.perPage
+        page_limit: this.perPage,
       };
       const { isConfirmed } = await ask("Are you sure ?");
       if (isConfirmed) {
@@ -194,12 +200,12 @@ export default {
       let data = {
         file_name: file_path,
         value,
-        type
+        type,
       };
 
       this.$emit("addItem", data);
       this.newItem = "";
-    }
-  }
+    },
+  },
 };
 </script>

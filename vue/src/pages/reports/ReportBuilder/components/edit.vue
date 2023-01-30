@@ -8,9 +8,7 @@
             :key="index"
             @click.prevent="changeFile(file)"
           >
-            <v-icon left>
-              mdi-file-excel
-            </v-icon>
+            <v-icon left> mdi-file-excel </v-icon>
             <span dir="ltr">
               {{ file.file_name.replace(".json", "") }}
             </span>
@@ -54,7 +52,7 @@ export default {
     return {
       loading: false,
       page: 1,
-      perPage: 10
+      perPage: 10,
     };
   },
   created() {
@@ -64,11 +62,11 @@ export default {
     page(val) {
       const data = {
         page: val,
-        perPage: this.perPage
+        perPage: this.perPage,
       };
       data["file"] = this.file.file_path;
       this.pageChanged(data);
-    }
+    },
   },
   computed: {
     ...mapState("reports", ["chartFiles", "file", "fileData"]),
@@ -79,7 +77,7 @@ export default {
       } catch (error) {
         return 0;
       }
-    }
+    },
   },
   methods: {
     ...mapActions("reports", [
@@ -87,7 +85,7 @@ export default {
       "loadFile",
       "updateFile",
       "deleteItem",
-      "insertItem"
+      "insertItem",
     ]),
     loadData() {
       const { id } = this.$route.params;
@@ -105,7 +103,7 @@ export default {
       this.$store.commit("reports/SET_FILE", file);
       const { file_path } = file;
       let data = {
-        file: file_path
+        file: file_path,
       };
 
       this.page = 1;
@@ -154,13 +152,13 @@ export default {
       this.insertItem(data).then(() => {
         const PageData = {
           page: this.page,
-          perPage: this.perPage
+          perPage: this.perPage,
         };
         data["file"] = this.file.file_path;
         this.pageChanged(PageData);
       });
-    }
+    },
   },
-  components: { Excel }
+  components: { Excel },
 };
 </script>
