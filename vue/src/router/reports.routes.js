@@ -1,55 +1,55 @@
 export default [
   {
     path: "/reports",
-    redirect: "reports-employees",
+    redirect: "report-builder",
     meta: {
       auth: true,
     },
   },
-  {
-    path: "/reports/employees",
-    name: "reports-employees",
-    meta: {
-      auth: true,
-    },
-    component: () =>
-      import(
-        /* webpackChunkName: "reports-list" */ "@/pages/reports/EmployeesPage.vue"
-      ),
-  },
-  {
-    path: "/reports/employees-v2",
-    name: "reports-employees-v2",
-    meta: {
-      auth: true,
-    },
-    component: () =>
-      import(
-        /* webpackChunkName: "reports-list-v2" */ "@/pages/reports/EmployeePage2.vue"
-      ),
-  },
-  {
-    path: "/reports/permits",
-    name: "reports-permits",
-    meta: {
-      auth: true,
-    },
-    component: () =>
-      import(
-        /* webpackChunkName: "reports-permits" */ "@/pages/reports/PermitsPage.vue"
-      ),
-  },
-  {
-    path: "/reports/complaints",
-    name: "reports-complaints",
-    meta: {
-      auth: true,
-    },
-    component: () =>
-      import(
-        /* webpackChunkName: "reports-complaints" */ "@/pages/reports/ComplaintsPage.vue"
-      ),
-  },
+  // {
+  //   path: "/reports/employees",
+  //   name: "reports-employees",
+  //   meta: {
+  //     auth: true,
+  //   },
+  //   component: () =>
+  //     import(
+  //       /* webpackChunkName: "reports-list" */ "@/pages/reports/EmployeesPage.vue"
+  //     ),
+  // },
+  // {
+  //   path: "/reports/employees-v2",
+  //   name: "reports-employees-v2",
+  //   meta: {
+  //     auth: true,
+  //   },
+  //   component: () =>
+  //     import(
+  //       /* webpackChunkName: "reports-list-v2" */ "@/pages/reports/EmployeePage2.vue"
+  //     ),
+  // },
+  // {
+  //   path: "/reports/permits",
+  //   name: "reports-permits",
+  //   meta: {
+  //     auth: true,
+  //   },
+  //   component: () =>
+  //     import(
+  //       /* webpackChunkName: "reports-permits" */ "@/pages/reports/PermitsPage.vue"
+  //     ),
+  // },
+  // {
+  //   path: "/reports/complaints",
+  //   name: "reports-complaints",
+  //   meta: {
+  //     auth: true,
+  //   },
+  //   component: () =>
+  //     import(
+  //       /* webpackChunkName: "reports-complaints" */ "@/pages/reports/ComplaintsPage.vue"
+  //     ),
+  // },
   {
     path: "/reports/report-builder",
     name: "report-builder",

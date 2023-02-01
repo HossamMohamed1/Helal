@@ -65,16 +65,16 @@ export default {
       charts: ["pie"],
       type: "employee_gender",
     };
-    this.fetchChart(data)
-      .then((res) => {
-        this.loading = false;
-        const { pie } = res;
-        this.series = pie?.series.map((item) => parseInt(item));
-        this.chartOptions.labels = pie?.labels;
-      })
-      .catch(() => {
-        this.loading = false;
-      });
+    // this.fetchChart(data)
+    //   .then((res) => {
+    //     this.loading = false;
+    //     const { pie } = res;
+    //     this.series = pie?.series.map((item) => parseInt(item));
+    //     this.chartOptions.labels = pie?.labels;
+    //   })
+    //   .catch(() => {
+    //     this.loading = false;
+    //   });
   },
   methods: {
     ...mapActions("statistics", ["fetchChart"]),

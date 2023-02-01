@@ -34,8 +34,8 @@ export default {
   light: {
     background: '#ffffff',
     surface: '#f2f5f8',
-    primary: '#1e8e49',
-    secondary: '#a0b9c8',
+    primary: '#ED1C24',
+    secondary: '#c9a1a1',
     accent: '#048ba8',
     error: '#ef476f',
     info: '#2196F3',

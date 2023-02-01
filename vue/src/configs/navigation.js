@@ -22,18 +22,6 @@ const menus = {
           key: "menu.reports",
           items: [
             {
-              key: "menu.employees",
-              link: "/reports/employees"
-            },
-            {
-              key: "menu.permits",
-              link: "/reports/permits"
-            },
-            {
-              key: "menu.complaints",
-              link: "/reports/complaints"
-            },
-            {
               key: 'menu.reportBuilder',
               link: '/reports/report-builder'
             }

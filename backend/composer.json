@@ -19,8 +19,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
-        "spatie/laravel-permission": "^5.7",
-        "yajra/laravel-oci8": "8"
+        "spatie/laravel-permission": "^5.7"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

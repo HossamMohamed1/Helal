@@ -154,7 +154,7 @@ export default {
       showSearch: false,
 
       navigation: config.navigation,
-      logo: require("@/assets/images/images/haramain.png"),
+      logo: require("@/assets/images/images/red_crescent-logo.png"),
     };
   },
   computed: {
