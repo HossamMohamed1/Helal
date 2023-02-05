@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChartsController;
+use App\Http\Controllers\Helal\ChartController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\MeController;
 use App\Http\Controllers\RoleController;
@@ -75,4 +76,11 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'roles'], function () 
     // Route::get('', 'RoleController@index')->name('roles.index');
     // Route::post('', 'RoleController@store')->name('roles.store');
     // Route::delete('{id}', 'RoleController@destroy')->name('roles.destroy');
+});
+
+
+/***************************************** helal ChartController **************************************************** */
+Route::group(['middleware' => [], 'prefix' => 'helal/charts'], function () { //auth:sanctum
+
+    Route::get('test', [ChartController::class, 'test']);
 });
