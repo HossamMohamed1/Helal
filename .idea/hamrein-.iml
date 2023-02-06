@@ -134,6 +134,7 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/storage/framework" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/yajra/laravel-pdo-via-oci8" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/yajra/laravel-oci8" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/alkoumi/laravel-hijri-date" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

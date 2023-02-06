@@ -83,4 +83,5 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'roles'], function () 
 Route::group(['middleware' => [], 'prefix' => 'helal/charts'], function () { //auth:sanctum
 
     Route::get('test', [ChartController::class, 'test']);
+    Route::get('test2',[ChartController::class, 'test2']);
 });

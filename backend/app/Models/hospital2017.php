@@ -11,7 +11,7 @@ class hospital2017 extends Model
 
     protected $table = '2017';
 
-    protected $timestamps = false;
+    protected $timestamp = false;
 
     protected $fillable = [
         'DATA_SOURCE', 'IncidentTypeName', 'IncidentCode', 'IncidentID',

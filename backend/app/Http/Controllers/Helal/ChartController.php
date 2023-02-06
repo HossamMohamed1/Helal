@@ -11,4 +11,7 @@ class ChartController extends Controller
     {
         dd('here');
     }
+    public function test2(){
+        dd("def");
+    }
 }
